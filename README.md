@@ -25,7 +25,7 @@ Simply click on the Code Button, and select Download ZIP.
 ```
 ![rl-1](https://user-images.githubusercontent.com/77185714/155873153-e9ab0e95-18d4-437e-b10f-79488fd127b9.png)
 
-File Size: about xxMB
+File Size: about 3.94GB
 
 ### What's next?
 ```
