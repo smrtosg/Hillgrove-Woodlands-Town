@@ -1,0 +1,71 @@
+File created with StreetCreator v1.000
+
+---------------------------
+      Height Profiles
+---------------------------
+
+
+
+[heightprofile]
+-1.500
+1.500
+0.100
+0.100
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+str_gehweg02.bmp
+
+[texture]
+str_asphdrk_1line.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Right sidewalk:
+
+[profile]
+0
+
+[profilepnt]
+4.000
+0.100
+0.995
+0.200
+
+[profilepnt]
+4.000
+0.250
+0.973
+0.200
+
+[profile]
+0
+
+[profilepnt]
+4.000
+0.250
+0.973
+0.200
+
+[profilepnt]
+7.000
+0.250
+0.486
+0.200
+
+---------------------------
+          Paths
+---------------------------
+
+[path]
+1
+5.375
+0.250
+1.156
+2
+

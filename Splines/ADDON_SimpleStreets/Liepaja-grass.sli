@@ -1,0 +1,39 @@
+File created with StreetCreator v1.000
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+0.000
+2.500
+0.100
+0.100
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+gras1.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Left sidewalk:
+
+[profile]
+0
+
+[profilepnt]
+0.000
+0.100
+0.417
+0.167
+
+[profilepnt]
+3.500
+0.100
+0.000
+0.167

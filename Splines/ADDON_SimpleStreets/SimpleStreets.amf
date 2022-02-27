@@ -1,0 +1,16 @@
+ID=29951
+MAJOR=0
+MINOR=1106
+REVISION=13
+BETA=True
+
+[requires]
+[requires_end]
+
+[uninstall]
+\Sceneryobjects\ADDON_SimpleStreets\
+\Splines\ADDON_SimpleStreets\
+\Tools\ADDON_SimpleStreets\
+\README_SimpleStreets.txt
+[uninstall_end]
+

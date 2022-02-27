@@ -1,0 +1,258 @@
+=== Created with Simple Spline Editor ===
+=== Author: Michael ===
+
+=== Height profiles ===
+== <Unnamed profile> ==
+== Breite: 4,5 Meter ==
+[heightprofile]
+-4.5
+0
+0.25
+0.25
+
+== <Unnamed profile> ==
+== Breite: 8,9 Meter ==
+[heightprofile]
+0
+8.9
+0.1
+0.1
+
+== <Unnamed profile> ==
+== Breite: 5 Meter ==
+[heightprofile]
+8.9
+13.9
+0.25
+0.25
+
+=== Textures ===
+== 0 ==
+[texture]
+str_gruenstreifen.bmp
+[matl]
+str_gruenstreifen.bmp
+0
+[matl_alpha]
+2
+
+== 1 ==
+[texture]
+str_asphdrk_1line.bmp
+[matl]
+str_asphdrk_1line.bmp
+0
+[matl_alpha]
+2
+
+== 2 ==
+[texture]
+str_asphdrk_2line.bmp
+[matl]
+str_asphdrk_2line.bmp
+0
+[matl_alpha]
+2
+
+== 3 ==
+[texture]
+str_gehweg03.bmp
+[matl]
+str_gehweg03.bmp
+0
+[matl_alpha]
+2
+
+== 4 ==
+[texture]
+str_asphdrk_1line011.bmp
+[matl]
+str_asphdrk_1line011.bmp
+0
+[matl_alpha]
+2
+
+== 5 ==
+[texture]
+str_betonplatten.bmp
+[matl]
+str_betonplatten.bmp
+0
+[matl_alpha]
+2
+
+== 6 ==
+[texture]
+str_asphdrk_dark.bmp
+[matl]
+str_asphdrk_dark.bmp
+0
+[matl_alpha]
+2
+
+=== Textur wrappings ===
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-4.5
+0.24
+0.36
+0.2
+== TO ==
+[profilepnt]
+0
+0.25
+0.973
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0
+0.25
+0.973
+0.2
+== TO ==
+[profilepnt]
+0
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+0
+0.1
+0.995
+0.2
+== TO ==
+[profilepnt]
+2.9
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+2.9
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+5.9
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+5.9
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+8.9
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+3
+== FROM ==
+[profilepnt]
+8.9
+0.1
+0.995
+0.2
+== TO ==
+[profilepnt]
+8.9
+0.25
+0.973
+0.2
+== END ==
+
+== START ==
+[profile]
+3
+== FROM ==
+[profilepnt]
+8.9
+0.25
+0.973
+0.2
+== TO ==
+[profilepnt]
+13.9
+0.25
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+6
+== FROM ==
+[profilepnt]
+5.9
+0.1
+0
+0.2
+== TO ==
+[profilepnt]
+8.9
+0.1
+1
+0.2
+== END ==
+
+=== Pathes ===
+[path]
+0
+1.45
+0.1
+2.929
+0
+
+[path]
+0
+4.4
+0.1
+3.03
+0
+
+[path]
+0
+7.4
+0.1
+3.03
+0
+
+[path]
+1
+11.9
+0.25
+1.664
+2
+

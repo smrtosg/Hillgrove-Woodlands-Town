@@ -1,0 +1,251 @@
+=== Created with Simple Spline Editor ===
+=== Author: Michael ===
+
+=== Height profiles ===
+== <Unnamed profile> ==
+== Breite: 1,5 Meter ==
+[heightprofile]
+-4.75
+-3.25
+0.25
+0.25
+
+== <Unnamed profile> ==
+== Breite: 6,5 Meter ==
+[heightprofile]
+-3.25
+3.25
+0.1
+0.1
+
+== <Unnamed profile> ==
+== Breite: 1,5 Meter ==
+[heightprofile]
+3.25
+4.75
+0.25
+0.25
+
+=== Textures ===
+== 0 ==
+[texture]
+str_gehweg02.bmp
+[matl]
+str_gehweg02.bmp
+0
+[matl_alpha]
+2
+
+== 1 ==
+[texture]
+str_asphdrk_1line.bmp
+[matl]
+str_asphdrk_1line.bmp
+0
+[matl_alpha]
+2
+
+== 2 ==
+[texture]
+Kopfsteinpflaster_2.jpg
+[matl]
+Kopfsteinpflaster_2.jpg
+0
+[matl_alpha]
+2
+
+== 3 ==
+[texture]
+asphalt_2.bmp
+[matl]
+asphalt_2.bmp
+0
+[matl_alpha]
+2
+
+== 4 ==
+[texture]
+Beton.bmp
+[matl]
+Beton.bmp
+0
+[matl_alpha]
+2
+
+== 5 ==
+[texture]
+asphalt_1_alt.bmp
+[matl]
+asphalt_1_alt.bmp
+0
+[matl_alpha]
+2
+
+== 6 ==
+[texture]
+asfalt.bmp
+[matl]
+asfalt.bmp
+0
+[matl_alpha]
+2
+
+== 7 ==
+[texture]
+yf001.png
+[matl]
+yf001.png
+0
+[matl_alpha]
+2
+
+== 8 ==
+[texture]
+str_k_waldk.bmp
+[matl]
+str_k_waldk.bmp
+0
+[matl_alpha]
+2
+
+== 9 ==
+[texture]
+vkl_flower_grass.jpg
+[matl]
+vkl_flower_grass.jpg
+0
+[matl_alpha]
+2
+
+=== Textur wrappings ===
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+-4.75
+0.25
+0.667
+0.2
+== TO ==
+[profilepnt]
+-3.25
+0.25
+0.973
+0.2
+== END ==
+
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+-3.25
+0.25
+0.973
+0.2
+== TO ==
+[profilepnt]
+-3.25
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+7
+== FROM ==
+[profilepnt]
+-3.25
+0.1
+0.995
+0.2
+== TO ==
+[profilepnt]
+0
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+7
+== FROM ==
+[profilepnt]
+0
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+3.25
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+3.25
+0.1
+0.995
+0.2
+== TO ==
+[profilepnt]
+3.25
+0.25
+0.973
+0.2
+== END ==
+
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+3.25
+0.25
+0.973
+0.2
+== TO ==
+[profilepnt]
+4.75
+0.25
+0.667
+0.2
+== END ==
+
+=== Pathes ===
+[path]
+1
+-4.049
+0.25
+0.981
+2
+
+[path]
+0
+-1.625
+0.1
+3.03
+1
+
+[path]
+0
+1.625
+0.1
+3.03
+0
+
+[path]
+1
+4.049
+0.25
+0.981
+2
+
