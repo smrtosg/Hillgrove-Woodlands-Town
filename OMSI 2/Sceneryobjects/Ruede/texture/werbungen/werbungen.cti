@@ -1,0 +1,63 @@
+==============
+ATTENTION!!
+==============
+
+If you would like to change the number of items,
+you have to count the number of cti items manually,
+and change the first number of the following line in "werbung.osc":
+
+       vvv
+	8 random (S.L.Werbung) 1 -
+       ^^^
+
+
+Syntax:
+	[item]
+	Name of Item (colorscheme name)
+	associated [CTCTexture] name
+	texture file name
+
+[item]
+FromInternet0
+farbschema
+_fromInternet_0.tga
+
+[item]
+FromInternet1
+farbschema
+_fromInternet_1.tga
+
+[item]
+FromInternet2
+farbschema
+_fromInternet_2.tga
+
+[item]
+FromInternet3
+farbschema
+fromInternet_3.tga
+
+[item]
+FromInternet4
+farbschema
+fromInternet_4.tga
+
+[item]
+FromInternet5
+farbschema
+fromInternet_5.tga
+
+[item]
+FromInternet6
+farbschema
+fromInternet_6.tga
+
+[item]
+FromInternet7
+farbschema
+fromInternet_7.tga
+
+
+
+
+

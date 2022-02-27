@@ -1,0 +1,41 @@
+'###########################
+'Traffic Light Human Warning
+'###########################
+
+'Traffic Light flashing warning drivers about pedestrians
+'Phase 12: off
+'Else: flashing yellow
+
+'(c) 01.6.2010 Marcel Kuhnt
+
+'Script Version: 1.2
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+{init}
+	0 (S.L.Timer)
+	1 (S.L.Yellow)
+{end}
+
+{frame}
+	(L.L.TrafficLightPhase) 12 =
+	{if}
+		0 (S.L.Timer)
+		0 (S.L.Yellow)
+	{else}
+		(L.L.Timer) (L.S.Timegap) + (S.L.Timer) s0
+		1 >
+		{if}
+			0 (S.L.Timer)
+			1 (S.L.Yellow)
+		{else}
+			l0 0.5 >
+			{if}
+				0 (S.L.Yellow)
+			{endif}
+		{endif}
+	{endif}
+{end}

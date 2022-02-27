@@ -1,0 +1,42 @@
+{init}
+	0 (S.L.Blink)
+{end}
+
+{frame}
+	(L.$.ToggleSlipperyMessage) "1" $= (L.S.PrecipType) 0 = ! &&
+	{if}
+		"SLIPPERY!@PLEASE BE CAREFUL" (S.$.Content)
+		0 (S.L.ForceBlinkStep)	
+	{else}
+		(L.$.CustomContent) (S.$.Content)
+		0 (S.L.ForceBlinkStep)		
+	{endif}
+
+	(L.$.ForceBlink) "1" $=
+	{if}
+		1 (S.L.ForceBlinkStep)
+	{else}
+		(L.L.ForceBlinkStep) 1 =
+		{if}
+			1 (S.L.ForceBlinkStep)
+		{else}
+			0 (S.L.ForceBlinkStep)
+		{endif}
+	{endif}
+
+	(L.L.ForceBlinkStep) 1 =
+	{if}
+		(L.S.GetTime) 2 % 1 < (S.L.Blink)
+
+		(L.L.Blink)
+		{if}
+			"gg2_warninglight_on.tga" (S.$.BlinkTexture)
+		{else}
+			"gg2_warninglight.tga" (S.$.BlinkTexture)
+		{endif}
+	{else}
+		"gg2_warninglight.tga" (S.$.BlinkTexture)
+	{endif}
+
+	1 (S.L.Refresh_Strings)
+{end}

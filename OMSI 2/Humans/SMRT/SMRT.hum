@@ -1,0 +1,95 @@
+[model]
+model\man02.cfg
+
+
+[seatheight]
+0.81
+
+
+	////////////////////////////////////////////////////////
+		geometrische Daten des Menschen:
+	////////////////////////////////////////////////////////
+
+	[humangeom]
+	{feetdist (FD)}
+	{height}
+
+	Jeweils rechtes Knie, rechte Hüfte usw.
+
+	[links]
+	{x_hip}
+	{y_hip}
+	{z_hip}
+	{x_knee}
+	{y_knee}
+	{z_knee}
+	{y_waist}
+	{z_waist}
+	{x_shoulder}
+	{y_shoulder}
+	{z_shoulder}
+	{x_elbow}
+	{y_elbow}
+	{z_elbow}
+	{y_neck}
+	{z_neck}	
+	{x_hand (carpus)}
+	{y_hand (carpus)}
+	{z_hand (carpus)}
+	{x_finger}
+	{y_finger}
+	{z_finger}
+
+[humangeom]
+0.04
+1.77
+
+[links]
+0.09
+0.00
+0.92
+0.09
+-0.03
+0.53
+0.02
+1.17
+0.18
+-0.05
+1.43
+0.44
+-0.04
+1.41
+-0.02
+1.55
+0.69
+-0.03
+1.43
+0.90
+-0.03
+1.43
+
+	[walk_param]
+	{schrittweite} (std: 1.4)
+	{upper_arm_beta} (std: 66)
+	{armschwing} (std: 1.0)
+	{walk_huefte} (std: 1.0)
+	{anim_walk_taille} (std: 0.0)
+	
+
+[walk_param]
+1.4
+80
+1.0
+1.0
+0.0
+
+[voice]
+M4
+
+
+
+
+	Masse in t:
+[mass]
+0.09
+

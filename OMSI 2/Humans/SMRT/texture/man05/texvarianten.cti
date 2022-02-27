@@ -1,0 +1,22 @@
+Hier werden die Texturchange-Items definiert. OMSI durchsucht dabei 
+den gewählten Pfad nach allen *.cti-Dateien und fügt alle gefundenen
+[item]-Befehle zusammen. Es können also beliebig viele *.cti-Dateien
+erstellt werden und diese können einen oder beliebig viele [iten]-
+Befehle enthalten.
+
+Syntax:
+	[item]
+	Name des Items (bspw. Name der Werbung oder des Ziels)
+	zugehöriger [CTCTexture]-Name
+	Texturdateiname
+
+
+[item]
+Variante1
+farbschema
+man_5_B.bmp
+
+[item]
+Variante2
+farbschema
+man_5_C.bmp

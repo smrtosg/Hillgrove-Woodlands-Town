@@ -1,0 +1,35 @@
+---------------------------------
+	     Down
+---------------------------------
+*downA - Down (Normal Bus Svc)
+downB - Down (Depot)
+
+
+---------------------------------
+	    Turn
+---------------------------------
+*turnA - Make a round (used for Bus Park)
+
+
+---------------------------------
+	    Left
+---------------------------------
+*leftA - Left (Normal Bus Svc)
+leftB - Left (Depot)
+
+
+---------------------------------
+	    Right
+---------------------------------
+*rightA - Right (Normal Bus Svc)
+*rightB - Right (Depot)
+
+
+---------------------------------
+	    Others
+---------------------------------
+*Berth - Berth (Used in Interchanges/Terminals)
+*BusParking - Bus Parking Lots (Used in Interchanges/Terminals)
+
+*- Completed
+

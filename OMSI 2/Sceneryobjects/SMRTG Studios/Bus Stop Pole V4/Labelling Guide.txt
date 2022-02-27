@@ -1,0 +1,9 @@
+Label 0 => Service Numbers 1
+Label 1 => Service Numbers 2
+Label 2 => Service Numbers 3
+Label 3 => Service Numbers 4
+Label 4 => Service Numbers 5
+Label 5 => Service Numbers 6
+
+Label 6 => Bus Stop Code
+Label 7 => Bus Stop Name
