@@ -1,0 +1,61 @@
+Invisible Street
+
+[heightprofile]
+-1
+1
+0.1
+0.1
+
+[onlyeditor]
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+helper_path_hum_2.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Grass strip:
+
+[profile]
+0
+
+[profilepnt]
+-1.5
+0.1
+0
+-0.1
+
+[profilepnt]
+1.5
+0.1
+1
+-0.1
+
+---------------------------
+          Paths
+---------------------------
+
+	[path]
+	{type}		Typ:
+			0:	AI-Straßenverkehr
+			1:	AI-Menschen
+			2:	Schiene (AI oder User)
+	{offsetX}	Abstand von der Mittellinie - rechts = positiv
+	{offsetZ}	Höhe über "Nullinie" der Spline - aufwärts = positiv
+	{width}		Breite (Straßenverkehr und Menschen kann so ein Ausweichen gestattet werden)
+	{reverse}	Befahr-/-gehbarkeit:
+			0:	Nur vorwärts
+			1:	Nur rückwärts
+			2:	beide Richtungen
+
+[path]
+1
+0
+0
+2
+2

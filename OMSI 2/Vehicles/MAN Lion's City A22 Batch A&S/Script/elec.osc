@@ -1,0 +1,189 @@
+'##############
+'Electricity Script
+'##############
+
+'Controls Bus Electicity and tells the systems
+'if the busbar is active or not
+
+'(c) 01.11.2012 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- engine
+
+'Revision History:
+'- Marcel Kuhnt		13.06.2009	File Created
+'- R¸diger H¸lsmann	23.12.2010	L.L.elec_busbar_avail = 1 by init
+'- Marcel Kuhnt		09.07.2012	Simulation des Akku-Innenwiderstands
+'- Marcel Kuhnt		01.11.2012	Einbau des neuen Wartungsmodells
+
+
+'Attention:
+'============
+'All voltages are measured without units.
+'1.0 means 100% of the normal voltage, 0.0 means no voltage.
+
+'--------------------------------------------------------------
+
+
+
+{macro:Elec_Init}
+'At the beginning, battery has enough voltage:
+	1.0 (S.L.elec_battery_load)
+'Zuf‰llig verteilt nach y = 1/x≤
+'	1 1000 random 1000 / sqrt sqrt / 1 - (S.L.elec_battery_age)
+'Zuf‰llig verteilen auf Basis der Wartung:
+	1 1000 random 1000 / sqrt sqrt / 1 -
+	1 (L.L.wearlifespan) / sqrt *
+	(S.L.elec_battery_age)
+{end}
+
+'===========================================
+'Berechnung der Zeit, die benˆtigt wird, um die Sch‰den zu reparieren:
+
+{macro:Elec_Malfunction_TimeCalc}
+
+	s0
+
+'Wenn der Innenwiderstand zu groﬂ ist und Motor aus...
+	(L.L.elec_battery_Ri) 0.05 >
+	(L.L.engine_n) 400 < &&
+	{if}
+'Wenn das Batteriealter eigentlich gut ist (< 1 Jahr), dann wird Starthilfe gegeben. Das dauert netto nat¸rlich nicht lang:
+		(L.L.elec_battery_age) 1 <
+		{if}
+			10 l0 + s0
+'Sonst muss die Batterie gewechselt werden:
+		{else}
+			40 l0 + s0
+		{endif}
+	{endif}
+	l0
+{end}
+
+'===========================================
+'Sch‰den reparieren:
+
+{macro:Elec_Malfunction_Reset}
+
+'Wenn der Innenwiderstand zu groﬂ ist und Motor aus...
+	(L.L.elec_battery_Ri) 0.05 >
+	(L.L.engine_n) 400 < &&
+	{if}
+'Ggf. Batterie tauschen:
+		(L.L.elec_battery_age) 1 >
+		{if}
+			20 random 20 / (S.L.elec_battery_age)
+			10 (S.L.elec_battery_T)
+			1.0 (S.L.elec_battery_load)
+		{endif}
+
+'Starthilfe:
+		1 (S.L.engine_injection_on)
+		400 (S.L.engine_n)
+		1 (S.L.antrieb_getr_gangvorwahl)
+		1 (S.L.engine_on)
+
+	{endif}
+
+
+{end}
+
+'===========================================
+'Frame:
+
+{macro:Elec_Frame}
+
+'Generator liefert Spannung proportional zur Drehzahl, der Regler deckelt aber auf die entsprechende Maximalspannung:
+
+	(L.L.engine_n) (C.L.elec_generator_minRPM) 0.8 * >
+	(L.L.vdv_error_battery_active) ! &&
+	{if}
+		(L.L.engine_n) abs (C.L.elec_generator_minRPM) / 1 min (C.L.elec_V_generator_max) * (S.L.elec_V_generator)
+	{else}
+		0 (S.L.elec_V_generator)
+	{endif}
+
+'Batterietemperatur berechnen:
+	(L.S.Weather_Temperature) 1 (C.L.elec_battery_anteil_InnenT) - *
+	(L.L.Cabinair_Temp) (C.L.elec_battery_anteil_InnenT) * 2 / +
+	(L.L.engine_temperature) (C.L.elec_battery_anteil_InnenT) * 2 / + (S.L.elec_battery_T)
+'Jetzt wird der Innenwiderstand berechnet:
+	(L.L.elec_battery_load) (F.L.elec_battery_load-Ri) (L.L.elec_battery_T) (F.L.elec_battery_T-FactRi) * (L.L.elec_battery_age) 1 + * (S.L.elec_battery_Ri)
+'Berechnung der aktuellen Kapazit‰t:
+	(C.L.elec_battery_Q) (L.L.elec_I_battery) (C.L.elec_battery_Q) / (F.L.elec_battery_C-AhFaktor) * (L.L.elec_battery_T) (F.L.elec_battery_T-Q) * 1 (L.L.elec_battery_age) 1 + / * (S.L.elec_battery_Q_curr)
+
+'Batterie wird entweder geladen oder liefert Spannung in Abh‰ngigkeit von ihrer Ladung:
+	(L.L.elec_battery_load) (F.L.elec_battery_load-V) s0
+	(S.L.elec_ladekontrolle)
+	{if}
+'Wenn Batteriestrom benutzt wird, dann f‰llt die Spannung ab in Abh‰ngigkeit von Innenwiderstand und Auﬂenwiderstand:
+		(L.L.elec_busbar_Rinv_summe) s1 0 <=
+		{if}
+			0 (S.L.elec_I_battery) l0 s4
+		{else}
+'Summieren von Auﬂen- und Innenwiderstand, wobei Rinv erst invertiert wird:
+			1 l1 / (L.L.elec_battery_Ri) + s2
+'Berechnen des Stroms: (I = U/(Ri+Ra))
+			l0 l2 / (C.L.elec_Vnenn) * (S.L.elec_I_battery)
+'Ohmsches Gesetz f¸r Auﬂenwiderstand (U = I/invRa):
+			l1 / (C.L.elec_Vnenn) / s4
+		{endif}
+	{else}
+		0 (S.L.elec_I_battery) l0 s4
+	{endif}
+
+'Das soeben ermittelte ist nun der neue Sollwert. Der Istwert wird daraus hergeleitet:
+	1 (L.S.Timegap) -3 * exp - l4 (L.L.elec_V_battery) - * (L.L.elec_V_battery) + (S.L.elec_V_battery)
+	(L.L.elec_V_generator) <
+	{if}
+'Ladekontrolllampe aus und Strom von Batterie abklemmen:
+		0 (S.L.elec_ladekontrolle)
+		(L.L.elec_V_generator) (S.L.elec_V_battery)
+
+'Berechnen des Ladestroms (negativ = Aufladung):
+		(L.L.elec_V_generator) l0 - (C.L.elec_Vnenn) * (L.L.elec_battery_Ri) / /-/ (C.L.elec_battery_I_maxloading) max (S.L.elec_I_battery)
+'Ladevorgang:
+		(L.L.elec_battery_load) (L.L.elec_I_battery) (L.S.Timegap) 3600 / * (L.L.elec_battery_Q_curr) / - (L.L.elec_battery_Q_curr) min (S.L.elec_battery_load)
+	{else}
+'Ladekontrolllampe an:
+		1 (S.L.elec_ladekontrolle)
+'Entladevorgang:
+		(L.L.elec_battery_load) (L.L.elec_I_battery) (L.S.Timegap) 3600 / * (L.L.elec_battery_Q_curr) / - (S.L.elec_battery_load)
+	{endif}
+
+
+
+
+'Zur¸cksetzen der Summen-Variable des Stroms:
+	0 (S.L.elec_busbar_Rinv_summe)
+
+'Spannung wird auf Busbar aufgebracht:
+
+	(L.L.elec_failure_general) !
+	{if}
+		(L.L.elec_V_battery) (L.L.elec_V_generator) max
+	{else}
+		0
+	{endif}
+	(S.L.elec_busbar_avail)
+
+'TEST: Gaspedal stellt Busbar ein! ;-)
+'	(L.L.Clutch) (S.L.elec_busbar_avail)
+
+
+'Wenn Spannung an Busbar anliegt und Schalter an ist und kein Kurzschluss vorliegt, dann kommt die volle Spannung:
+
+	(L.L.elec_busbar_main_sw)
+	{if}
+		(L.L.elec_busbar_avail)
+	{else}
+		0
+	{endif}
+
+	(S.L.elec_busbar_main)
+
+{end}
+

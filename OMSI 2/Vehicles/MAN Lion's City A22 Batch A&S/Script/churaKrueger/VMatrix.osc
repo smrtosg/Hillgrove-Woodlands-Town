@@ -1,0 +1,4934 @@
+'##############
+'Matrix Script
+'##############
+
+'Simulates 90s style Full Matrix Line and Terminus Display (Type AEG Kr¸ger)
+
+'(c) 17.09.2013 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 2.0
+
+'Needs:
+'- Cockpit (Batterietrennschalter)
+'- IBIS
+
+'NrSpecRandom Seed Area:
+'971: Anzahl der Fehlerpixel pro Jahr
+
+
+'#############################################
+'chura-Kr¸ger (Kr¸ger+) matrix mod
+'0.6 "Coloratura"
+'#############################################
+
+' This is a modification of the original AEG Kr¸ger matrix script in OMSI 2.
+' The original script is copyrighted by Marcel Kuhnt.
+' The modified portions of this script are released under CC0 1.0 Universal.
+' See http://creativecommons.org/publicdomain/zero/1.0/ for details.
+' For further information, consult the readme for the chura-Kr¸ger matrix mod.
+
+
+'Revision History:
+'- Marcel Kuhnt		29.09.2012	Created from scratch
+'- Marcel Kuhnt		17.09.2013	Steckschilder f¸r ausgew‰hlte Ziele
+'- Marcel Kuhnt		17.09.2013	Seitenschild
+'- Marcel Kuhnt		13.10.2013	Neuer Seitenschildpfad
+'- Marcel Kuhnt		20.12.2013	Bugfix: Steckschild-Init
+'-          0.5		23.03.2014	Kr¸ger+ mod 0.5 "Sunflower"
+'-    0.5 + eps		23.03.2014	School icon in route number fixed
+'-    0.6 - eps		24.06.2014	Release 0.6: LED 230◊32 matrix option
+'-  0.6 - eps/4		30.06.2014	Change in AI display scrolling speed
+'-          0.6		11.07.2014	Enhanced some commands and colour accuracy
+'------------------------------------------------------------------------------------------
+
+
+{macro:Matrix_init}
+	-1 (S.L.Matrix_RefreshCursor)
+	(L.S.Year) (C.L.Matrix_Baujahr) - 0.01 max (C.L.Matrix_Fehlerpixel_pro_Jahr) * 971 (M.V.NrSpecRandom) 1 + * (S.L.Matrix_Fehlerpixel)
+
+	-1 (S.L.matrix_steckschild_Termindex)
+	0 (S.L.matrix_steckschild_vis)
+	
+	(L.L.Matrix_TerminusXLimit) !
+	{if}
+		(C.L.Matrix_Width) (S.L.Matrix_TerminusXLimit)
+		(C.L.Matrix_NrRightAlign) (S.L.Matrix_NrRightAlign)
+	{endif}
+
+	(C.L.Matrix_UseExtraIBISSuffixes)
+	{if}
+		(S.L.Matrix_IBISNrMode)
+	{endif}
+
+	8 (C.L.Matrix_PixelFactor) / (S.L.Matrix_Res)
+
+	(L.L.Matrix_NrMaxStdGlyphWidth) !
+	{if}
+		15 (L.L.Matrix_Res) * 6 - (S.L.Matrix_NrMaxStdGlyphWidth)
+	{endif}
+	
+	(C.L.Matrix_PixelRefreshSpeed) (S.L.Matrix_PixelRefreshSpeed)
+	(C.L.Matrix_PageDuration) (S.L.Matrix_PageDuration)
+	(C.L.Matrix_LEDHue) (S.L.Matrix_LEDHue)
+	(C.L.Matrix_LEDSaturation) (S.L.Matrix_LEDSaturation)
+	(C.L.Matrix_LEDBrightness) (S.L.Matrix_LEDBrightness)
+	(C.L.Matrix_LEDBGHue) (S.L.Matrix_LEDBGHue)
+	(C.L.Matrix_LEDBGSaturation) (S.L.Matrix_LEDBGSaturation)
+	(C.L.Matrix_LEDBGBrightness) (S.L.Matrix_LEDBGBrightness)
+	
+	(C.L.Matrix_LED) (S.L.Matrix_LED)
+	{if}
+		(C.L.Matrix_LEDMonochrome) (S.L.Matrix_LEDMonochrome)
+		(M.L.Matrix_LEDResetColours)
+	{else}
+		0 (S.L.Matrix_LEDMonochrome)
+	{endif}
+{end}
+
+{trigger:ai_scheduled_settarget}
+		(M.L.Vollmatrix-AI-Setting)
+{end}
+
+{macro:Vollmatrix-AI-Setting}
+'Stromversorgung herstellen:
+	1 (S.L.elec_busbar_main_sw)	
+	1.0 (S.L.elec_V_battery)
+
+'Hier wird die Nummer eingestellt:
+	(L.$.SetLineTo) (S.$.Matrix_Nr) (S.$.Matrix_Liniennummerstring)
+
+'Hier wird das Ziel eingestellt:
+	1 (S.L.elec_busbar_main_sw)
+
+	(L.L.AI_target_index) s0 (M.V.GetTerminusCode) s1
+'Wenn der Terminus-Code grˆﬂer als 1000 ist, dann bitte Steckschild verwenden:
+	1000 >
+	l0 6 (M.V.GetTerminusString) "" $= ! &&
+	{if}
+		l1 1000 - (S.L.matrix_steckschild_index)
+		l0 (S.L.matrix_steckschild_Termindex)
+'Matrix auf 0:
+		0 (S.L.IBIS_TerminusIndex) s2
+	{else}
+		l0 (S.L.IBIS_TerminusIndex) s2
+		l1 1000 % 15000 + (M.V.GetTerminusIndex) s3 0 >=
+		{if}
+			l3 (S.L.IBIS_TerminusIndex) s2
+		{else}
+			l1 20000 + (M.V.GetTerminusIndex) s3 0 >=
+			{if}
+				l3 (S.L.IBIS_TerminusIndex) s2
+			{endif}
+		{endif}
+		-1 (S.L.matrix_steckschild_Termindex)
+		-1 (S.L.Matrix_TerminusIndex_Last)
+
+		(L.L.Matrix_Res) 1 = {if} 4 {else} 1 {endif} (S.L.Matrix_PixelRefreshSpeed)
+		(L.L.Matrix_Res) 1 = {if} 0.75 {else} 0.25 {endif}
+		163 (M.V.NrSpecRandom) + (S.L.Matrix_PageDuration)
+
+'Wenn der Bitmap-String in Verwendung ist, dann den als Integer interpretieren und Steckschild zus‰tzlich setzen:
+		l0 6 (M.V.GetTerminusString) $StrToFloat s1
+		l1 1000 >
+		{if}
+			l1 1000 - (S.L.matrix_steckschild_index)
+			l0 (S.L.matrix_steckschild_Termindex)			
+		{endif}
+
+	{endif}
+	(M.L.matrix_setsteckschild)
+
+	l2 (M.V.GetTerminusCode) 1000 % (S.L.IBIS_TerminusCode)
+
+	1 (S.L.matrix_refresh_seitenschild)
+{end}
+
+
+
+
+'*******************************************
+' Trigger f¸r Seitenschild
+
+{trigger:matrix_seitenschildklemme_drag}
+	(L.S.mouse_y) -300 / (L.L.matrix_seitenschildklemme) + (S.L.matrix_seitenschildklemme) s0
+	l0 0 <
+	{if}
+		0 (S.L.matrix_seitenschildklemme)
+	{endif}
+	l0 0.7 >
+	{if}
+		(L.L.matrix_seitenschild_refresh) 0 =
+		{if}
+			1 (S.L.matrix_seitenschild_refresh)
+			(T.L.ev_fahrertuer_auf)
+			(L.$.Matrix_Seitenschild) "" $=
+			{if}
+				1 (S.L.matrix_refresh_seitenschild)
+			{else}
+				"" (S.$.Matrix_Seitenschild)
+			{endif}
+		{endif}
+	{endif}
+	l0 1 >
+	{if}
+		1 (S.L.matrix_seitenschildklemme)
+	{endif}
+{end}
+
+{trigger:matrix_seitenschildklemme_off}
+	(L.L.matrix_seitenschildklemme)
+	0.3 >
+	{if}
+		(T.L.ev_fahrertuer_zu)
+	{endif}
+	0 (S.L.matrix_seitenschildklemme)
+	(S.L.matrix_seitenschild_refresh)
+{end}
+
+'*******************************************
+' Trigger f¸r Steckschild
+
+{trigger:bus_matrix_change_steckschild}
+	(L.L.matrix_steckschild_index) 1 + (S.L.matrix_steckschild_index)
+	1000 + (M.V.GetTerminusIndex) (S.L.matrix_steckschild_Termindex)
+
+	(M.L.matrix_setsteckschild)
+	(M.L.matrix_refreshIntIndex)
+{end}
+
+{macro:matrix_setsteckschild}
+	(L.L.matrix_steckschild_Termindex) s0
+	0 >= 
+	{if}
+		l0 6 (M.V.GetTerminusString) (S.$.Matrix_SchildFrnt)
+		1 $SetLengthL $StrToFloat 1 max (S.L.matrix_steckschild_vis)
+		"..\..\Anzeigen\SteckSchilder\" (L.$.Matrix_SchildFrnt) $+ (S.$.Matrix_SchildFrnt)
+	{else}
+		0 (S.L.matrix_steckschild_index) (S.L.matrix_steckschild_vis)
+		"" (S.$.Matrix_SchildFrnt)
+	{endif}
+{end}
+
+
+{macro:Matrix_frame}
+
+'******************************+
+'    Terminus-Matrix
+'******************************+
+
+	(L.L.Matrix_Res) 1 =
+	{if}
+		"churafont Majuscule 5x3" (M.V.GetFontIndex) (S.L.Font_5x3/10x5)
+		"churafont Majuscule 5x4" (M.V.GetFontIndex) (S.L.Font_5x4/10x6B) 
+		"churafont Majuscule 5x5" (M.V.GetFontIndex) (S.L.Font_5x5/10x8B) (S.L.Font_5x5/12x8B)
+		"churafont 7x3" (M.V.GetFontIndex) (S.L.Font_7x3/14x6)
+		"churafont 7x4" (M.V.GetFontIndex) (S.L.Font_7x4/14x8B)
+		"churafont 7x5" (M.V.GetFontIndex) (S.L.Font_7x5/14x8B)
+		"churafont Bold 7x6" (M.V.GetFontIndex) (S.L.Font_7x6B/14x10H)
+		"churafont CE 8x3" (M.V.GetFontIndex) (S.L.Font_8x3/14x6)
+		"churafont CE 8x4" (M.V.GetFontIndex) (S.L.Font_8x4/14x8B)
+		"churafont CE 8x5" (M.V.GetFontIndex) (S.L.Font_8x5/14x8B)
+		"churafont CE Bold 8x6" (M.V.GetFontIndex) (S.L.Font_8x6B/14x10H)
+		"churafont CE (8-1)x3" (M.V.GetFontIndex) (S.L.Font_(8-1)x3/14x6)
+		"churafont CE (8-1)x4" (M.V.GetFontIndex) (S.L.Font_(8-1)x4/14x8B)
+		"churafont CE (8-1)x5" (M.V.GetFontIndex) (S.L.Font_(8-1)x5/14x8B)
+		"churafont CE Bold (8-1)x6" (M.V.GetFontIndex) (S.L.Font_(8-1)x6B/14x10H)
+		"churafont CE 10x3" (M.V.GetFontIndex) (S.L.Font_10x3/18x7)
+		"churafont CE 10x4" (M.V.GetFontIndex) (S.L.Font_10x4/18x8)
+		"churafont CE 10x5" (M.V.GetFontIndex) (S.L.Font_10x5/18x10)
+		"churafont CE Bold 10x6" (M.V.GetFontIndex) (S.L.Font_10x6B/18x12B) (S.L.Font_10x6B/18x10B)
+		"churafont CE 15x4" (M.V.GetFontIndex) (S.L.Font_15x4/32x8) (S.L.Font_15x4/18x8)
+		"churafont CE 16x5" (M.V.GetFontIndex) (S.L.Font_16x5/32x10) (S.L.Font_16x5/18x10)
+		"churafont CE 16x6" (M.V.GetFontIndex) (S.L.Font_16x6/32x14) (S.L.Font_16x6/18x12B)
+		"churafont CE Bold 16x6" (M.V.GetFontIndex) (S.L.Font_16x6B/32x10B)
+		"churafont CE Bold 16x7" (M.V.GetFontIndex) (S.L.Font_16x7B/32x12B)
+		"churafont CE Bold 16x8" (M.V.GetFontIndex) (S.L.Font_16x8B/32x16B)
+		"churafont Chrono 8x5" (M.V.GetFontIndex) (S.L.Font_Chrono)
+		"churafont Numeric 16x4" (M.V.GetFontIndex) (S.L.Font_Nr_16x4/20x9)
+		"churafont Numeric 16x5" (M.V.GetFontIndex) (S.L.Font_Nr_16x5/20x9)
+		"churafont Numeric 16x6" (M.V.GetFontIndex) (S.L.Font_Nr_16x6/26x11)
+		"churafont Numeric 16x7" (M.V.GetFontIndex) (S.L.Font_Nr_16x7/30x16)
+		"churafont Numeric 16x8" (M.V.GetFontIndex) (S.L.Font_Nr_16x8/32x16)
+		"churafont Numeric 16x11" (M.V.GetFontIndex) (S.L.Font_Nr_16x11/32x24)
+		"churafont Pictogram 16" (M.V.GetFontIndex) (S.L.Font_Icon)
+	{endif}
+	
+(L.L.Matrix_Res) 2 =
+	{if}
+		"churafont++ 10x5" (M.V.GetFontIndex) (S.L.Font_5x3/10x5)
+		"churafont++ 10x6 Bold" (M.V.GetFontIndex) (S.L.Font_5x4/10x6B)
+		"churafont++ 10x8 Bold" (M.V.GetFontIndex) (S.L.Font_5x5/10x8B)
+		"churafont++ 10x8 Bold" (M.V.GetFontIndex) (S.L.Font_5x5/12x8B)
+		"churafont++ 14x8 Bold" (M.V.GetFontIndex) (S.L.Font_7x3/14x6) (S.L.Font_8x3/14x6)
+			(S.L.Font_(8-1)x3/14x6)
+		"churafont++ 14x10" (M.V.GetFontIndex) (S.L.Font_7x4/14x8B) (S.L.Font_8x4/14x8B)
+			(S.L.Font_(8-1)x4/14x8B)
+		"churafont++ 14x10 Heavy" (M.V.GetFontIndex) (S.L.Font_7x5/14x8B) (S.L.Font_8x5/14x8B)
+			(S.L.Font_(8-1)x5/14x8B)
+		"churafont++ 14x10 Heavy" (M.V.GetFontIndex) (S.L.Font_7x6B/14x10H) (S.L.Font_8x6B/14x10H)
+			(S.L.Font_(8-1)x6B/14x10H)
+		"churafont++ 18x7" (M.V.GetFontIndex) (S.L.Font_10x3/18x7)
+		"churafont++ 18x8" (M.V.GetFontIndex) (S.L.Font_10x4/18x8) (S.L.Font_15x4/18x8)
+		"churafont++ 18x10 Bold" (M.V.GetFontIndex) (S.L.Font_10x5/18x10) (S.L.Font_16x5/18x10)
+		"churafont++ 18x10 Bold" (M.V.GetFontIndex) (S.L.Font_10x6B/18x10B)
+		"churafont++ 18x12 Bold" (M.V.GetFontIndex) (S.L.Font_10x6B/18x12B) (S.L.Font_16x6/18x12B)
+		"churafont++ 32x8 Bold" (M.V.GetFontIndex) (S.L.Font_15x4/32x8)
+		"churafont++ 32x10 Heavy" (M.V.GetFontIndex) (S.L.Font_16x5/32x10)
+		"churafont++ 32x14" (M.V.GetFontIndex) (S.L.Font_16x6/32x14)
+		"churafont++ 32x10 Heavy" (M.V.GetFontIndex) (S.L.Font_16x6B/32x10B)
+		"churafont++ 32x10 Heavy" (M.V.GetFontIndex) (S.L.Font_16x7B/32x12B)
+		"churafont++ 32x14 Bold" (M.V.GetFontIndex) (S.L.Font_16x8B/32x16B)
+		"churafont++ Chrono 16x8" (M.V.GetFontIndex) (S.L.Font_Chrono)
+		"churafont++ Numeric 20x9" (M.V.GetFontIndex) (S.L.Font_Nr_16x4/20x9) (S.L.Font_Nr_16x5/20x9)
+		"churafont++ Numeric 26x11 Bold" (M.V.GetFontIndex) (S.L.Font_Nr_16x6/26x11)
+		"churafont++ Numeric 26x11 Bold" (M.V.GetFontIndex) (S.L.Font_Nr_16x7/30x16)
+		"churafont++ Numeric 26x11 Bold" (M.V.GetFontIndex) (S.L.Font_Nr_16x8/32x16)
+		"churafont++ Numeric 26x11 Bold" (M.V.GetFontIndex) (S.L.Font_Nr_16x11/32x24)
+		"churafont++ Pictogram 32" (M.V.GetFontIndex) (S.L.Font_Icon)
+	{endif}
+	
+	"churafont++ Auxiliary 1" (M.V.GetFontIndex) (S.L.Font_Aux_1)
+	"churafont++ Auxiliary 2" (M.V.GetFontIndex) (S.L.Font_Aux_2)
+	
+	
+	"churafont++ Auxiliary 1" (M.V.GetFontIndex) (S.L.Font_Aux_1)
+	"churafont++ Auxiliary 2" (M.V.GetFontIndex) (S.L.Font_Aux_2)
+
+	(C.L.Matrix_HideScrollingAnimation) (S.L.Matrix_HideScrollingAnimation)
+
+' Custom fonts
+	
+	0 (S.L.Font_Custom1Ypos)
+	0 (S.L.Font_Custom2Ypos)
+	0 (S.L.Font_CustomNrYpos)
+	
+	14991 (M.V.GetTerminusIndex) s0
+	(L.L.Matrix_Res) 2 = s6
+	{if}
+		14996 (M.V.GetTerminusIndex) d -1 = !
+		{if}
+			* s0 0 s6
+		{endif}
+	{endif}
+	l0 0 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		0 (M.L.matrix_setFontC1Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		(S.L.Font_Custom1-1) s1
+	l0 1 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		1 (M.L.matrix_setFontC1Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 31416 * l1 1 + max 31415 % 1 - (S.L.Font_Custom1-2) s1
+	l0 2 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		2 (M.L.matrix_setFontC1Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 92654 * l1 1 + max 92653 % 1 - (S.L.Font_Custom1-3) s1
+	l0 3 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		3 (M.L.matrix_setFontC1Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 58980 * l1 1 + max 58979 % 1 - (S.L.Font_Custom1-4) s1
+	l0 4 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		4 (M.L.matrix_setFontC1Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 32385 * l1 1 + max 32384 % 1 - (S.L.Font_Custom1-5) s1
+	
+	14992 (M.V.GetTerminusIndex) s0
+	(L.L.Matrix_Res) 2 = s6
+	{if}
+		14997 (M.V.GetTerminusIndex) d -1 = !
+		{if}
+			* s0 0 s6
+		{endif}
+	{endif}
+	l0 0 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		0 (M.L.matrix_setFontC2Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		(S.L.Font_Custom2-1) s1
+	l0 1 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		1 (M.L.matrix_setFontC2Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 62644 * l1 1 + max 62643 % 1 - (S.L.Font_Custom2-2) s1
+	l0 2 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		2 (M.L.matrix_setFontC2Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 38328 * l1 1 + max 38327 % 1 - (S.L.Font_Custom2-3) s1
+	l0 3 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		3 (M.L.matrix_setFontC2Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 95029 * l1 1 + max 95028 % 1 - (S.L.Font_Custom2-4) s1
+	l0 4 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		4 (M.L.matrix_setFontC2Ypos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 84198 * l1 1 + max 84197 % 1 - (S.L.Font_Custom2-5) s1
+	
+	14993 (M.V.GetTerminusIndex) s0
+	(L.L.Matrix_Res) 2 = s6
+	{if}
+		14998 (M.V.GetTerminusIndex) d -1 = !
+		{if}
+			* s0 0 s6
+		{endif}
+	{endif}
+	l0 0 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		0 (M.L.matrix_setFontNrYpos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		(S.L.Font_CustomNr1) s1
+	l0 1 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		1 (M.L.matrix_setFontNrYpos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 16940 * l1 1 + max 16939 % 1 - (S.L.Font_CustomNr2) s1
+	l0 2 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		2 (M.L.matrix_setFontNrYpos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 93752 * l1 1 + max 93751 % 1 - (S.L.Font_CustomNr3) s1
+	l0 3 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		3 (M.L.matrix_setFontNrYpos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 05821 * l1 1 + max 05820 % 1 - (S.L.Font_CustomNr4) s1
+	l0 4 (M.V.GetTerminusString) (M.L.Matrix_ProcessCustomFontYpos)
+		4 (M.L.matrix_setFontNrYpos) l6 {if} "++" $+ {endif} (M.V.GetFontIndex)
+		1 + 97495 * l1 1 + max 97494 % 1 - (S.L.Font_CustomNr5) s1
+		
+	14994 (M.V.GetTerminusIndex) s0
+	(L.L.Matrix_Res) 2 = s6
+	{if}
+		14999 (M.V.GetTerminusIndex) d -1 = !
+		{if}
+			* s0 0 s6
+		{endif}
+	{endif}
+	l0 0 (M.V.GetTerminusString) l6 {if} "++" $+ {endif}
+	(M.V.GetFontIndex) (S.L.Font_CustomIcon)
+
+	(L.L.Matrix_HideScrollingAnimation) (L.L.Matrix_LED) &&
+	{if}
+		(L.L.Matrix_Power) -1 =
+		{if}
+			(M.L.Matrix_DrawingOn) (M.L.Matrix_DrawingOff)
+			0 (S.L.Matrix_Power)
+		{endif}
+	
+		(L.L.elec_busbar_main) (L.L.Matrix_Power) 0 = &&
+		{if}
+			0 (S.L.Matrix_Nr_Last)
+			1 (S.L.Matrix_Power)
+		{endif}
+		
+		(L.L.elec_busbar_main) (L.L.Matrix_Power) 2 = &&
+		{if}
+			(M.L.Matrix_DrawingOn) (M.L.Matrix_DrawingOff)
+			1 (S.L.Matrix_Power)
+		{endif}
+		
+		(L.L.elec_busbar_main) ! (L.L.Matrix_Power) 1 >= &&
+		{if}
+			(M.L.Matrix_ClearMatrix)
+		  0 (S.L.target_index_int)
+		  0 (M.V.STNewTex)
+		  -1 (S.L.Matrix_Power)
+		{endif}
+	{endif}
+
+
+'Erster Schritt: Linie erstellen:
+
+	(L.L.IBIS_Linie_Complex) s0 (L.L.Matrix_Nr_Last) = ! ||
+	(L.L.elec_busbar_main) &&
+	{if}
+
+					l0 0 =
+					{if}
+						0 (S.L.IBIS_Route)
+						-1 (S.L.IBIS_RouteIndex)
+						0 (S.L.IBIS_TerminusCode)
+						0 (S.L.IBIS_TerminusIndex)
+						"" (S.$.IBIS_terminus_name)
+						0 (S.L.IBIS_busstop_index)
+						"" (S.$.IBIS_cabindisplay)
+						0 (S.L.IBIS_busstop)
+						0 (S.L.IBIS_busstop_entwerter_soll)
+						0 (S.L.IBIS_busstop_entwerter_ist)
+						"" (S.$.act_busstop)
+						"" (S.$.IBIS)
+						"" (S.$.IBIS_busstop_name)
+						0 (S.L.IBIS_mode)
+						"" (S.$.Haltestelle)
+					{endif}
+
+					(L.L.Matrix_SpecifyNr) 1 =
+					{if}
+						/-/ (S.L.Matrix_SpecifyNr)
+					{endif}
+
+					l0 100 / trunc s1
+					(L.L.IBIS_Linie_Suffix) s4
+' l0: Originalzahl; l1: erste drei Ziffern; l4: letzte zwei Ziffern
+
+' Falls gleich 0, dann gar nix:
+					l1 0 =
+					{if}
+						""
+					{else}
+' Sonst die normale Nummer:
+						l1 trunc $IntToStr
+					{endif}
+
+' ===============================================================================
+' Falls jetzt die hinteren beiden Ziffern (l2) etwas Interessantes enthalten:
+' ===============================================================================
+					(L.L.Matrix_IBISNrMode) 2 = !
+					{if}
+						(S.$.Matrix_Nr) (S.$.Matrix_Liniennummerstring)
+				
+						l4 1 =
+						{if}
+							"E" (L.$.Matrix_Nr) 2 $SetLengthR $RemoveSpaces $+
+						{endif}
+						l4 2 =
+						{if}
+							"/^\"
+						{endif}
+						l4 3 =
+						{if}
+							"gh "
+						{endif}
+						l4 4 =
+						{if}
+							(L.$.Matrix_Nr) 2 $SetLengthR "N" $+
+						{endif}
+						l4 5 = l4 24 = ||
+						{if}
+							"S" (L.$.Matrix_Nr) 2 $SetLengthR $RemoveSpaces $+
+						{endif}
+						l4 6 =
+						{if}
+							"A" (L.$.Matrix_Nr) 2 $SetLengthR $RemoveSpaces $+
+						{endif}
+						l4 9 =
+						{if}
+							"E" (L.$.Matrix_Nr) 1 $SetLengthR $+
+						{endif}
+						l4 10 =
+						{if}
+							(L.$.Matrix_Nr) "E" $+
+						{endif}
+						l4 23 =
+						{if}
+							"S" (L.$.Matrix_Nr) 1 $SetLengthR $+
+						{endif}
+' 24 s.o. bei 5!
+						l4 25 =
+						{if}
+							"U" (L.$.Matrix_Nr) 1 $SetLengthR $+
+						{endif}
+						l4 26 =
+						{if}
+							"U" (L.$.Matrix_Nr) 2 $SetLengthR $RemoveSpaces $+
+						{endif}
+						l4 27 =
+						{if}
+							"M" (L.$.Matrix_Nr) 2 $SetLengthR $RemoveSpaces $+
+						{endif}
+						l4 28 =
+						{if}
+							"M" (L.$.Matrix_Nr) 2 $SetLengthR $RemoveSpaces $+
+						{endif}
+						l4 29 =
+						{if}
+							"BVG"
+						{endif}
+						l4 30 =
+						{if}
+							(L.$.Matrix_Nr) "S" $+
+						{endif}
+						l4 31 =
+						{if}
+							(L.$.Matrix_Nr) "U" $+
+						{endif}
+						l4 32 =
+						{if}
+							(L.$.Matrix_Nr) "M" $+
+						{endif}
+						l4 35 =
+						{if}
+							"N" (L.$.Matrix_Nr) 2 $SetLengthR $RemoveSpaces $+
+						{endif}
+						l4 36 =
+						{if}
+							"X" (L.$.Matrix_Nr) 2 $SetLengthR $RemoveSpaces $+
+						{endif}
+					{endif}					
+					l4 69 =
+					{if}
+						l1 (S.L.Matrix_IBISNrMode)
+					{endif}
+					l4 70 = l4 99 = ||
+					{if}
+						""
+					{endif}
+					l4 97 =
+					{if}
+						""
+					{endif}
+					l4 97 = !
+					(L.$.Matrix_Nr) "Ö" $= &&
+					{if}
+						""
+					{endif}
+					l4 98 =
+					{if}
+						"Ä"
+					{endif}
+					l4 98 = !
+					(L.$.Matrix_Nr) "Ä" $= &&
+					{if}
+						""
+					{endif}
+					(L.L.Matrix_IBISNrMode) !
+					{if}
+' Use default IBIS suffixes
+						l4 11 =
+						{if}
+							"D" (L.$.Matrix_Nr) 1 $SetLengthR $+
+						{endif}
+						l4 12 =
+						{if}
+							"C" (L.$.Matrix_Nr) 1 $SetLengthR $+
+						{endif}
+						l4 13 =
+						{if}
+							"B" (L.$.Matrix_Nr) 1 $SetLengthR $+
+						{endif}
+						l4 14 =
+						{if}
+							"A" (L.$.Matrix_Nr) 1 $SetLengthR $+
+						{endif}
+						l4 15 =
+						{if}
+							"N" (L.$.Matrix_Nr) 1 $SetLengthR $+
+						{endif}
+					{else}
+' Use extra IBIS suffixes
+						(L.L.Matrix_IBISNrMode) 1 =
+						{if}
+							l4 8 =
+							{if}
+								"0"
+							{endif}
+						 	l4 11 =
+							{if}
+								"1" l1 "03" $IntToStrEnh $+
+							{endif}
+						 	l4 12 =
+							{if}
+								"2" l1 "03" $IntToStrEnh $+
+							{endif}
+						 	l4 13 =
+							{if}
+								"3" l1 "03" $IntToStrEnh $+
+							{endif}
+							l4 14 =
+							{if}
+								"4" l1 "03" $IntToStrEnh $+
+							{endif}
+							l4 15 =
+							{if}
+								"5" l1 "03" $IntToStrEnh $+
+							{endif}
+						 	l4 16 =
+							{if}
+								"6" l1 "03" $IntToStrEnh $+
+							{endif}
+							l4 17 =
+							{if}
+								"7" l1 "03" $IntToStrEnh $+
+							{endif}
+							l4 18 =
+							{if}
+								"8" l1 "03" $IntToStrEnh $+
+							{endif}
+							l4 19 =
+							{if}
+								"9" l1 "03" $IntToStrEnh $+
+							{endif}
+							l4 20 =
+							{if}
+								l1 "02" $IntToStrEnh
+							{endif}
+							l4 21 =
+							{if}
+								l1 "03" $IntToStrEnh
+							{endif}
+							l4 22 =
+							{if}
+								l1 "04" $IntToStrEnh
+							{endif}
+							l4 37 =
+							{if}
+								"CE" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 38 =
+							{if}
+								"NE" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 39 =
+							{if}
+								"SB" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 40 =
+							{if}
+								"DB"
+							{endif}
+							l4 41 =
+							{if}
+								(L.$.Matrix_Nr) "A" $+
+							{endif}
+							l4 42 =
+							{if}
+								(L.$.Matrix_Nr) "B" $+
+							{endif}
+							l4 43 =
+							{if}
+								(L.$.Matrix_Nr) "C" $+
+							{endif}
+							l4 44 =
+							{if}
+								(L.$.Matrix_Nr) "D" $+
+							{endif}
+							l4 45 =
+							{if}
+								(L.$.Matrix_Nr) "E" $+
+							{endif}
+							l4 46 =
+							{if}
+								(L.$.Matrix_Nr) "F" $+
+							{endif}
+							l4 47 =
+							{if}
+								(L.$.Matrix_Nr) "G" $+
+							{endif}
+							l4 48 =
+							{if}
+								(L.$.Matrix_Nr) "H" $+
+							{endif}
+							l4 49 =
+							{if}
+								(L.$.Matrix_Nr) "I" $+
+							{endif}
+							l4 50 =
+							{if}
+								(L.$.Matrix_Nr) "J" $+
+							{endif}
+							l4 51 =
+							{if}
+								(L.$.Matrix_Nr) "K" $+
+							{endif}
+							l4 52 =
+							{if}
+								(L.$.Matrix_Nr) "L" $+
+							{endif}
+							l4 53 =
+							{if}
+								(L.$.Matrix_Nr) "M" $+
+							{endif}
+							l4 54 =
+							{if}
+								(L.$.Matrix_Nr) "N" $+
+							{endif}
+							l4 55 =
+							{if}
+								(L.$.Matrix_Nr) "O" $+
+							{endif}
+							l4 56 =
+							{if}
+								(L.$.Matrix_Nr) "P" $+
+							{endif}
+							l4 57 =
+							{if}
+								(L.$.Matrix_Nr) "Q" $+
+							{endif}
+							l4 58 =
+							{if}
+								(L.$.Matrix_Nr) "R" $+
+							{endif}
+							l4 59 =
+							{if}
+								(L.$.Matrix_Nr) "S" $+
+							{endif}
+							l4 60 =
+							{if}
+								(L.$.Matrix_Nr) "T" $+
+							{endif}
+							l4 61 =
+							{if}
+								(L.$.Matrix_Nr) "U" $+
+							{endif}
+							l4 62 =
+							{if}
+								(L.$.Matrix_Nr) "V" $+
+							{endif}
+							l4 63 =
+							{if}
+								(L.$.Matrix_Nr) "W" $+
+							{endif}
+							l4 64 =
+							{if}
+								(L.$.Matrix_Nr) "X" $+
+							{endif}
+							l4 65 =
+							{if}
+								(L.$.Matrix_Nr) "Y" $+
+							{endif}
+							l4 66 =
+							{if}
+								(L.$.Matrix_Nr) "Z" $+
+							{endif}
+							l4 71 =
+							{if}
+								"A" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 72 =
+							{if}
+								"B" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 73 =
+							{if}
+								"C" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 74 =
+							{if}
+								"D" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 75 =
+							{if}
+								"E" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 76 =
+							{if}
+								"F" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 77 =
+							{if}
+								"G" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 78 =
+							{if}
+								"H" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 79 =
+							{if}
+								"I" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 80 =
+							{if}
+								"J" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 81 =
+							{if}
+								"K" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 82 =
+							{if}
+								"L" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 83 =
+							{if}
+								"M" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 84 =
+							{if}
+								"N" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 85 =
+							{if}
+								"O" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 86 =
+							{if}
+								"P" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 87 =
+							{if}
+								"Q" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 88 =
+							{if}
+								"R" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 89 =
+							{if}
+								"S" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 90 =
+							{if}
+								"T" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 91 =
+							{if}
+								"U" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 92 =
+							{if}
+								"V" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 93 =
+							{if}
+								"W" (L.$.Matrix_Nr) $+
+							{endif}
+						 	l4 94 =
+							{if}
+								"X" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 95 =
+							{if}
+								"Y" (L.$.Matrix_Nr) $+
+							{endif}
+							l4 96 =
+							{if}
+								"Z" (L.$.Matrix_Nr) $+
+							{endif}
+						{else}
+							"" (L.$.Matrix_Nr)
+							l4 1 =
+							{if}
+								"A"
+							{endif}
+							l4 2 =
+							{if}
+								"B"
+							{endif}
+							l4 3 =
+							{if}
+								"C"
+							{endif}
+							l4 4 =
+							{if}
+								"D"
+							{endif}
+							l4 5 =
+							{if}
+								"E"
+							{endif}
+							l4 6 =
+							{if}
+								"F"
+							{endif}
+							l4 7 =
+							{if}
+								"G"
+							{endif}
+							l4 8 =
+							{if}
+								"H"
+							{endif}
+							l4 9 =
+							{if}
+								"I"
+							{endif}
+							l4 10 =
+							{if}
+								"J"
+							{endif}
+							l4 11 =
+							{if}
+								"K"
+							{endif}
+							l4 12 =
+							{if}
+								"L"
+							{endif}
+							l4 13 =
+							{if}
+								"M"
+							{endif}
+							l4 14 =
+							{if}
+								"N"
+							{endif}
+							l4 15 =
+							{if}
+								"O"
+							{endif}
+							l4 16 =
+							{if}
+								"P"
+							{endif}
+							l4 17 =
+							{if}
+								"Q"
+							{endif}
+							l4 18 =
+							{if}
+								"R"
+							{endif}
+							l4 19 =
+							{if}
+								"S"
+							{endif}
+							l4 20 =
+							{if}
+								"T"
+							{endif}
+							l4 21 =
+							{if}
+								"U"
+							{endif}
+							l4 22 =
+							{if}
+								"V"
+							{endif}
+							l4 23 =
+							{if}
+								"W"
+							{endif}
+							l4 24 =
+							{if}
+								"X"
+							{endif}
+							l4 25 =
+							{if}
+								"Y"
+							{endif}
+							l4 26 =
+							{if}
+								"Z"
+							{endif}
+							l4 80 =
+							{if}
+								"0"
+							{endif}
+							l4 81 =
+							{if}
+								"1"
+							{endif}
+							l4 82 =
+							{if}
+								"2"
+							{endif}
+							l4 83 =
+							{if}
+								"3"
+							{endif}
+							l4 84 =
+							{if}
+								"4"
+							{endif}
+							l4 85 =
+							{if}
+								"5"
+							{endif}
+							l4 86 =
+							{if}
+								"6"
+							{endif}
+							l4 87 =
+							{if}
+								"7"
+							{endif}
+							l4 88 =
+							{if}
+								"8"
+							{endif}
+							l4 89 =
+							{if}
+								"9"
+							{endif}																																																		
+							l4 0 = !
+							{if}
+								$+ (S.$.Matrix_Nr) (S.$.Matrix_Liniennummerstring)
+								l4 30 =
+								{if}
+									$cutEnd (S.$.Matrix_Nr) (S.$.Matrix_Liniennummerstring)
+								{endif}
+								l4 90 =
+								{if}
+									"" (S.$.Matrix_Nr) (S.$.Matrix_Liniennummerstring)
+								{endif}
+							{else}
+								(L.$.Matrix_Nr)
+							{endif}
+						{endif}
+					{endif}
+					$RemoveSpaces (S.$.Matrix_Nr) (S.$.Matrix_Liniennummerstring)
+	{endif}
+
+' Multi-page display
+	(L.S.TimeGap) (L.L.Matrix_Timer) + (S.L.Matrix_Timer) (L.L.Matrix_PageDuration) >=
+	(L.L.Matrix_TerminusAct) 0 > &&
+	l4 69 = l4 70 = || l4 97 = || l4 98 = || l4 99 = || ! &&
+	{if}
+		(L.L.Matrix_TerminusAct) (M.V.GetTerminusCode) s0 15000 >=
+		{if}
+			(L.L.Matrix_TerminusAct) (M.V.GetTerminusCode) s0 20000 >=
+			{if}
+				l0 1000 + (M.V.GetTerminusIndex) s1 0 >=
+				{if}
+					l1 (S.L.IBIS_TerminusIndex)
+				{else}
+					l0 21000 >=
+					{if}
+						l0 1000 % 20000 + (M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+					{endif}
+				{endif}
+			{else}
+				(L.L.Matrix_TerminusAct) (M.V.GetTerminusCode) s0 19000 <=
+				l0 1000 + (M.V.GetTerminusIndex) s1 0 >= &&
+				{if}
+					l1 (S.L.IBIS_TerminusIndex)
+				{else}
+					l0 1000 % 15000 + (M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+				{endif}
+			{endif}
+		{else}
+			(L.L.Matrix_TerminusAct) (M.V.GetTerminusCode) s1 1000 + s0 (M.V.GetTerminusIndex) 0 >= s2
+			l0 (L.L.IBIS_TerminusIndex) (M.V.GetTerminusCode) - 1000 % 0 = &&
+			{if}
+				l0 (M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+			{else}
+				l1 1000 >=
+				l1 15000 < &&
+				{if}
+					l0 1000 % (M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+				{endif}
+			{endif}
+		{endif}
+	{endif}
+
+'Zweiter Schritt: Ziel erstellen:
+
+	
+	(L.L.IBIS_TerminusIndex) 0 <
+	(L.L.IBIS_Linie_Suffix) 69 =
+	(L.L.IBIS_Linie_Suffix) 70 = ||
+	(L.L.IBIS_Linie_Suffix) 97 = ||
+	(L.L.IBIS_Linie_Suffix) 98 = || ! &&
+	{if}
+		(L.L.Matrix_TerminusIndex_Last) (S.L.IBIS_TerminusIndex)
+	{endif}
+
+	(L.L.IBIS_Linie_Suffix) 69 =
+	(L.L.IBIS_Linie_Suffix) 70 = ||
+	(L.L.IBIS_Linie_Suffix) 97 = ||
+	(L.L.IBIS_Linie_Suffix) 98 = ||
+	(L.L.IBIS_Linie_Suffix) 99 = || !
+	{if}
+		(L.L.IBIS_TerminusIndex) (M.V.GetTerminusCode) s0 1000 <
+		l0 20000 + (M.V.GetTerminusIndex) s1 0 >= &&
+		{if}
+			l1 (S.L.IBIS_TerminusIndex)
+		{endif}
+	{endif}
+
+	(L.L.IBIS_Linie_Complex) (L.L.Matrix_Nr_Last) = ! 
+	(L.L.IBIS_TerminusIndex) s0 (L.L.Matrix_TerminusIndex_Last) = ! ||
+	(L.L.elec_busbar_main) &&
+	{if}
+		(L.L.Matrix_LED)
+		{if}
+			"..\..\Anzeigen\Krueger\230x32\palettes\" (L.$.yard) $+ ".bmp" $+
+			6 (M.V.STLoadTex)
+		{endif}
+		
+		l0 1 (M.V.GetTerminusString) $RemoveSpaces (M.L.Matrix_ProcessAlt)
+		1 (M.L.Matrix_ProcessGoTo) (S.$.Matrix_TerminusL1)
+		l0 2 (M.V.GetTerminusString) $RemoveSpaces (M.L.Matrix_ProcessAlt)
+		2 (M.L.Matrix_ProcessGoTo) (S.$.Matrix_TerminusL2)
+		l0 3 (M.V.GetTerminusString) $RemoveSpaces (M.L.Matrix_ProcessAlt)
+		3 (M.L.Matrix_ProcessGoTo) (S.$.Matrix_TerminusL3)
+
+'Wenn nur die untere Zeile beschrieben ist, dann diese nach oben und untere leeren:
+		(L.$.Matrix_TerminusL1) "" $=
+		{if}
+			(L.$.Matrix_TerminusL2) (S.$.Matrix_TerminusL1)
+			"" (S.$.Matrix_TerminusL2)
+		{endif}
+
+		(M.L.Matrix_ResetOptions) (M.L.Matrix_SetOptions)
+
+		(L.L.IBIS_TerminusIndex) (M.V.GetTerminusCode)
+		(L.L.Matrix_TerminusIndex_Last) (M.V.GetTerminusCode) - 1000 %
+		(L.L.Matrix_SpecifyNr) 0 >= ||
+		{if}
+			0 (S.L.Matrix_SpecifyNr)
+		{endif}
+
+		0 (S.L.Matrix_L3XLimit)
+		
+		(L.$.Matrix_TerminusL3) $d "" $= !
+		{if}
+			(L.L.Font_Aux_2) (M.V.TextLength) 
+			(S.L.Matrix_CmdCount) 150 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+			(L.L.Matrix_CmdCount) 300 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+			(L.L.Matrix_CmdCount) 450 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+			(L.L.Matrix_CmdCount) 600 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+			(L.L.Matrix_CmdCount) 750 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+			(L.L.Matrix_CmdCount) 900 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+			(L.L.Matrix_CmdCount) 1050 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+			(L.L.Matrix_CmdCount) 1200 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+			(L.L.Matrix_CmdCount) 1350 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+			(L.L.Matrix_CmdCount) 1500 >= {if} (M.L.Matrix_ProcessTerminusL3) {endif}
+		{endif}
+		
+		(L.$.Matrix_TerminusL2) $d "" $= !
+		{if}
+			(L.L.Font_Aux_2) (M.V.TextLength)
+			(S.L.Matrix_CmdCount) 150 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+			(L.L.Matrix_CmdCount) 300 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+			(L.L.Matrix_CmdCount) 450 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+			(L.L.Matrix_CmdCount) 600 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+			(L.L.Matrix_CmdCount) 750 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+			(L.L.Matrix_CmdCount) 900 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+			(L.L.Matrix_CmdCount) 1050 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+			(L.L.Matrix_CmdCount) 1200 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+			(L.L.Matrix_CmdCount) 1350 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+			(L.L.Matrix_CmdCount) 1500 >= {if} (M.L.Matrix_ProcessTerminusL2) {endif}
+		{endif}
+
+		(L.$.Matrix_TerminusL1) $d "" $= !
+		{if}
+			(L.L.Font_Aux_2) (M.V.TextLength)
+			(S.L.Matrix_CmdCount) 150 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+			(L.L.Matrix_CmdCount) 300 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+			(L.L.Matrix_CmdCount) 450 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+			(L.L.Matrix_CmdCount) 600 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+			(L.L.Matrix_CmdCount) 750 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+			(L.L.Matrix_CmdCount) 900 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+			(L.L.Matrix_CmdCount) 1050 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+			(L.L.Matrix_CmdCount) 1200 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+			(L.L.Matrix_CmdCount) 1350 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+			(L.L.Matrix_CmdCount) 1500 >= {if} (M.L.Matrix_ProcessTerminusL1) {endif}
+		{endif}
+
+		(L.$.Matrix_Nr) "" $=
+		(L.$.Matrix_NrSpecified) "" $= (L.L.Matrix_SpecifyNr) && ||
+		{if}
+			0 (S.L.Matrix_NrBGHue) (S.L.Matrix_NrBGSaturation) (S.L.Matrix_NrBGBrightness)
+		{endif}
+
+		(L.$.Matrix_TerminusL2) "" $=
+		{if}
+			(L.$.Matrix_TerminusL1) (M.L.Matrix_HasDescenderCE) (S.L.Matrix_L1HasDescender) (S.L.Matrix_L1HasDescenderCE)
+		{else}
+			(L.L.Matrix_L1CEMode)
+			{if}
+				(L.$.Matrix_TerminusL1) (M.L.Matrix_HasTallGlyphCE) (S.L.Matrix_L1HasTallGlyphCE)
+			{else}
+				(L.$.Matrix_TerminusL1) (M.L.Matrix_HasDescender) (S.L.Matrix_L1HasDescender)
+			{endif}
+			(L.L.Matrix_L2CEMode)
+			{if}
+				(L.$.Matrix_TerminusL2) (M.L.Matrix_HasTallGlyphCE) (S.L.Matrix_L2HasTallGlyphCE)
+			{else}
+				(L.$.Matrix_TerminusL2) (M.L.Matrix_HasDescender) (S.L.Matrix_L2HasDescender)
+			{endif}
+		{endif}
+		
+		(L.L.Matrix_L3XLimit) !
+		{if}
+			(L.$.Matrix_TerminusL1) (S.$.Matrix_TerminusL3)
+			(L.L.Matrix_L1HasDescenderCE) (S.L.Matrix_L3HasDescenderCE)
+		{else}
+			(L.$.Matrix_TerminusL3) (M.L.Matrix_HasDescenderCE) (S.L.Matrix_L3HasDescenderCE)
+		{endif}
+	{endif}
+	
+	(L.L.IBIS_Linie_Suffix) 97 =
+	{if}
+		(S.L.Matrix_L1HasDescenderCE) (S.L.Matrix_L3HasDescenderCE)
+		(S.L.Matrix_NrDisabled)
+		"*Ö" (S.$.Matrix_TerminusL1) (S.$.Matrix_TerminusL3)
+		"" (S.$.Matrix_TerminusL2)
+		(C.L.Matrix_Width) (L.L.Font_Icon) "Ö" (M.V.TextLength) - 2 / trunc (S.L.Matrix_IconXpos)
+		-97 (S.L.IBIS_TerminusIndex) (M.L.Matrix_ProcessTerminusL1)
+	{endif}
+	
+	(L.L.IBIS_Linie_Suffix) 98 =
+	{if}
+		(L.S.Time) 0.5 + 86400 % s2 60 / trunc (L.L.Matrix_Clock) 60 / trunc >
+		(L.S.Time) 43200 + (L.L.Matrix_Clock) < ||
+		(L.L.IBIS_TerminusIndex) -98 =
+		(L.L.IBIS_TerminusIndex) -198 = || ! ||
+		(L.L.Matrix_Timer) 4 >= ||
+		{if}
+			(L.S.Year) $IntToStr "-" $+
+			(L.S.Month) "02" $IntToStrEnh $+ "-" $+
+			(L.S.Day) "02" $IntToStrEnh $+
+			(M.V.GetTTBusstopIndex) s3 0 < s4
+			{if}
+				(S.$.Matrix_TerminusL1)
+			{else}
+				" " $+
+			{endif}
+			l2 (S.L.Matrix_Clock) 0.5 + 3600 / s0 trunc "02" $IntToStrEnh "." $+
+			l0 1 % 60 * s1 trunc "02" $IntToStrEnh $+
+			l4 !
+			{if}
+				$+ (S.$.Matrix_TerminusL1)
+			{else}
+				"     " $+
+			{endif}
+			(L.S.Weather_Temperature) 99 min -99 max $IntToStr "C" $+
+			l4
+			{if}
+				$+ (S.$.Matrix_TerminusL2)
+			{else}
+				"  D " $+
+				l3 (M.V.GetTTBusstopDep) 60 / s1 60 / 24 % trunc "02" $IntToStrEnh $+ "." $+
+				l1 60 % trunc "02" $IntToStrEnh $+
+				(S.$.Matrix_TerminusL2)
+			{endif}
+			(L.L.IBIS_TerminusIndex) -98 =
+			{if}
+				-198 (S.L.IBIS_TerminusIndex)
+			{else}
+				-98 (S.L.IBIS_TerminusIndex)
+			{endif}
+			0 (S.L.Matrix_Timer)
+		{endif}
+	{endif}
+
+	
+	(L.L.IBIS_Linie_Complex) 97 <
+	(L.L.IBIS_Linie_Complex) 98 > ||
+	(L.L.Matrix_TerminusIndex_Last) s1 -69 =
+	l1 -70 = ||
+	l1 -170 = ||
+	l1 -97 = ||
+	l1 -98 = ||
+	l1 -198 = || &&
+	{if}
+		"" (S.$.Matrix_Icon) (S.$.Matrix_TerminusL1) (S.$.Matrix_TerminusL2)
+		-1 (S.L.IBIS_TerminusIndex)
+	{endif}
+	
+	(C.L.Matrix_AutoCapitalize)
+	(L.L.IBIS_TerminusIndex) (M.V.GetTerminusCode) 14900 < &&
+	(L.L.IBIS_TerminusIndex) (M.V.GetTerminusCode) 0 > &&
+	{if}
+		(L.$.Matrix_TerminusL1) (M.L.Matrix_CapitalizeString) (S.$.Matrix_TerminusL1)
+		(L.$.Matrix_TerminusL2) (M.L.Matrix_CapitalizeString) (S.$.Matrix_TerminusL2)
+		(L.$.Matrix_TerminusL3) (M.L.Matrix_CapitalizeString) (S.$.Matrix_TerminusL3)  
+	{endif}
+
+'Dritter Schritt: Speicherbitmap schreiben:
+
+	(L.L.IBIS_Linie_Complex) (L.L.Matrix_Nr_Last) = ! 
+	(L.L.IBIS_TerminusIndex) s0 (L.L.Matrix_TerminusIndex_Last) s1 = ! ||
+	(L.L.elec_busbar_main) &&
+	{if}
+' if-1-1
+		(L.L.Matrix_HideScrollingAnimation)
+		{if}
+			(L.L.Matrix_IsDrawing)
+			{if}
+				(M.L.Matrix_DrawingOff)
+				0 (M.V.STNewTex)
+			{endif}
+			
+			(L.L.Matrix_RefreshCursor) 0 <
+			{if}
+				0 (M.V.STNewTex)
+			{endif}
+		{endif}
+
+		l0 (S.L.Matrix_TerminusAct)
+		(L.L.IBIS_Linie_Complex) (S.L.Matrix_Nr_Last)
+		(L.L.IBIS_Linie_Suffix) 69 = !
+		(L.L.IBIS_Linie_Suffix) 99 = ! &&
+		{if}
+' if-1-2
+			0 (S.L.Matrix_BmpFullColour)
+			l0 7 (M.V.GetTerminusString) $RemoveSpaces
+			(M.L.Matrix_MonochromeAlt) (M.L.Matrix_MultiColourAlt) (M.L.Matrix_MonochromeAlt)
+			(S.$.Matrix_Bitmapfilename)
+			"" $=
+			{if}
+' if-1-3
+
+'3.0 Initialisieren der Bitmap und setzen der Farbe:
+
+				(L.L.Matrix_HideScrollingAnimation) !
+				{if}
+					0 (M.V.STNewTex)
+				{endif}
+				0 (M.V.STLock)
+		
+				0
+				0
+				255
+				0
+				0
+				(M.V.STSetColor)
+
+
+'Ab hier gelten folgende Register-Zuordnungen:
+'l0 = Fontindex
+'l1 = Stringl‰nge (Pixel)
+'l2 = Y-Offset
+'l3 = Verf¸gbare L‰nge
+'l4 = Einzeilig
+'l5 = Zentrierungsaufschlag
+'l6 = 
+'l7 = (max.) Sperrung
+
+
+
+				(L.$.Matrix_Nr) "" $=
+				(L.L.Matrix_SpecifyNr) 0 = &&
+				(L.$.Matrix_NrSpecified) "" $=
+				(L.L.Matrix_SpecifyNr) 1 = && || 
+				(L.L.Matrix_NrDisabled) ||
+				{if}
+' if-1-4
+					0 s1 (S.L.Matrix_Xpos) (S.L.Matrix_TerminusXpos) (S.L.Matrix_NrPixelLength)
+				{else}
+' else-1-4
+
+'3.A.0 Inverted number margin:
+					(L.L.Matrix_NrInvert) (L.L.Matrix_Invert) ||
+					(L.L.Matrix_NrBGBrightness) 0.05 >= ||
+' 					(L.L.Matrix_Res) *
+					s6
+'3.A.05 Setzen der Maximalbreite:
+					(C.L.Matrix_NrFrontMaxWidth) l6 2 * - s3
+'3.A.1 Bestimmen des Fonts der Linie (vorne):
+					(L.L.Matrix_SpecifyNr) 1 =
+					{if}
+						(L.$.Matrix_NrSpecified)
+					{else}
+						(L.$.Matrix_Nr)
+					{endif}
+					(S.$.Matrix_NrDisplayed)
+					(L.$.Matrix_NrDisplayed) 1 $SetLengthR $StrToFloat -1 =
+					(L.$.Matrix_NrDisplayed) 2 $SetLengthR 1 $SetLengthL $StrToFloat -1 = ! &&
+					(C.L.Matrix_UseSmallNrSuffix) &&
+					{if}
+						(L.$.Matrix_NrDisplayed) 1 $SetLengthR (M.L.Matrix_CharToLowerCase) (S.$.Matrix_Nr_Suffix)
+						(L.$.Matrix_NrDisplayed) 1 $cutEnd (L.$.Matrix_Nr_Suffix) $+ (S.$.Matrix_NrDisplayed)
+					{endif}
+					(L.$.Matrix_NrDisplayed) 2 $SetLengthL "CE" $=
+					{if}
+						"{" (L.$.Matrix_NrDisplayed) 2 $cutBegin $+ (S.$.Matrix_NrDisplayed)
+					{endif}
+					(L.$.Matrix_NrDisplayed) 2 $SetLengthL "NE" $=
+					{if}
+						"|" (L.$.Matrix_NrDisplayed) 2 $cutBegin $+ (S.$.Matrix_NrDisplayed)
+					{endif}
+					(L.$.Matrix_NrDisplayed) 2 $SetLengthL "SB" $=
+					{if}
+						"}" (L.$.Matrix_NrDisplayed) 2 $cutBegin $+ (S.$.Matrix_NrDisplayed)
+					{endif}
+					(L.$.Matrix_NrDisplayed) "gh" $=
+					{if}
+						"Ü" (S.$.Matrix_NrDisplayed)
+					{endif}
+					(L.$.Matrix_NrDisplayed) "DB" $=
+					{if}
+						"ñ" (S.$.Matrix_NrDisplayed)
+					{endif}
+					(L.$.Matrix_NrDisplayed) "/^\" $=
+					{if}
+						"ó" (S.$.Matrix_NrDisplayed)
+					{endif}
+					
+					(L.$.Matrix_NrDisplayed) 5 $SetLengthR $RemoveSpaces (S.$.Matrix_NrDisplayed)
+
+					(L.L.Font_CustomMode) 100 / trunc 1 >=
+					{if}
+' if-1-5
+' Custom font for route number
+						0 s7
+						(L.$.Matrix_NrDisplayed) (S.$.Matrix_InputLine)
+						
+						(L.L.Font_CustomNr1) (S.L.Matrix_FontSel1)
+						(L.L.Font_CustomNr2) (S.L.Matrix_FontSel2)
+						(L.L.Font_CustomNr3) (S.L.Matrix_FontSel3)
+						(L.L.Font_CustomNr4) (S.L.Matrix_FontSel4)
+						(L.L.Font_CustomNr5) (S.L.Matrix_FontSel5)
+						
+						(L.L.Font_CustomMode) 100 / trunc 1 = ! (S.L.Matrix_FontCond1)
+						(L.L.Font_CustomMode) 100 / trunc 2 = ! (S.L.Matrix_FontCond2)
+						(L.L.Font_CustomMode) 100 / trunc 3 = ! (S.L.Matrix_FontCond3)
+						(L.L.Font_CustomMode) 100 / trunc 4 = ! (S.L.Matrix_FontCond4)
+
+						0 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos1)
+						1 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos2)
+						2 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos3)
+						3 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos4)
+						4 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos5)
+
+						15 (M.L.Matrix_FontSel)
+					{else}
+' else-1-5
+' No custom font for route number
+						(L.$.Matrix_NrDisplayed) (S.$.Matrix_InputLine)
+						
+						(L.L.Font_Nr_16x11/32x24) (S.L.Matrix_FontSel1)
+						(L.L.Font_Nr_16x8/32x16) (S.L.Matrix_FontSel2)
+						(L.L.Font_Nr_16x7/30x16) (S.L.Matrix_FontSel3)
+						
+						(L.L.Font_Nr_16x11/32x24) (L.$.Matrix_NrDisplayed) (M.V.TextLength)
+						(L.L.Matrix_Res) sqr +
+						(L.$.Matrix_Icon) "" $=
+						{if}
+							*
+						{else}
+							+							
+							(L.L.Matrix_UseCustomIcon)
+							{if}
+								* (L.L.Font_CustomIcon)
+							{else}
+								+ (L.L.Font_Icon)
+							{endif}
+							(L.$.Matrix_Icon) (M.V.TextLength) + (L.L.Matrix_Res) +
+						{endif}
+						(L.$.Matrix_TerminusL2) "" $=
+						{if}
+							*
+							(L.L.Matrix_L3XLimit) 0 >
+							{if}
+								*
+								(L.L.Matrix_L1Bold) {if} * (L.L.Font_16x6/18x12B) {else} + (L.L.Font_16x5/18x10) {endif}
+							{else}
+								+
+								(L.L.Font_16x8B/32x16B)
+							{endif}
+							(L.$.Matrix_TerminusL1) (M.V.TextLength) +
+						{else}
+							+
+							(L.L.Matrix_L2SmallFont) (L.L.Matrix_L1SmallFont) ! &&
+							{if}
+								*
+								(L.L.Matrix_L1Bold) {if} * (L.L.Font_10x6B/18x12B) {else} + (L.L.Font_10x5/18x10) {endif}
+								(L.$.Matrix_TerminusL1) (M.V.TextLength)
+							{else}
+								+
+								(L.L.Matrix_L1SmallFont) (L.L.Matrix_L2SmallFont) ! &&
+								{if}
+									*
+									(L.L.Matrix_L2Bold) {if} * (L.L.Font_10x6B/18x12B) {else} + (L.L.Font_10x5/18x10) {endif}
+									(L.$.Matrix_TerminusL2) (M.V.TextLength)
+								{else}
+									+
+									(L.L.Matrix_L1SmallFont) (L.L.Matrix_L2SmallFont) &&
+									{if}
+										* (L.L.Font_5x5/12x8B) (L.$.Matrix_TerminusL1) (M.V.TextLength)
+										(L.L.Font_5x5/12x8B) (L.$.Matrix_TerminusL2) (M.V.TextLength) max										
+									{else}
+										+
+										(L.L.Matrix_L1Bold) {if} * (L.L.Font_8x6B/14x10H) {else} + (L.L.Font_8x5/14x8B) {endif}
+										(L.$.Matrix_TerminusL1) (M.V.TextLength)
+										(L.L.Matrix_L2Bold) {if} * (L.L.Font_8x6B/14x10H) {else} + (L.L.Font_8x5/14x8B) {endif}
+										(L.$.Matrix_TerminusL2) (M.V.TextLength) max
+									{endif}
+								{endif}
+							{endif}
+						{endif}
+						(L.L.Matrix_L3XLimit) 0 >
+						{if}
+							* (L.L.Font_16x8B/32x16B) (L.$.Matrix_TerminusL3) (M.V.TextLength)			
+						{endif}
+						+
+						(L.L.Matrix_TerminusAct) (M.V.GetTerminusCode)
+						(L.L.Matrix_TerminusIndex_Last) (M.V.GetTerminusCode)
+						- 1000 %
+						{if}
+							d - + (S.L.Matrix_TerminusMaxLength) 
+						{else}
+							+ (L.L.Matrix_TerminusMaxLength) max (S.L.Matrix_TerminusMaxLength)
+						{endif}
+						(C.L.Matrix_Width) >=
+						(L.L.Matrix_NrMaxStdGlyphWidth) 13 (L.L.Matrix_Res) * 2 - < ||
+						(L.L.Matrix_NrForceLargeFont) ! &&
+						(S.L.Matrix_FontCond1)
+						(L.L.Matrix_NrMaxStdGlyphWidth) 8 (L.L.Matrix_Res) * < (S.L.Matrix_FontCond2)
+						3 (M.L.Matrix_FontSel)
+						(L.L.Matrix_NrYpos) s2
+					{endif}
+' endifelse-1-5
+			 
+
+'	l0: Schriftart, l1: L‰nge in Pixeln
+
+'3.A.2 Schreiben:
+
+					l6
+					{if}
+						l6 2 * l1 + (C.L.Matrix_NrFrontMinWidth) <
+						{if}
+							(C.L.Matrix_NrFrontMinWidth) l1 - 2 / trunc s6
+						{endif}
+						l6 2 * l1 + s1
+					{endif}
+					l1 5 + s1 (S.L.Matrix_NrPixelLength)
+
+					(L.L.Matrix_NrRightAlign)
+					{if}
+						(C.L.Matrix_Width) l1 - (L.L.Matrix_Res) -
+						(C.L.Matrix_Width) (C.L.Matrix_NrFrontMinWidth) - min
+						2 -
+						(S.L.Matrix_TerminusXLimit)
+					{else}
+						(C.L.Matrix_Width) (S.L.Matrix_TerminusXLimit)
+					{endif}
+					
+					(L.L.Matrix_Res) 2 = {if} 0 s2 {endif}
+
+					0
+					(L.L.Matrix_TerminusXLimit) (L.L.Matrix_Res) + (L.L.Matrix_NrRightAlign) * l6 + (L.L.Matrix_NrRightAlign) ! 5 * +
+					l2
+					l0
+					1
+					0
+					(L.$.Matrix_NrDisplayed)
+					(M.V.STTextOut)
+
+'3.A.3 Bestimmen des Startpunktes des Zieles (Matrix_Xpos):
+					(L.L.Matrix_NrRightAlign)
+					{if}
+						0
+					{else}
+						l1 (L.L.Matrix_Res) sqr + (C.L.Matrix_NrFrontMinWidth) max
+					{endif}
+					(S.L.Matrix_Xpos) (S.L.Matrix_TerminusXpos)
+
+'3.A.4 Bestimmen des Fonts der Linie (seite/hinten):
+
+					(C.L.Matrix_NrSideMaxWidth) s3
+
+					(L.L.Font_CustomMode) 100 / trunc 1 >=
+					{if}
+' if-1-6
+' Custom font for route number
+						0 s7
+						(L.$.Matrix_NrDisplayed) (S.$.Matrix_InputLine)
+						
+						(L.L.Font_CustomNr1) (S.L.Matrix_FontSel1)
+						(L.L.Font_CustomNr2) (S.L.Matrix_FontSel2)
+						(L.L.Font_CustomNr3) (S.L.Matrix_FontSel3)
+						(L.L.Font_CustomNr4) (S.L.Matrix_FontSel4)
+						(L.L.Font_CustomNr5) (S.L.Matrix_FontSel5)
+						
+						(L.L.Font_CustomMode) 100 / trunc 1 = ! (S.L.Matrix_FontCond1)
+						(L.L.Font_CustomMode) 100 / trunc 2 = ! (S.L.Matrix_FontCond2)
+						(L.L.Font_CustomMode) 100 / trunc 3 = ! (S.L.Matrix_FontCond3)
+						(L.L.Font_CustomMode) 100 / trunc 4 = ! (S.L.Matrix_FontCond4)
+
+						0 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos1)
+						1 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos2)
+						2 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos3)
+						3 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos4)
+						4 (M.L.matrix_getFontNrYpos) (S.L.Matrix_FontYPos5)
+
+						15 (M.L.Matrix_FontSel)
+					{else}
+' else-1-6
+' No custom font for route number
+						0 s7
+						(L.$.Matrix_NrDisplayed) (S.$.Matrix_InputLine)
+						
+						(L.L.Font_Nr_16x11/32x24) (S.L.Matrix_FontSel1)
+						(L.L.Font_Nr_16x8/32x16) (S.L.Matrix_FontSel2)
+						(L.L.Font_Nr_16x7/30x16) (S.L.Matrix_FontSel3)
+						(L.L.Font_Nr_16x6/26x11) (S.L.Matrix_FontSel4)
+						(L.L.Font_Nr_16x5/20x9) (S.L.Matrix_FontSel5)
+						(L.L.Font_Nr_16x4/20x9) (S.L.Matrix_FontSel6)
+						
+						(L.L.Matrix_NrMaxStdGlyphWidth) 13 (L.L.Matrix_Res) * 2 - < (S.L.Matrix_FontCond1)
+						(L.L.Matrix_NrMaxStdGlyphWidth) 8 (L.L.Matrix_Res) * < (S.L.Matrix_FontCond2)
+						(L.L.Matrix_NrMaxStdGlyphWidth) 9 (L.L.Matrix_Res) * 2 - < (S.L.Matrix_FontCond3)
+						(L.L.Matrix_NrMaxStdGlyphWidth) 5 (L.L.Matrix_Res) * 1 + < (S.L.Matrix_FontCond4)
+						(L.L.Matrix_NrMaxStdGlyphWidth) 4 (L.L.Matrix_Res) * 1 + < (S.L.Matrix_FontCond5)
+						
+						6 (M.L.Matrix_FontSel)
+						(L.L.Matrix_NrYpos) s2
+					{endif}
+
+
+'	l0: Schriftart, l1: L‰nge in Pixeln
+
+'3.A.5 Berechnen der Sperrung:
+					l3 l1 - l6 / trunc 0 min s7
+					l1 l6 l7 * + s1
+'3.A.6 Berechnen des Zentrierungsaufschlages (l5):
+					l3 l1 - 2 / trunc s5
+
+'3.A.7 Schreiben:
+					(L.L.Matrix_Res) 2 = {if} 0 s2 {endif}
+
+					0
+					l5
+					(C.L.Matrix_Height) l2 (L.L.Matrix_Res) * +
+					l0
+					1
+					0
+					(L.$.Matrix_NrDisplayed)
+					(M.V.STTextOut)
+				{endif}
+' endifelse-1-4
+
+'Schreiben des Zieles Front-Anzeige:
+
+				0 (S.L.Matrix_Ypos)
+		
+				(M.L.Matrix_DrawIcon)
+				(L.L.Matrix_Xpos) (L.L.Matrix_FrontTerminusXpos) +
+				(S.L.Matrix_Xpos)
+				(M.L.Matrix_WriteTerminus)
+				
+				(L.L.Matrix_Xpos) (S.L.Matrix_TerminusXpos)
+
+'Und Schreiben des Zieles Seitenanzeige:
+
+				(C.L.Matrix_ZielSideStartX) (S.L.Matrix_Xpos)
+				(C.L.Matrix_Height) (S.L.Matrix_Ypos)
+				
+				(M.L.Matrix_DrawIcon)
+				
+				(C.L.Matrix_ZielSideStartX) (L.L.Matrix_IconPixelLength) + (S.L.Matrix_Xpos)
+		
+				(M.L.Matrix_WriteTerminus)
+
+'Fertig: Unlocken
+
+
+				0 (M.V.STUnlock)
+	
+			{else}
+' else-1-3
+				"..\..\Anzeigen\Krueger\"
+				(L.L.Matrix_Res) 2 =
+				{if}
+					"230x32\" $+
+				{endif}
+				(L.$.Matrix_Bitmapfilename) $+ 0 (M.V.STLoadTex) $msg
+				(L.L.Matrix_Res) 2 =
+				{if}
+					0 (M.V.STLock)
+					0 251 3 (M.V.STReadPixel) 0 (M.V.STGetR)
+					128 >= (S.L.Matrix_BmpFullColour)
+					0 (M.V.STUnlock)
+				{endif}
+			{endif}
+' endifelse-1-3
+			(L.L.Matrix_TerminusAct) (S.L.Matrix_TerminusIndex_Last)
+			(M.L.matrix_refreshIntIndex)
+		{endif}
+' endif-1-2
+'RefreshCursor zur¸cksetzen:
+		0 (S.L.Matrix_RefreshCursor)
+	{endif}
+' endif-1-1
+
+
+
+'Nun sollen die Pixel schrittweise ¸bertragen werden - zun‰chst mit 1Pixel/Frame:
+
+
+
+	(L.L.elec_busbar_main)
+	(L.L.Matrix_RefreshCursor) 0 >= &&
+	{if}	
+
+'Locken:
+		0 (M.V.STLock)
+		(L.L.Matrix_HideScrollingAnimation) !
+		{if}
+			(M.L.Matrix_DrawingOn)
+		{endif}
+
+
+'Sound abspielen:
+
+		(L.L.Matrix_RefreshCursor) 0 =
+		{if}
+			(L.L.Matrix_HideScrollingAnimation)
+			{if}
+				(M.L.Matrix_DrawingOn)
+' Wait 3 frames for texture to become fully locked before starting to draw
+				(L.L.Matrix_Wait) 1 + 10 % (S.L.Matrix_Wait)
+			{else}
+				(C.L.Matrix_TerminusChangeSound)
+				{if}
+					(T.L.ev_Matrix_Terminus_change)
+				{endif}
+			{endif}
+		{endif}
+		
+		(L.L.Matrix_RefreshCursor) 0 =
+		{if}
+			(L.L.Matrix_Wait) !
+			(L.L.Matrix_Res) 2 = &&
+			(L.L.Matrix_HideScrollingAnimation) &&
+			{if}
+				(M.L.Matrix_DrawBG)
+			{endif}
+		{endif}
+
+' Determine pixel refreshing speed based on settings
+' NB1 Best results if the number of pixels per frame is divisible by twice the
+' area of the display in pixels (i.e. 3680 in the Kr¸ger matrix)
+' NB2 Higher speeds may cause stutters; adjust speed accordingly
+		(M.L.Matrix_SetElementCoords)
+		(L.L.Matrix_RefreshCursor) 0 >
+		(L.L.Matrix_Wait) ! ||
+		{if}
+
+		(L.L.Matrix_PixelRefreshSpeed) 2 <=
+		{if}
+' Speed 1: 16 pixels per frame
+			(M.L.Matrix_PixelRefresh16)
+			(L.L.Matrix_PixelRefreshSpeed) 2 =
+			{if}
+' Speed 2: 23 pixels per frame (+44%)
+				(M.L.Matrix_PixelRefresh4)
+				(M.L.Matrix_PixelRefresh2)
+				(M.L.Matrix_PixelRefresh)
+			{endif}
+		{else}
+			(L.L.Matrix_PixelRefreshSpeed) 4 <=
+			{if}
+' Speed 3: 32 pixels per frame (+39%)
+				(M.L.Matrix_PixelRefresh32)
+				(L.L.Matrix_PixelRefreshSpeed) 4 =
+				{if}
+' Speed 4: 46 pixels per frame (+44%)
+					(M.L.Matrix_PixelRefresh8)
+					(M.L.Matrix_PixelRefresh4)
+					(M.L.Matrix_PixelRefresh2)
+				{endif}
+			{else}
+				(L.L.Matrix_PixelRefreshSpeed) 6 <=
+				{if}
+' Speed 5: 80 pixels per frame (+74%)
+					(M.L.Matrix_PixelRefresh64)
+					(M.L.Matrix_PixelRefresh16)
+					(L.L.Matrix_PixelRefreshSpeed)
+					{if}
+' Speed 6: 115 pixels per frame (+44%)
+						(M.L.Matrix_PixelRefresh32)
+						(M.L.Matrix_PixelRefresh2)
+						(M.L.Matrix_PixelRefresh)
+					{endif}
+				{else}
+' Speed 7: 160 pixels per frame (+39%)
+					(M.L.Matrix_PixelRefresh64)
+					(M.L.Matrix_PixelRefresh64)
+					(M.L.Matrix_PixelRefresh32)
+				{endif}
+			{endif}
+		{endif}
+		
+		{endif}
+
+		(L.L.Matrix_Timer) 0.1 >=
+		{if}
+			0 (S.L.Matrix_Timer)
+		{endif}
+
+'Unlocken:
+
+		0 (M.V.STUnlock)
+		(L.L.Matrix_HideScrollingAnimation) !
+		{if}
+			(M.L.Matrix_DrawingOff)
+		{endif}
+	{endif}
+
+'Aktualisierung der Code-Tafel:
+
+	"Linienlisten\" (L.$.yard) "_ANX.jpg" $+ $+ (S.$.Matrix_Linelist)
+
+	(L.L.matrix_refresh_seitenschild)
+	{if}
+		"..\..\Anzeigen\Seitenschilder\" 2 (M.V.GetDepotStringGlobal) $+ "\" $+
+		(L.L.Matrix_SpecifyNr) 1 =
+		{if}
+			(L.$.Matrix_NrSpecified)
+		{else}
+			(L.$.Matrix_Nr)
+		{endif}
+		$RemoveSpaces $+ ".bmp" $+ (S.$.Matrix_Seitenschild)
+		0 (S.L.matrix_refresh_seitenschild)
+	{endif}
+
+{end}
+
+
+
+'*------------------------------------------------------------------------------------------------------------
+
+{macro:Matrix_ClearMatrix}
+		(M.L.Matrix_DrawingOn)
+		1 (M.L.Matrix_ClearTexture)
+		2 (M.L.Matrix_ClearTexture)
+		3 (M.L.Matrix_ClearTexture)
+		4 (M.L.Matrix_ClearTexture)
+		5 (M.L.Matrix_ClearTexture)				
+		(M.L.Matrix_DrawingOff)
+{end}
+
+{macro:Matrix_ClearTexture}
+		s6
+		0
+		255
+		255
+		255
+		(M.V.STSetColor)	
+
+		l6
+		0
+		0
+		(C.L.Matrix_Width) (C.L.Matrix_PixelFactor) * 1 -
+		(C.L.Matrix_Height) (C.L.Matrix_PixelFactor) 2 * * 1 -
+		(M.V.STDrawRect)
+{end}
+
+{macro:Matrix_PixelRefresh64}
+		(M.L.Matrix_PixelRefresh32)
+		(M.L.Matrix_PixelRefresh32)
+{end}
+
+{macro:Matrix_PixelRefresh32}
+		(M.L.Matrix_PixelRefresh16)
+		(M.L.Matrix_PixelRefresh16)
+{end}
+
+{macro:Matrix_PixelRefresh16}
+		(M.L.Matrix_PixelRefresh8)
+		(M.L.Matrix_PixelRefresh8)
+{end}
+
+{macro:Matrix_PixelRefresh8}
+		(M.L.Matrix_PixelRefresh4)
+		(M.L.Matrix_PixelRefresh4)
+{end}
+
+{macro:Matrix_PixelRefresh4}
+		(M.L.Matrix_PixelRefresh2)
+		(M.L.Matrix_PixelRefresh2)
+{end}
+
+{macro:Matrix_PixelRefresh2}
+		(M.L.Matrix_PixelRefresh)
+		(M.L.Matrix_PixelRefresh)
+{end}
+
+{macro:Matrix_PixelRefresh}
+		(L.L.Matrix_RefreshCursor) (C.L.Matrix_HxW) 2 * >=
+		(L.L.Matrix_RefreshCursor) 0 < ||
+		{if}
+			(L.L.IBIS_Linie_Suffix) 99 =
+			{if}
+				(L.L.Matrix_Testcolor) ! (S.L.Matrix_Testcolor)
+				0
+			{else}
+				0 (S.L.Matrix_Timer)
+				(L.L.Matrix_HideScrollingAnimation) (L.L.Matrix_RefreshCursor) 0 >= &&
+				{if}
+					(M.L.Matrix_DrawingOn) (M.L.Matrix_DrawingOff)
+					2 (S.L.Matrix_Power)
+				{endif}
+				-1
+			{endif}
+			(S.L.Matrix_RefreshCursor)
+		{else}
+
+
+'X und Y berechnen:
+'l0: Ebene (vorne/Seite)
+'l1: X
+'l2: Y
+
+			(L.L.Matrix_RefreshCursor) (C.L.Matrix_HxW) / trunc s0
+			(L.L.Matrix_RefreshCursor) (C.L.Matrix_HxW) % (C.L.Matrix_Height) / trunc s1
+			(L.L.Matrix_RefreshCursor) (C.L.Matrix_HxW) % (C.L.Matrix_Height) % s2
+
+'Fehlerpixel berechnen:
+			(L.L.Matrix_RefreshCursor) (M.V.NrSpecRandom) 2 *
+			(L.L.Matrix_Fehlerpixel) / (C.L.Matrix_Fehlerpixel_pro_Jahr) ! 2 * + s6
+			1 <
+			{if}
+				255 s7
+			{else}
+				l6 2 <
+				{if}
+					0 s7
+				{else}
+'Wenn 99er-Code, dann alles gr¸n:
+					(L.L.IBIS_Linie_Suffix) 99 =
+					{if}
+						(L.L.Matrix_Testcolor) 255 * s7
+					{else}
+'Farbe setzen:
+						0
+						l1
+						l2 l0 (C.L.Matrix_Height) * + s4
+						(M.V.STReadPixel) 
+		
+						0 (M.V.STGetR) s7 (S.L.Matrix_PixelR)
+						(L.L.Matrix_Res) 2 =
+						(L.$.Matrix_Bitmapfilename) "" $= (L.L.Matrix_BmpFullColour) ! || &&
+						{if}
+							l7 0 > 16 * s7
+							
+							0
+							l1
+							l4 1 +
+							(M.V.STReadPixel)
+							0 (M.V.STGetR) 0 > 32 * l7 + s7
+							
+							0
+							l1
+							l4 2 +
+							(M.V.STReadPixel)
+							0 (M.V.STGetR) 0 > 64 * l7 + s7
+							
+							0
+							l1
+							l4 3 +
+							(M.V.STReadPixel)
+							0 (M.V.STGetR) 0 > 128 * l7 + s7
+						{endif}					
+						(L.$.Matrix_Bitmapfilename) "" $=
+						{if}
+'Inversion:
+							(M.L.Matrix_IsInL1) (S.L.Matrix_IsInL1)
+							(M.L.Matrix_IsInL2) (S.L.Matrix_IsInL2)
+							(M.L.Matrix_IsInL3) (S.L.Matrix_IsInL3)
+							(M.L.Matrix_IsInIcon) (S.L.Matrix_IsInIcon)
+							(M.L.Matrix_IsInNr) (S.L.Matrix_IsInNr)
+							
+							(L.L.Matrix_L1Invert)
+							{if}
+								(L.L.Matrix_IsInL1)
+								{if}
+									255 l7 - s7
+								{endif}
+							{endif}
+	
+							(L.L.Matrix_L2Invert)
+							{if}
+								(L.L.Matrix_IsInL2)
+								{if}
+									255 l7 - s7
+								{endif}
+							{endif}
+							
+							(L.L.Matrix_L3Invert)
+							{if}
+								(L.L.Matrix_IsInL3)
+								{if}
+									255 l7 - s7
+								{endif}
+							{endif}
+	
+							(L.L.Matrix_IconInvert)
+							{if}
+								(L.L.Matrix_IsInIcon)
+								{if}
+									255 l7 - s7
+								{endif}
+							{endif}
+							
+							(L.L.Matrix_NrInvert)
+							{if}
+								(L.L.Matrix_IsInNr)
+								{if}
+									255 l7 - s7
+								{endif}
+							{endif}
+							
+							(L.L.Matrix_Invert)
+							{if}
+								255 l7 - s7
+							{endif}
+						{endif}
+					{endif}
+				{endif}
+			{endif}
+
+'Pixel zeichnen:
+
+			(L.L.Matrix_Res) 1 =
+			{if}
+				1
+				l7
+				128
+				0
+				0
+				(M.V.STSetColor)
+				
+				1
+				l1 (C.L.Matrix_PixelFactor) * s4
+				l2 l0 (C.L.Matrix_Height) * + (C.L.Matrix_PixelFactor) * s5
+				l4 (C.L.Matrix_PixelFactor) + 2 -
+				l5 (C.L.Matrix_PixelFactor) + 2 -
+				(M.V.STDrawRect)
+			{endif}
+			
+			(L.L.Matrix_Res) 2 =
+			{if}
+				(L.$.Matrix_Bitmapfilename) "" $=
+				(L.L.Matrix_BmpFullColour) ! ||
+				(L.L.Matrix_LEDMonochrome) ||
+				{if}
+					l7 16 / trunc s6
+					(L.L.Matrix_HideScrollingAnimation) ! ||
+					{if}
+						(M.L.Matrix_DrawColour4LED)
+					{endif}
+				{else}
+					(M.L.Matrix_DrawColour1LED)
+					0
+					l1
+					l2 1 + s2 l0 (C.L.Matrix_Height) * +
+					(M.V.STReadPixel)
+					(M.L.Matrix_DrawColour1LED)
+					0
+					l1
+					l2 1 + s2 l0 (C.L.Matrix_Height) * +
+					(M.V.STReadPixel)
+					(M.L.Matrix_DrawColour1LED)
+					0
+					l1
+					l2 1 + s2 l0 (C.L.Matrix_Height) * +
+					(M.V.STReadPixel)
+					(M.L.Matrix_DrawColour1LED)
+					l2 3 - s2
+				{endif}
+			{endif}
+
+'Cursor verschieben:
+			(L.L.Matrix_RefreshCursor) (L.L.Matrix_Res) sqr + (S.L.Matrix_RefreshCursor)
+		{endif}
+{end}
+
+{macro:Matrix_WriteTerminus}
+
+'3.B.2 Bestimmen der verbliebenen L‰nge des Zieles vorne (l3):
+
+		(L.L.Matrix_NrRightAlign) (L.L.Matrix_Ypos) (C.L.Matrix_Height) < &&
+		{if}
+			(L.L.Matrix_TerminusXLimit) (L.L.Matrix_Xpos) - s3
+		{else}
+			(C.L.Matrix_Width) (L.L.Matrix_Xpos) - s3
+		{endif}
+	
+'3.B.3 Einzeilig (l4)?
+		(L.$.Matrix_TerminusL2) "" $= s4
+	
+'3.B.4 Bestimmen des Fonts der Zeile 1 des Ziels (l0/l1):
+	
+		(L.L.IBIS_Linie_Suffix) 98 =
+		{if}
+			0 s7
+			0 s2
+			(L.$.Matrix_TerminusL1) (L.L.Font_Chrono) s0 (M.V.TextLength) s1
+		{else}
+			(L.L.Matrix_L3XLimit)
+			{if}
+				(L.L.Matrix_Xpos) - 0 max s3
+			{endif}
+			l4 (L.L.Matrix_L3XLimit) ||
+			{if}
+' if-2-1
+' Single line
+				(L.L.Font_CustomMode) 10 % 1 >=
+				{if}
+' if-2-2
+' Custom single-line fonts
+					0 s7
+					(L.$.Matrix_TerminusL3) (S.$.Matrix_InputLine)
+					
+					(L.L.Font_Custom1-1) (S.L.Matrix_FontSel1)
+					(L.L.Font_Custom1-2) (S.L.Matrix_FontSel2)
+					(L.L.Font_Custom1-3) (S.L.Matrix_FontSel3)
+					(L.L.Font_Custom1-4) (S.L.Matrix_FontSel4)
+					(L.L.Font_Custom1-5) (S.L.Matrix_FontSel5)
+					
+					(L.L.Font_CustomMode) 10 % 1 = ! (S.L.Matrix_FontCond1)
+					(L.L.Font_CustomMode) 10 % 2 = ! (S.L.Matrix_FontCond2)
+					(L.L.Font_CustomMode) 10 % 3 = ! (S.L.Matrix_FontCond3)
+					(L.L.Font_CustomMode) 10 % 4 = ! (S.L.Matrix_FontCond4)
+
+					0 (M.L.matrix_getFontC1Ypos) (S.L.Matrix_FontYPos1)
+					1 (M.L.matrix_getFontC1Ypos) (S.L.Matrix_FontYPos2)
+					2 (M.L.matrix_getFontC1Ypos) (S.L.Matrix_FontYPos3)
+					3 (M.L.matrix_getFontC1Ypos) (S.L.Matrix_FontYPos4)
+					4 (M.L.matrix_getFontC1Ypos) (S.L.Matrix_FontYPos5)
+
+					15 (M.L.Matrix_FontSel)
+				{else}
+' else-2-2
+' No custom single-line fonts
+					0 s7
+					(L.$.Matrix_TerminusL3) (S.$.Matrix_InputLine)
+					
+					(L.L.Font_16x8B/32x16B) (S.L.Matrix_FontSel1)
+					(L.L.Matrix_L3Bold)
+					{if}
+						(L.L.Font_16x7B/32x12B) (S.L.Matrix_FontSel2)
+						(L.L.Font_16x6B/32x10B) (S.L.Matrix_FontSel3)
+					{else}
+						(L.L.Font_16x6/32x14) (S.L.Matrix_FontSel2) (S.L.Matrix_FontSel3)
+					{endif}
+					(L.L.Font_16x5/32x10) (S.L.Matrix_FontSel4)
+					(L.L.Font_15x4/32x8) (S.L.Matrix_FontSel5)
+					
+					(L.L.Matrix_L3MaxStdGlyphWidth) 8 (L.L.Matrix_Res) * < (S.L.Matrix_FontCond1)
+					(L.L.Matrix_L3Bold)
+					{if}
+						(L.L.Matrix_L3MaxStdGlyphWidth) 5 (L.L.Matrix_Res) * 2 + < (S.L.Matrix_FontCond2)
+						(L.L.Matrix_L3MaxStdGlyphWidth) 4 (L.L.Matrix_Res) * 2 + < (S.L.Matrix_FontCond3)
+					{else}
+						(L.L.Matrix_L3MaxStdGlyphWidth) 8 (L.L.Matrix_Res) * 2 - < (S.L.Matrix_FontCond2) (S.L.Matrix_FontCond3)
+					{endif}
+					(L.L.Matrix_L3MaxStdGlyphWidth) 5 (L.L.Matrix_Res) * < (S.L.Matrix_FontCond4)
+					
+					1 (L.L.Matrix_L3HasDescenderCE) - (L.L.Matrix_LargeFontYpos) + (S.L.Matrix_FontYPos1)
+					(L.L.Matrix_L3Bold) * (S.L.Matrix_FontYPos2)
+					0 (S.L.Matrix_FontYPos3) 0 (S.L.Matrix_FontYPos4) (S.L.Matrix_FontYPos5)
+					5 (M.L.Matrix_FontSel)
+				{endif}
+' endifelse-2-2
+			{endif}
+' endifelse-2-1
+
+			(L.L.Matrix_L3XLimit)
+			{if}
+				l1 1 + (L.$.Matrix_Icon) "" $= + (S.L.Matrix_L3PixelLength)
+				(L.$.Matrix_TerminusL3) $length 1 - 0 max s6
+				l3 l1 - l6 / trunc l7 min s7
+				l1 l6 l7 * + s1
+				l3 l1 - 2 / trunc s5
+				
+				(L.L.Matrix_Res) 2 = {if} 0 s2 {endif}
+				
+				0
+				(L.L.Matrix_L3XLimit) (C.L.Matrix_Width) <
+				{if}
+					*
+					l5 (L.L.Matrix_Xpos) +
+				{else}
+					+
+					(L.L.Matrix_Xpos) (L.L.Matrix_L3Invert) (L.L.Matrix_Ypos) (C.L.Matrix_Height) >= && +
+				{endif}
+				(L.L.Matrix_Ypos) l2 + (L.L.Matrix_L3Ypos) +
+				l0
+				1
+				0
+				(L.$.Matrix_TerminusL3)
+				(M.V.STTextOut)
+				(L.L.Matrix_L3XLimit) (C.L.Matrix_Width) <
+				{if}
+					(L.L.Matrix_L3XLimit) (S.L.Matrix_Xpos)
+				{else}
+					(L.L.Matrix_Xpos) l1 + (L.L.Matrix_L3XLimit) min 1 + (S.L.Matrix_Xpos)
+				{endif}
+				(L.L.Matrix_NrRightAlign) (L.L.Matrix_Ypos) (C.L.Matrix_Height) < &&
+				{if}
+					(L.L.Matrix_TerminusXLimit) (L.L.Matrix_Xpos) - s3
+				{else}
+					(C.L.Matrix_Width) (L.L.Matrix_Xpos) - s3
+				{endif}
+			{endif}
+
+			l4 ! (L.L.Matrix_L3XLimit) ||
+			{if}
+' if-2-3
+' Two lines
+				(L.L.Font_CustomMode) 10 / 10 % trunc 1 >=
+				{if}
+' if-2-4
+' Custom two-line fonts
+					0 s7
+					(L.$.Matrix_TerminusL1) (S.$.Matrix_InputLine)
+					
+					(L.L.Font_Custom2-1) (S.L.Matrix_FontSel1)
+					(L.L.Font_Custom2-2) (S.L.Matrix_FontSel2)
+					(L.L.Font_Custom2-3) (S.L.Matrix_FontSel3)
+					(L.L.Font_Custom2-4) (S.L.Matrix_FontSel4)
+					(L.L.Font_Custom2-5) (S.L.Matrix_FontSel5)
+					
+					(L.L.Font_CustomMode) 10 / 10 % trunc 1 = ! (S.L.Matrix_FontCond1)
+					(L.L.Font_CustomMode) 10 / 10 % trunc 2 = ! (S.L.Matrix_FontCond2)
+					(L.L.Font_CustomMode) 10 / 10 % trunc 3 = ! (S.L.Matrix_FontCond3)
+					(L.L.Font_CustomMode) 10 / 10 % trunc 4 = ! (S.L.Matrix_FontCond4)
+
+					0 (M.L.matrix_getFontC2Ypos) (S.L.Matrix_FontYPos1)
+					1 (M.L.matrix_getFontC2Ypos) (S.L.Matrix_FontYPos2)
+					2 (M.L.matrix_getFontC2Ypos) (S.L.Matrix_FontYPos3)
+					3 (M.L.matrix_getFontC2Ypos) (S.L.Matrix_FontYPos4)
+					4 (M.L.matrix_getFontC2Ypos) (S.L.Matrix_FontYPos5)
+
+					15 (M.L.Matrix_FontSel)
+				{else}
+' else-2-4
+' No custom two-line fonts
+					(L.L.Matrix_L1SmallFont) (L.L.Matrix_L2SmallFont) ||
+					{if}
+' if-2-5
+					 	0 s7
+					 	(L.$.Matrix_TerminusL1) (S.$.Matrix_InputLine)
+
+						(L.L.Matrix_L2SmallFont)
+						{if}							
+							(L.L.Matrix_Res) 1 =
+							{if}
+								(L.L.Font_10x6B/18x12B) (S.L.Matrix_FontSel1)
+								(L.L.Font_10x5/18x10) (S.L.Matrix_FontSel2)
+								(L.L.Font_10x4/18x8) (S.L.Matrix_FontSel3)
+								(L.L.Font_10x3/18x7) (S.L.Matrix_FontSel4)
+								(L.L.Matrix_L1MaxStdGlyphWidth) 6 < (L.L.Matrix_L1Bold) ! || (S.L.Matrix_FontCond1)
+								(L.L.Matrix_L1MaxStdGlyphWidth) 5 < (S.L.Matrix_FontCond2)
+								(L.L.Matrix_L1MaxStdGlyphWidth) 4 < (S.L.Matrix_FontCond3)
+								4 (M.L.Matrix_FontSel)
+							{else}
+								(L.L.Font_10x6B/18x12B) (S.L.Matrix_FontSel1)
+								(L.L.Font_10x6B/18x10B) (S.L.Matrix_FontSel2)
+								(L.L.Font_10x5/18x10) (S.L.Matrix_FontSel3)
+								(L.L.Font_10x4/18x8) (S.L.Matrix_FontSel4)
+								(L.L.Font_10x3/18x7) (S.L.Matrix_FontSel5)
+								(L.L.Matrix_L1MaxStdGlyphWidth) 12 < (L.L.Matrix_L1Bold) ! || (S.L.Matrix_FontCond1)
+								(L.L.Matrix_L1MaxStdGlyphWidth) 10 < (L.L.Matrix_L1Bold) ! || (S.L.Matrix_FontCond2)
+								(L.L.Matrix_L1MaxStdGlyphWidth) 10 < (S.L.Matrix_FontCond3)
+								(L.L.Matrix_L1MaxStdGlyphWidth) 8 < (S.L.Matrix_FontCond4)
+								5 (M.L.Matrix_FontSel)
+							{endif}
+							0 s2
+						{endif}
+						(L.L.Matrix_L1SmallFont)
+						{if}
+							(L.L.Font_5x5/12x8B) (S.L.Matrix_FontSel1)
+							(L.L.Font_5x5/10x8B) (S.L.Matrix_FontSel2)
+							(L.L.Font_5x4/10x6B) (S.L.Matrix_FontSel3)
+							(L.L.Font_5x3/10x5) (S.L.Matrix_FontSel4)
+							
+							(L.L.Matrix_L1MaxStdGlyphWidth) 3 (L.L.Matrix_Res) * 2 + <
+							(L.L.Matrix_L1Invert) || (L.L.Matrix_L1BGBrightness) (L.L.Matrix_L2BGBrightness) ! && || (S.L.Matrix_FontCond1)
+							(L.L.Matrix_L1MaxStdGlyphWidth) 3 (L.L.Matrix_Res) * 2 + < (S.L.Matrix_FontCond2)
+							(L.L.Matrix_L1MaxStdGlyphWidth) 2 (L.L.Matrix_Res) * 2 + < (S.L.Matrix_FontCond3)
+							4 (M.L.Matrix_FontSel)
+							0 s2
+						{endif}
+					{else}
+' else-2-5
+						0 s7
+					 	(L.$.Matrix_TerminusL1) (S.$.Matrix_InputLine)
+						
+						(L.$.Matrix_TerminusL2) "" $=
+						{if}
+							(L.L.Font_16x6/18x12B) (S.L.Matrix_FontSel1)
+							(L.L.Font_16x5/18x10) (S.L.Matrix_FontSel2)
+							(L.L.Font_15x4/18x8) (S.L.Matrix_FontSel3)
+							(L.L.Font_10x3/18x7) (S.L.Matrix_FontSel4)
+
+							0 (S.L.Matrix_FontYPos1) (S.L.Matrix_FontYPos2) (S.L.Matrix_FontYPos3) (S.L.Matrix_FontYPos4)
+							(L.L.Matrix_Res) 1 = {if} 3 (S.L.Matrix_FontYPos4) {endif}
+							(L.L.Matrix_L1MaxStdGlyphWidth) 6 (L.L.Matrix_Res) * < (S.L.Matrix_FontCond1)
+							(L.L.Matrix_L1MaxStdGlyphWidth) 5 (L.L.Matrix_Res) * < (S.L.Matrix_FontCond2)
+							(L.L.Matrix_L1MaxStdGlyphWidth) 4 (L.L.Matrix_Res) * < (S.L.Matrix_FontCond3)
+						{else}
+							(L.L.Matrix_L1CEMode)
+							{if}
+								(L.L.Matrix_L1HasTallGlyphCE)
+								{if}
+									(L.L.Font_8x6B/14x10H) (S.L.Matrix_FontSel1)
+									(L.L.Font_8x5/14x8B) (S.L.Matrix_FontSel2)
+									(L.L.Font_8x4/14x8B) (S.L.Matrix_FontSel3)
+									(L.L.Font_8x3/14x6) (S.L.Matrix_FontSel4)
+								{else}
+									(L.L.Font_(8-1)x6B/14x10H) (S.L.Matrix_FontSel1)
+									(L.L.Font_(8-1)x5/14x8B) (S.L.Matrix_FontSel2)
+									(L.L.Font_(8-1)x4/14x8B) (S.L.Matrix_FontSel3)
+									(L.L.Font_(8-1)x3/14x6) (S.L.Matrix_FontSel4)
+								{endif}
+							{else}
+								(L.L.Font_7x6B/14x10H) (S.L.Matrix_FontSel1)
+								(L.L.Font_7x5/14x8B) (S.L.Matrix_FontSel2)
+								(L.L.Font_7x4/14x8B) (S.L.Matrix_FontSel3)
+								(L.L.Font_7x3/14x6) (S.L.Matrix_FontSel4)
+								
+								(L.L.Matrix_L1HasDescender) ! (L.L.Matrix_L1Invert) ||
+								(L.L.Matrix_Invert) || (L.L.Matrix_Res) 1 = &&
+								(S.L.Matrix_FontYPos1) (S.L.Matrix_FontYPos2)
+								(S.L.Matrix_FontYPos3) (S.L.Matrix_FontYPos4) 
+							{endif}
+							(L.L.Matrix_L1Bold) !
+							(L.L.Matrix_L1MaxStdGlyphWidth) 4 (L.L.Matrix_Res) * 2 + < || (S.L.Matrix_FontCond1)
+							(L.L.Matrix_L1MaxStdGlyphWidth) 3 (L.L.Matrix_Res) * 2 + < (S.L.Matrix_FontCond2)
+							(L.L.Matrix_L1MaxStdGlyphWidth) 4 (L.L.Matrix_Res) * < (S.L.Matrix_FontCond3)
+						{endif}
+							
+						4 (M.L.Matrix_FontSel)
+						(L.$.Matrix_TerminusL2) "" $= ! (L.L.Matrix_L1CEMode) &&
+						{if}
+							0 s2
+						{endif}
+					{endif}
+' endifelse-2-5
+				{endif}
+' endifelse-2-4
+			{endif}
+' endifelse-2-3
+		{endif}
+	
+'3.B.5 Berechnen des Sperrpixelfaktors: (Anzahl der Buchstaben, l6)
+		(L.$.Matrix_TerminusL1) $length 1 - 0 max s6
+'3.B.6 Berechnen der Sperrung:
+		l3 l1 - l6 / trunc l7 min s7
+		l1 l6 l7 * + s1
+'3.B.7 Berechnen des Zentrierungsaufschlages (l5):
+		l3 l1 - 2 / trunc s5
+'3.B.8 Schreiben:
+		(L.L.Matrix_Res) 2 =
+		{if}
+			(L.L.Matrix_L1Invert) (L.L.Matrix_Invert) ||
+			(L.L.Matrix_L1BGBrightness) (L.L.Matrix_L2BGBrightness) ! && ||
+			(L.L.Matrix_L1HasDescenderCE) ! && l4 ! &&
+			{if}
+				1 s2
+			{else}
+				0 s2
+			{endif}
+			(L.L.Matrix_L1SmallFont) (L.L.Matrix_L2SmallFont) ||
+			{if}
+				0 s2
+				(L.L.Matrix_L1Invert) (L.L.Matrix_Invert) ||
+				(L.L.Matrix_L1BGBrightness) (L.L.Matrix_L2BGBrightness) ! && ||
+				{if}
+					1 s2
+				{endif}
+			{endif}
+			(L.$.Matrix_TerminusL2) "" $= (L.L.Matrix_L3XLimit) &&
+			{if}
+				8 s2
+			{endif}
+		{endif}
+
+		0
+		(L.L.Matrix_Xpos) l5 +
+		(L.L.Matrix_Ypos) l2 + (L.L.Matrix_L1Ypos) +
+		l0
+		1
+		0
+' 		"†" (L.L.Font_16x6/32x14) l0 = (L.L.Matrix_L3XLimit) && 2 * $* (L.$.Matrix_TerminusL1) $+
+		(L.$.Matrix_TerminusL1)
+		(M.V.STTextOut)
+	
+		
+	
+	
+'3.C.1 Bestimmen des Fonts der Zeile 2 des Ziels (l0/l1):
+	
+		(L.L.IBIS_Linie_Suffix) 98 =
+		{if}
+' if-3-1
+			0 s7
+			(C.L.Matrix_Height) 2 / s2
+			(L.$.Matrix_TerminusL2) (L.L.Font_Chrono) s0 (M.V.TextLength) s1
+		{else}
+' else-3-1
+			l4 !
+			{if}
+' if-3-2
+				(L.L.Font_CustomMode) 10 / 10 % trunc 1 >=
+				{if}
+' if-3-3
+' Custom two-line fonts
+					0 s7
+					(L.$.Matrix_TerminusL2) (S.$.Matrix_InputLine)
+					
+					(L.L.Font_Custom2-1) (S.L.Matrix_FontSel1)
+					(L.L.Font_Custom2-2) (S.L.Matrix_FontSel2)
+					(L.L.Font_Custom2-3) (S.L.Matrix_FontSel3)
+					(L.L.Font_Custom2-4) (S.L.Matrix_FontSel4)
+					(L.L.Font_Custom2-5) (S.L.Matrix_FontSel5)
+					
+					(L.L.Font_CustomMode) 10 / 10 % trunc 1 = ! (S.L.Matrix_FontCond1)
+					(L.L.Font_CustomMode) 10 / 10 % trunc 2 = ! (S.L.Matrix_FontCond2)
+					(L.L.Font_CustomMode) 10 / 10 % trunc 3 = ! (S.L.Matrix_FontCond3)
+					(L.L.Font_CustomMode) 10 / 10 % trunc 4 = ! (S.L.Matrix_FontCond4)
+
+					0 (M.L.matrix_getFontC2Ypos) (C.L.Matrix_Height) 2 / + (S.L.Matrix_FontYPos1)
+					1 (M.L.matrix_getFontC2Ypos) (C.L.Matrix_Height) 2 / + (S.L.Matrix_FontYPos2)
+					2 (M.L.matrix_getFontC2Ypos) (C.L.Matrix_Height) 2 / + (S.L.Matrix_FontYPos3)
+					3 (M.L.matrix_getFontC2Ypos) (C.L.Matrix_Height) 2 / + (S.L.Matrix_FontYPos4)
+					4 (M.L.matrix_getFontC2Ypos) (C.L.Matrix_Height) 2 / + (S.L.Matrix_FontYPos5)
+
+					15 (M.L.Matrix_FontSel)
+				{else}
+' else-3-3
+' No custom two-line fonts
+					(L.L.Matrix_L1SmallFont) (L.L.Matrix_L2SmallFont) ||
+					{if}
+' if-3-4
+					 	0 s7
+						(L.$.Matrix_TerminusL2) (S.$.Matrix_InputLine)
+						(L.L.Matrix_L1SmallFont)
+						{if}
+							(L.L.Matrix_Res) 1 =
+							{if}
+								(L.L.Font_10x6B/18x12B) (S.L.Matrix_FontSel1)
+								(L.L.Font_10x5/18x10) (S.L.Matrix_FontSel2)
+								(L.L.Font_10x4/18x8) (S.L.Matrix_FontSel3)
+								(L.L.Font_10x3/18x7) (S.L.Matrix_FontSel4)
+								(L.L.Matrix_L2MaxStdGlyphWidth) 5 <= (L.L.Matrix_L2Bold) ! || (S.L.Matrix_FontCond1)
+								(L.L.Matrix_L2MaxStdGlyphWidth) 4 <= (S.L.Matrix_FontCond2)
+								(L.L.Matrix_L2MaxStdGlyphWidth) 3 <= (S.L.Matrix_FontCond3)
+								4 (M.L.Matrix_FontSel)
+							{else}
+								(L.L.Font_10x6B/18x12B) (S.L.Matrix_FontSel1)
+								(L.L.Font_10x6B/18x10B) (S.L.Matrix_FontSel2)
+								(L.L.Font_10x5/18x10) (S.L.Matrix_FontSel3)
+								(L.L.Font_10x4/18x8) (S.L.Matrix_FontSel4)
+								(L.L.Font_10x3/18x7) (S.L.Matrix_FontSel5)
+								(L.L.Matrix_L2MaxStdGlyphWidth) 10 <= (L.L.Matrix_L2Bold) ! || (S.L.Matrix_FontCond1)
+								(L.L.Matrix_L2MaxStdGlyphWidth) 10 <= (L.L.Matrix_L2Bold) ! || (S.L.Matrix_FontCond2)
+								(L.L.Matrix_L2MaxStdGlyphWidth) 8 <= (S.L.Matrix_FontCond3)
+								(L.L.Matrix_L2MaxStdGlyphWidth) 7 <= (S.L.Matrix_FontCond4)
+								5 (M.L.Matrix_FontSel)
+							{endif}
+							(C.L.Matrix_Height) 8 / 3 * s2
+						{endif}
+						(L.L.Matrix_L2SmallFont)
+						{if}
+							(L.L.Font_5x5/12x8B) (S.L.Matrix_FontSel1)
+							(L.L.Font_5x5/10x8B) (S.L.Matrix_FontSel2)
+							(L.L.Font_5x4/10x6B) (S.L.Matrix_FontSel3)
+							(L.L.Font_5x3/10x5) (S.L.Matrix_FontSel4)
+							
+							(L.L.Matrix_L2MaxStdGlyphWidth) 3 (L.L.Matrix_Res) * 2 + <
+							(L.L.Matrix_L2Invert) || (L.L.Matrix_L1BGBrightness) ! (L.L.Matrix_L2BGBrightness) && || (S.L.Matrix_FontCond1)
+							(L.L.Matrix_L2MaxStdGlyphWidth) 3 (L.L.Matrix_Res) * 2 + < (S.L.Matrix_FontCond2)
+							(L.L.Matrix_L2MaxStdGlyphWidth) 2 (L.L.Matrix_Res) * 2 + < (S.L.Matrix_FontCond3)
+							4 (M.L.Matrix_FontSel)
+							(C.L.Matrix_Height) 16 / 11 * s2
+						{endif}
+					{else}
+' else-3-4
+						0 s7
+						(L.$.Matrix_TerminusL2) (S.$.Matrix_InputLine)
+						(L.L.Matrix_L2CEMode)
+						{if}
+							(L.L.Font_8x6B/14x10H) (S.L.Matrix_FontSel1)
+							(L.L.Font_8x5/14x8B) (S.L.Matrix_FontSel2)
+							(L.L.Font_8x4/14x8B) (S.L.Matrix_FontSel3)
+							(L.L.Font_8x3/14x6) (S.L.Matrix_FontSel4)
+							
+							(L.L.Matrix_L1HasTallGlyphCE)
+							(L.L.Matrix_L2HasTallGlyphCE) || (C.L.Matrix_Height) 16 / 7 * +
+							(S.L.Matrix_FontYPos1) (S.L.Matrix_FontYPos2)
+							(S.L.Matrix_FontYPos3) (S.L.Matrix_FontYPos4)
+						{else}
+							(L.L.Font_7x6B/14x10H) (S.L.Matrix_FontSel1)
+							(L.L.Font_7x5/14x8B) (S.L.Matrix_FontSel2)
+							(L.L.Font_7x4/14x8B) (S.L.Matrix_FontSel3)
+							(L.L.Font_7x3/14x6) (S.L.Matrix_FontSel4)
+							
+							(L.L.Matrix_L1Invert) (L.L.Matrix_L2Invert) || (C.L.Matrix_Height) 2 / +
+							(S.L.Matrix_FontYPos1) (S.L.Matrix_FontYPos2)
+							(S.L.Matrix_FontYPos3) (S.L.Matrix_FontYPos4) 
+						{endif}
+						(L.L.Matrix_L2Bold) !
+						(L.L.Matrix_L2MaxStdGlyphWidth) 4 (L.L.Matrix_Res) * 2 + < || (S.L.Matrix_FontCond1)
+						(L.L.Matrix_L2MaxStdGlyphWidth) 3 (L.L.Matrix_Res) * 2 + < (S.L.Matrix_FontCond2)
+						(L.L.Matrix_L2MaxStdGlyphWidth) 4 (L.L.Matrix_Res) * < (S.L.Matrix_FontCond3)
+						4 (M.L.Matrix_FontSel)
+					{endif}
+' endifelse-3-4
+				{endif}
+' endifelse-3-3
+			{endif}
+' endifelse-3-2
+		{endif}
+' endifelse-3-1
+	
+'3.C.2 Berechnen des Sperrpixelfaktors: (Anzahl der Buchstaben, l6)
+		(L.$.Matrix_TerminusL2) $length 1 - 0 max s6
+'3.C.3 Berechnen der Sperrung:
+		l3 l1 - l6 / trunc l7 min s7
+		l1 l6 l7 * + s1
+'3.C.4 Berechnen des Zentrierungsaufschlages (l5):
+		l3 l1 - 2 / trunc s5
+'3.C.5 Schreiben:
+		(L.L.Matrix_Res) 2 =
+		{if}
+			(L.L.Matrix_L2Invert) (L.L.Matrix_L2BGBrightness) || (L.L.Matrix_L2HasDescender) ! &&
+			{if}
+				17 s2
+			{else}
+				16 s2
+			{endif}
+			(L.L.Matrix_L1SmallFont)
+			{if}
+				(L.L.Matrix_L1Invert) (L.L.Matrix_L2Invert) ! &&
+				(L.L.Matrix_L1BGBrightness) (L.L.Matrix_L2BGBrightness) ! && ||
+				{if}
+					14 s2
+				{else}
+					13 s2
+				{endif}
+			{endif}
+			(L.L.Matrix_L2SmallFont)
+			{if}
+				(L.L.Matrix_L1Invert) (L.L.Matrix_L2Invert) ! &&
+				(L.L.Matrix_L1BGBrightness) (L.L.Matrix_L2BGBrightness) ! && ||
+				{if}
+					22 s2
+				{else}
+					21 s2
+				{endif}
+				l0 (L.L.Font_5x5/12x8B) =
+				{if}
+					l2 1 - s2
+				{endif}
+			{endif}
+		{endif}
+
+		l2
+		0
+		(L.L.Matrix_Xpos) l5 +
+		(L.L.Matrix_Ypos) l2 + (L.L.Matrix_L2Ypos) +
+		l0
+		1
+		0
+		(L.$.Matrix_TerminusL2)
+		(M.V.STTextOut)
+
+{end}
+
+{macro:matrix_refreshIntIndex}
+	(L.L.matrix_steckschild_Termindex) s0 0 >=
+	l0 0 (M.V.GetTerminusString) "" $= ! &&
+	{if}
+		l0
+	{else}
+		(L.L.Matrix_TerminusAct)
+	{endif}
+	(S.L.target_index_int)
+{end}
+
+{macro:Matrix_ResetOptions}
+		"" (S.$.Matrix_Icon)
+		0 (S.L.Matrix_L1Bold) (S.L.Matrix_L2Bold) (S.L.Matrix_L3Bold)
+		(S.L.Matrix_L1SmallFont) (S.L.Matrix_L2SmallFont)
+		(S.L.Matrix_L1Invert) (S.L.Matrix_L2Invert) (S.L.Matrix_L3Invert)
+		(S.L.Matrix_IconInvert) (S.L.Matrix_NrInvert) (S.L.Matrix_Invert)
+		(S.L.Matrix_L1Ypos) (S.L.Matrix_L2Ypos) (S.L.Matrix_L3Ypos)
+		(S.L.Matrix_L1CEMode) (S.L.Matrix_L2CEMode) (S.L.Matrix_L3CEMode)
+		(S.L.Matrix_NrYpos) (S.L.Matrix_NrForceLargeFont) (S.L.Matrix_LargeFontYpos)
+		(S.L.Matrix_L3PixelLength) (S.L.Matrix_IconXpos) (S.L.Matrix_UseCustomIcon)
+		(S.L.Matrix_FrontTerminusXpos) (S.L.Font_CustomMode) (S.L.Matrix_NrDisabled)
+		(C.L.Matrix_Width) (S.L.Matrix_TerminusXLimit)
+		(C.L.Matrix_NrRightAlign) (S.L.Matrix_NrRightAlign)
+		(M.L.Matrix_LEDResetColours)
+		15 (L.L.Matrix_Res) * 6 - (S.L.Matrix_L1MaxStdGlyphWidth) (S.L.Matrix_L2MaxStdGlyphWidth)
+		(S.L.Matrix_L3MaxStdGlyphWidth) (S.L.Matrix_NrMaxStdGlyphWidth)
+{end}
+
+{macro:Matrix_ProcessTerminusL1}
+		(L.L.Matrix_L3XLimit) ! s0
+
+		(L.$.Matrix_TerminusL1) "*Ö" $=
+		{if}
+			"" (S.$.Matrix_TerminusL1)
+			"Ö" (S.$.Matrix_Icon)
+		{endif}
+
+' Process line 1
+' *^## := Move line up by ## pixels
+		(L.$.Matrix_TerminusL1) "*^" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_L1Ypos)
+			l0 {if} * (S.L.Matrix_L3Ypos) {endif}
+			2 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *v## := Move line down by ## pixels
+		(L.$.Matrix_TerminusL1) "*v" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_L1Ypos)
+			l0 {if} * (S.L.Matrix_L3Ypos) {endif}
+			2 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *U := Add U-Bahn icon
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*U" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL1)
+			"U" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *T := Add train icon
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*T" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL1)
+			"T" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *S := Add S-Bahn icon
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*S" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL1)
+			"S" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *SCH := Add school icon
+		(L.$.Matrix_TerminusL1) $d 4 $SetLengthR "*SCH" $=
+		{if}
+			4 $cutEnd (S.$.Matrix_TerminusL1)
+			"s" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *R := Not used
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*R" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *P := Add coffee cup (Pause) icon
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*P" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL1)
+			"P" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *N^# := Move up route number by ## pixels
+		(L.$.Matrix_TerminusL1) "*N^" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_NrYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *Nv# := Move down route number by ## pixels
+		(L.$.Matrix_TerminusL1) "*Nv" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_NrYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *NMX## := Allow only fonts for route number up to standard width # pixels
+		(L.$.Matrix_TerminusL1) "*NMX" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_NrMaxStdGlyphWidth)
+			4 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *NI := Invert route number
+		(L.$.Matrix_TerminusL1) $d 3 $SetLengthR "*NI" $=
+		{if}
+			(L.L.Matrix_NrInvert) ! (S.L.Matrix_NrInvert)
+			3 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *NH> := Route number on the front display is displayed on the right
+' Warning: Overly long terminus lines will be drawn over the route number
+		(L.$.Matrix_TerminusL1) $d 4 $SetLengthR "*NH>" $=
+		{if}
+			1 (S.L.Matrix_NrRightAlign)
+			4 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *NH< := Route number on the front display is displayed on the left
+		(L.$.Matrix_TerminusL1) $d 4 $SetLengthR "*NH<" $=
+		{if}
+			0 (S.L.Matrix_NrRightAlign)
+			4 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *NG := Force large route number font
+		(L.$.Matrix_TerminusL1) $d 3 $SetLengthR "*NG" $=
+		{if}
+			$d 4 $SetLengthR "**NG" $= 
+			{if}
+				(L.L.Matrix_Res) 2 =
+				{if}
+					(L.L.Matrix_NrForceLargeFont) ! (S.L.Matrix_NrForceLargeFont)
+				{endif}
+				4 $cutEnd (S.$.Matrix_TerminusL1)
+			{else}		
+				(L.L.Matrix_NrForceLargeFont) ! (S.L.Matrix_NrForceLargeFont)
+				3 $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+		{endif}
+' *N := Do not display route number
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*N" $=
+		{if}
+			(L.L.Matrix_NrDisabled) ! (S.L.Matrix_NrDisabled)
+			2 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *MX## := Allow only fonts up to standard width # pixels
+		(L.$.Matrix_TerminusL1) "*MX" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_L1MaxStdGlyphWidth)
+			l0 {if} * (S.L.Matrix_L3MaxStdGlyphWidth) {endif}
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *MI := Invert matrix
+		(L.$.Matrix_TerminusL1) $d 3 $SetLengthR "*MI" $=
+		{if}
+			(L.L.Matrix_Invert) ! (S.L.Matrix_Invert)
+			3 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *M := Not used
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*M" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *K := Use small fonts; **K := Use small fonts if using 230x32 matrix
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*K" $=
+		{if}
+			$d 3 $SetLengthR "**K" $= 
+			{if}
+				(L.L.Matrix_Res) 2 =
+				{if}
+					(L.L.Matrix_L1SmallFont) ! (S.L.Matrix_L1SmallFont)
+				{endif}
+				3 $cutEnd (S.$.Matrix_TerminusL1)
+			{else}
+				(L.L.Matrix_L1SmallFont) ! (S.L.Matrix_L1SmallFont)
+				2 $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+		{endif}
+' *I<## := Move icon ## pixels to the left
+		(L.$.Matrix_TerminusL1) "*I<" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_IconXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *I>## := Move icon ## pixels to the right
+		(L.$.Matrix_TerminusL1) "*I>" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_IconXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *I := Invert line; **I := Invert line if using 230x32 matrix
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*I" $=
+		{if}
+			$d 3 $SetLengthR "**I" $= 
+			{if}
+				(L.L.Matrix_Res) 2 =
+				{if}
+					(L.L.Matrix_L1Invert) ! (S.L.Matrix_L1Invert)
+				{endif}
+				3 $cutEnd (S.$.Matrix_TerminusL1)
+			{else}		
+				(L.L.Matrix_L1Invert) ! (S.L.Matrix_L1Invert)
+				2 $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+		{endif}
+' *G^## := Move up by ## pixels, but only if largest font used
+		(L.$.Matrix_TerminusL1) "*G^" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_LargeFontYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *Gv## := Move down by ## pixels, but only if largest font used
+		(L.$.Matrix_TerminusL1) "*Gv" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_LargeFontYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *F<## := Move terminus display on the front ## pixels to the left
+		(L.$.Matrix_TerminusL1) "*F<" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_FrontTerminusXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *F>## := Move terminus display on the front ## pixels to the right
+		(L.$.Matrix_TerminusL1) "*F>" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_FrontTerminusXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *F := Add airport icon
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*F" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL1)
+			"F" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *DB := Add DB (Deutsche Bahn) logo
+		(L.$.Matrix_TerminusL1) $d 3 $SetLengthR "*DB" $=
+		{if}
+			3 $cutEnd (S.$.Matrix_TerminusL1)
+			"D" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *CN := Use custom fonts for route number
+		(L.$.Matrix_TerminusL1) $d 3 $SetLengthR "*CN" $=
+		{if}
+			"9" $+ (S.$.Matrix_TerminusL1)
+		{endif}
+' *CN# := Use custom font # for route number
+		(L.$.Matrix_TerminusL1) $d 4 $SetLengthR 1 $cutEnd "*CN" $=
+		{if}
+			$d 1 $SetLengthR $StrToFloat 0 max 100 *
+			(L.L.Font_CustomMode) + (S.L.Font_CustomMode) 
+			4 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *CI := Use custom icons
+		(L.$.Matrix_TerminusL1) 4 $SetLengthR 1 $cutEnd "*CI" $=
+		{if}
+			1 (S.L.Matrix_UseCustomIcon)
+			(L.$.Matrix_Icon) (L.$.Matrix_TerminusL1) 1 $SetLengthR $+ (S.$.Matrix_Icon)
+			(L.$.Matrix_TerminusL1) 4 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *CF := Use custom fonts for destination
+		(L.$.Matrix_TerminusL1) $d 3 $SetLengthR "*CF" $=
+		{if}
+			"9" $+ (S.$.Matrix_TerminusL1)
+		{endif}
+' *CF# := Use custom font # for destination
+		(L.$.Matrix_TerminusL1) $d 4 $SetLengthR 1 $cutEnd "*CF" $=
+		{if}
+			$d 1 $SetLengthR $StrToFloat 0 max
+			(L.L.Font_CustomMode) + (S.L.Font_CustomMode)
+			4 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+' *CE := Use only fonts supporting Central European characters (except *K)
+		(L.$.Matrix_TerminusL1) $d 3 $SetLengthR "*CE" $=
+		{if}
+			3 $cutEnd (S.$.Matrix_TerminusL1)
+			(L.L.Matrix_L1CEMode) ! (S.L.Matrix_L1CEMode)
+			l0 {if} * (S.L.Matrix_L3CEMode) {endif}
+		{endif}
+' *PR := Add Park+Ride logo
+		(L.$.Matrix_TerminusL1) $d 3 $SetLengthR "*PR" $=
+		{if}
+			3 $cutEnd (S.$.Matrix_TerminusL1)
+			"B" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *B := Use bold face font; **B := Use bold face font if using 230x32 matrix
+		(L.$.Matrix_TerminusL1) $d 2 $SetLengthR "*B" $=
+		{if}
+			$d 3 $SetLengthR "**B" $= 
+			{if}
+				(L.L.Matrix_Res) 2 >=
+				{if}
+					(L.L.Matrix_L1Bold) ! (S.L.Matrix_L1Bold)
+					l0 {if} * (S.L.Matrix_L3Bold) {endif}
+				{endif}
+				3 $cutEnd (S.$.Matrix_TerminusL1)
+			{else}
+				(L.L.Matrix_L1Bold) ! (S.L.Matrix_L1Bold)
+				l0 {if} * (S.L.Matrix_L3Bold) {endif}
+				2 $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+		{endif}
+' O405N2 matrix compatibility
+		(L.$.Matrix_TerminusL1) $d 1 s1 $SetLengthR "µ" $=
+		$d 6 s1 $SetLengthR && "#Messe" $= ||
+		$d 9 s1 $SetLengthR && "#100Jahre" $= ||
+		{if}
+			l1 $cutEnd (S.$.Matrix_TerminusL1)
+		{endif}
+		(L.$.Matrix_TerminusL1) $d 12 $SetLengthR "#Dienstfahrt" $=
+		{if}
+			12 $cutEnd "Dienstfahrt*I" $+ (S.$.Matrix_TerminusL1)
+		{endif}
+		(L.$.Matrix_TerminusL1) $d 8 $SetLengthR "#Postbus" $=
+		{if}
+			8 $cutEnd "Postbus" $+ (S.$.Matrix_TerminusL1)
+		{endif}
+
+		(L.$.Matrix_TerminusL1) 1 $SetLengthR "]" $=
+		{if}
+' *NC := Route number colour
+			(L.$.Matrix_TerminusL1) "*NC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_NrHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_NrSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_NrBrightness)
+				{endif}
+				(L.$.Matrix_TerminusL1) 4 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+' *NBGC := Route number background colour
+			(L.$.Matrix_TerminusL1) "*NBGC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+				{endif}
+				(L.$.Matrix_TerminusL1) 6 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+				$length (L.L.Matrix_LED) && (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(L.L.Matrix_Temp0) (S.L.Matrix_NrBGHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_NrBGSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_NrBGBrightness)
+				{endif}
+			{endif}
+' *L := Specify route number to be displayed
+			(L.$.Matrix_TerminusL1) "*L[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_SpecifyNr) 0 >=
+				{if}
+					(S.L.Matrix_SpecifyNr)
+				{endif}
+				$d l1 $SetLengthR 1 $cutEnd (S.$.Matrix_NrSpecified) 0 $* $+
+				l1 3 + $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+' *IC := Icon colour
+			(L.$.Matrix_TerminusL1) "*IC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_IconHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_IconSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_IconBrightness)
+				{endif}
+				(L.$.Matrix_TerminusL1) 4 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+' *IBGC := Icon colour
+			(L.$.Matrix_TerminusL1) "*IBGC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_IconBGHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_IconBGSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_IconBGBrightness)
+				{endif}
+				(L.$.Matrix_TerminusL1) 6 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+' *DC := Display colour
+			(L.$.Matrix_TerminusL1) "*DC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_LEDHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_LEDSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_LEDBrightness)
+					(M.L.Matrix_LEDResetColours)
+				{endif}
+				(L.$.Matrix_TerminusL1) 4 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+' *DBGC := Display background colour
+			(L.$.Matrix_TerminusL1) "*DBGC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_LEDBGHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_LEDBGSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_LEDBGBrightness)
+					(M.L.Matrix_LEDResetColours)
+				{else}
+					(L.L.Matrix_Invert) ! (S.L.Matrix_Invert)
+				{endif}
+				(L.$.Matrix_TerminusL1) 6 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+' *C := line text colour
+			(L.$.Matrix_TerminusL1) "*C[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_L1Hue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_L1Saturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_L1Brightness)
+					l0
+					{if}
+						(L.L.Matrix_L1Hue) (S.L.Matrix_L3Hue)
+						(L.L.Matrix_L1Saturation) (S.L.Matrix_L3Saturation)
+						(L.L.Matrix_L1Brightness) (S.L.Matrix_L3Brightness)
+					{endif}
+				{endif}
+				(L.$.Matrix_TerminusL1) 3 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+' *BGC := line background colour
+			(L.$.Matrix_TerminusL1) "*BGC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_L1BGHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_L1BGSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_L1BGBrightness)
+					l0
+					{if}
+						(L.L.Matrix_L1BGHue) (S.L.Matrix_L3BGHue)
+						(L.L.Matrix_L1BGSaturation) (S.L.Matrix_L3BGSaturation)
+						(L.L.Matrix_L1BGBrightness) (S.L.Matrix_L3BGBrightness)
+					{endif}
+				{else}
+					(L.L.Matrix_L1Invert) ! (S.L.Matrix_L1Invert)
+				{endif}
+				(L.$.Matrix_TerminusL1) 5 l1 + $cutEnd (S.$.Matrix_TerminusL1)
+			{endif}
+		{endif}
+{end}
+
+{macro:Matrix_ProcessTerminusL2}
+' Process line 2
+' *^## := Move line up by ## pixels
+		(L.$.Matrix_TerminusL2) "*^" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_L2Ypos)
+			2 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *v## := Move line down by ## pixels
+		(L.$.Matrix_TerminusL2) "*v" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_L2Ypos)
+			2 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *U := Add U-Bahn icon
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*U" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL2)
+			"U" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *T := Add train icon
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*T" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL2)
+			"T" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *S := Add S-Bahn icon
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*S" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL2)
+			"S" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *SCH := Add school icon
+		(L.$.Matrix_TerminusL2) $d 4 $SetLengthR "*SCH" $=
+		{if}
+			4 $cutEnd (S.$.Matrix_TerminusL2)
+			"s" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *R := Not used
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*R" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *P := Add coffee cup (Pause) icon
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*P" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL2)
+			"P" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *N^# := Move up route number by ## pixels
+		(L.$.Matrix_TerminusL2) "*N^" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_NrYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *Nv# := Move down route number by ## pixels
+		(L.$.Matrix_TerminusL2) "*Nv" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_NrYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *NMX## := Allow only fonts for route number up to standard width # pixels
+		(L.$.Matrix_TerminusL2) "*NMX" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_NrMaxStdGlyphWidth)
+			4 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *NI := Invert route number
+		(L.$.Matrix_TerminusL2) $d 3 $SetLengthR "*NI" $=
+		{if}
+			(L.L.Matrix_NrInvert) ! (S.L.Matrix_NrInvert)
+			3 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *NH> := Route number on the front display is displayed on the right
+' Warning: Overly long terminus lines will be drawn over the route number
+		(L.$.Matrix_TerminusL2) $d 4 $SetLengthR "*NH>" $=
+		{if}
+			1 (S.L.Matrix_NrRightAlign)
+			4 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *NH< := Route number on the front display is displayed on the left
+		(L.$.Matrix_TerminusL2) $d 4 $SetLengthR "*NH<" $=
+		{if}
+			0 (S.L.Matrix_NrRightAlign)
+			4 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *NG := Force large route number font
+		(L.$.Matrix_TerminusL2) $d 3 $SetLengthR "*NG" $=
+		{if}
+			$d 4 $SetLengthR "**NG" $= 
+			{if}
+				(L.L.Matrix_Res) 2 =
+				{if}
+					(L.L.Matrix_NrForceLargeFont) ! (S.L.Matrix_NrForceLargeFont)
+				{endif}
+				4 $cutEnd (S.$.Matrix_TerminusL2)
+			{else}		
+				(L.L.Matrix_NrForceLargeFont) ! (S.L.Matrix_NrForceLargeFont)
+				3 $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+		{endif}
+' *N := Do not display route number
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*N" $=
+		{if}
+			(L.L.Matrix_NrDisabled) ! (S.L.Matrix_NrDisabled)
+			2 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *MX# := Allow only fonts up to standard width # pixels
+		(L.$.Matrix_TerminusL2) "*MX" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_L2MaxStdGlyphWidth)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *MI := Invert matrix
+		(L.$.Matrix_TerminusL2) $d 3 $SetLengthR "*MI" $=
+		{if}
+			(L.L.Matrix_Invert) ! (S.L.Matrix_Invert)
+			3 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *M := Not used
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*M" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *K := Use small fonts; **K := Use small fonts if using 230x32 matrix
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*K" $=
+		{if}
+			$d 3 $SetLengthR "**K" $= 
+			{if}
+				(L.L.Matrix_Res) 2 >=
+				{if}
+					(L.L.Matrix_L2SmallFont) ! (S.L.Matrix_L2SmallFont)
+				{endif}
+				3 $cutEnd (S.$.Matrix_TerminusL2)
+			{else}
+				(L.L.Matrix_L2SmallFont) ! (S.L.Matrix_L2SmallFont)
+				2 $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+		{endif}
+' *I<## := Move icon ## pixels to the left
+		(L.$.Matrix_TerminusL2) "*I<" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_IconXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *I>## := Move icon ## pixels to the right
+		(L.$.Matrix_TerminusL2) "*I>" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_IconXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *I := Invert line; **I := Invert line if using 230x32 matrix
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*I" $=
+		{if}
+			$d 3 $SetLengthR "**I" $= 
+			{if}
+				(L.L.Matrix_Res) 2 =
+				{if}
+					(L.L.Matrix_L2Invert) ! (S.L.Matrix_L2Invert)
+				{endif}
+				3 $cutEnd (S.$.Matrix_TerminusL2)
+			{else}		
+				(L.L.Matrix_L2Invert) ! (S.L.Matrix_L2Invert)
+				2 $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+		{endif}
+' *G^## := Move up by ## pixels, but only if largest font used
+		(L.$.Matrix_TerminusL2) "*G^" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_LargeFontYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *Gv## := Move down by ## pixels, but only if largest font used
+		(L.$.Matrix_TerminusL2) "*Gv" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_LargeFontYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *F<## := Move terminus display on the front ## pixels to the left
+		(L.$.Matrix_TerminusL2) "*F<" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_FrontTerminusXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *F>## := Move terminus display on the front ## pixels to the right
+		(L.$.Matrix_TerminusL2) "*F>" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_FrontTerminusXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *F := Add airport icon
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*F" $=
+		{if}
+			2 $cutEnd (S.$.Matrix_TerminusL2)
+			"F" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *DB := Add DB (Deutsche Bahn) logo
+		(L.$.Matrix_TerminusL2) $d 3 $SetLengthR "*DB" $=
+		{if}
+			3 $cutEnd (S.$.Matrix_TerminusL2)
+			"D" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *CN := Use custom fonts for route number
+		(L.$.Matrix_TerminusL2) $d 3 $SetLengthR "*CN" $=
+		{if}
+			"9" $+ (S.$.Matrix_TerminusL2)
+		{endif}
+' *CN# := Use custom font # for route number
+		(L.$.Matrix_TerminusL2) $d 4 $SetLengthR 1 $cutEnd "*CN" $=
+		{if}
+			(L.L.Font_CustomMode) 100 <
+			{if}
+				$d 1 $SetLengthR $StrToFloat 0 max 100 *
+				(L.L.Font_CustomMode) + (S.L.Font_CustomMode)
+			{endif}
+			4 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *CI := Use custom icons
+		(L.$.Matrix_TerminusL2) 4 $SetLengthR 1 $cutEnd "*CI" $=
+		{if}
+			1 (S.L.Matrix_UseCustomIcon)
+			(L.$.Matrix_Icon) (L.$.Matrix_TerminusL2) 1 $SetLengthR $+ (S.$.Matrix_Icon)
+			(L.$.Matrix_TerminusL2) 4 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *CF := Use custom fonts for destination
+		(L.$.Matrix_TerminusL2) $d 3 $SetLengthR "*CF" $=
+		{if}
+			"9" $+ (S.$.Matrix_TerminusL2)
+		{endif}
+' *CF# := Use custom font # for destination
+		(L.$.Matrix_TerminusL2) $d 4 $SetLengthR 1 $cutEnd "*CF" $=
+		{if}
+			$d 1 $SetLengthR $StrToFloat 0 max 10 *
+			(L.L.Font_CustomMode) + (S.L.Font_CustomMode) 
+			4 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+' *CE := Use only fonts supporting Central European characters (except *K)
+		(L.$.Matrix_TerminusL2) $d 3 $SetLengthR "*CE" $=
+		{if}
+			3 $cutEnd (S.$.Matrix_TerminusL2)
+			(L.L.Matrix_L2CEMode) ! (S.L.Matrix_L2CEMode)
+		{endif}
+' *PR := Add Park+Ride logo
+		(L.$.Matrix_TerminusL2) $d 3 $SetLengthR "*PR" $=
+		{if}
+			3 $cutEnd (S.$.Matrix_TerminusL2)
+			"B" (L.$.Matrix_Icon) $+ (S.$.Matrix_Icon)
+		{endif}
+' *B := Use bold face font; **B := Use bold face font if using 230x32 matrix
+		(L.$.Matrix_TerminusL2) $d 2 $SetLengthR "*B" $=
+		{if}
+			$d 3 $SetLengthR "**B" $= 
+			{if}
+				(L.L.Matrix_Res) 2 >=
+				{if}
+					(L.L.Matrix_L2Bold) ! (S.L.Matrix_L2Bold)
+				{endif}
+				3 $cutEnd (S.$.Matrix_TerminusL2)
+			{else}
+				(L.L.Matrix_L2Bold) ! (S.L.Matrix_L2Bold)
+				2 $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+		{endif}
+' O405N2 matrix compatibility
+		(L.$.Matrix_TerminusL2) $d 1 s1 $SetLengthR "µ" $=
+		$d 6 s1 $SetLengthR && "#Messe" $= ||
+		$d 9 s1 $SetLengthR && "#100Jahre" $= ||
+		{if}
+			l1 $cutEnd (S.$.Matrix_TerminusL2)
+		{endif}
+		(L.$.Matrix_TerminusL2) $d 12 $SetLengthR "#Dienstfahrt" $=
+		{if}
+			12 $cutEnd "Dienstfahrt*I" $+ (S.$.Matrix_TerminusL2)
+		{endif}
+		(L.$.Matrix_TerminusL2) $d 8 $SetLengthR "#Postbus" $=
+		{if}
+			8 $cutEnd "Postbus" $+ (S.$.Matrix_TerminusL2)
+		{endif}
+
+		(L.$.Matrix_TerminusL2) 1 $SetLengthR "]" $=
+		{if}
+' *NC := Route number colour
+			(L.$.Matrix_TerminusL2) "*NC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_NrHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_NrSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_NrBrightness)
+				{endif}
+				(L.$.Matrix_TerminusL2) 4 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+' *NBGC := Route number colour
+			(L.$.Matrix_TerminusL2) "*NBGC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+				{endif}
+				(L.$.Matrix_TerminusL2) 6 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+				$length (L.L.Matrix_LED) && (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(L.L.Matrix_Temp0) (S.L.Matrix_NrBGHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_NrBGSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_NrBGBrightness)
+				{endif}
+			{endif}
+' *L := Specify route number to be displayed
+			(L.$.Matrix_TerminusL2) "*L[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_SpecifyNr) 0 >=
+				{if}
+					(S.L.Matrix_SpecifyNr)
+				{endif}
+				$d l1 $SetLengthR 1 $cutEnd (S.$.Matrix_NrSpecified) 0 $* $+
+				l1 3 + $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+' *IC := Icon colour
+			(L.$.Matrix_TerminusL2) "*IC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_IconHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_IconSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_IconBrightness)
+				{endif}
+				(L.$.Matrix_TerminusL2) 4 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+' *IBGC := Icon colour
+			(L.$.Matrix_TerminusL2) "*IBGC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_IconBGHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_IconBGSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_IconBGBrightness)
+				{endif}
+				(L.$.Matrix_TerminusL2) 6 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+' *DC := Display colour
+			(L.$.Matrix_TerminusL2) "*DC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_LEDHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_LEDSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_LEDBrightness)
+					(M.L.Matrix_LEDResetColours)
+				{endif}
+				(L.$.Matrix_TerminusL2) 4 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+' *DBGC := Display background colour
+			(L.$.Matrix_TerminusL2) "*DBGC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_LEDBGHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_LEDBGSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_LEDBGBrightness)
+					(M.L.Matrix_LEDResetColours)
+				{else}
+					(L.L.Matrix_Invert) ! (S.L.Matrix_Invert)
+				{endif}
+				(L.$.Matrix_TerminusL2) 6 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+' *C := line text colour
+			(L.$.Matrix_TerminusL2) "*C[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_L2Hue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_L2Saturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_L2Brightness)
+				{endif}
+				(L.$.Matrix_TerminusL2) 3 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+' *BGC := line background colour
+			(L.$.Matrix_TerminusL2) "*BGC[" (M.L.Matrix_IsNextCmd)
+			$d 1 $SetLengthR && "]" $= &&
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_L2BGHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_L2BGSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_L2BGBrightness)
+				{else}
+					(L.L.Matrix_L2Invert) ! (S.L.Matrix_L2Invert)
+				{endif}
+				(L.$.Matrix_TerminusL2) 5 l1 + $cutEnd (S.$.Matrix_TerminusL2)
+			{endif}
+		{endif}
+{end}
+
+{macro:Matrix_ProcessTerminusL3}
+' Process line 3
+' *^## := Move line up by ## pixels
+		(L.$.Matrix_TerminusL3) "*^" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_L3Ypos)
+			2 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+		{endif}
+' *v## := Move line down by ## pixels
+		(L.$.Matrix_TerminusL3) "*v" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_L3Ypos)
+			2 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+		{endif}
+' *MX## := Allow only fonts up to standard width # pixels
+		(L.$.Matrix_TerminusL3) "*MX" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_L3MaxStdGlyphWidth)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+		{endif}
+' *IT### := Activate line 3 with X-coordinate limit ###
+		(L.$.Matrix_TerminusL3) "*IT" (M.L.Matrix_IsNextCmd)
+		{if}
+			l1
+			{if}
+				$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_L3XLimit)
+			{else}
+				(C.L.Matrix_Width) (S.L.Matrix_L3XLimit)
+			{endif}
+			(L.$.Matrix_TerminusL3) 3 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+		{endif}
+' *I := Invert line; **I := Invert line if using 230x32 matrix
+		(L.$.Matrix_TerminusL3) $d 2 $SetLengthR "*I" $=
+		{if}
+			$d 3 $SetLengthR "**I" $= 
+			{if}
+				(L.L.Matrix_Res) 2 =
+				{if}
+					(L.L.Matrix_L3Invert) ! (S.L.Matrix_L3Invert)
+				{endif}
+				3 $cutEnd (S.$.Matrix_TerminusL3)
+			{else}		
+				(L.L.Matrix_L3Invert) ! (S.L.Matrix_L3Invert)
+				2 $cutEnd (S.$.Matrix_TerminusL3)
+			{endif}
+		{endif}
+' *G^## := Move up by ## pixels, but only if largest font used
+		(L.$.Matrix_TerminusL3) "*G^" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_LargeFontYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+		{endif}
+' *Gv## := Move down by ## pixels, but only if largest font used
+		(L.$.Matrix_TerminusL3) "*Gv" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_LargeFontYpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+		{endif}
+' *F<## := Move terminus display on the front ## pixels to the left
+		(L.$.Matrix_TerminusL3) "*F<" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) /-/ (S.L.Matrix_FrontTerminusXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+		{endif}
+' *F>## := Move terminus display on the front ## pixels to the right
+		(L.$.Matrix_TerminusL3) "*F>" (M.L.Matrix_IsNextCmd)
+		{if}
+			$d l1 $SetLengthR (M.L.Matrix_GetArgValue) (S.L.Matrix_FrontTerminusXpos)
+			3 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+		{endif}
+' *CF := Use custom fonts for destination
+		(L.$.Matrix_TerminusL3) $d 3 $SetLengthR "*CF" $=
+		{if}
+			"9" $+ (S.$.Matrix_TerminusL3)
+		{endif}
+' *CF# := Use custom font # for destination
+		(L.$.Matrix_TerminusL3) $d 4 $SetLengthR 1 $cutEnd "*CF" $=
+		{if}
+			$d 1 $SetLengthR $StrToFloat 0 max
+			(L.L.Font_CustomMode) + (S.L.Font_CustomMode) 
+			4 $cutEnd (S.$.Matrix_TerminusL3)
+		{endif}
+' *CE := Not currently needed for line 3 but kept for consistency
+		(L.$.Matrix_TerminusL3) $d 3 $SetLengthR "*CE" $=
+		{if}
+			3 $cutEnd (S.$.Matrix_TerminusL3)
+			1 (S.L.Matrix_L3CEMode)
+		{endif}
+' *B := Use bold face font; **B := Use bold face font if using 230x32 matrix
+		(L.$.Matrix_TerminusL3) $d 2 $SetLengthR "*B" $=
+		{if}
+			$d 3 $SetLengthR "**B" $= 
+			{if}
+				(L.L.Matrix_Res) 2 >=
+				{if}
+					(L.L.Matrix_L3Bold) ! (S.L.Matrix_L3Bold)
+				{endif}
+				3 $cutEnd (S.$.Matrix_TerminusL3)
+			{else}
+				(L.L.Matrix_L3Bold) ! (S.L.Matrix_L3Bold)
+				2 $cutEnd (S.$.Matrix_TerminusL3)
+			{endif}
+		{endif}
+
+		(L.$.Matrix_TerminusL3) 1 $SetLengthR "]" $=
+		{if}
+' *C := line text colour
+		(L.$.Matrix_TerminusL3) "*C[" (M.L.Matrix_IsNextCmd)
+		{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_L3Hue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_L3Saturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_L3Brightness)
+				{endif}
+				(L.$.Matrix_TerminusL3) 3 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+			{endif}
+' *BGC := line background colour
+			(L.$.Matrix_TerminusL3) "*BGC[" (M.L.Matrix_IsNextCmd)
+			{if}
+				(L.L.Matrix_LED) (L.L.Matrix_LEDMonochrome) ! &&
+				{if}
+					(M.L.Matrix_ProcessColourCmd)
+					(L.L.Matrix_Temp0) (S.L.Matrix_L3BGHue)
+					(L.L.Matrix_Temp1) (S.L.Matrix_L3BGSaturation)
+					(L.L.Matrix_Temp2) (S.L.Matrix_L3BGBrightness)
+				{else}
+					(L.L.Matrix_L3Invert) ! (S.L.Matrix_L3Invert)
+				{endif}
+				(L.$.Matrix_TerminusL3) 5 l1 + $cutEnd (S.$.Matrix_TerminusL3)
+			{endif}
+		{endif}
+{end}
+
+{macro:Matrix_ProcessColourCmd}
+		$d l1 $SetLengthR 1 $cutEnd
+		l1 3 <=
+		{if}
+			$d $StrToFloat 0 >=
+			{if}
+				6 (M.V.STLock)
+				$d $StrToFloat 1 - s4
+				6
+				l4 4 % 59 * 50 +
+				l4 4 / trunc 4 % 43 * 90 +
+				(M.V.STReadPixel)
+				6 (M.V.STGetR) s3
+				6 (M.V.STGetG) s4
+				6 (M.V.STGetB) s5
+				6 (M.V.STUnlock)
+				l3 l4 l5 (M.L.Matrix_RGB2Hue) (S.L.Matrix_Temp0)
+				l3 l4 l5 (M.L.Matrix_RGB2Saturation) (S.L.Matrix_Temp1)
+				l3 l4 l5 max max 255 / (S.L.Matrix_Temp2)
+			{else}
+				(M.L.Matrix_LEDStandardColours)
+				(S.L.Matrix_Temp0) d - +
+				(S.L.Matrix_Temp1) d - +
+				(S.L.Matrix_Temp2)
+			{endif}
+		{else}
+			l1 5 =
+			{if}
+				$d 1 $SetLengthL "H" $=
+				{if}
+					$d 1 $cutBegin $StrToFloat 360 % 0 max (S.L.Matrix_Temp0)
+				{endif}
+				$d 1 $SetLengthL "S" $=
+				{if}
+					$d 1 $cutBegin $StrToFloat 100 / 1 min 0 max (S.L.Matrix_Temp1)
+				{endif}
+				$d 1 $SetLengthL "V" $=
+				{if}
+					$d 1 $cutBegin $StrToFloat 100 / 1 min 0 max (S.L.Matrix_Temp2)
+				{endif}
+			{else}
+				(M.L.Matrix_RGBHex2Dec)
+				l3 l4 l5 (M.L.Matrix_RGB2Hue) (S.L.Matrix_Temp0)
+				l3 l4 l5 (M.L.Matrix_RGB2Saturation) (S.L.Matrix_Temp1)
+				l3 l4 l5 max max 255 / (S.L.Matrix_Temp2)
+			{endif}
+		{endif}
+{end}
+
+{macro:Matrix_DrawIcon}
+		(L.$.Matrix_Icon) "" $=
+		{if}
+			0 (S.L.Matrix_IconPixelLength)
+		{else}
+			(L.L.Matrix_Ypos) (C.L.Matrix_Height) <
+			{if}
+				(L.L.Matrix_Xpos) (L.L.Matrix_IconXpos) + (S.L.Matrix_Xpos)
+			{endif}
+			(L.L.Matrix_UseCustomIcon)
+			{if}
+				(L.L.Font_CustomIcon) s0
+			{else}
+				(L.L.Font_Icon) s0
+			{endif}
+			0
+			(L.L.Matrix_Xpos) s5
+			(L.L.Matrix_Ypos)
+			l0
+			1
+			0
+			(L.$.Matrix_Icon)
+			(M.V.STTextOut)
+			(L.L.Matrix_Ypos) (C.L.Matrix_Height) <
+			{if}
+				l5 (L.$.Matrix_Icon) l0 (M.V.TextLength) s0 + (L.L.Matrix_Res) + (S.L.Matrix_Xpos) (S.L.Matrix_TerminusXpos)
+				l0 (L.L.Matrix_Res) + (S.L.Matrix_IconPixelLength)
+			{endif}
+		{endif}
+{end}
+
+{macro:Matrix_FontSelReset}
+		"" (S.$.Matrix_InputLine)
+		0 (S.L.Matrix_FontSel1) (S.L.Matrix_FontSel2) (S.L.Matrix_FontSel3)
+		(S.L.Matrix_FontSel4) (S.L.Matrix_FontSel5) (S.L.Matrix_FontSel6)
+{end}
+
+{macro:Matrix_FontSel}
+		(S.L.Matrix_FontSels)
+		
+		(L.L.Matrix_FontYPos1) s2
+		(L.$.Matrix_InputLine) (L.L.Matrix_FontSel1) s0 (M.V.TextLength) s1
+		l3 >
+		(L.L.Matrix_FontCond1) (L.L.Matrix_FontSels) 10 >= {if} && && {else} || || {endif}
+		(L.L.Matrix_FontSels) 10 % 1 > &&
+		{if}
+			(L.L.Matrix_FontYPos2) s2
+			(L.$.Matrix_InputLine) (L.L.Matrix_FontSel2) s0 (M.V.TextLength) s1
+			l3 >
+			(L.L.Matrix_FontCond2) (L.L.Matrix_FontSels) 10 >= {if} && && {else} || || {endif}
+			(L.L.Matrix_FontSels) 10 % 2 > &&
+			{if}
+				(L.L.Matrix_FontYPos3) s2
+				(L.$.Matrix_InputLine) (L.L.Matrix_FontSel3) s0 (M.V.TextLength) s1
+				l3 >
+				(L.L.Matrix_FontCond3) (L.L.Matrix_FontSels) 10 >= {if} && && {else} || || {endif}
+				(L.L.Matrix_FontSels) 10 % 3 > &&
+				{if}
+					(L.L.Matrix_FontYPos4) s2
+					(L.$.Matrix_InputLine) (L.L.Matrix_FontSel4) s0 (M.V.TextLength) s1
+					l3 >
+					(L.L.Matrix_FontCond4) (L.L.Matrix_FontSels) 10 >= {if} && && {else} || || {endif}
+					(L.L.Matrix_FontSels) 10 % 4 > &&
+					{if}
+						(L.L.Matrix_FontYPos5) s2
+						(L.$.Matrix_InputLine) (L.L.Matrix_FontSel5) s0 (M.V.TextLength) s1
+						l3 >
+						(L.L.Matrix_FontCond5) (L.L.Matrix_FontSels) 10 >= {if} && && {else} || || {endif}
+						(L.L.Matrix_FontSels) 10 % 5 > &&
+						{if}
+							(L.L.Matrix_FontYPos6) s2
+							(L.$.Matrix_InputLine) (L.L.Matrix_FontSel6) s0 (M.V.TextLength) s1
+						{endif}
+					{endif}
+				{endif}
+			{endif}
+		{endif}
+{end}
+
+{macro:Matrix_SetElementCoords}
+' Reset coordinates
+			0
+			(S.L.Matrix_UpperL1_Xmin) (S.L.Matrix_UpperL2_Xmin) (S.L.Matrix_UpperL3_Xmin) (S.L.Matrix_UpperIcon_Xmin)
+			(S.L.Matrix_UpperL1_Xmax) (S.L.Matrix_UpperL2_Xmax) (S.L.Matrix_UpperL3_Xmax) (S.L.Matrix_UpperIcon_Xmax)
+			(S.L.Matrix_LowerL1_Xmin) (S.L.Matrix_LowerL2_Xmin) (S.L.Matrix_LowerL3_Xmin) (S.L.Matrix_LowerIcon_Xmin)
+			(S.L.Matrix_LowerL1_Xmax) (S.L.Matrix_LowerL2_Xmax) (S.L.Matrix_LowerL3_Xmax) (S.L.Matrix_LowerIcon_Xmax)
+			
+			(S.L.Matrix_L1_Ymin) (S.L.Matrix_L2_Ymin) (S.L.Matrix_L3_Ymin) (S.L.Matrix_Icon_Ymin)
+			(S.L.Matrix_L1_Ymax) (S.L.Matrix_L2_Ymax) (S.L.Matrix_L3_Ymax) (S.L.Matrix_Icon_Ymax)
+			
+' Define x-coordinates
+			(L.L.Matrix_TerminusXpos)
+				(S.L.Matrix_UpperL1_Xmin)
+				(S.L.Matrix_UpperL2_Xmin)
+				1 - (S.L.Matrix_UpperL3_Xmax)
+					1 + (L.L.Matrix_L3PixelLength) -
+					(S.L.Matrix_UpperL3_Xmin)
+					1 - (S.L.Matrix_UpperIcon_Xmax)
+						1 + (L.L.Matrix_IconPixelLength) -
+						(S.L.Matrix_UpperIcon_Xmin)
+			(L.L.Matrix_TerminusXLimit)	1 -
+				(S.L.Matrix_UpperL1_Xmax)
+				(S.L.Matrix_UpperL2_Xmax)
+			(C.L.Matrix_ZielSideStartX)
+				(S.L.Matrix_LowerIcon_Xmin)
+					(L.L.Matrix_IconPixelLength) + 1 -
+					(S.L.Matrix_LowerIcon_Xmax)
+						1 + (S.L.Matrix_LowerL3_Xmin)
+						(L.L.Matrix_L3PixelLength) +
+							(S.L.Matrix_LowerL1_Xmin)
+							(S.L.Matrix_LowerL2_Xmin)
+							1 - (S.L.Matrix_LowerL3_Xmax) 
+			(C.L.Matrix_Width) 1 -
+				(S.L.Matrix_LowerL1_Xmax)
+				(S.L.Matrix_LowerL2_Xmax)
+			
+' Define y-coordinates
+			(L.$.Matrix_TerminusL2) "" $=
+			{if}
+				(C.L.Matrix_Height) 1 - (S.L.Matrix_L1_Ymax)
+			{else}
+				(L.L.Matrix_L1SmallFont)
+				{if}
+					(C.L.Matrix_Height) 2 / trunc 2 (L.L.Matrix_Res) * -
+					(S.L.Matrix_L2_Ymin)
+					1 - (S.L.Matrix_L1_Ymax)
+				{else}
+					(L.L.Matrix_L2SmallFont)
+					{if}
+						(C.L.Matrix_Height) 2 / trunc 2 (L.L.Matrix_Res) * +
+						(S.L.Matrix_L2_Ymin)
+						1 - (S.L.Matrix_L1_Ymax)
+					{else}
+						(C.L.Matrix_Height) 2 / trunc
+						(S.L.Matrix_L2_Ymin)
+						1 - (S.L.Matrix_L1_Ymax)
+					{endif}
+				{endif}
+				(C.L.Matrix_Height) 1 - (S.L.Matrix_L2_Ymax)
+			{endif}
+			(C.L.Matrix_Height) 1 - (S.L.Matrix_L3_Ymax) (S.L.Matrix_Icon_Ymax)
+{end}
+
+{macro:Matrix_IsInL1}
+			l2 (L.L.Matrix_L1_Ymin) >= l2 (L.L.Matrix_L1_Ymax) <= &&
+			{if}
+				l1 (L.L.Matrix_UpperL1_Xmin) >= l1 (L.L.Matrix_UpperL1_Xmax) <= && l0 ! &&
+				l1 (L.L.Matrix_LowerL1_Xmin) >= l1 (L.L.Matrix_LowerL1_Xmax) <= && l0 && ||
+			{else}
+				0
+			{endif}
+{end}
+
+{macro:Matrix_IsInL2}
+			l2 (L.L.Matrix_L2_Ymin) >= l2 (L.L.Matrix_L2_Ymax) <= &&
+			{if}
+				l1 (L.L.Matrix_UpperL2_Xmin) >= l1 (L.L.Matrix_UpperL2_Xmax) <= && l0 ! &&
+				l1 (L.L.Matrix_LowerL2_Xmin) >= l1 (L.L.Matrix_LowerL2_Xmax) <= && l0 && ||
+			{else}
+				0
+			{endif}
+{end}
+
+{macro:Matrix_IsInL3}
+			l2 (L.L.Matrix_L3_Ymin) >= l2 (L.L.Matrix_L3_Ymax) <= &&
+			{if}
+				l1 (L.L.Matrix_UpperL3_Xmin) >= l1 (L.L.Matrix_UpperL3_Xmax) <= && l0 ! &&
+				l1 (L.L.Matrix_LowerL3_Xmin) >= l1 (L.L.Matrix_LowerL3_Xmax) <= && l0 && ||
+			{else}
+				0
+			{endif}
+{end}
+
+{macro:Matrix_IsInIcon}
+			l2 (L.L.Matrix_Icon_Ymin) >= l2 (L.L.Matrix_Icon_Ymax) <= &&
+			{if}
+				l1 (L.L.Matrix_UpperIcon_Xmin) >= l1 (L.L.Matrix_UpperIcon_Xmax) <= && l0 ! &&
+				l1 (L.L.Matrix_LowerIcon_Xmin) >= l1 (L.L.Matrix_LowerIcon_Xmax) <= && l0 && ||
+			{else}
+				0
+			{endif}
+{end}
+
+{macro:Matrix_IsInNr}
+			l0 !
+			{if}
+				(L.L.Matrix_NrRightAlign)
+				{if}
+					l1 (L.L.Matrix_TerminusXLimit) >=
+				{else}
+					l1 (L.L.Matrix_NrPixelLength) 1 - <=
+				{endif}
+			{else}
+				l1 (C.L.Matrix_NrSideMaxWidth) 1 - <=
+			{endif}
+{end}
+
+{macro:Matrix_SetOptions}
+		14990 (M.V.GetTerminusIndex) s0
+		0 >=
+		{if}
+			l0 0 (M.V.GetTerminusString) (M.L.Matrix_ProcessAlt) (S.$.Matrix_Temp0)
+			(L.$.Matrix_TerminusL1) (L.$.Matrix_Temp0) $+ (S.$.Matrix_TerminusL1)
+			l0 1 (M.V.GetTerminusString) (M.L.Matrix_ProcessAlt) (S.$.Matrix_Temp0)
+			(L.$.Matrix_TerminusL2) (L.$.Matrix_Temp0) $+ (S.$.Matrix_TerminusL2)
+		{endif}
+{end}
+
+{macro:Matrix_ProcessGoTo}
+		s3
+		$d 6 $cutBegin 1 $cutEnd $StrToFloat s2 0 >=
+		{if}
+			$d 6 $cutEnd 6 $SetLengthR "*GOTO[" $=
+			1 $SetLengthR && "]" $= &&
+			l2 65536 < &&
+			{if}
+				l2 (M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex) s2
+				s0 1 (M.V.GetTerminusString) $RemoveSpaces
+				(M.L.Matrix_ProcessAlt) (S.$.Matrix_TerminusL1)
+				l0 2 (M.V.GetTerminusString) $RemoveSpaces
+				(M.L.Matrix_ProcessAlt) (S.$.Matrix_TerminusL2)
+				l0 3 (M.V.GetTerminusString) $RemoveSpaces
+				(M.L.Matrix_ProcessAlt) (S.$.Matrix_TerminusL3)
+				l2 l3 (M.V.GetTerminusString) $RemoveSpaces (M.L.Matrix_ProcessAlt) 
+			{endif}
+		{endif}
+{end}
+
+{macro:Matrix_ProcessAlt}
+		(M.L.Matrix_FlipDotAlt) (M.L.Matrix_LEDAlt) (M.L.Matrix_FlipDotAlt)
+		(M.L.Matrix_MonochromeAlt) (M.L.Matrix_MultiColourAlt) (M.L.Matrix_MonochromeAlt)
+		(M.L.Matrix_FlipDotAlt) (M.L.Matrix_LEDAlt) (M.L.Matrix_FlipDotAlt)
+{end}
+
+{macro:Matrix_FlipDotAlt}
+		"{{" "*FLIP}}" (L.L.Matrix_LED) ! (M.L.Matrix_SelectAlt)
+{end}
+
+{macro:Matrix_LEDAlt}
+		"{{" "*LED}}" (L.L.Matrix_LED) (M.L.Matrix_SelectAlt)
+{end}
+
+{macro:Matrix_MonochromeAlt}
+		"{{" "*MONO}}" (L.L.Matrix_LEDMonochrome) (L.L.Matrix_LED) && (M.L.Matrix_SelectAlt)
+{end}
+
+{macro:Matrix_MultiColourAlt}
+		"{{" "*POLY}}" (L.L.Matrix_LEDMonochrome) ! (L.L.Matrix_LED) && (M.L.Matrix_SelectAlt)
+{end}
+
+{macro:Matrix_SelectAlt}
+		(S.L.Matrix_Temp2)
+		(S.$.Matrix_Temp1) $length (S.L.Matrix_Temp1) 0 $* $+
+		(S.$.Matrix_Temp0) $length (S.L.Matrix_Temp0) 0 $* $+
+		$d (L.L.Matrix_Temp1) $SetLengthR (L.$.Matrix_Temp1) $=
+		{if}
+			-1 s5
+			$d (L.L.Matrix_Temp1) $cutEnd $length s7
+			(L.L.Matrix_Temp0) s6
+			$d l6 $SetLengthR && (L.$.Matrix_Temp0) $= {if} 0 s5 max {else}
+			$d 1 l6 + $SetLengthR && 1 $cutEnd (L.$.Matrix_Temp0) $= 1 l7 <= && {if} s5 {else}
+			$d 2 l6 + $SetLengthR && 2 $cutEnd (L.$.Matrix_Temp0) $= 2 l7 <= && {if} 2 s5 min {else}
+			$d 3 l6 + $SetLengthR && 3 $cutEnd (L.$.Matrix_Temp0) $= 3 l7 <= && {if} 3 s5 min {else}
+			$d 4 l6 + $SetLengthR && 4 $cutEnd (L.$.Matrix_Temp0) $= 4 l7 <= && {if} 4 s5 min {else}
+			$d 5 l6 + $SetLengthR && 5 $cutEnd (L.$.Matrix_Temp0) $= 5 l7 <= && {if} 5 s5 min {else}
+			$d 6 l6 + $SetLengthR && 6 $cutEnd (L.$.Matrix_Temp0) $= 6 l7 <= && {if} 6 s5 min {else}
+			$d 7 l6 + $SetLengthR && 7 $cutEnd (L.$.Matrix_Temp0) $= 7 l7 <= && {if} 7 s5 min {else}
+			$d 8 l6 + $SetLengthR && 8 $cutEnd (L.$.Matrix_Temp0) $= 8 l7 <= && {if} 8 s5 min {else}
+			$d 9 l6 + $SetLengthR && 9 $cutEnd (L.$.Matrix_Temp0) $= 9 l7 <= && {if} 9 s5 min {else}
+			$d 10 l6 + $SetLengthR && 10 $cutEnd (L.$.Matrix_Temp0) $= 10 l7 <= && {if} 10 s5 min {else}
+			$d 11 l6 + $SetLengthR && 11 $cutEnd (L.$.Matrix_Temp0) $= 11 l7 <= && {if} 11 s5 min {else}
+			$d 12 l6 + $SetLengthR && 12 $cutEnd (L.$.Matrix_Temp0) $= 12 l7 <= && {if} 12 s5 min {else}
+			$d 13 l6 + $SetLengthR && 13 $cutEnd (L.$.Matrix_Temp0) $= 13 l7 <= && {if} 13 s5 min {else}
+			$d 14 l6 + $SetLengthR && 14 $cutEnd (L.$.Matrix_Temp0) $= 14 l7 <= && {if} 14 s5 min {else}
+			$d 15 l6 + $SetLengthR && 15 $cutEnd (L.$.Matrix_Temp0) $= 15 l7 <= && {if} 15 s5 min {else}
+			$d 16 l6 + $SetLengthR && 16 $cutEnd (L.$.Matrix_Temp0) $= 16 l7 <= && {if} 16 s5 min {else}
+			$d 17 l6 + $SetLengthR && 17 $cutEnd (L.$.Matrix_Temp0) $= 17 l7 <= && {if} 17 s5 min {else}
+			$d 18 l6 + $SetLengthR && 18 $cutEnd (L.$.Matrix_Temp0) $= 18 l7 <= && {if} 18 s5 min {else}
+			$d 19 l6 + $SetLengthR && 19 $cutEnd (L.$.Matrix_Temp0) $= 19 l7 <= && {if} 19 s5 min {else}
+			$d 20 l6 + $SetLengthR && 20 $cutEnd (L.$.Matrix_Temp0) $= 20 l7 <= && {if} 20 s5 min {else}
+			$d $length 20 l6 + > {if}
+			$d 21 l6 + $SetLengthR && 21 $cutEnd (L.$.Matrix_Temp0) $= 21 l7 <= && {if} 21 s5 min {else}
+			$d 22 l6 + $SetLengthR && 22 $cutEnd (L.$.Matrix_Temp0) $= 22 l7 <= && {if} 22 s5 min {else}
+			$d 23 l6 + $SetLengthR && 23 $cutEnd (L.$.Matrix_Temp0) $= 23 l7 <= && {if} 23 s5 min {else}
+			$d 24 l6 + $SetLengthR && 24 $cutEnd (L.$.Matrix_Temp0) $= 24 l7 <= && {if} 24 s5 min {else}
+			$d 25 l6 + $SetLengthR && 25 $cutEnd (L.$.Matrix_Temp0) $= 25 l7 <= && {if} 25 s5 min {else}
+			$d 26 l6 + $SetLengthR && 26 $cutEnd (L.$.Matrix_Temp0) $= 26 l7 <= && {if} 26 s5 min {else}
+			$d 27 l6 + $SetLengthR && 27 $cutEnd (L.$.Matrix_Temp0) $= 27 l7 <= && {if} 27 s5 min {else}
+			$d 28 l6 + $SetLengthR && 28 $cutEnd (L.$.Matrix_Temp0) $= 28 l7 <= && {if} 28 s5 min {else}
+			$d 29 l6 + $SetLengthR && 29 $cutEnd (L.$.Matrix_Temp0) $= 29 l7 <= && {if} 29 s5 min {else}
+			$d 30 l6 + $SetLengthR && 30 $cutEnd (L.$.Matrix_Temp0) $= 30 l7 <= && {if} 30 s5 min {else}
+			$d $length 30 l6 + > {if}
+			$d 31 l6 + $SetLengthR && 31 $cutEnd (L.$.Matrix_Temp0) $= 31 l7 <= && {if} 31 s5 min {else}
+			$d 32 l6 + $SetLengthR && 32 $cutEnd (L.$.Matrix_Temp0) $= 32 l7 <= && {if} 32 s5 min {else}
+			$d 33 l6 + $SetLengthR && 33 $cutEnd (L.$.Matrix_Temp0) $= 33 l7 <= && {if} 33 s5 min {else}
+			$d 34 l6 + $SetLengthR && 34 $cutEnd (L.$.Matrix_Temp0) $= 34 l7 <= && {if} 34 s5 min {else}
+			$d 35 l6 + $SetLengthR && 35 $cutEnd (L.$.Matrix_Temp0) $= 35 l7 <= && {if} 35 s5 min {else}
+			$d 36 l6 + $SetLengthR && 36 $cutEnd (L.$.Matrix_Temp0) $= 36 l7 <= && {if} 36 s5 min {else}
+			$d 37 l6 + $SetLengthR && 37 $cutEnd (L.$.Matrix_Temp0) $= 37 l7 <= && {if} 37 s5 min {else}
+			$d 38 l6 + $SetLengthR && 38 $cutEnd (L.$.Matrix_Temp0) $= 38 l7 <= && {if} 38 s5 min {else}
+			$d 39 l6 + $SetLengthR && 39 $cutEnd (L.$.Matrix_Temp0) $= 39 l7 <= && {if} 39 s5 min {else}
+			$d 40 l6 + $SetLengthR && 40 $cutEnd (L.$.Matrix_Temp0) $= 40 l7 <= && {if} 40 s5 min {else}
+			$d $length 40 l6 + > {if}
+			$d 41 l6 + $SetLengthR && 41 $cutEnd (L.$.Matrix_Temp0) $= 41 l7 <= && {if} 41 s5 min {else}
+			$d 42 l6 + $SetLengthR && 42 $cutEnd (L.$.Matrix_Temp0) $= 42 l7 <= && {if} 42 s5 min {else}
+			$d 43 l6 + $SetLengthR && 43 $cutEnd (L.$.Matrix_Temp0) $= 43 l7 <= && {if} 43 s5 min {else}
+			$d 44 l6 + $SetLengthR && 44 $cutEnd (L.$.Matrix_Temp0) $= 44 l7 <= && {if} 44 s5 min {else}
+			$d 45 l6 + $SetLengthR && 45 $cutEnd (L.$.Matrix_Temp0) $= 45 l7 <= && {if} 45 s5 min {else}
+			$d 46 l6 + $SetLengthR && 46 $cutEnd (L.$.Matrix_Temp0) $= 46 l7 <= && {if} 46 s5 min {else}
+			$d 47 l6 + $SetLengthR && 47 $cutEnd (L.$.Matrix_Temp0) $= 47 l7 <= && {if} 47 s5 min {else}
+			$d 48 l6 + $SetLengthR && 48 $cutEnd (L.$.Matrix_Temp0) $= 48 l7 <= && {if} 48 s5 min {else}
+			$d 49 l6 + $SetLengthR && 49 $cutEnd (L.$.Matrix_Temp0) $= 49 l7 <= && {if} 49 s5 min {else}
+			$d 50 l6 + $SetLengthR && 50 $cutEnd (L.$.Matrix_Temp0) $= 50 l7 <= && {if} 50 s5 min {else}
+			$d $length 50 l6 + > {if}
+			$d 51 l6 + $SetLengthR && 51 $cutEnd (L.$.Matrix_Temp0) $= 51 l7 <= && {if} 51 s5 min {else}
+			$d 52 l6 + $SetLengthR && 52 $cutEnd (L.$.Matrix_Temp0) $= 52 l7 <= && {if} 52 s5 min {else}
+			$d 53 l6 + $SetLengthR && 53 $cutEnd (L.$.Matrix_Temp0) $= 53 l7 <= && {if} 53 s5 min {else}
+			$d 54 l6 + $SetLengthR && 54 $cutEnd (L.$.Matrix_Temp0) $= 54 l7 <= && {if} 54 s5 min {else}
+			$d 55 l6 + $SetLengthR && 55 $cutEnd (L.$.Matrix_Temp0) $= 55 l7 <= && {if} 55 s5 min {else}
+			$d 56 l6 + $SetLengthR && 56 $cutEnd (L.$.Matrix_Temp0) $= 56 l7 <= && {if} 56 s5 min {else}
+			$d 57 l6 + $SetLengthR && 57 $cutEnd (L.$.Matrix_Temp0) $= 57 l7 <= && {if} 57 s5 min {else}
+			$d 58 l6 + $SetLengthR && 58 $cutEnd (L.$.Matrix_Temp0) $= 58 l7 <= && {if} 58 s5 min {else}
+			$d 59 l6 + $SetLengthR && 59 $cutEnd (L.$.Matrix_Temp0) $= 59 l7 <= && {if} 59 s5 min {else}
+			$d 60 l6 + $SetLengthR && 60 $cutEnd (L.$.Matrix_Temp0) $= 60 l7 <= && {if} 60 s5 min {else}
+			$d $length 60 l6 + > {if}
+			$d 61 l6 + $SetLengthR && 61 $cutEnd (L.$.Matrix_Temp0) $= 61 l7 <= && {if} 61 s5 min {else}
+			$d 62 l6 + $SetLengthR && 62 $cutEnd (L.$.Matrix_Temp0) $= 62 l7 <= && {if} 62 s5 min {else}
+			$d 63 l6 + $SetLengthR && 63 $cutEnd (L.$.Matrix_Temp0) $= 63 l7 <= && {if} 63 s5 min {else}
+			$d 64 l6 + $SetLengthR && 64 $cutEnd (L.$.Matrix_Temp0) $= 64 l7 <= && {if} 64 s5 min {else}
+			$d 65 l6 + $SetLengthR && 65 $cutEnd (L.$.Matrix_Temp0) $= 65 l7 <= && {if} 65 s5 min {else}
+			$d 66 l6 + $SetLengthR && 66 $cutEnd (L.$.Matrix_Temp0) $= 66 l7 <= && {if} 66 s5 min {else}
+			$d 67 l6 + $SetLengthR && 67 $cutEnd (L.$.Matrix_Temp0) $= 67 l7 <= && {if} 67 s5 min {else}
+			$d 68 l6 + $SetLengthR && 68 $cutEnd (L.$.Matrix_Temp0) $= 68 l7 <= && {if} 68 s5 min {else}
+			$d 69 l6 + $SetLengthR && 69 $cutEnd (L.$.Matrix_Temp0) $= 69 l7 <= && {if} 69 s5 min {else}
+			$d 70 l6 + $SetLengthR && 70 $cutEnd (L.$.Matrix_Temp0) $= 70 l7 <= && {if} 70 s5 min
+			{endif} {endif} {endif} {endif} {endif} {endif} {endif} {endif}
+			{endif} {endif} {endif} {endif} {endif} {endif} {endif} {endif}
+			{endif} {endif} {endif} {endif} {endif} {endif} {endif} {endif}
+			{endif} {endif} {endif} {endif} {endif} {endif} {endif} {endif}
+			{endif} {endif} {endif} {endif} {endif} {endif} {endif} {endif}
+			{endif} {endif} {endif} {endif} {endif} {endif} {endif} {endif}
+			{endif} {endif} {endif} {endif} {endif} {endif} {endif} {endif}
+			{endif} {endif} {endif} {endif} {endif} {endif} {endif} {endif}
+			{endif} {endif} {endif} {endif} {endif} {endif} {endif} {endif}
+			{endif} {endif} {endif} {endif}
+			l5 0 >=
+			{if}
+				(L.L.Matrix_Temp2)
+				{if}
+					l5 $SetLengthR
+				{else}
+					l5 2 + $cutEnd
+				{endif}
+				$RemoveSpaces
+			{else}
+				0 $* $+
+			{endif} 
+		{endif}
+{end}
+
+' Processes commands in the form of "command arg1[,arg2]", where arg1 and arg2
+' has either one or two digits, e.g. *I>3,7 or *I>12,5 or *I>0,10
+' Used in conjunction with the macro Matrix_GetArgValue 
+{macro:Matrix_IsNextCmd}
+		0 s1 +
+		(S.$.Matrix_Temp0) $length s7 0 $* $+
+		$d 8 l7 + $SetLengthR && 8 $cutEnd (L.$.Matrix_Temp0) $= {if} 8 s1 min {endif}
+		$d 7 l7 + $SetLengthR && 7 $cutEnd (L.$.Matrix_Temp0) $= {if} 7 s1 min {endif} ||
+		$d 6 l7 + $SetLengthR && 6 $cutEnd (L.$.Matrix_Temp0) $= {if} 6 s1 min {endif} ||
+		$d 5 l7 + $SetLengthR && 5 $cutEnd (L.$.Matrix_Temp0) $= {if} 5 s1 min {endif} ||
+		$d 4 l7 + $SetLengthR && 4 $cutEnd (L.$.Matrix_Temp0) $= {if} 4 s1 min {endif} ||
+		$d 3 l7 + $SetLengthR && 3 $cutEnd (L.$.Matrix_Temp0) $= {if} 3 s1 min {endif} ||
+		$d 2 l7 + $SetLengthR && 2 $cutEnd (L.$.Matrix_Temp0) $= {if} 2 s1 min {endif} ||
+		$d 1 l7 + $SetLengthR && 1 $cutEnd (L.$.Matrix_Temp0) $= {if} s1 {endif} ||
+		$d l7 $SetLengthR && (L.$.Matrix_Temp0) $= {if} 0 s1 max {endif} ||
+		$d l1 $SetLengthR d - + (L.L.Font_Aux_2) (M.V.TextLength) 150 < &&
+{end}
+
+{macro:Matrix_GetArgValue}
+		$d $length 3 >=
+		$d $StrToFloat 0 < &&
+		{if}
+			$d 1 $cutBegin 1 $SetLengthL * "," $=
+			$d 2 $cutBegin 1 $SetLengthL * "," $= 2 * +
+			$d 3 $cutBegin 1 $SetLengthL * "," $= 3 * +
+			(L.L.Matrix_Res) 1 =
+			{if}
+				* $SetLengthL $StrToFloat
+			{else}
+			(L.L.Matrix_Res) 2 =
+			{if}
+				* + 1 + $cutBegin $StrToFloat
+			{endif}
+			{endif}
+		{else}
+			$StrToFloat (L.L.Matrix_Res) *
+		{endif}
+		0 $* $+
+{end}
+
+{macro:Matrix_LEDResetColours}
+			(L.L.Matrix_LED)
+			{if}
+				(L.L.Matrix_LEDHue) (S.L.Matrix_L1Hue) (S.L.Matrix_L2Hue) (S.L.Matrix_L3Hue)
+				(S.L.Matrix_IconHue) (S.L.Matrix_NrHue)
+				(L.L.Matrix_LEDSaturation) (S.L.Matrix_L1Saturation) (S.L.Matrix_L2Saturation)
+				(S.L.Matrix_L3Saturation) (S.L.Matrix_IconSaturation) (S.L.Matrix_NrSaturation)
+				(L.L.Matrix_LEDBrightness) (S.L.Matrix_L1Brightness) (S.L.Matrix_L2Brightness)
+				(S.L.Matrix_L3Brightness) (S.L.Matrix_IconBrightness) (S.L.Matrix_NrBrightness)
+
+				(L.L.Matrix_LEDBGHue) (S.L.Matrix_L1BGHue) (S.L.Matrix_L2BGHue) (S.L.Matrix_L3BGHue)
+				(S.L.Matrix_IconBGHue) (S.L.Matrix_NrBGHue)
+				(L.L.Matrix_LEDBGSaturation) (S.L.Matrix_L1BGSaturation) (S.L.Matrix_L2BGSaturation)
+				(S.L.Matrix_L3BGSaturation) (S.L.Matrix_IconBGSaturation) (S.L.Matrix_NrBGSaturation)
+				(L.L.Matrix_LEDBGBrightness) (S.L.Matrix_L1BGBrightness) (S.L.Matrix_L2BGBrightness)
+				(S.L.Matrix_L3BGBrightness) (S.L.Matrix_IconBGBrightness) (S.L.Matrix_NrBGBrightness)
+				
+				(C.L.Matrix_LEDMonochrome) !
+				{if}
+					(C.L.Matrix_L1Hue) d -1 = ! {if} * (S.L.Matrix_L1Hue) {endif}
+					(C.L.Matrix_L2Hue) d -1 = ! {if} * (S.L.Matrix_L2Hue) {endif}
+					(C.L.Matrix_L3Hue) d -1 = ! {if} * (S.L.Matrix_L3Hue) {endif}
+					(C.L.Matrix_IconHue) d -1 = ! {if} * (S.L.Matrix_IconHue) {endif}
+					(C.L.Matrix_NrHue) d -1 = ! {if} * (S.L.Matrix_NrHue) {endif}
+					(C.L.Matrix_L1Saturation) d -1 = ! {if} * (S.L.Matrix_L1Saturation) {endif}
+					(C.L.Matrix_L2Saturation) d -1 = ! {if} * (S.L.Matrix_L2Saturation) {endif}
+					(C.L.Matrix_L3Saturation) d -1 = ! {if} * (S.L.Matrix_L3Saturation) {endif}
+					(C.L.Matrix_IconSaturation) d -1 = ! {if} * (S.L.Matrix_IconSaturation) {endif}
+					(C.L.Matrix_NrSaturation) d -1 = ! {if} * (S.L.Matrix_NrSaturation) {endif}
+					(C.L.Matrix_L1Brightness) d -1 = ! {if} * (S.L.Matrix_L1Brightness) {endif}
+					(C.L.Matrix_L2Brightness) d -1 = ! {if} * (S.L.Matrix_L2Brightness) {endif}
+					(C.L.Matrix_L3Brightness) d -1 = ! {if} * (S.L.Matrix_L3Brightness) {endif}
+					(C.L.Matrix_IconBrightness) d -1 = ! {if} * (S.L.Matrix_IconBrightness) {endif}
+					(C.L.Matrix_NrBrightness) d -1 = ! {if} * (S.L.Matrix_NrBrightness) {endif}
+					
+					(C.L.Matrix_L1BGHue) d -1 = ! {if} * (S.L.Matrix_L1BGHue) {endif}
+					(C.L.Matrix_L2BGHue) d -1 = ! {if} * (S.L.Matrix_L2BGHue) {endif}
+					(C.L.Matrix_L3BGHue) d -1 = ! {if} * (S.L.Matrix_L3BGHue) {endif}
+					(C.L.Matrix_IconBGHue) d -1 = ! {if} * (S.L.Matrix_IconBGHue) {endif}
+					(C.L.Matrix_NrBGHue) d -1 = ! {if} * (S.L.Matrix_NrBGHue) {endif}
+					(C.L.Matrix_L1BGSaturation) d -1 = ! {if} * (S.L.Matrix_L1BGSaturation) {endif}
+					(C.L.Matrix_L2BGSaturation) d -1 = ! {if} * (S.L.Matrix_L2BGSaturation) {endif}
+					(C.L.Matrix_L3BGSaturation) d -1 = ! {if} * (S.L.Matrix_L3BGSaturation) {endif}
+					(C.L.Matrix_IconBGSaturation) d -1 = ! {if} * (S.L.Matrix_IconBGSaturation) {endif}
+					(C.L.Matrix_NrBGSaturation) d -1 = ! {if} * (S.L.Matrix_NrBGSaturation) {endif}
+					(C.L.Matrix_L1BGBrightness) d -1 = ! {if} * (S.L.Matrix_L1BGBrightness) {endif}
+					(C.L.Matrix_L2BGBrightness) d -1 = ! {if} * (S.L.Matrix_L2BGBrightness) {endif}
+					(C.L.Matrix_L3BGBrightness) d -1 = ! {if} * (S.L.Matrix_L3BGBrightness) {endif}
+					(C.L.Matrix_IconBGBrightness) d -1 = ! {if} * (S.L.Matrix_IconBGBrightness) {endif}
+					(C.L.Matrix_NrBGBrightness) d -1 = ! {if} * (S.L.Matrix_NrBGBrightness) {endif}
+				{endif}
+			{endif}
+{end}
+
+{macro:Matrix_LEDStandardColours}
+			0 s3 s4 s5
+'			   Code         Hue    Sat    Val
+			$d "AZ" $= {if} 210 s3   1 s4   1 s5 {endif}
+			$d "BL" $= {if} 240 s3   1 s4   1 s5 {endif}
+			$d "BK" $= {if}   0 s3   0 s4   0 s5 {endif}
+			$d "CG" $= {if}  90 s3   1 s4   1 s5 {endif}
+			$d "CP" $= {if}   0 s3 0.5 s4   1 s5 {endif}
+			$d "CY" $= {if} 180 s3   1 s4   1 s5 {endif}
+			$d "EB" $= {if} 180 s3 0.5 s4   1 s5 {endif}
+			$d "FP" $= {if} 300 s3 0.5 s4   1 s5 {endif}
+			$d "GR" $= {if} 120 s3   1 s4 0.5 s5 {endif}
+			$d "GY" $= {if}   0 s3   0 s4 0.5 s5 {endif}
+			$d "KH" $= {if}  60 s3 0.5 s4   1 s5 {endif}
+			$d "LG" $= {if} 120 s3 0.5 s4   1 s5 {endif}
+			$d "LM" $= {if} 120 s3   1 s4   1 s5 {endif}
+			$d "MG" $= {if} 300 s3   1 s4   1 s5 {endif}
+			$d "MR" $= {if}   0 s3   1 s4 0.5 s5 {endif}
+			$d "NV" $= {if} 240 s3   1 s4 0.5 s5 {endif}
+			$d "OL" $= {if}  60 s3   1 s4 0.5 s5 {endif}
+			$d "OR" $= {if}  30 s3   1 s4   1 s5 {endif}
+			$d "PP" $= {if} 300 s3   1 s4 0.5 s5 {endif}
+			$d "RD" $= {if}   0 s3   1 s4   1 s5 {endif}
+			$d "RS" $= {if} 330 s3   1 s4   1 s5 {endif}
+			$d "SB" $= {if} 240 s3 0.5 s4   1 s5 {endif}
+			$d "SG" $= {if} 150 s3   1 s4   1 s5 {endif}
+			$d "TL" $= {if} 180 s3   1 s4 0.5 s5 {endif}
+			$d "VL" $= {if} 270 s3   1 s4   1 s5 {endif}
+			$d "YL" $= {if}  60 s3   1 s4   1 s5 {endif}
+			$d "WH" $= {if}   0 s3   0 s4   1 s5 {endif}
+			l5 l4 l3
+{end}
+
+{macro:Matrix_DrawBG}
+			(L.L.Matrix_LEDBGHue) (L.L.Matrix_LEDBGSaturation) (L.L.Matrix_LEDBGBrightness)
+			0 0 (C.L.Matrix_Width) 1 - (C.L.Matrix_Height) 2 * 1 -
+			(M.L.Matrix_DrawBGRect)
+
+			(L.L.Matrix_L1BGHue) (L.L.Matrix_L1BGSaturation) (L.L.Matrix_L1BGBrightness)
+			(L.L.Matrix_UpperL1_Xmin) (L.L.Matrix_L1_Ymin) (L.L.Matrix_UpperL1_Xmax) (L.L.Matrix_L1_Ymax)
+			(M.L.Matrix_DrawBGRect)
+			
+			(L.L.Matrix_L1BGHue) (L.L.Matrix_L1BGSaturation) (L.L.Matrix_L1BGBrightness)
+			(L.L.Matrix_LowerL1_Xmin) (L.L.Matrix_L1_Ymin) (C.L.Matrix_Height) + (L.L.Matrix_LowerL1_Xmax) (L.L.Matrix_L1_Ymax) (C.L.Matrix_Height) +
+			(M.L.Matrix_DrawBGRect)
+			
+			(L.L.Matrix_L2BGHue) (L.L.Matrix_L2BGSaturation) (L.L.Matrix_L2BGBrightness)
+			(L.L.Matrix_UpperL2_Xmin) (L.L.Matrix_L2_Ymin) (L.L.Matrix_UpperL2_Xmax) (L.L.Matrix_L2_Ymax)
+			(M.L.Matrix_DrawBGRect)
+			
+			(L.L.Matrix_L2BGHue) (L.L.Matrix_L2BGSaturation) (L.L.Matrix_L2BGBrightness)
+			(L.L.Matrix_LowerL2_Xmin) (L.L.Matrix_L2_Ymin) (C.L.Matrix_Height) + (L.L.Matrix_LowerL2_Xmax) (L.L.Matrix_L2_Ymax) (C.L.Matrix_Height) +
+			(M.L.Matrix_DrawBGRect)
+			
+			(L.L.Matrix_L3BGHue) (L.L.Matrix_L3BGSaturation) (L.L.Matrix_L3BGBrightness)
+			(L.L.Matrix_UpperL3_Xmin) (L.L.Matrix_L3_Ymin) (L.L.Matrix_UpperL3_Xmax) (L.L.Matrix_L3_Ymax)
+			(M.L.Matrix_DrawBGRect)
+			
+			(L.L.Matrix_L3BGHue) (L.L.Matrix_L3BGSaturation) (L.L.Matrix_L3BGBrightness)
+			(L.L.Matrix_LowerL3_Xmin) (L.L.Matrix_L3_Ymin) (C.L.Matrix_Height) + (L.L.Matrix_LowerL3_Xmax) (L.L.Matrix_L3_Ymax) (C.L.Matrix_Height) +
+			(M.L.Matrix_DrawBGRect)
+			
+			(L.L.Matrix_IconBGHue) (L.L.Matrix_IconBGSaturation) (L.L.Matrix_IconBGBrightness)
+			(L.L.Matrix_UpperIcon_Xmin) (L.L.Matrix_Icon_Ymin) (L.L.Matrix_UpperIcon_Xmax) (L.L.Matrix_Icon_Ymax)
+			(M.L.Matrix_DrawBGRect)
+			
+			(L.L.Matrix_IconBGHue) (L.L.Matrix_IconBGSaturation) (L.L.Matrix_IconBGBrightness)
+			(L.L.Matrix_LowerIcon_Xmin) (L.L.Matrix_Icon_Ymin) (C.L.Matrix_Height) + (L.L.Matrix_LowerIcon_Xmax) (L.L.Matrix_Icon_Ymax) (C.L.Matrix_Height) +
+			(M.L.Matrix_DrawBGRect)
+			
+			(L.L.Matrix_NrBGHue) (L.L.Matrix_NrBGSaturation) (L.L.Matrix_NrBGBrightness)
+			(L.L.Matrix_NrRightAlign)
+			{if}
+				* (L.L.Matrix_TerminusXLimit) 0 (C.L.Matrix_Width) 1 - (C.L.Matrix_Height) 1 -
+			{else}
+				0 (L.L.Matrix_NrPixelLength) 1 - (C.L.Matrix_Height) 1 -
+			{endif}
+			(M.L.Matrix_DrawBGRect)
+			
+			(L.L.Matrix_NrBGHue) (L.L.Matrix_NrBGSaturation) (L.L.Matrix_NrBGBrightness)
+			0 (C.L.Matrix_Height) (C.L.Matrix_NrSideMaxWidth) 1 - (C.L.Matrix_Height) 2 * 1 -
+			(M.L.Matrix_DrawBGRect)
+{end}
+
+{macro:Matrix_DrawBGRect}
+			4 * 3 + (S.L.Matrix_Temp3) d - +
+			4 * 3 + (S.L.Matrix_Temp2) d - +
+			4 * (S.L.Matrix_Temp1) d - +
+			4 * (S.L.Matrix_Temp0) d - +
+			(S.L.Matrix_PixelBGBrightness) d - +
+			(S.L.Matrix_PixelBGSaturation) d - +
+			(S.L.Matrix_PixelBGHue)
+			
+			1 (L.L.Matrix_PixelBGSaturation) - 255 * (L.L.Matrix_PixelBGBrightness) *
+			0 max 255 min
+			s6
+			5 l6 l6 l6 l6 (M.V.STSetColor)
+			5 (L.L.Matrix_Temp0) (L.L.Matrix_Temp1) (L.L.Matrix_Temp2) (L.L.Matrix_Temp3) (M.V.STDrawRect)
+			
+			(L.L.Matrix_PixelBGHue) 300 > (L.L.Matrix_PixelBGHue) 120 < ||
+			{if}
+				* 255 (L.L.Matrix_PixelBGBrightness) sqr *
+				(L.L.Matrix_PixelBGSaturation) 0.05 >= *				
+			{endif}
+			s6
+			1 l6 l6 l6 l6 (M.V.STSetColor)
+			1 (L.L.Matrix_Temp0) (L.L.Matrix_Temp1) (L.L.Matrix_Temp2) (L.L.Matrix_Temp3) (M.V.STDrawRect)
+
+			(L.L.Matrix_PixelBGHue) 30 > (L.L.Matrix_PixelBGHue) 210 < &&
+			{if}
+				* (L.L.Matrix_PixelBGHue) 330 + 360 % 17 * 6 / 255 min (L.L.Matrix_PixelBGBrightness) sqr * 0 max 255 min
+				(L.L.Matrix_PixelBGSaturation) 0.05 >= *				
+			{endif}
+			s6
+			2 l6 l6 l6 l6 (M.V.STSetColor)
+			2 (L.L.Matrix_Temp0) (L.L.Matrix_Temp1) (L.L.Matrix_Temp2) (L.L.Matrix_Temp3) (M.V.STDrawRect)
+
+			(L.L.Matrix_PixelBGHue) 120 > (L.L.Matrix_PixelBGHue) 300 < &&
+			{if}
+				* (L.L.Matrix_PixelBGHue) 240 + 360 % 17 * 6 / 255 min (L.L.Matrix_PixelBGBrightness) sqr * 0 max 255 min
+				(L.L.Matrix_PixelBGSaturation) 0.05 >= *				
+			{endif}
+			s6
+			3 l6 l6 l6 l6 (M.V.STSetColor)
+			3 (L.L.Matrix_Temp0) (L.L.Matrix_Temp1) (L.L.Matrix_Temp2) (L.L.Matrix_Temp3) (M.V.STDrawRect)
+
+			(L.L.Matrix_PixelBGHue) 210 > (L.L.Matrix_PixelBGHue) 30 < ||
+			{if}
+				* (L.L.Matrix_PixelBGHue) 150 + 360 % 17 * 6 /
+				210 (L.L.Matrix_PixelBGHue) 180 + 360 % - 17 * 6 / min (L.L.Matrix_PixelBGBrightness) sqr * 0 max 255 min
+				(L.L.Matrix_PixelBGSaturation) 0.05 >= *
+			{endif}
+			s6
+			4 l6 l6 l6 l6 (M.V.STSetColor)
+			4 (L.L.Matrix_Temp0) (L.L.Matrix_Temp1) (L.L.Matrix_Temp2) (L.L.Matrix_Temp3) (M.V.STDrawRect)
+{end}
+
+{macro:Matrix_DrawColour4LED}
+			(L.L.Matrix_IsInL1)
+			{if}
+				(L.L.Matrix_L1Hue) (L.L.Matrix_L1Saturation)
+				(L.L.Matrix_L1Brightness)
+				(L.L.Matrix_L1BGHue) (L.L.Matrix_L1BGSaturation)
+				(L.L.Matrix_L1BGBrightness) (M.L.Matrix_DrawHSV4LED)
+			{else}
+				(L.L.Matrix_IsInL2)
+				{if}
+					(L.L.Matrix_L2Hue) (L.L.Matrix_L2Saturation)
+					(L.L.Matrix_L2Brightness)
+					(L.L.Matrix_L2BGHue) (L.L.Matrix_L2BGSaturation)
+					(L.L.Matrix_L2BGBrightness) (M.L.Matrix_DrawHSV4LED)
+				{else}
+					(L.L.Matrix_IsInL3)
+					{if}
+						(L.L.Matrix_L3Hue) (L.L.Matrix_L3Saturation)
+						(L.L.Matrix_L3Brightness)
+						(L.L.Matrix_L3BGHue) (L.L.Matrix_L3BGSaturation)
+						(L.L.Matrix_L3BGBrightness) (M.L.Matrix_DrawHSV4LED)
+					{else}
+						(L.L.Matrix_IsInIcon)
+						{if}
+							(L.L.Matrix_IconHue) (L.L.Matrix_IconSaturation)
+							(L.L.Matrix_IconBrightness)
+							(L.L.Matrix_IconBGHue) (L.L.Matrix_IconBGSaturation)
+							(L.L.Matrix_IconBGBrightness) (M.L.Matrix_DrawHSV4LED)
+						{else}
+							(L.L.Matrix_IsInNr)
+							{if}
+								(L.L.Matrix_NrHue) (L.L.Matrix_NrSaturation)
+								(L.L.Matrix_NrBrightness)
+								(L.L.Matrix_NrBGHue) (L.L.Matrix_NrBGSaturation)
+								(L.L.Matrix_NrBGBrightness) (M.L.Matrix_DrawHSV4LED)
+							{else}
+								(L.L.Matrix_LEDHue) (L.L.Matrix_LEDSaturation)
+								(L.L.Matrix_LEDBrightness)
+								(L.L.Matrix_LEDBGHue) (L.L.Matrix_LEDBGSaturation)
+								(L.L.Matrix_LEDBGBrightness) (M.L.Matrix_DrawHSV4LED)
+							{endif}
+						{endif}
+					{endif}
+				{endif}
+			{endif}
+{end}
+
+{macro:Matrix_DrawColour1LED}
+			0 (M.V.STGetR) (S.L.Matrix_PixelR)
+			0 (M.V.STGetG) (S.L.Matrix_PixelG)
+			0 (M.V.STGetB) (S.L.Matrix_PixelB)
+			(L.L.Matrix_PixelR) (L.L.Matrix_PixelG) (L.L.Matrix_PixelB)
+			(M.L.Matrix_RGB2Hue) (S.L.Matrix_PixelHue)
+			(L.L.Matrix_PixelR) (L.L.Matrix_PixelG) (L.L.Matrix_PixelB)
+			(M.L.Matrix_RGB2Saturation) (S.L.Matrix_PixelSaturation)
+			(L.L.Matrix_PixelR) (L.L.Matrix_PixelG) (L.L.Matrix_PixelB)
+			max max 255 / (S.L.Matrix_PixelBrightness)
+			(M.L.Matrix_DrawHSV1LED)
+{end}
+
+{macro:Matrix_DrawHSV4LED}
+			(S.L.Matrix_PixelBGBrightness) d - +
+			(S.L.Matrix_PixelBGSaturation) d - +
+			(S.L.Matrix_PixelBGHue) d - +
+			(S.L.Matrix_PixelBrightness) d - +
+			(S.L.Matrix_PixelSaturation) d - +
+			(S.L.Matrix_PixelHue)
+			
+			(L.L.Matrix_HideScrollingAnimation)
+			{if}
+				1 (L.L.Matrix_PixelSaturation) - 255 * (L.L.Matrix_PixelBrightness) *
+				0 max 255 min
+				5 (M.L.Matrix_Draw4LED)
+				
+				(L.L.Matrix_PixelHue) 300 > (L.L.Matrix_PixelHue) 120 < ||
+				{if}
+					* (L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer030) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *				
+				{endif}
+				1 (M.L.Matrix_Draw4LED)
+	
+				(L.L.Matrix_PixelHue) 30 > (L.L.Matrix_PixelHue) 210 < &&
+				{if}
+					* (L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer120) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *				
+				{endif}
+				2 (M.L.Matrix_Draw4LED)
+	
+				(L.L.Matrix_PixelHue) 120 > (L.L.Matrix_PixelHue) 300 < &&
+				{if}
+					* (L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer210) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *				
+				{endif}
+				3 (M.L.Matrix_Draw4LED)
+	
+				(L.L.Matrix_PixelHue) 210 > (L.L.Matrix_PixelHue) 30 < ||
+				{if}
+					* (L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer300) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *
+				{endif}
+				4 (M.L.Matrix_Draw4LED)
+			{else}	
+				1 (L.L.Matrix_PixelSaturation) - 255 * (L.L.Matrix_PixelBrightness) *
+				0 max 255 min
+				1 (L.L.Matrix_PixelBGSaturation) - 255 * (L.L.Matrix_PixelBGBrightness) *
+				0 max 255 min
+				5 (M.L.Matrix_Draw4LED)
+				(L.L.Matrix_PixelHue) 300 > (L.L.Matrix_PixelHue) 120 < ||
+				{if}
+					* (L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer030) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *				
+				{endif}
+				(L.L.Matrix_PixelBGHue) 300 > (L.L.Matrix_PixelBGHue) 120 < ||
+				{if}
+					* (L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer030) (L.L.Matrix_PixelBGBrightness) sqr *
+					(L.L.Matrix_PixelBGSaturation) 0.05 >= *				
+				{endif}
+				1 (M.L.Matrix_Draw4LED)
+	
+				(L.L.Matrix_PixelHue) 30 > (L.L.Matrix_PixelHue) 210 < &&
+				{if}
+					* (L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer120) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *				
+				{endif}
+				(L.L.Matrix_PixelBGHue) 30 > (L.L.Matrix_PixelBGHue) 210 < &&
+				{if}
+					* (L.L.Matrix_PixelBGHue) (F.L.Matrix_HueLayer120) (L.L.Matrix_PixelBGBrightness) sqr *
+					(L.L.Matrix_PixelBGSaturation) 0.05 >= *				
+				{endif}
+				2 (M.L.Matrix_Draw4LED)
+	
+				(L.L.Matrix_PixelHue) 120 > (L.L.Matrix_PixelHue) 300 < &&
+				{if}
+					* (L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer210) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *				
+				{endif}
+				(L.L.Matrix_PixelBGHue) 120 > (L.L.Matrix_PixelBGHue) 300 < &&
+				{if}
+					* (L.L.Matrix_PixelBGHue) (F.L.Matrix_HueLayer210) (L.L.Matrix_PixelBGBrightness) sqr *
+					(L.L.Matrix_PixelBGSaturation) 0.05 >= *				
+				{endif}
+				3 (M.L.Matrix_Draw4LED)
+	
+				(L.L.Matrix_PixelHue) 210 > (L.L.Matrix_PixelHue) 30 < ||
+				{if}
+					* (L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer300) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *
+				{endif}
+				(L.L.Matrix_PixelBGHue) 210 > (L.L.Matrix_PixelBGHue) 30 < ||
+				{if}
+					* (L.L.Matrix_PixelBGHue) (F.L.Matrix_HueLayer300) (L.L.Matrix_PixelBGBrightness) sqr *
+					(L.L.Matrix_PixelBGSaturation) 0.05 >= *
+				{endif}
+				4 (M.L.Matrix_Draw4LED)
+			{endif}
+{end}
+
+{macro:Matrix_Draw4LED}
+			s3 d - +
+			(L.L.Matrix_HideScrollingAnimation)
+			{if}
+				* s7
+				l1 (C.L.Matrix_PixelFactor) * s4
+				l2 l0 (C.L.Matrix_Height) * + (C.L.Matrix_PixelFactor) * s5
+				l6 2 %
+				{if}					
+					l3
+					l7
+					0
+					0
+					0
+					(M.V.STSetColor)
+				
+					l3
+					l4
+					l5
+					l4 3 +
+					l5 3 +
+					(M.V.STDrawRect)
+				{endif}
+				
+				l6 4 % 2 >=
+				{if}				
+					l3
+					l7
+					0
+					0
+					0
+					(M.V.STSetColor)
+				
+					l3
+					l4
+					l5 4 +
+					l4 3 +
+					l5 7 +
+					(M.V.STDrawRect)
+				{endif}
+				
+				l6 8 % 4 >=
+				{if}
+					l3
+					l7
+					0
+					0
+					0
+					(M.V.STSetColor)
+				
+					l3
+					l4
+					l5 8 +
+					l4 3 +
+					l5 11 +
+					(M.V.STDrawRect)
+				{endif}
+				
+				l6 8 >=
+				{if}
+					l3
+					l7
+					0
+					0
+					0
+					(M.V.STSetColor)
+				
+					l3
+					l4
+					l5 12 +
+					l4 3 +
+					l5 15 +
+					(M.V.STDrawRect)
+				{endif}
+			{else}
+				+
+				256 * + s7
+				{if}
+					l3
+					l6 2 % {if} * l7 256 % {else} + l7 256 / trunc {endif}
+					255
+					255
+					255
+					(M.V.STSetColor)
+				
+					l3
+					l1 (C.L.Matrix_PixelFactor) * s4
+					l2 l0 (C.L.Matrix_Height) * + (C.L.Matrix_PixelFactor) * s5
+					l4 3 +
+					l5 3 +
+					(M.V.STDrawRect)
+					
+					l3
+					l6 4 % 2 >= {if} * l7 256 % {else} + l7 256 / trunc {endif}
+					255
+					255
+					255
+					(M.V.STSetColor)
+				
+					l3
+					l4
+					l5 4 +
+					l4 3 +
+					l5 7 +
+					(M.V.STDrawRect)
+					
+					l3
+					l6 8 % 4 >= {if} * l7 256 % {else} + l7 256 / trunc {endif}
+					255
+					255
+					255
+					(M.V.STSetColor)
+				
+					l3
+					l4
+					l5 8 +
+					l4 3 +
+					l5 11 +
+					(M.V.STDrawRect)
+					
+					l3
+					l6 8 >= {if} * l7 256 % {else} + l7 256 / trunc {endif}
+					255
+					255
+					255
+					(M.V.STSetColor)
+				
+					l3
+					l4
+					l5 12 +
+					l4 3 +
+					l5 15 +
+					(M.V.STDrawRect)
+				{endif}
+			{endif}
+{end}
+
+{macro:Matrix_DrawHSV1LED}
+			(L.L.Matrix_PixelSaturation) 0.1 <
+			{if}
+				0 1 (M.L.Matrix_Draw1LED)
+				0 2 (M.L.Matrix_Draw1LED)
+				0 3 (M.L.Matrix_Draw1LED)
+				0 4 (M.L.Matrix_Draw1LED)
+				255 (L.L.Matrix_PixelBrightness) * 0 max 255 min 5 (M.L.Matrix_Draw1LED)
+			{else}
+				1 (L.L.Matrix_PixelSaturation) - 255 * (L.L.Matrix_PixelBrightness) *
+				0 max 255 min 5 (M.L.Matrix_Draw1LED)
+				(L.L.Matrix_PixelHue) 300 > (L.L.Matrix_PixelHue) 120 < ||
+				{if}
+					(L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer030) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *
+				{else}
+					0
+				{endif}
+				1 (M.L.Matrix_Draw1LED)
+				(L.L.Matrix_PixelHue) 30 > (L.L.Matrix_PixelHue) 210 < &&
+				{if}
+					(L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer120) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *
+				{else}
+					0
+				{endif}
+				2 (M.L.Matrix_Draw1LED)
+				(L.L.Matrix_PixelHue) 120 > (L.L.Matrix_PixelHue) 300 < &&
+				{if}
+					(L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer210) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *
+				{else}
+					0
+				{endif}
+				3 (M.L.Matrix_Draw1LED)
+				(L.L.Matrix_PixelHue) 210 > (L.L.Matrix_PixelHue) 30 < ||
+				{if}
+					(L.L.Matrix_PixelHue) (F.L.Matrix_HueLayer300) (L.L.Matrix_PixelBrightness) sqr *
+					(L.L.Matrix_PixelSaturation) 0.05 >= *
+				{else}
+					0
+				{endif}
+				4 (M.L.Matrix_Draw1LED)
+			{endif}
+{end}
+
+{macro:Matrix_Draw1LED}
+			s3 d - + s7
+
+			l3
+			l7
+			(L.L.Matrix_PixelR)
+			(L.L.Matrix_PixelG)
+			(L.L.Matrix_PixelB)
+			(M.V.STSetColor)
+		
+			l3
+			l1 (C.L.Matrix_PixelFactor) * s4
+			l2 l0 (C.L.Matrix_Height) * + (C.L.Matrix_PixelFactor) * s5
+			l4 3 +
+			l5 3 +
+			(M.V.STDrawRect)
+{end}
+
+{macro:Matrix_RGBHex2Dec}
+		(L.L.Font_Aux_1) s7
+		$d 1 $SetLengthL l7 (M.V.TextLength) 16 * s3
+		$d 2 $SetLengthL 1 $cutBegin l7 (M.V.TextLength) l3 + s3
+		$d 3 $SetLengthL 2 $cutBegin l7 (M.V.TextLength) 16 * s4
+		$d 3 $SetLengthR 2 $cutEnd l7 (M.V.TextLength) l4 + s4
+		$d 2 $SetLengthR 1 $cutEnd l7 (M.V.TextLength) 16 * s5
+		1 $SetLengthR l7 (M.V.TextLength) l5 + s5
+		l3 l4 l5 
+{end}
+
+{macro:Matrix_RGB2Hue}
+			s5 d - + s4 d - + s3
+			2 l3 * l4 - l5 - s6
+			l4 l5 - 1.7320508 * s7
+			{if}
+				l7 sqr l6 sqr + sqrt l6 - l7 / arctan 2 *
+				pi / 180 * 360 + 360 %
+			{else}
+				180 l6 0 < *
+			{endif}
+{end}
+
+{macro:Matrix_RGB2Saturation}
+			s5 d - + s4 d - + s3
+			l3 l4 max l5 max s6
+			l3 l4 min l5 min s7
+			l6 l7 -
+			{if}
+				l6 /
+			{endif}
+{end}
+
+{macro:Matrix_CapitalizeString}
+		"" (S.$.Matrix_CapStr) $+
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(M.L.Matrix_CapitalizeStringStep) (M.L.Matrix_CapitalizeStringStep)
+		(L.$.Matrix_CapStr)
+{end}
+
+{macro:Matrix_CapitalizeStringStep}
+		$d $length 1 >
+		{if}
+			$d 2 $SetLengthR $d 1 $SetLengthL
+			$d " " $= $d "-" $= || $d "<" $= || $d "(" $= || $d "+" $= || "/" $= || !
+			1 $SetLengthR &&
+			{if}
+				(M.L.Matrix_CharToLowerCase)
+			{endif}
+			(L.$.Matrix_CapStr) $+ (S.$.Matrix_CapStr) 0 $* $+
+			1 $cutEnd
+		{endif}
+		$d $length 1 =
+		{if}
+		  (L.$.Matrix_CapStr) $+ (S.$.Matrix_CapStr) ""
+		  1 $cutEnd
+		{endif}
+{end}
+
+' Caution: Some characters below may not be visible on some systems
+{macro:Matrix_CharToLowerCaseCE}
+		(M.L.Matrix_CharToLowerCase)
+		d ! $d "¡" $= && {if} 0 $* $+ "·" {endif} || d ! $d "¬" $= && {if} 0 $* $+ "‚" {endif} ||
+		d ! $d "√" $= && {if} 0 $* $+ "„" {endif} || d ! $d "•" $= && {if} 0 $* $+ "π" {endif} ||
+		d ! $d "∆" $= && {if} 0 $* $+ "Ê" {endif} || d ! $d "«" $= && {if} 0 $* $+ "Á" {endif} ||
+		d ! $d "»" $= && {if} 0 $* $+ "Ë" {endif} || d ! $d "œ" $= && {if} 0 $* $+ "Ô" {endif} ||
+		d ! $d "–" $= && {if} 0 $* $+ "" {endif} || d ! $d "…" $= && {if} 0 $* $+ "È" {endif} ||
+		d ! $d "À" $= && {if} 0 $* $+ "Î" {endif} || d ! $d " " $= && {if} 0 $* $+ "Í" {endif} ||
+		d ! $d "Ã" $= && {if} 0 $* $+ "Ï" {endif} || d ! $d "Õ" $= && {if} 0 $* $+ "Ì" {endif} ||
+		d ! $d "Œ" $= && {if} 0 $* $+ "Ó" {endif} || d ! $d "≈" $= && {if} 0 $* $+ "Â" {endif} ||
+		d ! $d "º" $= && {if} 0 $* $+ "æ" {endif} || d ! $d "£" $= && {if} 0 $* $+ "≥" {endif} ||
+		d ! $d "—" $= && {if} 0 $* $+ "Ò" {endif} || d ! $d "“" $= && {if} 0 $* $+ "Ú" {endif} ||
+		d ! $d "”" $= && {if} 0 $* $+ "Û" {endif} || d ! $d "‘" $= && {if} 0 $* $+ "Ù" {endif} ||
+		d ! $d "’" $= && {if} 0 $* $+ "ı" {endif} || d ! $d "¿" $= && {if} 0 $* $+ "‡" {endif} ||
+		d ! $d "ÿ" $= && {if} 0 $* $+ "¯" {endif} || d ! $d "å" $= && {if} 0 $* $+ "ú" {endif} ||
+		d ! $d "™" $= && {if} 0 $* $+ "∫" {endif} || d ! $d "ä" $= && {if} 0 $* $+ "ö" {endif} ||
+		d ! $d "ﬁ" $= && {if} 0 $* $+ "˛" {endif} || d ! $d "ç" $= && {if} 0 $* $+ "ù" {endif} ||
+		d ! $d "⁄" $= && {if} 0 $* $+ "˙" {endif} || d ! $d "Ÿ" $= && {if} 0 $* $+ "˘" {endif} ||
+		d ! $d "€" $= && {if} 0 $* $+ "˚" {endif} || d ! $d "›" $= && {if} 0 $* $+ "˝" {endif} ||
+		d ! $d "è" $= && {if} 0 $* $+ "ü" {endif} || d ! $d "Ø" $= && {if} 0 $* $+ "ø" {endif} ||
+		d ! $d "é" $= && {if} 0 $* $+ "û" {endif} ||
+{end}
+
+{macro:Matrix_CharToLowerCase}
+		0
+		d ! $d "A" $= && {if} 0 $* $+ "a" {endif} || d ! $d "B" $= && {if} 0 $* $+ "b" {endif} ||
+		d ! $d "C" $= && {if} 0 $* $+ "c" {endif} || d ! $d "D" $= && {if} 0 $* $+ "d" {endif} ||
+		d ! $d "E" $= && {if} 0 $* $+ "e" {endif} || d ! $d "F" $= && {if} 0 $* $+ "f" {endif} ||
+		d ! $d "G" $= && {if} 0 $* $+ "g" {endif} || d ! $d "H" $= && {if} 0 $* $+ "h" {endif} ||
+		d ! $d "I" $= && {if} 0 $* $+ "i" {endif} || d ! $d "J" $= && {if} 0 $* $+ "j" {endif} ||
+		d ! $d "K" $= && {if} 0 $* $+ "k" {endif} || d ! $d "L" $= && {if} 0 $* $+ "l" {endif} ||
+		d ! $d "M" $= && {if} 0 $* $+ "m" {endif} || d ! $d "N" $= && {if} 0 $* $+ "n" {endif} ||
+		d ! $d "O" $= && {if} 0 $* $+ "o" {endif} || d ! $d "P" $= && {if} 0 $* $+ "p" {endif} ||
+		d ! $d "Q" $= && {if} 0 $* $+ "q" {endif} || d ! $d "R" $= && {if} 0 $* $+ "r" {endif} ||
+		d ! $d "S" $= && {if} 0 $* $+ "s" {endif} || d ! $d "T" $= && {if} 0 $* $+ "t" {endif} ||
+		d ! $d "U" $= && {if} 0 $* $+ "u" {endif} || d ! $d "V" $= && {if} 0 $* $+ "v" {endif} ||
+		d ! $d "W" $= && {if} 0 $* $+ "w" {endif} || d ! $d "X" $= && {if} 0 $* $+ "x" {endif} ||
+		d ! $d "Y" $= && {if} 0 $* $+ "y" {endif} || d ! $d "Z" $= && {if} 0 $* $+ "z" {endif} ||
+		d ! $d "ƒ" $= && {if} 0 $* $+ "‰" {endif} || d ! $d "÷" $= && {if} 0 $* $+ "ˆ" {endif} ||
+		d ! $d "‹" $= && {if} 0 $* $+ "¸" {endif} ||
+{end}
+
+{macro:Matrix_CharToUpperCase}
+		0
+		d ! $d "a" $= && {if} 0 $* $+ "A" {endif} || d ! $d "b" $= && {if} 0 $* $+ "B" {endif} ||
+		d ! $d "c" $= && {if} 0 $* $+ "C" {endif} || d ! $d "d" $= && {if} 0 $* $+ "D" {endif} ||
+		d ! $d "e" $= && {if} 0 $* $+ "E" {endif} || d ! $d "f" $= && {if} 0 $* $+ "F" {endif} ||
+		d ! $d "g" $= && {if} 0 $* $+ "G" {endif} || d ! $d "h" $= && {if} 0 $* $+ "H" {endif} ||
+		d ! $d "i" $= && {if} 0 $* $+ "I" {endif} || d ! $d "j" $= && {if} 0 $* $+ "J" {endif} ||
+		d ! $d "k" $= && {if} 0 $* $+ "K" {endif} || d ! $d "l" $= && {if} 0 $* $+ "L" {endif} ||
+		d ! $d "m" $= && {if} 0 $* $+ "M" {endif} || d ! $d "n" $= && {if} 0 $* $+ "N" {endif} ||
+		d ! $d "o" $= && {if} 0 $* $+ "O" {endif} || d ! $d "p" $= && {if} 0 $* $+ "P" {endif} ||
+		d ! $d "q" $= && {if} 0 $* $+ "Q" {endif} || d ! $d "r" $= && {if} 0 $* $+ "R" {endif} ||
+		d ! $d "s" $= && {if} 0 $* $+ "S" {endif} || d ! $d "t" $= && {if} 0 $* $+ "T" {endif} ||
+		d ! $d "u" $= && {if} 0 $* $+ "U" {endif} || d ! $d "v" $= && {if} 0 $* $+ "V" {endif} ||
+		d ! $d "w" $= && {if} 0 $* $+ "W" {endif} || d ! $d "x" $= && {if} 0 $* $+ "X" {endif} ||
+		d ! $d "y" $= && {if} 0 $* $+ "Y" {endif} || d ! $d "z" $= && {if} 0 $* $+ "Z" {endif} ||
+		d ! $d "‰" $= && {if} 0 $* $+ "ƒ" {endif} || d ! $d "ˆ" $= && {if} 0 $* $+ "÷" {endif} ||
+		d ! $d "¸" $= && {if} 0 $* $+ "‹" {endif} ||
+{end}
+
+{macro:Matrix_DrawingOn}
+		(L.L.Matrix_IsDrawing) !
+		{if}
+			1 (M.V.STLock)
+			(L.L.Matrix_LED)
+			{if}
+				2 (M.V.STLock) 3 (M.V.STLock) 4 (M.V.STLock) 5 (M.V.STLock)
+			{endif}
+			1 (S.L.Matrix_IsDrawing)
+		{endif}
+{end}
+
+{macro:Matrix_DrawingOff}
+		(L.L.Matrix_IsDrawing)
+		{if}
+			1 (M.V.STUnlock) 1 (M.V.STFilter)
+			(L.L.Matrix_LED)
+			{if}			
+				2 (M.V.STUnlock) 3 (M.V.STUnlock) 4 (M.V.STUnlock) 5 (M.V.STUnlock)
+				2 (M.V.STFilter) 3 (M.V.STFilter) 4 (M.V.STFilter) 5 (M.V.STFilter)
+			{endif}
+			0 (S.L.Matrix_IsDrawing)
+		{endif}
+{end}
+
+{macro:Matrix_ProcessCustomFontYpos}
+		$d 3 $SetLengthR 1 $cutEnd "*^" $=
+		{if}
+			$d 1 $SetLengthR $StrToFloat 0 max 7 min /-/
+			3 $cutEnd
+		{else}
+			$d 3 $SetLengthR 1 $cutEnd "*v" $=
+			{if}
+				$d 1 $SetLengthR $StrToFloat 0 max 7 min
+				3 $cutEnd
+			{else}
+				0
+			{endif}
+		{endif}
+{end}
+
+{macro:matrix_setFontC1Ypos}
+		2.7725887 * exp * d d 0 < * d 15 % / 8 * - abs
+		(L.L.Font_Custom1Ypos) + (S.L.Font_Custom1Ypos)
+{end}
+
+{macro:matrix_setFontC2Ypos}
+		2.7725887 * exp * d d 0 < * d 15 % / 8 * - abs
+		(L.L.Font_Custom2Ypos) + (S.L.Font_Custom2Ypos)
+{end}
+
+{macro:matrix_setFontNrYpos}
+		2.7725887 * exp * d d 0 < * d 15 % / 8 * - abs
+		(L.L.Font_CustomNrYpos) + (S.L.Font_CustomNrYpos)
+{end}
+
+{macro:matrix_getFontC1Ypos}
+		-2.7725887 * exp (L.L.Font_Custom1Ypos) *
+		trunc 16 % d 8 - sgn /-/ * d 0 < 8 * +
+{end}
+
+{macro:matrix_getFontC2Ypos}
+		-2.7725887 * exp (L.L.Font_Custom2Ypos) *
+		trunc 16 % d 8 - sgn /-/ * d 0 < 8 * +
+{end}
+
+{macro:matrix_getFontNrYpos}
+		-2.7725887 * exp (L.L.Font_CustomNrYpos) *
+		trunc 16 % d 8 - sgn /-/ * d 0 < 8 * +
+{end}
+
+{macro:Matrix_HasDescender}
+		0
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+		(M.L.Matrix_Descender) || (M.L.Matrix_Descender) ||
+{end}
+
+{macro:Matrix_Descender}
+		d ! $d $length 0 = ! &&
+		{if}
+			$d $SetLengthL &&
+			$d "f" $>
+			{if}
+				* $d "g" $=  $d "j" $= || $d "p" $= || $d "q" $= || $d "y" $= ||
+				$d "," $= || $d "Ç" $= || $d "Ñ" $= || $d "[" $= || "]" $= ||
+			{else}
+				0 $* $+
+			{endif}
+			1 $cutBegin
+		{endif}
+{end}
+
+{macro:Matrix_HasDescenderCE}
+		0
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+		(M.L.Matrix_DescenderCE) || (M.L.Matrix_DescenderCE) ||
+{end}
+
+{macro:Matrix_DescenderCE}
+		d ! $d $length 0 = ! &&
+		{if}
+			$d $SetLengthL &&
+			$d "f" $>
+			{if}
+				* $d "g" $=  $d "j" $= || $d "p" $= || $d "q" $= || $d "y" $= ||
+				$d "•" $= || $d "«" $= || $d " " $= || $d "™" $= || $d "ﬁ" $= ||
+				$d "π" $= || $d "Á" $= || $d "Í" $= || $d "∫" $= || $d "˛" $= ||
+				"˝" $= ||
+			{else}
+				0 $* $+
+			{endif}
+			1 $cutBegin
+		{endif}
+{end}
+
+{macro:Matrix_HasTallGlyphCE}
+		0
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+		(M.L.Matrix_TallGlyphCE) || (M.L.Matrix_TallGlyphCE) ||
+{end}
+
+{macro:Matrix_TallGlyphCE}
+		d ! $d $length 0 = ! &&
+		{if}
+			$d $SetLengthL &&
+			$d "â" $>
+			$d "ﬂ" $< &&
+			{if}
+				* $d "¡" $=  $d "¬" $= || $d "ƒ" $= || $d "√" $= || $d "∆" $= ||
+				$d "«" $= || $d "œ" $= || $d "…" $= || $d "À" $= || $d "Ã" $= ||
+				$d "Õ" $= || $d "Œ" $= || $d "≈" $= || $d "—" $= || $d "“" $= ||
+				$d "”" $= || $d "‘" $= || $d "÷" $= || $d "’" $= || $d "¿" $= ||
+				$d "ÿ" $= || $d "å" $= || $d "™" $= || $d "ä" $= || $d "ﬁ" $= ||
+				$d "ç" $= || $d "⁄" $= || $d "‹" $= || $d "Ÿ" $= || $d "€" $= ||
+				$d "›" $= || $d "è" $= || $d "Ø" $= || "é" $= ||
+			{else}
+				0 $* $+
+			{endif}
+			1 $cutBegin
+		{endif}
+{end}
+
+{macro:Matrix_HasCharCE}
+		0
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+		(M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) || (M.L.Matrix_CharIsCE) ||
+{end}
+
+{macro:Matrix_CharIsCE}
+		d ! $d $length 0 = ! &&
+		{if}
+			$d $SetLengthL &&
+			$d "π" $=> $d "˛" $<= &&
+			{if}
+				* $d "ª" $=  $d "Ω" $= || $d "ƒ" $= || $d "÷" $= || $d "◊" $= ||
+				$d "‹" $= || $d "ﬂ" $= || $d "‰" $= || $d "ˆ" $= || $d "˜" $= ||
+				"¸" $= || !
+			{else}
+				+
+				$d "ä" $>= $d "≥" $<= &&
+				{if}
+					* $d "ä" $=
+					$d "å" $>= $d "è" $<= && ||
+					$d "ö" $= ||
+					$d "ú" $>= $d "ü" $<= && ||
+					$d "£" $= || $d "•" $= || $d "™" $= || $d "Ø" $= || "≥" $= ||
+				{else}
+					0 $* $+
+				{endif}
+			{endif}
+			1 $cutBegin
+		{endif}
+{end}

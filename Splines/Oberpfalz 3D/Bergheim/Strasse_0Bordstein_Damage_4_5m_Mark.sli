@@ -1,0 +1,61 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-2.25
+2.25
+0.1
+0.1
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+DDR_Asphalt_variety2.dds
+
+[patchwork_chain]
+5
+AAAAAABBACAADDAAA
+3111113111113111
+1111111111100011
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Fahrbahn
+
+[profile]
+0
+
+[profilepnt]
+-2.5
+0.1
+0.005
+0.5
+
+[profilepnt]
+2.5
+0.1
+0.995
+0.5
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +
+
+[path]
+0
+-0.5
+0.100
+1
+1
+
+[path]
+0
+0.5
+0.100
+1
+0

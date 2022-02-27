@@ -1,0 +1,73 @@
+BS_Mauern_Mauer01_M_020m.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-0.1
+0.1
+2
+2
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+BS_Mauern_Mauer5.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Mauer ###
+
+[profile]
+0
+
+[profilepnt]
+-0.1
+0
+0.005
+0.7
+
+[profilepnt]
+-0.1
+2
+0.995
+0.7
+
+### Mauer ###
+
+[profile]
+0
+
+[profilepnt]
+-0.1
+2
+0.5
+0.3
+
+[profilepnt]
+0.1
+2
+0.995
+0.3
+
+### Mauer ###
+
+[profile]
+0
+
+[profilepnt]
+0.1
+2
+0.995
+0.7
+
+[profilepnt]
+0.1
+0
+0.005
+0.7

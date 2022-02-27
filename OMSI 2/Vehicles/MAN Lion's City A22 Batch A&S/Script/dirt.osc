@@ -1,0 +1,37 @@
+'##############
+'Dirt Script
+'##############
+
+'Processes Variables to visualize dirt on vehicle and wiped windows
+
+'(c) 10.01.2011 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+'Revision History:
+'- Marcel Kuhnt		17.02.2009	Created
+'- Marcel Kuhnt		13.06.2009	Moved Wiper Function to wiper script
+'- Marcel Kuhnt		10.01.2011	Removed calculation of "dirt_norm" because of rehardcoding of "Dirt_Norm".
+
+'--------------------------------------------------------------------------------------
+
+{trigger:veh_wash}
+	(L.L.Dirt_Wiped) (L.S.Timegap) - 0 max (S.L.Dirt_Wiped)
+{end}
+
+
+{macro:dirt_frame}
+
+'Dirt incr due to vehicle-local variable
+
+	(L.S.Timegap) (L.L.DirtRate) * s0
+
+	(L.L.Dirt_Wiped) l0
+	+ 1 min 0 max
+	(S.L.Dirt_Wiped)
+
+{end}

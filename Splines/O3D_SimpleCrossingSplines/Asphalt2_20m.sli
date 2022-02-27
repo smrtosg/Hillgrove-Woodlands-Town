@@ -1,0 +1,86 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-10.000
+10.000
+0.100
+0.100
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+Asphalt2.dds
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Fahrbahn
+
+[profile]
+0
+
+[profilepnt]
+-10.000
+0.100
+0.005
+0.200
+
+[profilepnt]
+-5.000
+0.100
+0.995
+0.200
+
+[profile]
+0
+
+[profilepnt]
+-5.000
+0.100
+0.005
+0.200
+
+[profilepnt]
+0.000
+0.100
+0.995
+0.200
+
+[profile]
+0
+
+[profilepnt]
+0.000
+0.100
+0.005
+0.200
+
+[profilepnt]
+5.000
+0.100
+0.995
+0.200
+
+[profile]
+0
+
+[profilepnt]
+5.000
+0.100
+0.005
+0.200
+
+[profilepnt]
+10.000
+0.100
+0.995
+0.200
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +

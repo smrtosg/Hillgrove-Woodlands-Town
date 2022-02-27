@@ -1,0 +1,39 @@
+BS_StrMarkierung_Weiss_M.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-0.125
+0.125
+0.1
+0.1
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+str_asphdrk.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Markierung ###
+
+[profile]
+0
+
+[profilepnt]
+-0.125
+0.105
+0.005
+0.4
+
+[profilepnt]
+0.125
+0.105
+0.25
+0.4

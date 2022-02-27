@@ -1,0 +1,101 @@
+Spline-Objekt
+
+Dieses Objekt wird anhand eines Profiles automatisch zu einem Splineobjekt extrudiert. Damit Kurven entsprechend weich sind, werden
+automatisch Zwischenpunkte eingefügt.
+
+Zunächst geben wir die Länge an, sie wird benötigt, damit das Programm die kürzeste Einheit kennt.
+
+[length]
+10
+
+Halbbreite des Bereiches, welcher in Kurven überhöht wird:
+
+[halfcantwidth]
+5
+
+Dann wird das Höhenprofil in der Querrichtung definiert. Hierzu wird jeweils Start- und Endpunkt
+(von links aus gesehen) und dann die Höhe überm lokalen Koordinatensystem angegeben, jeweils vom ersten
+und zweiten Punkt:
+
+
+[heightprofile]
+-35
+-5
+-20
+0
+
+[heightprofile]
+-5
+5
+0
+0
+
+[heightprofile]
+5
+35
+0
+-20
+
+Zunächst werden die Texturen geladen (dies kann aber auch nach oder zwischen den folgenden Befehlen kommen, einzig
+die Reihenfolge entscheidet über die Nummer, 0-basiert)
+
+[texture]
+gras1.bmp
+
+[texture]
+gras1.bmp
+
+[profile]
+0
+
+Folgender Befehl schließlich definiert einen Profilpunkt. Zunächst x (quer, rechts positiv) und z (hoch),
+dann U und die Steigung von V. V beginnt stets mit 0.
+
+Achtung: damit Normalenvektor und Polysichtbarkeit stimmt, muss die Reihenfolge von links nach rechts laufen (damit die Oberseite sichtbar ist).
+
+[profilepnt]
+-6
+0
+0
+0.1
+
+[profilepnt]
+5
+0
+0.99
+0.1
+
+
+
+Schließlich die linke und die rechte Böschung:
+
+[profile]
+1
+
+[profilepnt]
+-35
+-20
+0
+0.1
+
+[profilepnt]
+-6
+0
+4
+0.1
+
+[profile]
+1
+
+[profilepnt]
+5
+0
+4
+0.1
+
+[profilepnt]
+35
+-20
+0
+0.1
+

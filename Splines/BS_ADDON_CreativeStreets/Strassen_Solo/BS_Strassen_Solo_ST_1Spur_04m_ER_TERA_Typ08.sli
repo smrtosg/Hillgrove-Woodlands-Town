@@ -1,0 +1,54 @@
+﻿BS_Gehweg_Pflaster01_OE_05m.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-2
+2
+0.1
+0.1
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+Splines\BS_ADDON_CreativeStreets\Gehwege\texture\BS_Gehweg_Allgemein1.bmp
+
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+
+
+### Markierung ###
+
+[profile]
+0
+
+[profilepnt]
+1.755
+0.105
+0.736328125
+0.4
+
+[profilepnt]
+1.875
+0.105
+0.79
+0.4
+
+
+Path's
+--------------------------
+
+[path]
+0
+0
+0.1
+3
+0
+

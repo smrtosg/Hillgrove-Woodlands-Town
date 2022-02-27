@@ -1,0 +1,38 @@
+
+
+{macro:wimpel_frame}
+	(L.S.Day) s0
+	(L.S.Month) s1
+
+'12.2. - Beginn der Omsi-Entwicklung im Jahre 2007
+	l0 12 = l1 2 = &&
+
+'25.3. - Release-Datum der OMSI-Box
+	l0 25 = l1 3 = && ||
+
+'17.6. - ehemaliger Deutscher Nationalfeiertag
+	l0 17 = l1 6 = && ||
+
+'27.7. - Sonjas Geburtstag
+	l0 27 = l1 7 = && ||
+
+'28.7. - Ronjas Geburtstag
+	l0 28 = l1 7 = && ||
+
+'3.10. - Tag der Dt. Einheit
+	l0 3 = l1 10 = && ||
+
+'9.11. - Mauerfall
+	l0 9 = l1 11 = && ||
+
+'13.11. - Marcels Geburtstag
+	l0 13 = l1 11 = && ||
+
+'22.11. - Resis Geburtstag
+	l0 22 = l1 11 = && ||
+
+'5.12. - Rüdigers Geburtstag
+	l0 5 = l1 12 = && ||
+
+	(S.L.wimpel_visibility)
+{end}

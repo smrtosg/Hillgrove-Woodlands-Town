@@ -1,0 +1,7 @@
+[const]
+Fehlertoleranz
+1000
+
+[const]
+Tuerfehlertoleranz
+1000

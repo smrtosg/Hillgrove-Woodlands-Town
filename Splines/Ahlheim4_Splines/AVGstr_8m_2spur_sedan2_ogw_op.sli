@@ -1,0 +1,76 @@
+File created with StreetCreator v1.000
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-4.000
+4.000
+0.100
+0.100
+
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+str_side1.bmp
+
+[texture]
+DDR-Kleinpflaster01_variety.bmp
+
+[patchwork_chain]
+5
+AAAABBAACAAADAAAA
+0011311111111133
+0000000000000000
+
+
+
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Left sidewalk:
+xxx
+
+
+Lane:
+
+[profile]
+1
+
+[profilepnt]
+-4.000
+0.100
+0.000
+0.067
+
+[profilepnt]
+0.000
+0.100
+0.500
+0.067
+
+Lane:
+
+[profile]
+1
+
+[profilepnt]
+0.000
+0.100
+0.500
+0.067
+
+[profilepnt]
+4.000
+0.100
+1.000
+0.067
+
+Right sidewalk:
+xxx

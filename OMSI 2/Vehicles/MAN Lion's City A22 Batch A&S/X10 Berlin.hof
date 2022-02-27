@@ -1,0 +1,5953 @@
+#####TEMPLATE FILE#####
+SD200_SD202_Template.xml
+
+#####COMMENT#####
+
+
+
+
+
+
+
+
+
+#####ENDCOMMENT#####
+
+
+>>> Created: 5/5/2015, 14:43:16
+
+>>> This file was created with HOF Creator 1.1. Thank you for usage!
+>>> www.jan-kiesewalter.de
+
+
+[name]
+X10 Berlin
+
+[servicetrip]
+Betriebsfahrt
+
+[global_strings]
+6
+X10 Berlin
+X10 Berlin
+SeitenschilderFF_X10
+35
+36
+28
+
+stringcount_terminus
+6
+
+stringcount_busstop
+4
+
+
+
+######################################
+ TERMINI
+######################################
+
+
+[addterminus]
+000
+Empty
+
+
+
+
+Tel_Blanko.tga
+
+.........................
+
+
+[addterminus_allexit]
+001
+Betriebsfahrt
+BETRIEBSFAHRT
+
+ BETRIEBSFAHRT
+ BETRIEBSFAHRT
+Tel_Betriebsfahrt.tga
+Betriebsfahrt
+.........................
+
+
+[addterminus]
+002
+Sonderfahrt
+SONDERFAHRT
+
+  SONDERFAHRT
+  SONDERFAHRT
+Tel_Sonderfahrt.tga
+Sonderfahrt
+.........................
+
+
+[addterminus]
+003
+Einsatzwagen
+EINSATZWAGEN
+
+  EINSATZWAGEN
+  EINSATZWAGEN
+Tel_Einsatzwagen.tga
+Einsatzwagen
+.........................
+
+
+[addterminus]
+004
+Schulbus
+SCHULBUS
+
+    SCHULBUS
+    SCHULBUS
+Tel_Schulbus.tga
+Schulbus
+.........................
+
+
+[addterminus]
+005
+Fahrschule
+FAHRSCHULE
+
+   FAHRSCHULE
+   FAHRSCHULE
+Tel_Fahrschule.tga
+Fahrschule
+.........................
+
+
+[addterminus]
+006
+Ersatzverkehr S
+S ERSATZVERKEHR
+     S-BAHN
+ ERSATZVERKEHR
+ ERSATZVERKEHR
+Tel_Ersatzverkehr_S.tga
+S-Bahn Ersatzverkehr
+.........................
+
+
+[addterminus]
+007
+Ersatzverkehr U
+U ERSATZVERKEHR
+     U-BAHN
+ ERSATZVERKEHR
+ ERSATZVERKEHR
+Tel_Ersatzverkehr_U.tga
+U-Bahn Ersatzverkehr
+.........................
+
+
+[addterminus]
+008
+Schienenersatzverkehr
+SCHIENENERSATZV.
+SCHIENENERSATZ-
+    VERKEHR
+      SEV
+Tel_Schienenersatzverkehr.tga
+Schienenersatzverk.
+.........................
+
+
+[addterminus]
+009
+Stadtrundfahrt
+STADTRUNDFAHRT
+
+ STADTRUNDFAHRT
+ STADTRUNDFAHRT
+Tel_Stadtrundfahrt.tga
+Stadtrundfahrt
+.........................
+
+
+[addterminus_allexit]
+010
+Bus endet hier
+BUS ENDET HIER
+
+ BUS ENDET HIER
+ BUS ENDET HIER
+Tel_Blanko.tga
+Bus endet hier
+.........................
+
+
+[addterminus]
+011
+Fahrt endet hier
+FAHRT ENDET HIER
+
+FAHRT ENDET HIER
+  FAHRT ENDET
+Tel_Blanko.tga
+Fahrt endet hier
+.........................
+
+
+[addterminus_allexit]
+012
+Betriebsfahrt
+BETRIEBSFAHRT
+
+ BETRIEBSFAHRT
+ BETRIEBSFAHRT
+Tel_Betriebsfahrt.tga
+Betriebsfahrt
+.........................
+
+
+[addterminus]
+013
+Betriebsfahrt
+BETRIEBSFAHRT
+
+ BETRIEBSFAHRT
+ BETRIEBSFAHRT
+Tel_Betriebsfahrt.tga
+Betriebsfahrt
+.........................
+
+
+[addterminus]
+014
+U Adenauerplatz
+U ADENAUERPLATZ
+
+U ADENAUERPLATZ
+ ADENAUERPLATZ
+Tel_U Adenauerplatz.tga
+U Adenauerplatz
+.........................
+
+
+[addterminus]
+015
+S+U Alexanderplatz
+S+U ALEXANDERPL.
+  S+U-BAHNHOF
+ ALEXANDERPLATZ
+ ALEXANDERPLATZ
+Tel_S+U Alexanderplatz.tga
+S+U Alexanderplatz
+.........................
+
+
+[addterminus]
+016
+U Alt-Tempelhof
+U ALT-TEMPELHOF
+
+U ALT-TEMPELHOF
+ ALT-TEMPELHOF
+Tel_U Alt-Tempelhof.tga
+U Alt-Tempelhof
+.........................
+
+
+[addterminus]
+017
+Andreezeile
+ANDREEZEILE
+   ZEHLENDORF
+  ANDREEZEILE
+  ANDREEZEILE
+Tel_Andreezeile.tga
+Andreezeile
+.........................
+
+
+[addterminus]
+018
+Annastr.
+STDF. ANNASTR.
+   STAHNSDORF
+    ANNASTR.
+    ANNASTR.
+Tel_Annastr..tga
+Stahnsdorf Annastr.
+.........................
+
+
+[addterminus]
+019
+Appenzeller Str.
+APPENZELLER STR.
+  LICHTERFELDE
+APPENZELLER STR.
+ APPENZELLER S.
+Tel_Appenzeller Str..tga
+Appenzeller Straße
+.........................
+
+
+[addterminus]
+020
+Stdf. Bahnhofstr.
+BAHNHOFSTRASSE
+   STAHNSDORF
+ BAHNHOFSTRASSE
+ BAHNHOFSTRASSE
+Tel_Bahnhofstr..tga
+Stdf. Bahnhofstraße
+.........................
+
+
+[addterminus]
+021
+Beermannstr.
+BEERMANNSTR.
+    TREPTOW
+  BEERMANNSTR.
+  BEERMANNSTR.
+Tel_Beermannstr..tga
+Treptow Beermannstr.
+.........................
+
+
+[addterminus]
+022
+Betriebshof Britz
+BETRHF. BRITZ
+  BETRIEBSHOF
+     BRITZ
+ BETRHF. BRITZ
+Tel_Gradestr..tga
+Betriebshof Britz
+.........................
+
+
+[addterminus]
+023
+S Blankenfelde Bhf
+S BLANKENFELDE
+ S BLANKENFELDE
+ÜB. GROSSBEEREN
+ S BLANKENFELDE
+Tel_S Blankenfelde.tga
+S Blankenfelde Bhf
+.........................
+
+
+[addterminus]
+024
+U Blissestr.
+U BLISSESTRASSE
+
+  U BLISSESTR.
+  U BLISSESTR.
+Tel_U Blissestr..tga
+U Blissestraße
+.........................
+
+
+[addterminus]
+025
+U Breitenbachplatz
+U BREITENBACHPL.
+   U-BAHNHOF
+BREITENBACHPLATZ
+ BREITENBACHPL.
+Tel_U Breitenbachplatz.tga
+U Breitenbachplatz
+.........................
+
+
+[addterminus]
+026
+U Britz-Süd
+U BRITZ-SÜD
+
+  U BRITZ-SÜD
+  U BRITZ-SÜD
+Tel_U Britz-Sued.tga
+U Britz-Süd
+.........................
+
+
+[addterminus]
+027
+Brixplatz
+BRIXPLATZ
+  NEU-WESTEND
+   BRIXPLATZ
+   BRIXPLATZ
+Tel_Brixplatz.tga
+Brixplatz
+.........................
+
+
+[addterminus]
+028
+Teltow Bürgertreff
+BÜRGERTREFF
+     TELTOW
+  BÜRGERTREFF
+  BÜRGERTREFF
+Tel_Buergertreff.tga
+Teltow Bürgertreff
+.........................
+
+
+[addterminus]
+029
+Busseallee
+BUSSEALLEE
+   ZEHLENDORF
+   BUSSEALLEE
+   BUSSEALLEE
+Tel_Busseallee.tga
+Busseallee
+.........................
+
+
+[addterminus]
+030
+DRK-Kliniken Westend
+DRK-KLI. WESTEND
+  DRK-KLINIKEN
+    WESTEND
+  DRK-KLINIKEN
+Tel_Klinikum Charlottenburg.tga
+DRK-Kliniken Westend
+.........................
+
+
+[addterminus]
+031
+Stdf. Enzianweg
+STDF. ENZIANWEG
+   STAHNSDORF
+   ENZIANWEG
+   ENZIANWEG
+Tel_Enzianweg.tga
+Stahnsdorf Enzianweg
+.........................
+
+
+[addterminus]
+032
+U Fehrbelliner Platz    (Barstr.)
+FEHRBELLINER PL.
+   U-BAHNHOF
+FEHRBELLINER PL.
+ FEHRBELLINER P
+Tel_U Fehrbelliner Platz.tga
+U Fehrbelliner Platz
+.........................
+
+
+[addterminus]
+033
+U Fehrbelliner Platz
+FEHRBELLINER PL.
+   U-BAHNHOF
+FEHRBELLINER PL.
+ FEHRBELLINER P
+Tel_U Fehrbelliner Platz.tga
+U Fehrbelliner Platz
+.........................
+
+
+[addterminus]
+034
+Flughafen Schönefeld
+FLUGH SCHÖNEFELD
+FLUGH SCHÖNEFELD
+    AIRPORT
+ FLUGH SCHÖNEF.
+Tel_Flughafen Schoenefeld.tga
+Flughafen Schönefeld
+.........................
+
+
+[addterminus]
+035
+Flughafen Tegel
+FLUGHAFEN TEGEL
+FLUGHAFEN TEGEL
+  VIA KU DAMM
+ AIRPORT TEGEL
+Tel_Flughafen Tegel 109.tga
+Flughafen Tegel 109
+.........................
+
+
+[addterminus]
+036
+Flughafen Tegel Airport
+FLUGHAFEN TEGEL
+FLUGHAFEN TEGEL
+    AIRPORT
+ AIRPORT TEGEL
+Tel_Flughafen Tegel.tga
+Flughafen Tegel X9
+.........................
+
+
+[addterminus]
+037
+Franklinstr.
+FRANKLINSTRASSE
+ CHARLOTTENBURG
+  FRANKLINSTR.
+  FRANKLINSTR.
+Tel_Helmholtzstr..tga
+Franklinstr.
+.........................
+
+
+[addterminus]
+038
+Friedrich-Naumann-Straße
+F.-NAUMANN-STR.
+   STAHNSDORF
+F.-NAUMANN-STR.
+ F.-NAUMANN-STR
+Tel_Friedrich-Naumann-Str..tga
+Friedrich-Naumann-S.
+.........................
+
+
+[addterminus]
+039
+Gatower Str./Heerstr.
+GATOWER STRASSE
+ GATOWER STR./
+    HEERSTR.
+  GATOWER STR.
+Tel_Gatower Str..tga
+Gatower Str./Heerstr
+.........................
+
+
+[addterminus]
+040
+Gesundheitszentrum
+GESUNDH.-ZENTRUM
+  GROPIUSSTADT
+GESUNDH.-ZENTRUM
+ GESUNDHEITSZ.
+Tel_Gesundheitszentrum.tga
+Gesundheitszentrum
+.........................
+
+
+[addterminus]
+041
+Gradestr./Tempelhofer W.
+GRADESTR./TEMPEL
+   GRADESTR./
+TEMPELHOFER WEG
+   GRADESTR.
+Tel_Gradestr..tga
+Gradestr./Tempelh. W
+.........................
+
+
+[addterminus]
+042
+S Grunewald
+S GRUNEWALD
+
+  S GRUNEWALD
+  S GRUNEWALD
+Tel_S Grunewald.tga
+S Grunewald
+.........................
+
+
+[addterminus]
+043
+Güterfelde
+GÜTERFELDE
+   GÜTERFELDE
+   KIRCHPLATZ
+   GÜTERFELDE
+Tel_Gueterfelde.tga
+Güterfelde, Kirchpl.
+.........................
+
+
+[addterminus]
+044
+S Hackescher Markt
+S HACKESCHER M.
+   S-BAHNHOF
+HACKESCHER MARKT
+ HACKESCHER M.
+Tel_S Hackescher Markt.tga
+S Hackescher Markt
+.........................
+
+
+[addterminus]
+045
+Hagenplatz
+HAGENPLATZ
+   GRUNEWALD
+   HAGENPLATZ
+   HAGENPLATZ
+Tel_Hagenplatz.tga
+Grunewald Hagenplatz
+.........................
+
+
+[addterminus]
+046
+Halbauer Weg
+HALBAUER WEG
+    LANKWITZ
+  HALBAUER WEG
+  HALBAUER WEG
+Tel_Halbauer Weg.tga
+Halbauer Weg
+.........................
+
+
+[addterminus]
+047
+U Hallesches Tor
+U HALLESCHES TOR
+
+U HALLESCHES TOR
+ HALLESCHES TOR
+Tel_U Hallesches Tor.tga
+U Hallesches Tor
+.........................
+
+
+[addterminus]
+048
+Teltow Havelstr.
+TELTOW HAVELSTR.
+     TELTOW
+   HAVELSTR.
+   HAVELSTR.
+Tel_Havelstr..tga
+Teltow Havelstraße
+.........................
+
+
+[addterminus]
+049
+Heerstr./Nennhauser Damm
+HEERSTR./NENNHAU
+   HEERSTR./
+NENNHAUSER DAMM
+ NENNHAUSER D.
+Tel_Nennhauser Damm.tga
+Heerstr./Nennh. Damm
+.........................
+
+
+[addterminus]
+050
+Heinersdorfer Weg
+HEINERSDORF. WEG
+
+HEINERSDORF. WEG
+ HEINERSDF. WEG
+Tel_Heinersdorfer Weg.tga
+Heinersdorfer Weg
+.........................
+
+
+[addterminus]
+051
+U Hermannplatz
+U HERMANNPLATZ
+
+ U HERMANNPLATZ
+  HERMANNPLATZ
+Tel_U Hermannplatz.tga
+U Hermannplatz
+.........................
+
+
+[addterminus]
+052
+Stdf. Hildegardstr.
+HILDEGARDSTRASSE
+   STAHNSDORF
+ HILDEGARDSTR.
+ HILDEGARDSTR.
+Tel_Hildegardstr..tga
+Stdf. Hildegardstr.
+.........................
+
+
+[addterminus]
+053
+Hochmeisterplatz
+HOCHMEISTERPLATZ
+  WILMERSDORF
+HOCHMEISTERPLATZ
+ HOCHMEISTERPL.
+Tel_Cicerostr..tga
+Hochmeisterplatz
+.........................
+
+
+[addterminus]
+054
+Johannes-Kepler-Platz
+JOH.-KEPLER-PL.
+    POTSDAM
+JOH.-KEPLER-PL.
+ J.-KEPLER-PL.
+Tel_J-Kepler-Platz.tga
+Johannes-Kepler-Pl.
+.........................
+
+
+[addterminus]
+055
+Spandau Johannesstift
+JOHANNESSTIFT
+    SPANDAU
+ JOHANNESSTIFT
+ JOHANNESSTIFT
+Tel_Johannesstift.tga
+Johannesstift
+.........................
+
+
+[addterminus]
+056
+Kaserne Hottengrund
+KAS. HOTTENGRUND
+     KLADOW
+KAS. HOTTENGRUND
+ KAS. HOTTENGR.
+Tel_Hottengrund.tga
+Kaserne Hottengrund
+.........................
+
+
+[addterminus]
+057
+Kön-Luise-Str/Clayallee
+KÖNIGIN-LUISE-S.
+KÖNIGIN-LUISE-S.
+   CLAYALLEE
+   CLAYALLEE
+Tel_Clayallee.tga
+Kön.-Luise-Str./Clay
+.........................
+
+
+[addterminus]
+058
+U Krumme Lanke
+U KRUMME LANKE
+   U-BAHNHOF
+  KRUMME LANKE
+ U KRUMME LANKE
+Tel_U Krumme Lanke.tga
+U Krumme Lanke
+.........................
+
+
+[addterminus]
+059
+Kühler Weg
+KÜHLER WEG
+    EICHKAMP
+   KÜHLER WEG
+   KÜHLER WEG
+Tel_Kuehler Weg.tga
+Eichkamp Kühler Weg
+.........................
+
+
+[addterminus]
+060
+U Kurfürstenstr.
+U KURFÜRSTENSTR.
+
+ U KURFÜRSTENSTR.
+ KURFÜRSTENSTR.
+Tel_U Kurfuerstenstr..tga
+U Kurfürstenstraße
+.........................
+
+
+[addterminus]
+061
+Lankwitz Kirche
+LANKWITZ KIRCHE
+    LANKWITZ
+     KIRCHE
+ LANKWITZ KIR.
+Tel_Lankwitz Kirche.tga
+Lankwitz Kirche
+.........................
+
+
+[addterminus]
+062
+Lehrter Str./Invalidenstr.
+LEHRTER S./INVAL
+ LEHRTER STR./
+ INVALIDENSTR.
+ INVALIDENSTR.
+Tel_S Hauptbahnhof.tga
+Lehrter S./Invaliden
+.........................
+
+
+[addterminus]
+063
+U Leopoldplatz
+U LEOPOLDPLATZ
+
+ U LEOPOLDPLATZ
+ U LEOPOLDPLATZ
+Tel_U Leopoldplatz.tga
+U Leopoldplatz
+.........................
+
+
+[addterminus]
+064
+S Lichterfelde Ost
+S LICHTERF. OST
+   S-BAHNHOF
+LICHTERFELDE OST
+ LICHTERF. OST
+Tel_S Lichterfelde Ost.tga
+S Lichterfelde Ost
+.........................
+
+
+[addterminus]
+065
+S Lichterfelde Süd
+S LICHTERF. SÜD
+   S-BAHNHOF
+LICHTERFELDE SÜD
+ LICHTERF. SÜD
+Tel_S Lichterfelde Sued.tga
+S Lichterfelde Süd
+.........................
+
+
+[addterminus]
+066
+Lindenhof
+LINDENHOF
+   SCHÖNEBERG
+   LINDENHOF
+   LINDENHOF
+Tel_Lindenhof.tga
+Schöneberg Lindenhof
+.........................
+
+
+[addterminus]
+067
+Lindenstr.
+LINDENSTRASSE
+  LICHTERFELDE
+   LINDENSTR.
+   LINDENSTR.
+Tel_Lindenstr..tga
+Lindenstraße
+.........................
+
+
+[addterminus]
+068
+Ludwigsfelde
+LUDWIGSFELDE
+  LUDWIGSFELDE
+    BAHNHOF
+  LUDWIGSFELDE
+Tel_Ludwigsfelde.tga
+Ludwigsfelde Bahnhof
+.........................
+
+
+[addterminus]
+069
+S Mahlow
+S MAHLOW
+    S-MAHLOW
+ Ü. GROSSBEEREN
+    S-MAHLOW
+Tel_S Mahlow.tga
+S Mahlow
+.........................
+
+
+[addterminus]
+070
+U Mehringdamm
+U MEHRINGDAMM
+
+ U MEHRINGDAMM
+ U MEHRINGDAMM
+Tel_U Mehringdamm.tga
+U Mehringdamm
+.........................
+
+
+[addterminus]
+071
+S Mexikoplatz
+S MEXIKOPLATZ
+
+ S MEXIKOPLATZ
+ S MEXIKOPLATZ
+Tel_S Mexikoplatz.tga
+S Mexikoplatz
+.........................
+
+
+[addterminus]
+072
+Michelangelostr.
+MICHELANGELOSTR.
+MICHELANGELOSTR.
+VIA POTSDAMER PL
+ MICHELANGELOST
+Tel_Michelangelostr..tga
+Michelangelostraße
+.........................
+
+
+[addterminus]
+073
+Mollstr./Otto-Braun-Str.
+MOLLSTRASSE
+   MOLLSTR./
+OTTO-BRAUN-STR.
+ O.-BRAUN-STR.
+Tel_S+U Alexanderplatz.tga
+Mollstr./O.-Braun-S.
+.........................
+
+
+[addterminus]
+074
+Nahariyastr.
+NAHARIYASTRASSE
+  LICHTENRADE
+  NAHARIYASTR.
+  NAHARIYASTR.
+Tel_Nahariyastr..tga
+Nahariyastraße
+.........................
+
+
+[addterminus]
+075
+Nahmitzer Damm
+NAHMITZER DAMM
+  MARIENFELDE
+ NAHMITZER DAMM
+ NAHMITZER DAMM
+Tel_Nahmitzer Damm.tga
+Nahmitzer Damm
+.........................
+
+
+[addterminus]
+076
+Neuruppiner Str.
+NEURUPPINER STR.
+   DÜPPEL-SÜD
+NEURUPPINER STR.
+   DÜPPEL-SÜD
+Tel_Neuruppiner Str..tga
+Neuruppiner Straße
+.........................
+
+
+[addterminus]
+077
+S Nikolassee
+S NIKOLASSEE
+
+  S NIKOLASSEE
+  S NIKOLASSEE
+Tel_S Nikolassee.tga
+S Nikolassee
+.........................
+
+
+[addterminus]
+078
+S Nordbahnhof
+S NORDBAHNHOF
+
+ S NORDBAHNHOF
+ S NORDBAHNHOF
+Tel_S Nordbahnhof.tga
+S Nordbahnhof
+.........................
+
+
+[addterminus]
+079
+Teltow Nuthestr.
+TELTOW NUTHESTR.
+     TELTOW
+  NUTHESTRASSE
+  NUTHESTASSE
+Tel_Nuthestr..tga
+Teltow Nuthestraße
+.........................
+
+
+[addterminus]
+080
+U Oskar-Helene-Heim
+U OSK.-HELENE-HM
+   U-BAHNHOF
+OSKAR-HELENE-HM.
+ OSKAR-HELENE-H
+Tel_U Oskar-Helene-Heim.tga
+U Oskar-Helene-Heim
+.........................
+
+
+[addterminus]
+081
+U Osloer Str.
+U OSLOER STRASSE
+
+ U OSLOER STR.
+ U OSLOER STR.
+Tel_U Osloer Str..tga
+U Osloer Straße
+.........................
+
+
+[addterminus]
+082
+S+U Pankow
+S+U PANKOW
+
+   S+U PANKOW
+   S+U PANKOW
+Tel_S+U Pankow.tga
+S+U Pankow
+.........................
+
+
+[addterminus]
+083
+Platz am Wilden Eber
+PL. A. W. EBER
+    PLATZ AM
+  WILDEN EBER
+ PL. A. W. EBER
+Tel_Platz am Wilden Eber.tga
+Platz am Wilden Eber
+.........................
+
+
+[addterminus]
+084
+U Platz der Luftbrücke
+U PL DER LUFTBR.
+   U-BAHNHOF
+PL. DER LUFTBR.
+ PL. D. LUFTBR.
+Tel_U Platz der Luftbruecke.tga
+U Pl. der Luftbrücke
+.........................
+
+
+[addterminus]
+085
+Postviertel
+POSTVIERTEL
+  POSTVIERTEL
+PAUL-LINCKE-STR.
+  POSTVIERTEL
+Tel_Postviertel.tga
+Teltow Postviertel
+.........................
+
+
+[addterminus]
+086
+S Potsdam Hbf.
+S POTSDAM HBF
+   S POTSDAM
+  HAUPTBAHNHOF
+ S POTSDAM HBF
+Tel_Potsdam.tga
+S Potsdam Hbf
+.........................
+
+
+[addterminus]
+087
+Teltow, Rammrath-Brücke
+RAMMRATH-BRÜCKE
+     TELTOW
+RAMMRATH-BRÜCKE
+  RAMMRATH-BR.
+Tel_Rammrath-Bruecke.tga
+Teltow Rammrath-Br.
+.........................
+
+
+[addterminus]
+088
+Rathaus Babelsberg
+RATH. BABELSBERG
+    RATHAUS
+   BABELSBERG
+   BABELSBERG
+Tel_Rathaus Babelsberg.tga
+Rathaus Babelsberg
+.........................
+
+
+[addterminus]
+089
+S+U Rathaus Spandau
+RATHAUS SPANDAU
+  S+U-BAHNHOF
+RATHAUS SPANDAU
+ RATH. SPANDAU
+Tel_S+U Rathaus Spandau.tga
+S+U Rathaus Spandau
+.........................
+
+
+[addterminus]
+090
+S+U Rathaus Steglitz
+RATHAUS STEGLITZ
+  S+U-BAHNHOF
+RATHAUS STEGLITZ
+ RATH. STEGLITZ
+Tel_S+U Rathaus Steglitz.tga
+S+U Rathaus Steglitz
+.........................
+
+
+[addterminus]
+091
+Rathaus Zehlendorf
+RATH. ZEHLENDORF
+    RATHAUS
+   ZEHLENDORF
+ RATH. ZEHLEND.
+Tel_Zehlendorf Rathaus.tga
+Rathaus Zehlendorf
+.........................
+
+
+[addterminus]
+092
+Rathenauplatz
+RATHENAUPLATZ
+   GRUNEWALD
+ RATHENAUPLATZ
+ RATHENAUPLATZ
+Tel_Rathenauplatz.tga
+Rathenauplatz
+.........................
+
+
+[addterminus]
+093
+Reimerweg
+REIMERWEG
+    STAAKEN
+   REIMERWEG
+   REIMERWEG
+Tel_Reimerweg.tga
+Staaken Reimerweg
+.........................
+
+
+[addterminus]
+094
+Roseneck
+ROSENECK
+   GRUNEWALD
+    ROSENECK
+    ROSENECK
+Tel_Roseneck.tga
+Grunewald Roseneck
+.........................
+
+
+[addterminus]
+095
+U Rudow
+U RUDOW
+
+    U RUDOW
+    U RUDOW
+Tel_U Rudow.tga
+U Rudow
+.........................
+
+
+[addterminus]
+096
+U Ruhleben
+U RUHLEBEN
+
+   U RUHLEBEN
+   U RUHLEBEN
+Tel_U Ruhleben.tga
+U Ruhleben
+.........................
+
+
+[addterminus]
+097
+Teltow Ruhlsdorf
+TELTOW RUHLSDORF
+
+   RUHLSDORF
+   RUHLSDORF
+Tel_Ruhlsdorf.tga
+Teltow Ruhlsdorf
+.........................
+
+
+[addterminus]
+098
+Saarmund
+SAARMUND
+
+    SAARMUND
+    SAARMUND
+Tel_Saarmund.tga
+Saarmund
+.........................
+
+
+[addterminus]
+099
+Sachtlebenstr.
+SACHTLEBENSTR.
+   ZEHLENDORF
+ SACHTLEBENSTR.
+ SACHTLEBENSTR.
+Tel_Sachtlebenstr..tga
+Sachtlebenstraße
+.........................
+
+
+[addterminus]
+100
+S Schöneweide
+S SCHÖNEWEIDE
+
+ S SCHÖNEWEIDE
+ S SCHÖNEWEIDE
+Tel_S Schoeneweide.tga
+S Schöneweide Bhf
+.........................
+
+
+[addterminus]
+101
+U Seestr.
+U SEESTRASSE
+
+   U SEESTR.
+   U SEESTR.
+Tel_U Seestr..tga
+U Seestraße
+.........................
+
+
+[addterminus]
+102
+Teltow Sigridshorst
+SIGRIDSHORST
+     TELTOW
+  SIGRIDSHORST
+  SIGRIDSHORST
+Tel_Sigridshorst.tga
+Teltow Sigridshorst
+.........................
+
+
+[addterminus]
+103
+Spanische Al./Potsd. Ch.
+SPANISCHE ALLEE
+SPANISCHE ALLEE/
+ POTSDAMER CH.
+ SPANISCHE AL.
+Tel_Spanische Allee.tga
+Spanische Allee
+.........................
+
+
+[addterminus]
+104
+Sputendorf
+SPUTENDORF
+
+   SPUTENDORF
+   SPUTENDORF
+Tel_Sputendorf.tga
+Sputendorf
+.........................
+
+
+[addterminus]
+105
+Stdf. Stahnsdorfer Hof
+STAHNSDORFER HOF
+   STAHNSDORF
+STAHNSDORFER HOF
+  STAHNSD. HOF
+Tel_Stahnsdorfer Hof.tga
+Stahnsdorfer Hof
+.........................
+
+
+[addterminus]
+106
+Steinstücken
+STEINSTÜCKEN
+
+  STEINSTÜCKEN
+  STEINSTÜCKEN
+Tel_Steinstuecken.tga
+Steinstücken
+.........................
+
+
+[addterminus]
+107
+Potsdam, Stern-Center
+STERN-CENTER
+    DREWITZ
+  STERN-CENTER
+  STERN-CENTER
+Tel_Drewitz.tga
+Drewitz Stern-Center
+.........................
+
+
+[addterminus]
+108
+S Südkreuz
+S SÜDKREUZ
+
+   S SÜDKREUZ
+   S SÜDKREUZ
+Tel_S Papestr..tga
+S Südkreuz Bhf
+.........................
+
+
+[addterminus]
+109
+Bhf Teltow
+TELTOW BAHNHOF
+
+ TELTOW BAHNHOF
+ TELTOW BAHNHOF
+Tel_Teltow Bahnhof.tga
+Teltow Bahnhof
+.........................
+
+
+[addterminus]
+110
+S Teltow Stadt
+S TELTOW STADT
+
+ S TELTOW STADT
+ S TELTOW STADT
+Tel_S Teltow Stadt.tga
+S Teltow Stadt
+.........................
+
+
+[addterminus]
+111
+S+U Tempelhof
+S+U TEMPELHOF
+
+ S+U TEMPELHOF
+ S+U TEMPELHOF
+Tel_S+U Tempelhof.tga
+S+U Tempelhof
+.........................
+
+
+[addterminus]
+112
+U Theodor-Heuss-Platz
+U TH.-HEUSS-PL.
+   U-BAHNHOF
+TH.-HEUSS-PLATZ
+ TH.-HEUSS-PL.
+Tel_U Theodor-Heuss-Platz.tga
+U Theodor-Heuss-Pl.
+.........................
+
+
+[addterminus]
+113
+Tunnelstr.
+TUNNELSTRASSE
+    STRALAU
+   TUNNELSTR.
+   TUNNELSTR.
+Tel_Stralau.tga
+Stralau Tunnelstraße
+.........................
+
+
+[addterminus]
+114
+U Turmstr.
+U TURMSTRASSE
+
+   U TURMSTR.
+   U TURMSTR.
+Tel_U Turmstr..tga
+U Turmstraße
+.........................
+
+
+[addterminus]
+115
+Waldfriedhof
+WALDFRIEDHOF
+     DAHLEM
+  WALDFRIEDHOF
+  WALDFRIEDHOF
+Tel_Am Waldfriedhof.tga
+Dahlem Waldfriedhof
+.........................
+
+
+[addterminus]
+116
+Stdf. Waldschänke
+WALDSCHÄNKE
+   STAHNSDORF
+  WALDSCHÄNKE
+  WALDSCHÄNKE
+Tel_Waldschaenke.tga
+Stdf. Waldschänke
+.........................
+
+
+[addterminus]
+117
+S Wannsee
+S WANNSEE BHF
+
+ S WANNSEE BHF
+ S WANNSEE BHF
+Tel_S Wannsee.tga
+S Wannsee Bhf
+.........................
+
+
+[addterminus]
+118
+S+U Warschauer Str.
+S+U WARSCHAUER S
+  S+U-BAHNHOF
+WARSCHAUER STR.
+ WARSCHAUER S.
+Tel_S+U Warschauer Str..tga
+S+U Warschauer Str.
+.........................
+
+
+[addterminus]
+119
+Teltow Warthestr.
+TELTOW WARTHESTR
+     TELTOW
+   WARTHESTR.
+   WARTHESTR.
+Tel_Warthestr..tga
+Teltow Warthestraße
+.........................
+
+
+[addterminus]
+120
+U Wittenbergplatz
+U WITTENBERGPL.
+   U-BAHNHOF
+WITTENBERGPLATZ
+ U WITTENBERGPL
+Tel_U Wittenbergplatz.tga
+U Wittenbergplatz
+.........................
+
+
+[addterminus]
+121
+Zehlendorf Eiche
+ZEHLENDORF EICHE
+   ZEHLENDORF
+     EICHE
+ ZEHLEND. EICHE
+Tel_Zehlendorf Eiche.tga
+Zehlendorf Eiche
+.........................
+
+
+[addterminus]
+122
+S+U Zoologischer Garten (Hertzallee)
+HERTZALLEE
+  S+U-BAHNHOF
+ ZOOLOG. GARTEN
+    S+U ZOO
+Tel_S+u Zoo.tga
+Hertzallee
+.........................
+
+
+[addterminus]
+123
+S+U Zoologischer Garten
+S+U ZOO
+  S+U-BAHNHOF
+ ZOOLOG. GARTEN
+    S+U ZOO
+Tel_S+U Zoo.tga
+S+U Zoolog. Garten
+.........................
+
+
+[addterminus]
+124
+Kein DFI-Zieltext
+A. POTSD. LANDS.
+ ALTE POTSDAMER
+    LANDSTR.
+ A. P. LANDSTR.
+Tel_Blanko.tga
+Alte Potsdamer Lands
+.........................
+
+
+
+
+
+######################################
+ BUS STOPS
+######################################
+
+
+[addbusstop]
+Tel_Sigridshorst
+SIGRIDSHORST
+Sigridshorst
+
+Teltow Sigridshorst
+.........................
+
+
+[addbusstop]
+Tel_Tulpenweg
+TULPENWEG
+Tulpenweg
+
+Teltow Tulpenweg
+.........................
+
+
+[addbusstop]
+Tel_Teltow Bahnhof
+TELTOW BAHNHOF
+Bahnhof
+
+Teltow Bahnhof
+.........................
+
+
+[addbusstop]
+Tel_Mozartstr.
+MOZARTSTRASSE
+Mozartstr.
+
+Teltow Mozartstraße
+.........................
+
+
+[addbusstop]
+Tel_Blumenstr.
+BLUMENSTRASSE
+Blumenstr.
+
+Teltow Blumenstraße
+.........................
+
+
+[addbusstop]
+Tel_Gustl-Sandtner-Str.
+G.-SANDTNER-STR.
+G.-Sandtner-Str.
+
+Gustl-Sandtner-Str.
+.........................
+
+
+[addbusstop]
+Tel_S Teltow Stadt-Mahlower Str.
+S TELTOW STADT
+S Teltow Stadt/
+Mahlower Str.
+S Teltow Stadt
+.........................
+
+
+[addbusstop]
+Tel_S Teltow Stadt-Gonfrevillestr.
+S TELTOW STADT
+S Teltow Stadt/
+Gonfrevillestr.
+S Teltow Stadt
+.........................
+
+
+[addbusstop]
+Tel_Buergertreff
+BÜRGERTREFF
+Teltow Bürgertreff
+
+Teltow Bürgertreff
+.........................
+
+
+[addbusstop]
+Tel_Ruhlsdorfer Platz
+RUHLSDORFER PL.
+Ruhlsdorfer Platz
+
+Telt. Ruhlsdorfer Pl
+.........................
+
+
+[addbusstop]
+Tel_Jahnstr.
+TELTOW JAHNSTR.
+Jahnstraße
+
+Teltow Jahnstraße
+.........................
+
+
+[addbusstop]
+Tel_Striewitzweg
+STRIEWITZWEG
+Striewitzweg
+
+Teltow Striewitzweg
+.........................
+
+
+[addbusstop]
+Tel_Havelstr.
+HAVELSTRASSE
+Havelstr.
+
+Teltow Havelstraße
+.........................
+
+
+[addbusstop]
+Tel_Warthestr.
+WARTHESTRASSE
+Warthestr.
+
+Teltow Warthestraße
+.........................
+
+
+[addbusstop]
+Tel_Feuerwehr
+TELTOW FEUERWEHR
+Teltow Feuerwehr
+
+Teltow Feuerwehr
+.........................
+
+
+[addbusstop]
+Tel_Schwarzer Weg
+SCHWARZER WEG
+Schwarzer Weg
+
+Schwarzer Weg
+.........................
+
+
+[addbusstop]
+Tel_Puschkinstr.
+PUSCHKINSTRASSE
+Puschkinstr.
+
+Puschkinstraße
+.........................
+
+
+[addbusstop]
+Tel_Stahnsdorfer Hof
+STAHNSDORFER HOF
+Stahnsdorfer Hof
+
+Stahnsdorfer Hof
+.........................
+
+
+[addbusstop]
+Tel_Waldschaenke
+WALDSCHÄNKE
+Waldschänke
+
+Waldschänke
+.........................
+
+
+[addbusstop]
+Tel_Zehlendorfer Str.
+ZEHLENDORFER STR
+Zehlendorfer Str.
+
+Zehlendorfer Straße
+.........................
+
+
+[addbusstop]
+Tel_Badstr.
+TELTOW BADSTR.
+Badstr.
+
+Teltow Badstraße
+.........................
+
+
+[addbusstop]
+Tel_Jahnsportplatz
+JAHNSPORTPLATZ
+Jahnsportplatz
+
+Jahnsportplatz
+.........................
+
+
+[addbusstop]
+Tel_Nuthestr.
+TELTOW NUTHESTR.
+Nuthestr.
+
+Teltow Nuthestraße
+.........................
+
+
+[addbusstop]
+Tel_Einkaufszentrum Oderstr.
+EKZ ODERSTR.
+Einkaufszentrum
+Oderstraße
+Einkaufsz. Oderstr.
+.........................
+
+
+[addbusstop]
+Tel_Neissestr.
+TELTOW NEISSESTR
+Neißestr.
+
+Teltow Neißestraße
+.........................
+
+
+[addbusstop]
+Tel_Rammrath-Bruecke
+RAMMRATH-BRÜCKE
+Rammrath-Brücke
+
+Rammrath-Brücke
+.........................
+
+
+[addbusstop]
+Tel_Rammrath-Bruecke UA
+RAMMRATH-BRÜCKE
+Rammrath-Brücke
+
+Rammrath-Brücke
+.........................
+
+
+[addbusstop]
+Tel_Rammrath-Bruecke UE
+RAMMRATH-BRÜCKE
+Rammrath-Brücke
+
+Rammrath-Brücke
+.........................
+
+
+[addbusstop]
+Tel_Alt-Schoenow
+ALT-SCHÖNOW
+Alt-Schönow
+
+Alt-Schönow
+.........................
+
+
+[addbusstop]
+Tel_Alt-Schoenow C
+ALT-SCHÖNOW
+Alt-Schönow
+
+Alt-Schönow
+.........................
+
+
+[addbusstop]
+Tel_Wupperstr.
+WUPPERSTRASSE
+Wupperstr.
+
+Wupperstraße
+.........................
+
+
+[addbusstop]
+Tel_Beeskowdamm
+BEESKOWDAMM
+Beeskowdamm
+
+Beeskowdamm
+.........................
+
+
+[addbusstop]
+Tel_Andreezeile
+ANDREEZEILE
+Andreezeile
+
+Andreezeile
+.........................
+
+
+[addbusstop]
+Tel_Am Rehwechsel
+AM REHWECHSEL
+Am Rehwechsel
+
+Am Rehwechsel
+.........................
+
+
+[addbusstop]
+Tel_Am Birkenknick
+AM BIRKENKNICK
+Am Birkenknick
+
+Am Birkenknick
+.........................
+
+
+[addbusstop]
+Tel_Laehrstr.
+LAEHRSTRASSE
+Laehrstr.
+
+Laehrstraße
+.........................
+
+
+[addbusstop]
+Tel_Leo-Baeck-Str.
+LEO-BAECK-STR.
+Leo-Baeck-Str.
+
+Leo-Baeck-Straße
+.........................
+
+
+[addbusstop]
+Tel_Schweizerhofpark
+SCHWEIZERHOFPARK
+Schweizerhofpark
+
+Schweizerhofpark
+.........................
+
+
+[addbusstop]
+Tel_Schoenower Park
+SCHÖNOWER PARK
+Schönower Park
+
+Schönower Park
+.........................
+
+
+[addbusstop]
+Tel_Machnower Str.
+MACHNOWER STR.
+Machnower Str.
+
+Machnower Straße
+.........................
+
+
+[addbusstop]
+Tel_S Zehlendorf
+S ZEHLENDORF
+S Zehlendorf
+
+S Zehlendorf
+.........................
+
+
+[addbusstop]
+Tel_Rathaus Zehlendorf
+RATH. ZEHLENDORF
+Rathaus Zehlendorf
+
+Rathaus Zehlendorf
+.........................
+
+
+[addbusstop]
+Tel_Zehlendorf Eiche
+ZEHLENDORF EICHE
+Zehlendorf Eiche
+
+Zehlendorf Eiche
+.........................
+
+
+[addbusstop]
+Tel_Zehlendorf Eiche B
+ZEHLENDORF EICHE
+Zehlendorf Eiche
+
+Zehlendorf Eiche
+.........................
+
+
+[addbusstop]
+Tel_Scharfestr.
+SCHARFESTRASSE
+Scharfestr.
+
+Scharfestraße
+.........................
+
+
+[addbusstop]
+Tel_Schuetzallee
+SCHÜTZALLEE
+Schützallee
+
+Schützallee
+.........................
+
+
+[addbusstop]
+Tel_Leichhardtstr.
+LEICHHARDTSTR.
+Leichhardtstr.
+
+Leichhardtstraße
+.........................
+
+
+[addbusstop]
+Tel_Clayallee 229
+CLAYALLEE 229
+Clayallee 229
+
+Clayallee 229
+.........................
+
+
+[addbusstop]
+Tel_U Oskar-Helene-Heim
+U OSKAR-HELENE-H
+U Oskar-Helene-Hm.
+
+U Oskar-Helene-Heim
+.........................
+
+
+[addbusstop]
+Tel_Huettenweg
+HÜTTENWEG
+Hüttenweg
+
+Hüttenweg
+.........................
+
+
+[addbusstop]
+Tel_Alliiertenmuseum
+ALLIIERTENMUSEUM
+Alliiertenmuseum
+
+Alliiertenmuseum
+.........................
+
+
+[addbusstop]
+Tel_Koenigin-Luise-Str.-Clayallee
+KÖNIGIN-LUISE-S.
+Königin-Luise-Str./
+Clayallee
+Königin-Luise-Str./C
+.........................
+
+
+[addbusstop]
+Tel_Koenigin-Luise-Str.-Clayallee UA
+KÖNIGIN-LUISE-S.
+Königin-Luise-Str./
+Clayallee
+Königin-Luise-Str./C
+.........................
+
+
+[addbusstop]
+Tel_Koenigin-Luise-Str.-Clayallee UE
+KÖNIGIN-LUISE-S.
+Königin-Luise-Str./
+Clayallee
+Königin-Luise-Str./C
+.........................
+
+
+[addbusstop]
+Tel_Teplitzer Str.
+TEPLITZER STR.
+Teplitzer Str.
+
+Teplitzer Straße
+.........................
+
+
+[addbusstop]
+Tel_Joseph-Joachim-Platz
+JOSEPH-JOACHIM-P
+Joseph-Joachim-Pl.
+
+Joseph-Joachim-Platz
+.........................
+
+
+[addbusstop]
+Tel_Delbrueckstr.
+DELBRÜCKSTRASSE
+Delbrückstr.
+
+Delbrückstraße
+.........................
+
+
+[addbusstop]
+Tel_Herthastr.
+HERTHASTRASSE
+Herthastr.
+
+Herthastraße
+.........................
+
+
+[addbusstop]
+Tel_Lynarstr.
+LYNARSTRASSE
+Lynarstr.
+
+Lynarstraße
+.........................
+
+
+[addbusstop]
+Tel_Bismarckplatz
+BISMARCKPLATZ
+Bismarckplatz
+
+Bismarckplatz
+.........................
+
+
+[addbusstop]
+Tel_Herbertstr.
+HERBERTSTRASSE
+Herbertstr.
+
+Herbertstraße
+.........................
+
+
+[addbusstop]
+Tel_Rathenauplatz
+RATHENAUPLATZ
+Rathenauplatz
+
+Rathenauplatz
+.........................
+
+
+[addbusstop]
+Tel_Rathenauplatz UA
+RATHENAUPLATZ
+Rathenauplatz
+
+Rathenauplatz
+.........................
+
+
+[addbusstop]
+Tel_S Halensee
+S HALENSEE
+S Halensee
+
+S Halensee
+.........................
+
+
+[addbusstop]
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+J.-FRIEDRICH-STR
+Kurfürstendamm/
+J.-Friedrich-Str.
+J.-Friedrich-Straße
+.........................
+
+
+[addbusstop]
+Tel_Lehniner Platz-Schaubuehne
+LEHNINER PLATZ
+Lehniner Platz/
+Schaubühne
+Lehniner Platz
+.........................
+
+
+[addbusstop]
+Tel_U Adenauerplatz
+U ADENAUERPLATZ
+U Adenauerplatz
+
+U Adenauerplatz
+.........................
+
+
+[addbusstop]
+Tel_Olivaer Platz
+OLIVAER PLATZ
+Olivaer Platz
+
+Olivaer Platz
+.........................
+
+
+[addbusstop]
+Tel_Bleibtreustr.
+BLEIBTREUSTRASSE
+Bleibtreustr.
+
+Bleibtreustraße
+.........................
+
+
+[addbusstop]
+Tel_U Uhlandstr.
+U UHLANDSTRASSE
+U Uhlandstr.
+
+U Uhlandstraße
+.........................
+
+
+[addbusstop]
+Tel_U Kurfuerstendamm
+U KURFÜRSTENDAMM
+U Kurfürstendamm
+
+U Kurfürstendamm
+.........................
+
+
+[addbusstop]
+Tel_Europa-Center
+EUROPA-CENTER
+Europa-Center
+
+Europa-Center
+.........................
+
+
+[addbusstop]
+Tel_S+U Zoologischer Garten Bhf
+S+U ZOO
+S+U Zoolog. Garten
+
+S+U Zoolog. Garten
+.........................
+
+
+[addbusstop]
+Tel_S+U Zoologischer Garten Bhf B
+S+U ZOO
+S+U Zoolog. Garten
+
+S+U Zoolog. Garten
+.........................
+
+
+[addbusstop]
+Tel_Hertzallee
+HERTZALLEE
+Hertzallee
+
+Hertzallee
+.........................
+
+
+[addbusstop]
+Tel_Hertzallee T
+HERTZALLEE
+Hertzallee
+
+Hertzallee
+.........................
+
+
+[addbusstop]
+Tel_Neuruppiner Str.
+NEURUPPINER STR.
+Neuruppiner Str.
+
+Neuruppiner Straße
+.........................
+
+
+[addbusstop]
+Tel_Neuruppiner Str. T
+NEURUPPINER STR.
+Neuruppiner Str.
+
+Neuruppiner Straße
+.........................
+
+
+[addbusstop]
+Tel_Fercher Str.
+FERCHER STRASSE
+Fercher Str.
+
+Fercher Straße
+.........................
+
+
+[addbusstop]
+Tel_Ludwigsfelder Str.
+LUDWIGSFELDER S.
+Ludwigsfelder Str.
+
+Ludwigsfelder Straße
+.........................
+
+
+[addbusstop]
+Tel_Loebellstr.
+LOEBELLSTRASSE
+Loebellstr.
+
+Loebellstraße
+.........................
+
+
+[addbusstop]
+Tel_Radtkestr.
+RADTKESTRASSE
+Radtkestr.
+
+Radtkestraße
+.........................
+
+
+[addbusstop]
+Tel_Camphausenstr.
+CAMPHAUSENSTR.
+Camphausenstr.
+
+Camphausenstraße
+.........................
+
+
+[addbusstop]
+Tel_Schrockstr.
+SCHROCKSTRASSE
+Schrockstr.
+
+Schrockstraße
+.........................
+
+
+[addbusstop]
+Tel_Machnower Str.-Berlepschstr.
+MACHNOWER STR./B
+Machnower Str./
+Berlepschstr.
+Machnower Str./Berle
+.........................
+
+
+[addbusstop]
+Tel_Waltraudstr.
+WALTRAUDSTRASSE
+Waltraudstr.
+
+Waltraudstraße
+.........................
+
+
+[addbusstop]
+Tel_Am Hegewinkel
+AM HEGEWINKEL
+Am Hegewinkel
+
+Am Hegewinkel
+.........................
+
+
+[addbusstop]
+Tel_Am Waldfriedhof
+AM WALDFRIEDHOF
+Am Waldfriedhof
+
+Am Waldfriedhof
+.........................
+
+
+[addbusstop]
+Tel_Am Waldfriedhof B
+AM WALDFRIEDHOF
+Am Waldfriedhof
+
+Am Waldfriedhof
+.........................
+
+
+[addbusstop]
+Tel_Finkenstr.
+FINKENSTRASSE
+Finkenstr.
+
+Finkenstraße
+.........................
+
+
+[addbusstop]
+Tel_Puecklerstr.
+PÜCKLERSTRASSE
+Pücklerstr.
+
+Pücklerstraße
+.........................
+
+
+[addbusstop]
+Tel_Messelstr.
+MESSELSTRASSE
+Messelstr.
+
+Messelstraße
+.........................
+
+
+[addbusstop]
+Tel_Roseneck
+ROSENECK
+Roseneck
+
+Roseneck
+.........................
+
+
+[addbusstop]
+Tel_Roseneck B
+ROSENECK
+Roseneck
+
+Roseneck
+.........................
+
+
+[addbusstop]
+Tel_Elsterplatz
+ELSTERPLATZ
+Elsterplatz
+
+Elsterplatz
+.........................
+
+
+[addbusstop]
+Tel_Elsterplatz UA
+ELSTERPLATZ
+Elsterplatz
+
+Elsterplatz
+.........................
+
+
+[addbusstop]
+Tel_Elsterplatz UE
+ELSTERPLATZ
+Elsterplatz
+
+Elsterplatz
+.........................
+
+
+[addbusstop]
+Tel_Forckenbeckstr.
+FORCKENBECKSTR.
+Forckenbeckstr.
+
+Forckenbeckstraße
+.........................
+
+
+[addbusstop]
+Tel_Salzbrunner Str.
+SALZBRUNNER STR.
+Salzbrunner Str.
+
+Salzbrunner Straße
+.........................
+
+
+[addbusstop]
+Tel_Cunostr.
+CUNOSTRASSE
+Cunostr.
+
+Cunostraße
+.........................
+
+
+[addbusstop]
+Tel_Friedrichsruher Str.
+FRIEDRICHSR. STR
+Friedrichsruher Str.
+
+Friedrichsruher Str.
+.........................
+
+
+[addbusstop]
+Tel_S Hohenzollerndamm
+S HOHENZOLLERND.
+S Hohenzollerndamm
+
+S Hohenzollerndamm
+.........................
+
+
+[addbusstop]
+Tel_Hoffmann-von-Fallersleben-Platz
+FALLERSLEBEN-PL.
+H-v.-Fallersleben-
+Platz
+H.-v.-Fallersleben-P
+.........................
+
+
+[addbusstop]
+Tel_U Fehrbelliner Platz
+U FEHRBELLINER P
+U Fehrbelliner Pl.
+
+U Fehrbelliner Platz
+.........................
+
+
+[addbusstop]
+Tel_U Fehrbelliner Platz B
+U FEHRBELLINER P
+U Fehrbelliner Pl.
+
+U Fehrbelliner Platz
+.........................
+
+
+[addbusstop]
+Tel_U Fehrbelliner Platz E
+U FEHRBELLINER P
+U Fehrbelliner Pl.
+
+U Fehrbelliner Platz
+.........................
+
+
+[addbusstop]
+Tel_Mansfelder Str.-Barstr.
+MANSFELDER STR.
+Mansfelder Str./
+Barstr.
+Mansfelder Str./Bars
+.........................
+
+
+[addbusstop]
+Tel_Elgersburger Str.
+ELGERSBURGER STR
+Elgersburger Str.
+
+Elgersburger Straße
+.........................
+
+
+[addbusstop]
+Tel_Elgersburger Str. UE
+ELGERSBURGER STR
+Elgersburger Str.
+
+Elgersburger Straße
+.........................
+
+
+[addbusstop]
+Tel_Wangenheimstr.
+WANGENHEIMSTR.
+Wangenheimstr.
+
+Wangenheimstraße
+.........................
+
+
+[addbusstop]
+Tel_Grieser Platz
+GRIESER PLATZ
+Grieser Platz
+
+Grieser Platz
+.........................
+
+
+[addbusstop]
+Tel_Seesener Str.
+SEESENER STRASSE
+Seesener Str.
+
+Seesener Straße
+.........................
+
+
+[addbusstop]
+Tel_Hochmeisterplatz
+HOCHMEISTERPLATZ
+Hochmeisterplatz
+
+Hochmeisterplatz
+.........................
+
+
+[addbusstop]
+Tel_Joachim-Friedrich-Str.-Westfaelische Str.
+WESTFÄLISCHE STR
+J.-Friedrich-Str./
+Westfälische Str.
+Westfälische Str.
+.........................
+
+
+[addbusstop]
+Tel_Postviertel-Paul-Lincke-Str.
+POSTVERTEL
+Postviertel/
+Paul-Lincke-Str.
+Postviertel
+.........................
+
+
+[addbusstop]
+Tel_Beethovenstr.-Kita
+BEETHOVENSTR./KI
+Beethovenstr./Kita
+
+Beethovenstr./Kita
+.........................
+
+
+[addbusstop]
+Tel_Oskar-Pollner-Str.
+OSKAR-POLLNER-S.
+Oskar-Pollner-Str.
+
+Oskar-Pollner-Straße
+.........................
+
+
+[addbusstop]
+Tel_Anne-Frank-Schule
+A.-FRANK-SCHULE
+Anne-Frank-Schule
+
+Anne-Frank-Schule
+.........................
+
+
+[addbusstop]
+Tel_Kanada-Allee
+KANADA-ALLEE
+Kanada-Allee
+
+Teltow Kanada-Allee
+.........................
+
+
+[addbusstop]
+Tel_Marktplatz
+TELT. MARKTPLATZ
+Marktplatz
+
+Teltow Marktplatz
+.........................
+
+
+[addbusstop]
+Tel_Iserstr.-Gesundheitszentrum
+ISERSTR./GESUNDH
+Iserstr./
+Gesundheitszentrum
+Iserstr./Gesundheits
+.........................
+
+
+[addbusstop]
+Tel_Bremer Str.
+BREMER STRASSE
+Teltow Bremer Str.
+
+Teltow Bremer Straße
+.........................
+
+
+[addbusstop]
+Tel_Iserstr. Sued
+ISERSTRASSE SÜD
+Iserstr. Süd
+
+Iserstraße Süd
+.........................
+
+
+[addbusstop]
+Tel_Stahnsdorfer Str.
+STAHNSDORFER STR
+Stahnsdorfer Str.
+
+Stahnsdorfer Straße
+.........................
+
+
+[addbusstop]
+Tel_Ruhlsdorf
+RUHLSDORF
+Ruhlsdorf
+
+Teltow Ruhlsdorf
+.........................
+
+
+[addbusstop]
+Tel_Heinersdorfer Weg-Reha
+HEINERSDORFER W.
+Heinersdorfer Weg
+
+Heinersdorfer Weg
+.........................
+
+
+[addbusstop]
+Tel_Bernhard-Lichtenberg-Str.
+B.-LICHTENBERG-S
+B.-Lichtenberg-Str
+
+B.-Lichtenberg-Str.
+.........................
+
+
+[addbusstop]
+Tel_Asternstr.
+ASTERNSTRASSE
+Asternstr.
+
+Teltow Asternstraße
+.........................
+
+
+[addbusstop]
+Tel_Lilienstr.
+LILIENSTRASSE
+Lilienstr.
+
+Teltow Lilienstraße
+.........................
+
+
+[addbusstop]
+Tel_Fliederstr.
+FLIEDERSTRASSE
+Fliederstr.
+
+Teltow Fliederstraße
+.........................
+
+
+[addbusstop]
+Tel_An den Eichen
+AN DEN EICHEN
+An den Eichen
+
+An den Eichen
+.........................
+
+
+[addbusstop]
+Tel_Green Park
+GREEN PARK
+Green Park
+
+Green Park
+.........................
+
+
+[addbusstop]
+Tel_Enzianweg
+ENZIANWEG
+Enzianweg
+
+Stahnsdorf Enzianweg
+.........................
+
+
+[addbusstop]
+Tel_Briefzentrum
+BRIEFZENTRUM
+Briefzentrum
+
+Briefzentrum
+.........................
+
+
+[addbusstop]
+Tel_Tellstr.
+TELLSTR.
+Tellstr.
+
+Stahnsdorf Tellstr.
+.........................
+
+
+[addbusstop]
+Tel_Gruener Weg
+GRÜNER WEG
+Grüner Weg
+
+Grüner Weg
+.........................
+
+
+[addbusstop]
+Tel_U Wittenbergplatz
+U WITTENBERGPL.
+U Wittenbergplatz
+
+U Wittenbergplatz
+.........................
+
+
+[addbusstop]
+Tel_U Wittenbergplatz T
+U WITTENBERGPL.
+U Wittenbergplatz
+
+U Wittenbergplatz
+.........................
+
+
+[addbusstop]
+Tel_S Teltow Stadt-Gonfrevillestr. T
+S TELTOW STADT
+S Teltow Stadt/
+Gonfrevillestr.
+S Teltow Stadt
+.........................
+
+
+[addbusstop]
+Tel_Rammrath-Bruecke T
+RAMMRATH-BRÜCKE
+Rammrath-Brücke
+
+Rammrath-Brücke
+.........................
+
+
+[addbusstop]
+Tel_Andreezeile T
+ANDREEZEILE
+Andreezeile
+
+Andreezeile
+.........................
+
+
+[addbusstop]
+Tel_U Oskar-Helene-Heim T
+U OSK.-HELENE-HM
+U Oskar-Helene-Hm.
+
+U Oskar-Helene-Heim
+.........................
+
+
+[addbusstop]
+Tel_Schrockstr. T
+SCHROCKSTRASSE
+Schrockstr.
+
+Schrockstraße
+.........................
+
+
+[addbusstop]
+Tel_Zehlendorf Eiche T
+ZEHLENDORF EICHE
+Zehlendorf Eiche
+
+Zehlendorf Eiche
+.........................
+
+
+[addbusstop]
+Tel_Terminus
+
+
+
+
+.........................
+
+
+[addbusstop]
+Tel_Rathenauplatz T
+RATHENAUPLATZ
+Rathenauplatz
+
+Rathenauplatz
+.........................
+
+
+[addbusstop]
+Tel_Wupperstr. T
+WUPPERSTRASSE
+Wupperstr.
+
+Wupperstraße
+.........................
+
+
+[addbusstop]
+Tel_Spanische Allee-Potsdamer Chaussee
+SPANISCHE ALLEE
+Spanische Allee/
+Potsdamer Chaussee
+Spanische Allee
+.........................
+
+
+[addbusstop]
+Tel_Am Rohrgarten
+AM ROHRGARTEN
+Am Rohrgarten
+
+Am Rohrgarten
+.........................
+
+
+[addbusstop]
+Tel_Lloyd-George-Wells-Str.
+LLOYD-G.-WELLS-S
+Lloyd-G.-Wells-Str.
+
+Lloyd-G.-Wells-Str.
+.........................
+
+
+[addbusstop]
+Tel_Spanische Allee-Potsdamer Chaussee B
+SPANISCHE ALLEE
+Spanische Allee/
+Potsdamer Chaussee
+Spanische Allee
+.........................
+
+
+
+
+
+
+######################################
+ TRIPS / ROUTES
+######################################
+
+
+Line 001, Route 01: Tel_Waldschaenke  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00101
+TEL_WALDSCHAENKE  >>  TEL_TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+18
+Tel_Waldschaenke
+Tel_Waldschaenke
+Tel_Stahnsdorfer Hof
+Tel_Puschkinstr.
+Tel_Schwarzer Weg
+Tel_Feuerwehr
+Tel_Warthestr.
+Tel_Havelstr.
+Tel_Striewitzweg
+Tel_Jahnstr.
+Tel_Ruhlsdorfer Platz
+Tel_Buergertreff
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Gustl-Sandtner-Str.
+Tel_Blumenstr.
+Tel_Mozartstr.
+Tel_Teltow Bahnhof
+Tel_Terminus
+
+
+Line 001, Route 02: Tel_Teltow Bahnhof  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00102
+TEL_TELTOW BAHNHOF  >>  TEL_TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+18
+Tel_Teltow Bahnhof
+Tel_Teltow Bahnhof
+Tel_Mozartstr.
+Tel_Blumenstr.
+Tel_Gustl-Sandtner-Str.
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Buergertreff
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Feuerwehr
+Tel_Schwarzer Weg
+Tel_Puschkinstr.
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+Tel_Terminus
+
+
+Line 001, Route 03: Tel_Puschkinstr.  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00103
+TEL_PUSCHKINSTR.  >>  TEL_TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+15
+Tel_Puschkinstr.
+Tel_Schwarzer Weg
+Tel_Feuerwehr
+Tel_Warthestr.
+Tel_Havelstr.
+Tel_Striewitzweg
+Tel_Jahnstr.
+Tel_Ruhlsdorfer Platz
+Tel_Buergertreff
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Gustl-Sandtner-Str.
+Tel_Blumenstr.
+Tel_Mozartstr.
+Tel_Teltow Bahnhof
+Tel_Terminus
+
+
+Line 010, Route 01: Tel_Hertzallee  >>  Tel_S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01001
+TEL_HERTZALLEE  >>  TEL_S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+28
+Tel_Hertzallee
+Tel_Hertzallee
+Tel_S+U Zoologischer Garten Bhf
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_S Halensee
+Tel_Bismarckplatz
+Tel_Joseph-Joachim-Platz
+Tel_Teplitzer Str.
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_U Oskar-Helene-Heim
+Tel_Schuetzallee
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Alt-Schoenow C
+Tel_Zehlendorfer Str.
+Tel_Buergertreff
+Tel_S Teltow Stadt-Gonfrevillestr. T
+Tel_S Teltow Stadt-Gonfrevillestr.
+
+
+Line 010, Route 02: Tel_S Teltow Stadt-Gonfrevillestr.  >>  Tel_Hertzallee T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01002
+TEL_S TELTOW STADT-GONFREVILLESTR.  >>  TEL_HERTZALLEE T
+122
+XXX
+
+[infosystem_busstop_list]
+27
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Buergertreff
+Tel_Zehlendorfer Str.
+Tel_Alt-Schoenow
+Tel_Beeskowdamm
+Tel_Am Rehwechsel
+Tel_Am Birkenknick
+Tel_Laehrstr.
+Tel_Leo-Baeck-Str.
+Tel_Schweizerhofpark
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Schuetzallee
+Tel_U Oskar-Helene-Heim
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Teplitzer Str.
+Tel_Joseph-Joachim-Platz
+Tel_Bismarckplatz
+Tel_S Halensee
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_S+U Zoologischer Garten Bhf
+Tel_Hertzallee
+Tel_Hertzallee T
+
+
+Line 010, Route 03: Tel_Hertzallee  >>  Tel_Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01003
+TEL_HERTZALLEE  >>  TEL_RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+32
+Tel_Hertzallee
+Tel_Hertzallee
+Tel_S+U Zoologischer Garten Bhf
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_S Halensee
+Tel_Bismarckplatz
+Tel_Joseph-Joachim-Platz
+Tel_Teplitzer Str.
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_U Oskar-Helene-Heim
+Tel_Schuetzallee
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Alt-Schoenow C
+Tel_Zehlendorfer Str.
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Rammrath-Bruecke T
+Tel_Rammrath-Bruecke
+
+
+Line 010, Route 04: Tel_Rammrath-Bruecke  >>  Tel_Hertzallee T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01004
+TEL_RAMMRATH-BRUECKE  >>  TEL_HERTZALLEE T
+122
+XXX
+
+[infosystem_busstop_list]
+31
+Tel_Rammrath-Bruecke
+Tel_Rammrath-Bruecke
+Tel_Warthestr.
+Tel_Havelstr.
+Tel_Striewitzweg
+Tel_Jahnstr.
+Tel_Ruhlsdorfer Platz
+Tel_Zehlendorfer Str.
+Tel_Alt-Schoenow
+Tel_Beeskowdamm
+Tel_Am Rehwechsel
+Tel_Am Birkenknick
+Tel_Laehrstr.
+Tel_Leo-Baeck-Str.
+Tel_Schweizerhofpark
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Schuetzallee
+Tel_U Oskar-Helene-Heim
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Teplitzer Str.
+Tel_Joseph-Joachim-Platz
+Tel_Bismarckplatz
+Tel_S Halensee
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_S+U Zoologischer Garten Bhf
+Tel_Hertzallee
+Tel_Hertzallee T
+
+
+Line 010, Route 05: Tel_Hertzallee  >>  Tel_Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01005
+TEL_HERTZALLEE  >>  TEL_ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+24
+Tel_Hertzallee
+Tel_Hertzallee
+Tel_S+U Zoologischer Garten Bhf
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_S Halensee
+Tel_Bismarckplatz
+Tel_Joseph-Joachim-Platz
+Tel_Teplitzer Str.
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_U Oskar-Helene-Heim
+Tel_Schuetzallee
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Andreezeile T
+Tel_Andreezeile
+
+
+Line 010, Route 06: Tel_Andreezeile  >>  Tel_Hertzallee T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01006
+TEL_ANDREEZEILE  >>  TEL_HERTZALLEE T
+122
+XXX
+
+[infosystem_busstop_list]
+23
+Tel_Andreezeile
+Tel_Andreezeile
+Tel_Am Rehwechsel
+Tel_Am Birkenknick
+Tel_Laehrstr.
+Tel_Leo-Baeck-Str.
+Tel_Schweizerhofpark
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Schuetzallee
+Tel_U Oskar-Helene-Heim
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Teplitzer Str.
+Tel_Joseph-Joachim-Platz
+Tel_Bismarckplatz
+Tel_S Halensee
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_S+U Zoologischer Garten Bhf
+Tel_Hertzallee
+Tel_Hertzallee T
+
+
+Line 010, Route 07: Tel_Zehlendorf Eiche  >>  Tel_Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01007
+TEL_ZEHLENDORF EICHE  >>  TEL_RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+18
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Alt-Schoenow C
+Tel_Zehlendorfer Str.
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Rammrath-Bruecke T
+Tel_Rammrath-Bruecke
+
+
+Line 010, Route 08: Tel_S Halensee  >>  Tel_Hertzallee T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01008
+TEL_S HALENSEE  >>  TEL_HERTZALLEE T
+122
+XXX
+
+[infosystem_busstop_list]
+8
+Tel_S Halensee
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_S+U Zoologischer Garten Bhf
+Tel_Hertzallee
+Tel_Hertzallee T
+
+
+Line 010, Route 09: Tel_U Oskar-Helene-Heim  >>  Tel_Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01009
+TEL_U OSKAR-HELENE-HEIM  >>  TEL_RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+20
+Tel_U Oskar-Helene-Heim
+Tel_Schuetzallee
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Alt-Schoenow C
+Tel_Zehlendorfer Str.
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Rammrath-Bruecke T
+Tel_Rammrath-Bruecke
+
+
+Line 010, Route 11: Tel_S+U Zoologischer Garten Bhf  >>  Tel_Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01011
+TEL_S+U ZOOLOGISCHER GARTEN BHF  >>  TEL_RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+30
+Tel_S+U Zoologischer Garten Bhf
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_S Halensee
+Tel_Bismarckplatz
+Tel_Joseph-Joachim-Platz
+Tel_Teplitzer Str.
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_U Oskar-Helene-Heim
+Tel_Schuetzallee
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Alt-Schoenow C
+Tel_Zehlendorfer Str.
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Rammrath-Bruecke T
+Tel_Rammrath-Bruecke
+
+
+Line 010, Route 51: Tel_Hertzallee  >>  Tel_Schrockstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01051
+TEL_HERTZALLEE  >>  TEL_SCHROCKSTR.
+099
+XXX
+
+[infosystem_busstop_list]
+35
+Tel_Hertzallee
+Tel_Hertzallee
+Tel_S+U Zoologischer Garten Bhf
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Bleibtreustr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_Lehniner Platz-Schaubuehne
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_Joachim-Friedrich-Str.-Westfaelische Str.
+Tel_Seesener Str.
+Tel_S Hohenzollerndamm
+Tel_Friedrichsruher Str.
+Tel_Cunostr.
+Tel_Salzbrunner Str.
+Tel_Forckenbeckstr.
+Tel_Elsterplatz UA
+Tel_Roseneck
+Tel_Messelstr.
+Tel_Puecklerstr.
+Tel_Finkenstr.
+Tel_Koenigin-Luise-Str.-Clayallee UE
+Tel_Alliiertenmuseum
+Tel_Huettenweg
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.-Berlepschstr.
+Tel_Schrockstr. T
+Tel_Schrockstr.
+
+
+Line 010, Route 52: Tel_Machnower Str.-Berlepschstr.  >>  Tel_Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01052
+TEL_MACHNOWER STR.-BERLEPSCHSTR.  >>  TEL_HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+33
+Tel_Schrockstr.
+Tel_Machnower Str.-Berlepschstr.
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_Huettenweg
+Tel_Alliiertenmuseum
+Tel_Koenigin-Luise-Str.-Clayallee UA
+Tel_Finkenstr.
+Tel_Puecklerstr.
+Tel_Messelstr.
+Tel_Roseneck
+Tel_Elsterplatz UE
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Seesener Str.
+Tel_Joachim-Friedrich-Str.-Westfaelische Str.
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_Lehniner Platz-Schaubuehne
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_Bleibtreustr.
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_S+U Zoologischer Garten Bhf B
+Tel_Hertzallee T
+Tel_Hertzallee
+
+
+Line 010, Route 53: Tel_Hertzallee  >>  Tel_Rathaus Zehlendorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01053
+TEL_HERTZALLEE  >>  TEL_RATHAUS ZEHLENDORF
+091
+XXX
+
+[infosystem_busstop_list]
+32
+Tel_Hertzallee
+Tel_Hertzallee
+Tel_S+U Zoologischer Garten Bhf
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Bleibtreustr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_Lehniner Platz-Schaubuehne
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_Joachim-Friedrich-Str.-Westfaelische Str.
+Tel_Seesener Str.
+Tel_S Hohenzollerndamm
+Tel_Friedrichsruher Str.
+Tel_Cunostr.
+Tel_Salzbrunner Str.
+Tel_Forckenbeckstr.
+Tel_Elsterplatz UA
+Tel_Roseneck
+Tel_Messelstr.
+Tel_Puecklerstr.
+Tel_Finkenstr.
+Tel_Koenigin-Luise-Str.-Clayallee UE
+Tel_Alliiertenmuseum
+Tel_Huettenweg
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_Rathaus Zehlendorf
+
+
+Line 010, Route 54: Tel_Zehlendorf Eiche  >>  Tel_Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01054
+TEL_ZEHLENDORF EICHE  >>  TEL_HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+30
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_Huettenweg
+Tel_Alliiertenmuseum
+Tel_Koenigin-Luise-Str.-Clayallee UA
+Tel_Finkenstr.
+Tel_Puecklerstr.
+Tel_Messelstr.
+Tel_Roseneck
+Tel_Elsterplatz UE
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Seesener Str.
+Tel_Joachim-Friedrich-Str.-Westfaelische Str.
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_Lehniner Platz-Schaubuehne
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_Bleibtreustr.
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_S+U Zoologischer Garten Bhf B
+Tel_Hertzallee T
+Tel_Hertzallee
+
+
+Line 010, Route 56: Tel_Machnower Str.-Berlepschstr.  >>  Tel_U Oskar-Helene-Heim T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01056
+TEL_MACHNOWER STR.-BERLEPSCHSTR.  >>  TEL_U OSKAR-HELENE-HEIM T
+080
+XXX
+
+[infosystem_busstop_list]
+9
+Tel_Schrockstr.
+Tel_Machnower Str.-Berlepschstr.
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim T
+
+
+Line 012, Route 01: Tel_Zehlendorf Eiche  >>  Tel_Waldschaenke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01201
+TEL_ZEHLENDORF EICHE  >>  TEL_WALDSCHAENKE
+020
+XXX
+
+[infosystem_busstop_list]
+22
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.-Berlepschstr.
+Tel_Camphausenstr.
+Tel_Radtkestr.
+Tel_Loebellstr.
+Tel_Ludwigsfelder Str.
+Tel_Fercher Str.
+Tel_Neuruppiner Str.
+Tel_Beeskowdamm
+Tel_Alt-Schoenow
+Tel_Zehlendorfer Str.
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Feuerwehr
+Tel_Schwarzer Weg
+Tel_Puschkinstr.
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+
+
+Line 012, Route 02: Tel_Waldschaenke  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01202
+TEL_WALDSCHAENKE  >>  TEL_TERMINUS
+121
+XXX
+
+[infosystem_busstop_list]
+23
+Tel_Waldschaenke
+Tel_Stahnsdorfer Hof
+Tel_Puschkinstr.
+Tel_Schwarzer Weg
+Tel_Feuerwehr
+Tel_Warthestr.
+Tel_Havelstr.
+Tel_Striewitzweg
+Tel_Jahnstr.
+Tel_Ruhlsdorfer Platz
+Tel_Zehlendorfer Str.
+Tel_Alt-Schoenow
+Tel_Beeskowdamm
+Tel_Neuruppiner Str.
+Tel_Fercher Str.
+Tel_Ludwigsfelder Str.
+Tel_Loebellstr.
+Tel_Radtkestr.
+Tel_Camphausenstr.
+Tel_Machnower Str.-Berlepschstr.
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Terminus
+
+
+Line 012, Route 03: Tel_Zehlendorf Eiche  >>  Tel_Waldschaenke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01203
+TEL_ZEHLENDORF EICHE  >>  TEL_WALDSCHAENKE
+116
+XXX
+
+[infosystem_busstop_list]
+22
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.-Berlepschstr.
+Tel_Camphausenstr.
+Tel_Radtkestr.
+Tel_Loebellstr.
+Tel_Ludwigsfelder Str.
+Tel_Fercher Str.
+Tel_Neuruppiner Str.
+Tel_Beeskowdamm
+Tel_Alt-Schoenow
+Tel_Zehlendorfer Str.
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Feuerwehr
+Tel_Schwarzer Weg
+Tel_Puschkinstr.
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+
+
+Line 019, Route 01: Tel_Herbertstr.  >>  Tel_U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01901
+TEL_HERBERTSTR.  >>  TEL_U WITTENBERGPLATZ
+070
+XXX
+
+[infosystem_busstop_list]
+13
+Tel_Herbertstr.
+Tel_Rathenauplatz
+Tel_S Halensee
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_Lehniner Platz-Schaubuehne
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_Bleibtreustr.
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_Europa-Center
+Tel_U Wittenbergplatz T
+Tel_U Wittenbergplatz
+
+
+Line 019, Route 02: Tel_U Wittenbergplatz  >>  Tel_Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01902
+TEL_U WITTENBERGPLATZ  >>  TEL_HERBERTSTR.
+042
+XXX
+
+[infosystem_busstop_list]
+14
+Tel_U Wittenbergplatz
+Tel_U Wittenbergplatz
+Tel_Europa-Center
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Bleibtreustr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_Lehniner Platz-Schaubuehne
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_S Halensee
+Tel_Rathenauplatz UA
+Tel_Bismarckplatz
+Tel_Herbertstr.
+
+
+Line 019, Route 03: Tel_Rathenauplatz  >>  Tel_U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01903
+TEL_RATHENAUPLATZ  >>  TEL_U WITTENBERGPLATZ
+070
+XXX
+
+[infosystem_busstop_list]
+12
+Tel_Rathenauplatz
+Tel_S Halensee
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_Lehniner Platz-Schaubuehne
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_Bleibtreustr.
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_Europa-Center
+Tel_U Wittenbergplatz T
+Tel_U Wittenbergplatz
+
+
+Line 019, Route 04: Tel_U Wittenbergplatz  >>  Tel_Rathenauplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01904
+TEL_U WITTENBERGPLATZ  >>  TEL_RATHENAUPLATZ
+092
+XXX
+
+[infosystem_busstop_list]
+13
+Tel_U Wittenbergplatz
+Tel_U Wittenbergplatz
+Tel_Europa-Center
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Bleibtreustr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_Lehniner Platz-Schaubuehne
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_S Halensee
+Tel_Rathenauplatz T
+Tel_Rathenauplatz
+
+
+Line 019, Route 05: Tel_Herbertstr.  >>  Tel_U Adenauerplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01905
+TEL_HERBERTSTR.  >>  TEL_U ADENAUERPLATZ
+014
+XXX
+
+[infosystem_busstop_list]
+6
+Tel_Herbertstr.
+Tel_Rathenauplatz
+Tel_S Halensee
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_Lehniner Platz-Schaubuehne
+Tel_U Adenauerplatz
+
+
+Line 019, Route 06: Tel_U Wittenbergplatz  >>  Tel_Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01906
+TEL_U WITTENBERGPLATZ  >>  TEL_HERBERTSTR.
+045
+XXX
+
+[infosystem_busstop_list]
+14
+Tel_U Wittenbergplatz
+Tel_U Wittenbergplatz
+Tel_Europa-Center
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Bleibtreustr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_Lehniner Platz-Schaubuehne
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_S Halensee
+Tel_Rathenauplatz UA
+Tel_Bismarckplatz
+Tel_Herbertstr.
+
+
+Line 019, Route 07: Tel_U Adenauerplatz  >>  Tel_U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01907
+TEL_U ADENAUERPLATZ  >>  TEL_U WITTENBERGPLATZ
+070
+XXX
+
+[infosystem_busstop_list]
+8
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_Bleibtreustr.
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_Europa-Center
+Tel_U Wittenbergplatz T
+Tel_U Wittenbergplatz
+
+
+Line 019, Route 08: Tel_U Wittenbergplatz  >>  Tel_U Adenauerplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01908
+TEL_U WITTENBERGPLATZ  >>  TEL_U ADENAUERPLATZ
+014
+XXX
+
+[infosystem_busstop_list]
+8
+Tel_U Wittenbergplatz
+Tel_U Wittenbergplatz
+Tel_Europa-Center
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Bleibtreustr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+
+
+Line 029, Route 01: Tel_Roseneck  >>  Tel_U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02901
+TEL_ROSENECK  >>  TEL_U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+20
+Tel_Roseneck
+Tel_Roseneck
+Tel_Teplitzer Str.
+Tel_Joseph-Joachim-Platz
+Tel_Delbrueckstr.
+Tel_Herthastr.
+Tel_Lynarstr.
+Tel_Bismarckplatz
+Tel_Rathenauplatz
+Tel_S Halensee
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_Lehniner Platz-Schaubuehne
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_Bleibtreustr.
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_Europa-Center
+Tel_U Wittenbergplatz T
+Tel_U Wittenbergplatz
+
+
+Line 029, Route 02: Tel_U Wittenbergplatz  >>  Tel_Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02902
+TEL_U WITTENBERGPLATZ  >>  TEL_ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+20
+Tel_U Wittenbergplatz
+Tel_U Wittenbergplatz
+Tel_Europa-Center
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Bleibtreustr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_Lehniner Platz-Schaubuehne
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_S Halensee
+Tel_Rathenauplatz
+Tel_Bismarckplatz
+Tel_Lynarstr.
+Tel_Herthastr.
+Tel_Delbrueckstr.
+Tel_Joseph-Joachim-Platz
+Tel_Teplitzer Str.
+Tel_Roseneck B
+Tel_Roseneck
+
+
+Line 029, Route 03: Tel_Rathenauplatz  >>  Tel_U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02903
+TEL_RATHENAUPLATZ  >>  TEL_U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+12
+Tel_Rathenauplatz
+Tel_S Halensee
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_Lehniner Platz-Schaubuehne
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_Bleibtreustr.
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_Europa-Center
+Tel_U Wittenbergplatz T
+Tel_U Wittenbergplatz
+
+
+Line 029, Route 04: Tel_U Wittenbergplatz  >>  Tel_Rathenauplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02904
+TEL_U WITTENBERGPLATZ  >>  TEL_RATHENAUPLATZ
+092
+XXX
+
+[infosystem_busstop_list]
+13
+Tel_U Wittenbergplatz
+Tel_U Wittenbergplatz
+Tel_Europa-Center
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Bleibtreustr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_Lehniner Platz-Schaubuehne
+Tel_Kurfuerstendamm-Joachim-Friedrich-Str.
+Tel_S Halensee
+Tel_Rathenauplatz T
+Tel_Rathenauplatz
+
+
+Line 029, Route 05: Tel_U Adenauerplatz  >>  Tel_U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02905
+TEL_U ADENAUERPLATZ  >>  TEL_U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+8
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_Bleibtreustr.
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_Europa-Center
+Tel_U Wittenbergplatz T
+Tel_U Wittenbergplatz
+
+
+Line 043, Route 01: Tel_Waldschaenke  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+04301
+TEL_WALDSCHAENKE  >>  TEL_TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+19
+Tel_Waldschaenke
+Tel_Waldschaenke
+Tel_Stahnsdorfer Hof
+Tel_Puschkinstr.
+Tel_Schwarzer Weg
+Tel_Feuerwehr
+Tel_Rammrath-Bruecke
+Tel_Warthestr.
+Tel_Havelstr.
+Tel_Striewitzweg
+Tel_Jahnstr.
+Tel_Ruhlsdorfer Platz
+Tel_Buergertreff
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Gustl-Sandtner-Str.
+Tel_Blumenstr.
+Tel_Mozartstr.
+Tel_Teltow Bahnhof
+Tel_Terminus
+
+
+Line 043, Route 02: Tel_Teltow Bahnhof  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+04302
+TEL_TELTOW BAHNHOF  >>  TEL_TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+18
+Tel_Teltow Bahnhof
+Tel_Teltow Bahnhof
+Tel_Mozartstr.
+Tel_Blumenstr.
+Tel_Gustl-Sandtner-Str.
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Buergertreff
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Rammrath-Bruecke
+Tel_Feuerwehr
+Tel_Schwarzer Weg
+Tel_Puschkinstr.
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+
+
+Line 084, Route 01: Tel_Wupperstr.  >>  Tel_Zehlendorf Eiche
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08401
+TEL_WUPPERSTR.  >>  TEL_ZEHLENDORF EICHE
+121
+XXX
+
+[infosystem_busstop_list]
+13
+Tel_Wupperstr.
+Tel_Wupperstr.
+Tel_Beeskowdamm
+Tel_Am Rehwechsel
+Tel_Am Birkenknick
+Tel_Laehrstr.
+Tel_Leo-Baeck-Str.
+Tel_Schweizerhofpark
+Tel_Schoenower Park
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche B
+Tel_Zehlendorf Eiche T
+Tel_Zehlendorf Eiche
+
+
+Line 084, Route 02: Tel_Zehlendorf Eiche  >>  Tel_Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08402
+TEL_ZEHLENDORF EICHE  >>  TEL_WUPPERSTR.
+111
+XXX
+
+[infosystem_busstop_list]
+13
+Tel_Zehlendorf Eiche
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schoenower Park
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Wupperstr. T
+Tel_Wupperstr.
+
+
+Line 084, Route 03: Tel_Zehlendorf Eiche  >>  Tel_Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08403
+TEL_ZEHLENDORF EICHE  >>  TEL_WUPPERSTR.
+016
+XXX
+
+[infosystem_busstop_list]
+13
+Tel_Zehlendorf Eiche
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schoenower Park
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Wupperstr. T
+Tel_Wupperstr.
+
+
+Line 110, Route 01: Tel_Hertzallee  >>  Tel_Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11001
+TEL_HERTZALLEE  >>  TEL_ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+17
+Tel_Hertzallee
+Tel_Hertzallee
+Tel_S+U Zoologischer Garten Bhf
+Tel_U Kurfuerstendamm
+Tel_U Uhlandstr.
+Tel_Bleibtreustr.
+Tel_Olivaer Platz
+Tel_U Adenauerplatz
+Tel_Hochmeisterplatz
+Tel_Seesener Str.
+Tel_Grieser Platz
+Tel_Wangenheimstr.
+Tel_Herthastr.
+Tel_Elgersburger Str.
+Tel_Elsterplatz UA
+Tel_Roseneck B
+Tel_Roseneck
+
+
+Line 110, Route 02: Tel_Roseneck  >>  Tel_Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11002
+TEL_ROSENECK  >>  TEL_HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+17
+Tel_Roseneck
+Tel_Roseneck
+Tel_Roseneck
+Tel_Elgersburger Str. UE
+Tel_Herthastr.
+Tel_Wangenheimstr.
+Tel_Grieser Platz
+Tel_Seesener Str.
+Tel_Hochmeisterplatz
+Tel_U Adenauerplatz
+Tel_Olivaer Platz
+Tel_Bleibtreustr.
+Tel_U Uhlandstr.
+Tel_U Kurfuerstendamm
+Tel_S+U Zoologischer Garten Bhf B
+Tel_Hertzallee T
+Tel_Hertzallee
+
+
+Line 110, Route 03: Tel_Hochmeisterplatz  >>  Tel_Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11003
+TEL_HOCHMEISTERPLATZ  >>  TEL_ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+9
+Tel_Hochmeisterplatz
+Tel_Seesener Str.
+Tel_Grieser Platz
+Tel_Wangenheimstr.
+Tel_Herthastr.
+Tel_Elgersburger Str.
+Tel_Elsterplatz UA
+Tel_Roseneck B
+Tel_Roseneck
+
+
+Line 115, Route 01: Tel_Spanische Allee-Potsdamer Chaussee  >>  Tel_U Fehrbelliner Platz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11501
+TEL_SPANISCHE ALLEE-POTSDAMER CHAUSSEE  >>  TEL_U FEHRBELLINER PLATZ
+032
+XXX
+
+[infosystem_busstop_list]
+32
+Tel_Spanische Allee-Potsdamer Chaussee
+Tel_Am Rohrgarten
+Tel_Lloyd-George-Wells-Str.
+Tel_Neuruppiner Str.
+Tel_Fercher Str.
+Tel_Ludwigsfelder Str.
+Tel_Loebellstr.
+Tel_Radtkestr.
+Tel_Camphausenstr.
+Tel_Machnower Str.-Berlepschstr.
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_Huettenweg
+Tel_Alliiertenmuseum
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Finkenstr.
+Tel_Puecklerstr.
+Tel_Messelstr.
+Tel_Roseneck
+Tel_Elsterplatz
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_U Fehrbelliner Platz B
+Tel_U Fehrbelliner Platz E
+
+
+Line 115, Route 02: Tel_U Fehrbelliner Platz  >>  Tel_Spanische Allee-Potsdamer Chaussee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11502
+TEL_U FEHRBELLINER PLATZ  >>  TEL_SPANISCHE ALLEE-POTSDAMER CHAUSSEE
+103
+XXX
+
+[infosystem_busstop_list]
+35
+Tel_U Fehrbelliner Platz
+Tel_Mansfelder Str.-Barstr.
+Tel_U Fehrbelliner Platz
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_S Hohenzollerndamm
+Tel_Friedrichsruher Str.
+Tel_Cunostr.
+Tel_Salzbrunner Str.
+Tel_Forckenbeckstr.
+Tel_Elsterplatz
+Tel_Roseneck
+Tel_Messelstr.
+Tel_Puecklerstr.
+Tel_Finkenstr.
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Alliiertenmuseum
+Tel_Huettenweg
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.-Berlepschstr.
+Tel_Camphausenstr.
+Tel_Radtkestr.
+Tel_Loebellstr.
+Tel_Ludwigsfelder Str.
+Tel_Fercher Str.
+Tel_Neuruppiner Str.
+Tel_Lloyd-George-Wells-Str.
+Tel_Am Rohrgarten
+Tel_Spanische Allee-Potsdamer Chaussee B
+Tel_Spanische Allee-Potsdamer Chaussee
+
+
+Line 115, Route 03: Tel_Neuruppiner Str.  >>  Tel_U Fehrbelliner Platz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11503
+TEL_NEURUPPINER STR.  >>  TEL_U FEHRBELLINER PLATZ
+032
+XXX
+
+[infosystem_busstop_list]
+30
+Tel_Neuruppiner Str.
+Tel_Neuruppiner Str.
+Tel_Fercher Str.
+Tel_Ludwigsfelder Str.
+Tel_Loebellstr.
+Tel_Radtkestr.
+Tel_Camphausenstr.
+Tel_Machnower Str.-Berlepschstr.
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_Huettenweg
+Tel_Alliiertenmuseum
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Finkenstr.
+Tel_Puecklerstr.
+Tel_Messelstr.
+Tel_Roseneck
+Tel_Elsterplatz
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_U Fehrbelliner Platz B
+Tel_U Fehrbelliner Platz E
+
+
+Line 115, Route 04: Tel_U Fehrbelliner Platz  >>  Tel_Neuruppiner Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11504
+TEL_U FEHRBELLINER PLATZ  >>  TEL_NEURUPPINER STR.
+076
+XXX
+
+[infosystem_busstop_list]
+32
+Tel_U Fehrbelliner Platz
+Tel_Mansfelder Str.-Barstr.
+Tel_U Fehrbelliner Platz
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_S Hohenzollerndamm
+Tel_Friedrichsruher Str.
+Tel_Cunostr.
+Tel_Salzbrunner Str.
+Tel_Forckenbeckstr.
+Tel_Elsterplatz
+Tel_Roseneck
+Tel_Messelstr.
+Tel_Puecklerstr.
+Tel_Finkenstr.
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Alliiertenmuseum
+Tel_Huettenweg
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.-Berlepschstr.
+Tel_Camphausenstr.
+Tel_Radtkestr.
+Tel_Loebellstr.
+Tel_Ludwigsfelder Str.
+Tel_Fercher Str.
+Tel_Neuruppiner Str. T
+Tel_Neuruppiner Str.
+
+
+Line 115, Route 05: Tel_Roseneck  >>  Tel_U Fehrbelliner Platz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11505
+TEL_ROSENECK  >>  TEL_U FEHRBELLINER PLATZ
+032
+XXX
+
+[infosystem_busstop_list]
+11
+Tel_Roseneck
+Tel_Roseneck
+Tel_Roseneck
+Tel_Elsterplatz
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_U Fehrbelliner Platz B
+Tel_U Fehrbelliner Platz E
+
+
+Line 115, Route 06: Tel_Mansfelder Str.-Barstr.  >>  Tel_Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11506
+TEL_MANSFELDER STR.-BARSTR.  >>  TEL_ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+11
+Tel_Mansfelder Str.-Barstr.
+Tel_U Fehrbelliner Platz
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_S Hohenzollerndamm
+Tel_Friedrichsruher Str.
+Tel_Cunostr.
+Tel_Salzbrunner Str.
+Tel_Forckenbeckstr.
+Tel_Elsterplatz
+Tel_Roseneck B
+Tel_Roseneck
+
+
+Line 115, Route 07: Tel_Zehlendorf Eiche  >>  Tel_U Fehrbelliner Platz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11507
+TEL_ZEHLENDORF EICHE  >>  TEL_U FEHRBELLINER PLATZ
+032
+XXX
+
+[infosystem_busstop_list]
+21
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_Huettenweg
+Tel_Alliiertenmuseum
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Finkenstr.
+Tel_Puecklerstr.
+Tel_Messelstr.
+Tel_Roseneck
+Tel_Elsterplatz
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_U Fehrbelliner Platz B
+Tel_U Fehrbelliner Platz E
+
+
+Line 115, Route 08: Tel_U Fehrbelliner Platz  >>  Tel_Zehlendorf Eiche T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11508
+TEL_U FEHRBELLINER PLATZ  >>  TEL_ZEHLENDORF EICHE T
+121
+XXX
+
+[infosystem_busstop_list]
+23
+Tel_U Fehrbelliner Platz
+Tel_Mansfelder Str.-Barstr.
+Tel_U Fehrbelliner Platz
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_S Hohenzollerndamm
+Tel_Friedrichsruher Str.
+Tel_Cunostr.
+Tel_Salzbrunner Str.
+Tel_Forckenbeckstr.
+Tel_Elsterplatz
+Tel_Roseneck
+Tel_Messelstr.
+Tel_Puecklerstr.
+Tel_Finkenstr.
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Alliiertenmuseum
+Tel_Huettenweg
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche T
+
+
+Line 115, Route 09: Tel_Rathaus Zehlendorf  >>  Tel_U Fehrbelliner Platz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11509
+TEL_RATHAUS ZEHLENDORF  >>  TEL_U FEHRBELLINER PLATZ
+032
+XXX
+
+[infosystem_busstop_list]
+23
+Tel_Rathaus Zehlendorf
+Tel_Rathaus Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_Huettenweg
+Tel_Alliiertenmuseum
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Finkenstr.
+Tel_Puecklerstr.
+Tel_Messelstr.
+Tel_Roseneck
+Tel_Elsterplatz
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_U Fehrbelliner Platz B
+Tel_U Fehrbelliner Platz E
+
+
+Line 115, Route 11: Tel_Neuruppiner Str.  >>  Tel_U Fehrbelliner Platz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11511
+TEL_NEURUPPINER STR.  >>  TEL_U FEHRBELLINER PLATZ
+033
+XXX
+
+[infosystem_busstop_list]
+29
+Tel_Neuruppiner Str.
+Tel_Neuruppiner Str.
+Tel_Fercher Str.
+Tel_Ludwigsfelder Str.
+Tel_Loebellstr.
+Tel_Radtkestr.
+Tel_Camphausenstr.
+Tel_Machnower Str.-Berlepschstr.
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_Huettenweg
+Tel_Alliiertenmuseum
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Finkenstr.
+Tel_Puecklerstr.
+Tel_Messelstr.
+Tel_Roseneck
+Tel_Elsterplatz
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_U Fehrbelliner Platz
+
+
+Line 115, Route 12: Tel_U Fehrbelliner Platz  >>  Tel_Neuruppiner Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11512
+TEL_U FEHRBELLINER PLATZ  >>  TEL_NEURUPPINER STR.
+076
+XXX
+
+[infosystem_busstop_list]
+30
+Tel_U Fehrbelliner Platz
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_S Hohenzollerndamm
+Tel_Friedrichsruher Str.
+Tel_Cunostr.
+Tel_Salzbrunner Str.
+Tel_Forckenbeckstr.
+Tel_Elsterplatz
+Tel_Roseneck
+Tel_Messelstr.
+Tel_Puecklerstr.
+Tel_Finkenstr.
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Alliiertenmuseum
+Tel_Huettenweg
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.-Berlepschstr.
+Tel_Camphausenstr.
+Tel_Radtkestr.
+Tel_Loebellstr.
+Tel_Ludwigsfelder Str.
+Tel_Fercher Str.
+Tel_Neuruppiner Str. T
+Tel_Neuruppiner Str.
+
+
+Line 115, Route 13: Tel_Roseneck  >>  Tel_U Fehrbelliner Platz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11513
+TEL_ROSENECK  >>  TEL_U FEHRBELLINER PLATZ
+033
+XXX
+
+[infosystem_busstop_list]
+10
+Tel_Roseneck
+Tel_Roseneck
+Tel_Roseneck
+Tel_Elsterplatz
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_U Fehrbelliner Platz
+
+
+Line 115, Route 14: Tel_U Fehrbelliner Platz  >>  Tel_Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11514
+TEL_U FEHRBELLINER PLATZ  >>  TEL_ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+10
+Tel_U Fehrbelliner Platz
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_S Hohenzollerndamm
+Tel_Friedrichsruher Str.
+Tel_Cunostr.
+Tel_Salzbrunner Str.
+Tel_Forckenbeckstr.
+Tel_Elsterplatz
+Tel_Roseneck B
+Tel_Roseneck
+
+
+Line 115, Route 15: Tel_Rathaus Zehlendorf  >>  Tel_U Fehrbelliner Platz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11515
+TEL_RATHAUS ZEHLENDORF  >>  TEL_U FEHRBELLINER PLATZ
+033
+XXX
+
+[infosystem_busstop_list]
+22
+Tel_Rathaus Zehlendorf
+Tel_Rathaus Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_Huettenweg
+Tel_Alliiertenmuseum
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Finkenstr.
+Tel_Puecklerstr.
+Tel_Messelstr.
+Tel_Roseneck
+Tel_Elsterplatz
+Tel_Forckenbeckstr.
+Tel_Salzbrunner Str.
+Tel_Cunostr.
+Tel_S Hohenzollerndamm
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_U Fehrbelliner Platz
+
+
+Line 115, Route 16: Tel_U Fehrbelliner Platz  >>  Tel_Spanische Allee-Potsdamer Chaussee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11516
+TEL_U FEHRBELLINER PLATZ  >>  TEL_SPANISCHE ALLEE-POTSDAMER CHAUSSEE
+103
+XXX
+
+[infosystem_busstop_list]
+34
+Tel_U Fehrbelliner Platz
+Tel_Mansfelder Str.-Barstr.
+Tel_U Fehrbelliner Platz
+Tel_Hoffmann-von-Fallersleben-Platz
+Tel_S Hohenzollerndamm
+Tel_Friedrichsruher Str.
+Tel_Cunostr.
+Tel_Salzbrunner Str.
+Tel_Forckenbeckstr.
+Tel_Elsterplatz
+Tel_Roseneck
+Tel_Messelstr.
+Tel_Puecklerstr.
+Tel_Finkenstr.
+Tel_Koenigin-Luise-Str.-Clayallee
+Tel_Alliiertenmuseum
+Tel_Huettenweg
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.-Berlepschstr.
+Tel_Camphausenstr.
+Tel_Radtkestr.
+Tel_Loebellstr.
+Tel_Ludwigsfelder Str.
+Tel_Fercher Str.
+Tel_Neuruppiner Str.
+Tel_Lloyd-George-Wells-Str.
+Tel_Am Rohrgarten
+Tel_Spanische Allee-Potsdamer Chaussee
+
+
+Line 285, Route 01: Tel_Am Waldfriedhof  >>  Tel_Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28501
+TEL_AM WALDFRIEDHOF  >>  TEL_WUPPERSTR.
+090
+XXX
+
+[infosystem_busstop_list]
+21
+Tel_Am Waldfriedhof
+Tel_Am Waldfriedhof
+Tel_Am Hegewinkel
+Tel_Waltraudstr.
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schoenower Park
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Wupperstr. T
+Tel_Wupperstr.
+
+
+Line 285, Route 02: Tel_Wupperstr.  >>  Tel_Am Waldfriedhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28502
+TEL_WUPPERSTR.  >>  TEL_AM WALDFRIEDHOF
+115
+XXX
+
+[infosystem_busstop_list]
+21
+Tel_Wupperstr.
+Tel_Wupperstr.
+Tel_Beeskowdamm
+Tel_Am Rehwechsel
+Tel_Am Birkenknick
+Tel_Laehrstr.
+Tel_Leo-Baeck-Str.
+Tel_Schweizerhofpark
+Tel_Schoenower Park
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_U Oskar-Helene-Heim
+Tel_Waltraudstr.
+Tel_Am Hegewinkel
+Tel_Am Waldfriedhof B
+Tel_Am Waldfriedhof
+
+
+Line 285, Route 03: Tel_U Oskar-Helene-Heim  >>  Tel_Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28503
+TEL_U OSKAR-HELENE-HEIM  >>  TEL_WUPPERSTR.
+090
+XXX
+
+[infosystem_busstop_list]
+18
+Tel_U Oskar-Helene-Heim
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schoenower Park
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Wupperstr. T
+Tel_Wupperstr.
+
+
+Line 285, Route 04: Tel_Wupperstr.  >>  Tel_U Oskar-Helene-Heim
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28504
+TEL_WUPPERSTR.  >>  TEL_U OSKAR-HELENE-HEIM
+080
+XXX
+
+[infosystem_busstop_list]
+18
+Tel_Wupperstr.
+Tel_Wupperstr.
+Tel_Beeskowdamm
+Tel_Am Rehwechsel
+Tel_Am Birkenknick
+Tel_Laehrstr.
+Tel_Leo-Baeck-Str.
+Tel_Schweizerhofpark
+Tel_Schoenower Park
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_U Oskar-Helene-Heim T
+Tel_U Oskar-Helene-Heim
+
+
+Line 285, Route 05: Tel_Am Waldfriedhof  >>  Tel_Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28505
+TEL_AM WALDFRIEDHOF  >>  TEL_ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+20
+Tel_Am Waldfriedhof
+Tel_Am Waldfriedhof
+Tel_Am Hegewinkel
+Tel_Waltraudstr.
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schoenower Park
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Andreezeile T
+Tel_Andreezeile
+
+
+Line 285, Route 06: Tel_Wupperstr.  >>  Tel_Am Waldfriedhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28506
+TEL_WUPPERSTR.  >>  TEL_AM WALDFRIEDHOF
+115
+XXX
+
+[infosystem_busstop_list]
+20
+Tel_Wupperstr.
+Tel_Wupperstr.
+Tel_Beeskowdamm
+Tel_Am Rehwechsel
+Tel_Am Birkenknick
+Tel_Laehrstr.
+Tel_Leo-Baeck-Str.
+Tel_Schweizerhofpark
+Tel_Schoenower Park
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_U Oskar-Helene-Heim
+Tel_Waltraudstr.
+Tel_Am Hegewinkel
+Tel_Am Waldfriedhof
+
+
+Line 285, Route 07: Tel_Am Waldfriedhof  >>  Tel_Zehlendorf Eiche T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28507
+TEL_AM WALDFRIEDHOF  >>  TEL_ZEHLENDORF EICHE T
+121
+XXX
+
+[infosystem_busstop_list]
+10
+Tel_Am Waldfriedhof
+Tel_Am Waldfriedhof
+Tel_Am Hegewinkel
+Tel_Waltraudstr.
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche T
+
+
+Line 285, Route 08: Tel_Wupperstr.  >>  Tel_U Oskar-Helene-Heim T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28508
+TEL_WUPPERSTR.  >>  TEL_U OSKAR-HELENE-HEIM T
+080
+XXX
+
+[infosystem_busstop_list]
+16
+Tel_Wupperstr.
+Tel_Wupperstr.
+Tel_Beeskowdamm
+Tel_Am Rehwechsel
+Tel_Am Birkenknick
+Tel_Laehrstr.
+Tel_Leo-Baeck-Str.
+Tel_Schweizerhofpark
+Tel_Schoenower Park
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim T
+
+
+Line 285, Route 09: Tel_Zehlendorf Eiche  >>  Tel_Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28509
+TEL_ZEHLENDORF EICHE  >>  TEL_WUPPERSTR.
+019
+XXX
+
+[infosystem_busstop_list]
+12
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schoenower Park
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Wupperstr. T
+Tel_Wupperstr.
+
+
+Line 285, Route 10: Tel_Wupperstr.  >>  Tel_Zehlendorf Eiche T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28510
+TEL_WUPPERSTR.  >>  TEL_ZEHLENDORF EICHE T
+121
+XXX
+
+[infosystem_busstop_list]
+11
+Tel_Wupperstr.
+Tel_Wupperstr.
+Tel_Beeskowdamm
+Tel_Am Rehwechsel
+Tel_Am Birkenknick
+Tel_Laehrstr.
+Tel_Leo-Baeck-Str.
+Tel_Schweizerhofpark
+Tel_Schoenower Park
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche T
+
+
+Line 285, Route 11: Tel_Am Waldfriedhof  >>  Tel_Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28511
+TEL_AM WALDFRIEDHOF  >>  TEL_WUPPERSTR.
+019
+XXX
+
+[infosystem_busstop_list]
+21
+Tel_Am Waldfriedhof
+Tel_Am Waldfriedhof
+Tel_Am Hegewinkel
+Tel_Waltraudstr.
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schoenower Park
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Wupperstr. T
+Tel_Wupperstr.
+
+
+Line 285, Route 13: Tel_U Oskar-Helene-Heim  >>  Tel_Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28513
+TEL_U OSKAR-HELENE-HEIM  >>  TEL_WUPPERSTR.
+019
+XXX
+
+[infosystem_busstop_list]
+18
+Tel_U Oskar-Helene-Heim
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.
+Tel_Schoenower Park
+Tel_Schweizerhofpark
+Tel_Leo-Baeck-Str.
+Tel_Laehrstr.
+Tel_Am Birkenknick
+Tel_Am Rehwechsel
+Tel_Beeskowdamm
+Tel_Wupperstr. T
+Tel_Wupperstr.
+
+
+Line 601, Route 01: Tel_Waldschaenke  >>  Tel_Sigridshorst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60101
+TEL_WALDSCHAENKE  >>  TEL_SIGRIDSHORST
+102
+XXX
+
+[infosystem_busstop_list]
+21
+Tel_Waldschaenke
+Tel_Waldschaenke
+Tel_Stahnsdorfer Hof
+Tel_Puschkinstr.
+Tel_Schwarzer Weg
+Tel_Feuerwehr
+Tel_Warthestr.
+Tel_Neissestr.
+Tel_Einkaufszentrum Oderstr.
+Tel_Nuthestr.
+Tel_Jahnsportplatz
+Tel_Badstr.
+Tel_Zehlendorfer Str.
+Tel_Buergertreff
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Gustl-Sandtner-Str.
+Tel_Blumenstr.
+Tel_Mozartstr.
+Tel_Teltow Bahnhof
+Tel_Tulpenweg
+Tel_Sigridshorst
+
+
+Line 601, Route 02: Tel_Sigridshorst  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60102
+TEL_SIGRIDSHORST  >>  TEL_TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+21
+Tel_Sigridshorst
+Tel_Tulpenweg
+Tel_Teltow Bahnhof
+Tel_Mozartstr.
+Tel_Blumenstr.
+Tel_Gustl-Sandtner-Str.
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Buergertreff
+Tel_Zehlendorfer Str.
+Tel_Badstr.
+Tel_Jahnsportplatz
+Tel_Nuthestr.
+Tel_Einkaufszentrum Oderstr.
+Tel_Neissestr.
+Tel_Warthestr.
+Tel_Feuerwehr
+Tel_Schwarzer Weg
+Tel_Puschkinstr.
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+Tel_Terminus
+
+
+Line 601, Route 03: Tel_Waldschaenke  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60103
+TEL_WALDSCHAENKE  >>  TEL_TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+20
+Tel_Waldschaenke
+Tel_Waldschaenke
+Tel_Stahnsdorfer Hof
+Tel_Puschkinstr.
+Tel_Schwarzer Weg
+Tel_Feuerwehr
+Tel_Warthestr.
+Tel_Neissestr.
+Tel_Einkaufszentrum Oderstr.
+Tel_Nuthestr.
+Tel_Jahnsportplatz
+Tel_Badstr.
+Tel_Zehlendorfer Str.
+Tel_Buergertreff
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Gustl-Sandtner-Str.
+Tel_Blumenstr.
+Tel_Mozartstr.
+Tel_Teltow Bahnhof
+Tel_Terminus
+
+
+Line 601, Route 04: Tel_Teltow Bahnhof  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60104
+TEL_TELTOW BAHNHOF  >>  TEL_TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+20
+Tel_Teltow Bahnhof
+Tel_Teltow Bahnhof
+Tel_Mozartstr.
+Tel_Blumenstr.
+Tel_Gustl-Sandtner-Str.
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Buergertreff
+Tel_Zehlendorfer Str.
+Tel_Badstr.
+Tel_Jahnsportplatz
+Tel_Nuthestr.
+Tel_Einkaufszentrum Oderstr.
+Tel_Neissestr.
+Tel_Warthestr.
+Tel_Feuerwehr
+Tel_Schwarzer Weg
+Tel_Puschkinstr.
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+Tel_Terminus
+
+
+Line 601, Route 05: Tel_Warthestr.  >>  Tel_S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60105
+TEL_WARTHESTR.  >>  TEL_S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+9
+Tel_Warthestr.
+Tel_Neissestr.
+Tel_Einkaufszentrum Oderstr.
+Tel_Nuthestr.
+Tel_Jahnsportplatz
+Tel_Badstr.
+Tel_Zehlendorfer Str.
+Tel_Buergertreff
+Tel_S Teltow Stadt-Gonfrevillestr.
+
+
+Line 601, Route 06: Tel_Warthestr.  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60106
+TEL_WARTHESTR.  >>  TEL_TERMINUS
+020
+XXX
+
+[infosystem_busstop_list]
+7
+Tel_Warthestr.
+Tel_Feuerwehr
+Tel_Schwarzer Weg
+Tel_Puschkinstr.
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+Tel_Terminus
+
+
+Line 601, Route 08: Tel_Warthestr.  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60108
+TEL_WARTHESTR.  >>  TEL_TERMINUS
+088
+XXX
+
+[infosystem_busstop_list]
+7
+Tel_Warthestr.
+Tel_Feuerwehr
+Tel_Schwarzer Weg
+Tel_Puschkinstr.
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+Tel_Terminus
+
+
+Line 602, Route 01: Tel_Waldschaenke  >>  Tel_Havelstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60201
+TEL_WALDSCHAENKE  >>  TEL_HAVELSTR.
+048
+XXX
+
+[infosystem_busstop_list]
+11
+Tel_Waldschaenke
+Tel_Waldschaenke
+Tel_Stahnsdorfer Hof
+Tel_Tellstr.
+Tel_Briefzentrum
+Tel_Green Park
+Tel_Iserstr.-Gesundheitszentrum
+Tel_Warthestr.
+Tel_Neissestr.
+Tel_Einkaufszentrum Oderstr.
+Tel_Havelstr.
+
+
+Line 620, Route 01: Tel_Rammrath-Bruecke  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62001
+TEL_RAMMRATH-BRUECKE  >>  TEL_TERMINUS
+110
+XXX
+
+[infosystem_busstop_list]
+10
+Tel_Rammrath-Bruecke
+Tel_Rammrath-Bruecke
+Tel_Warthestr.
+Tel_Havelstr.
+Tel_Striewitzweg
+Tel_Jahnstr.
+Tel_Ruhlsdorfer Platz
+Tel_Buergertreff
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Terminus
+
+
+Line 620, Route 02: Tel_S Teltow Stadt-Gonfrevillestr.  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62002
+TEL_S TELTOW STADT-GONFREVILLESTR.  >>  TEL_TERMINUS
+117
+XXX
+
+[infosystem_busstop_list]
+10
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Buergertreff
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Rammrath-Bruecke
+Tel_Terminus
+
+
+Line 620, Route 03: Tel_Rammrath-Bruecke  >>  Tel_Warthestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62003
+TEL_RAMMRATH-BRUECKE  >>  TEL_WARTHESTR.
+119
+XXX
+
+[infosystem_busstop_list]
+3
+Tel_Rammrath-Bruecke
+Tel_Rammrath-Bruecke
+Tel_Warthestr.
+
+
+Line 620, Route 04: Tel_Teltow Bahnhof  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62004
+TEL_TELTOW BAHNHOF  >>  TEL_TERMINUS
+116
+XXX
+
+[infosystem_busstop_list]
+14
+Tel_Teltow Bahnhof
+Tel_Teltow Bahnhof
+Tel_Mozartstr.
+Tel_Blumenstr.
+Tel_Gustl-Sandtner-Str.
+Tel_S Teltow Stadt-Mahlower Str.
+Tel_Buergertreff
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Rammrath-Bruecke
+Tel_Terminus
+
+
+Line 620, Route 06: Tel_S Teltow Stadt-Gonfrevillestr.  >>  Tel_Warthestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62006
+TEL_S TELTOW STADT-GONFREVILLESTR.  >>  TEL_WARTHESTR.
+119
+XXX
+
+[infosystem_busstop_list]
+8
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Buergertreff
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+
+
+Line 621, Route 01: Tel_S Teltow Stadt-Gonfrevillestr.  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62101
+TEL_S TELTOW STADT-GONFREVILLESTR.  >>  TEL_TERMINUS
+068
+XXX
+
+[infosystem_busstop_list]
+14
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Buergertreff
+Tel_Ruhlsdorfer Platz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Havelstr.
+Tel_Warthestr.
+Tel_Iserstr.-Gesundheitszentrum
+Tel_Bremer Str.
+Tel_Iserstr. Sued
+Tel_Stahnsdorfer Str.
+Tel_Ruhlsdorf
+Tel_Terminus
+
+
+Line 621, Route 02: Tel_Ruhlsdorf  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62102
+TEL_RUHLSDORF  >>  TEL_TERMINUS
+110
+XXX
+
+[infosystem_busstop_list]
+13
+Tel_Ruhlsdorf
+Tel_Stahnsdorfer Str.
+Tel_Iserstr. Sued
+Tel_Bremer Str.
+Tel_Iserstr.-Gesundheitszentrum
+Tel_Warthestr.
+Tel_Havelstr.
+Tel_Striewitzweg
+Tel_Jahnstr.
+Tel_Ruhlsdorfer Platz
+Tel_Buergertreff
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Terminus
+
+
+Line 623, Route 01: Tel_Schrockstr.  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62301
+TEL_SCHROCKSTR.  >>  TEL_TERMINUS
+080
+XXX
+
+[infosystem_busstop_list]
+10
+Tel_Schrockstr.
+Tel_Machnower Str.-Berlepschstr.
+Tel_S Zehlendorf
+Tel_Zehlendorf Eiche
+Tel_Scharfestr.
+Tel_Schuetzallee
+Tel_Leichhardtstr.
+Tel_Clayallee 229
+Tel_U Oskar-Helene-Heim
+Tel_Terminus
+
+
+Line 623, Route 02: Tel_U Oskar-Helene-Heim  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62302
+TEL_U OSKAR-HELENE-HEIM  >>  TEL_TERMINUS
+052
+XXX
+
+[infosystem_busstop_list]
+11
+Tel_U Oskar-Helene-Heim
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.-Berlepschstr.
+Tel_Schrockstr.
+Tel_Terminus
+
+
+Line 623, Route 04: Tel_U Oskar-Helene-Heim  >>  Tel_Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62304
+TEL_U OSKAR-HELENE-HEIM  >>  TEL_TERMINUS
+116
+XXX
+
+[infosystem_busstop_list]
+11
+Tel_U Oskar-Helene-Heim
+Tel_U Oskar-Helene-Heim
+Tel_Clayallee 229
+Tel_Leichhardtstr.
+Tel_Schuetzallee
+Tel_Scharfestr.
+Tel_Zehlendorf Eiche
+Tel_S Zehlendorf
+Tel_Machnower Str.-Berlepschstr.
+Tel_Schrockstr.
+Tel_Terminus
+
+
+Line 625, Route 01: Tel_Ruhlsdorf  >>  Tel_Postviertel-Paul-Lincke-Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62501
+TEL_RUHLSDORF  >>  TEL_POSTVIERTEL-PAUL-LINCKE-STR.
+085
+XXX
+
+[infosystem_busstop_list]
+18
+Tel_Ruhlsdorf
+Tel_Stahnsdorfer Str.
+Tel_Iserstr. Sued
+Tel_Bremer Str.
+Tel_Iserstr.-Gesundheitszentrum
+Tel_Warthestr.
+Tel_Neissestr.
+Tel_Einkaufszentrum Oderstr.
+Tel_Striewitzweg
+Tel_Jahnstr.
+Tel_Marktplatz
+Tel_Buergertreff
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Kanada-Allee
+Tel_Anne-Frank-Schule
+Tel_Oskar-Pollner-Str.
+Tel_Beethovenstr.-Kita
+Tel_Postviertel-Paul-Lincke-Str.
+
+
+Line 625, Route 02: Tel_Postviertel-Paul-Lincke-Str.  >>  Tel_Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62502
+TEL_POSTVIERTEL-PAUL-LINCKE-STR.  >>  TEL_RUHLSDORF
+097
+XXX
+
+[infosystem_busstop_list]
+18
+Tel_Postviertel-Paul-Lincke-Str.
+Tel_Beethovenstr.-Kita
+Tel_Oskar-Pollner-Str.
+Tel_Anne-Frank-Schule
+Tel_Kanada-Allee
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Buergertreff
+Tel_Marktplatz
+Tel_Jahnstr.
+Tel_Striewitzweg
+Tel_Einkaufszentrum Oderstr.
+Tel_Neissestr.
+Tel_Warthestr.
+Tel_Iserstr.-Gesundheitszentrum
+Tel_Bremer Str.
+Tel_Iserstr. Sued
+Tel_Stahnsdorfer Str.
+Tel_Ruhlsdorf
+
+
+Line 625, Route 03: Tel_Ruhlsdorf  >>  Tel_Warthestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62503
+TEL_RUHLSDORF  >>  TEL_WARTHESTR.
+119
+XXX
+
+[infosystem_busstop_list]
+6
+Tel_Ruhlsdorf
+Tel_Stahnsdorfer Str.
+Tel_Iserstr. Sued
+Tel_Bremer Str.
+Tel_Iserstr.-Gesundheitszentrum
+Tel_Warthestr.
+
+
+Line 625, Route 04: Tel_Warthestr.  >>  Tel_Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62504
+TEL_WARTHESTR.  >>  TEL_RUHLSDORF
+097
+XXX
+
+[infosystem_busstop_list]
+6
+Tel_Warthestr.
+Tel_Iserstr.-Gesundheitszentrum
+Tel_Bremer Str.
+Tel_Iserstr. Sued
+Tel_Stahnsdorfer Str.
+Tel_Ruhlsdorf
+
+
+Line 625, Route 05: Tel_S Teltow Stadt-Gonfrevillestr.  >>  Tel_Postviertel-Paul-Lincke-Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62505
+TEL_S TELTOW STADT-GONFREVILLESTR.  >>  TEL_POSTVIERTEL-PAUL-LINCKE-STR.
+085
+XXX
+
+[infosystem_busstop_list]
+6
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Kanada-Allee
+Tel_Anne-Frank-Schule
+Tel_Oskar-Pollner-Str.
+Tel_Beethovenstr.-Kita
+Tel_Postviertel-Paul-Lincke-Str.
+
+
+Line 625, Route 06: Tel_Postviertel-Paul-Lincke-Str.  >>  Tel_S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62506
+TEL_POSTVIERTEL-PAUL-LINCKE-STR.  >>  TEL_S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+6
+Tel_Postviertel-Paul-Lincke-Str.
+Tel_Beethovenstr.-Kita
+Tel_Oskar-Pollner-Str.
+Tel_Anne-Frank-Schule
+Tel_Kanada-Allee
+Tel_S Teltow Stadt-Gonfrevillestr.
+
+
+Line 625, Route 08: Tel_Postviertel-Paul-Lincke-Str.  >>  Tel_Buergertreff
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62508
+TEL_POSTVIERTEL-PAUL-LINCKE-STR.  >>  TEL_BUERGERTREFF
+028
+XXX
+
+[infosystem_busstop_list]
+7
+Tel_Postviertel-Paul-Lincke-Str.
+Tel_Beethovenstr.-Kita
+Tel_Oskar-Pollner-Str.
+Tel_Anne-Frank-Schule
+Tel_Kanada-Allee
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Buergertreff
+
+
+Line 626, Route 01: Tel_Waldschaenke  >>  Tel_Heinersdorfer Weg-Reha
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62601
+TEL_WALDSCHAENKE  >>  TEL_HEINERSDORFER WEG-REHA
+050
+XXX
+
+[infosystem_busstop_list]
+16
+Tel_Waldschaenke
+Tel_Waldschaenke
+Tel_Stahnsdorfer Hof
+Tel_Gruener Weg
+Tel_Tellstr.
+Tel_Briefzentrum
+Tel_Enzianweg
+Tel_Green Park
+Tel_Stahnsdorfer Str.
+Tel_Ruhlsdorf
+Tel_An den Eichen
+Tel_Fliederstr.
+Tel_Lilienstr.
+Tel_Asternstr.
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Heinersdorfer Weg-Reha
+
+
+Line 626, Route 02: Tel_Heinersdorfer Weg-Reha  >>  Tel_Waldschaenke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62602
+TEL_HEINERSDORFER WEG-REHA  >>  TEL_WALDSCHAENKE
+116
+XXX
+
+[infosystem_busstop_list]
+17
+Tel_Heinersdorfer Weg-Reha
+Tel_Bernhard-Lichtenberg-Str.
+Tel_Buergertreff
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Asternstr.
+Tel_Lilienstr.
+Tel_Fliederstr.
+Tel_An den Eichen
+Tel_Ruhlsdorf
+Tel_Stahnsdorfer Str.
+Tel_Green Park
+Tel_Enzianweg
+Tel_Briefzentrum
+Tel_Tellstr.
+Tel_Gruener Weg
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+
+
+Line 626, Route 03: Tel_Waldschaenke  >>  Tel_S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62603
+TEL_WALDSCHAENKE  >>  TEL_S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+15
+Tel_Waldschaenke
+Tel_Waldschaenke
+Tel_Stahnsdorfer Hof
+Tel_Gruener Weg
+Tel_Tellstr.
+Tel_Briefzentrum
+Tel_Enzianweg
+Tel_Green Park
+Tel_Stahnsdorfer Str.
+Tel_Ruhlsdorf
+Tel_An den Eichen
+Tel_Fliederstr.
+Tel_Lilienstr.
+Tel_Asternstr.
+Tel_S Teltow Stadt-Gonfrevillestr.
+
+
+Line 626, Route 04: Tel_S Teltow Stadt-Gonfrevillestr.  >>  Tel_Waldschaenke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62604
+TEL_S TELTOW STADT-GONFREVILLESTR.  >>  TEL_WALDSCHAENKE
+116
+XXX
+
+[infosystem_busstop_list]
+14
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Asternstr.
+Tel_Lilienstr.
+Tel_Fliederstr.
+Tel_An den Eichen
+Tel_Ruhlsdorf
+Tel_Stahnsdorfer Str.
+Tel_Green Park
+Tel_Enzianweg
+Tel_Briefzentrum
+Tel_Tellstr.
+Tel_Gruener Weg
+Tel_Stahnsdorfer Hof
+Tel_Waldschaenke
+
+
+Line 626, Route 05: Tel_Enzianweg  >>  Tel_S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62605
+TEL_ENZIANWEG  >>  TEL_S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+9
+Tel_Enzianweg
+Tel_Green Park
+Tel_Stahnsdorfer Str.
+Tel_Ruhlsdorf
+Tel_An den Eichen
+Tel_Fliederstr.
+Tel_Lilienstr.
+Tel_Asternstr.
+Tel_S Teltow Stadt-Gonfrevillestr.
+
+
+Line 626, Route 06: Tel_S Teltow Stadt-Gonfrevillestr.  >>  Tel_Enzianweg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62606
+TEL_S TELTOW STADT-GONFREVILLESTR.  >>  TEL_ENZIANWEG
+031
+XXX
+
+[infosystem_busstop_list]
+9
+Tel_S Teltow Stadt-Gonfrevillestr.
+Tel_Asternstr.
+Tel_Lilienstr.
+Tel_Fliederstr.
+Tel_An den Eichen
+Tel_Ruhlsdorf
+Tel_Stahnsdorfer Str.
+Tel_Green Park
+Tel_Enzianweg
+
+
+Line 626, Route 07: Tel_Waldschaenke  >>  Tel_Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62607
+TEL_WALDSCHAENKE  >>  TEL_RUHLSDORF
+097
+XXX
+
+[infosystem_busstop_list]
+10
+Tel_Waldschaenke
+Tel_Waldschaenke
+Tel_Stahnsdorfer Hof
+Tel_Gruener Weg
+Tel_Tellstr.
+Tel_Briefzentrum
+Tel_Enzianweg
+Tel_Green Park
+Tel_Stahnsdorfer Str.
+Tel_Ruhlsdorf
+
+

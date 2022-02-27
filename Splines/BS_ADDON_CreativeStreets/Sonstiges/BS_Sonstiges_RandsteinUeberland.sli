@@ -1,0 +1,29 @@
+BS_Sonstiges_Bordstein_M.sli
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+str_betonplatten.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+
+
+[profile]
+0
+
+[profilepnt]
+-0.2
+0.105
+0
+0.8
+
+[profilepnt]
+0.2
+0.105
+0.502
+0.8

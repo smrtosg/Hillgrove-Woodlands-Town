@@ -1,0 +1,142 @@
+=== Created with Simple Spline Editor ===
+=== Author: Joern95(Autobahn) ===
+
+=== Height profiles ===
+== Mitte  ==
+== Breite: 1 Meter ==
+[heightprofile]
+-0.5
+0.5
+4.5
+4.5
+
+== Links ==
+== Breite: 0 Meter ==
+[heightprofile]
+-0.5
+-0.5
+4.5
+0
+
+== Rechts ==
+== Breite: 0 Meter ==
+[heightprofile]
+0.5
+0.5
+4.5
+0
+
+=== Textures ===
+== 0 ==
+[texture]
+betonsteintextur_512.jpg
+[matl]
+betonsteintextur_512.jpg
+0
+[matl_alpha]
+2
+
+=== Textur wrappings ===
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.5
+4.5
+0
+0.2
+== TO ==
+[profilepnt]
+0.5
+4.5
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0.5
+4.5
+0
+0.2
+== TO ==
+[profilepnt]
+-0.5
+4.5
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.5
+4.5
+0
+0.2
+== TO ==
+[profilepnt]
+-0.5
+0
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.5
+0
+0
+0.2
+== TO ==
+[profilepnt]
+-0.5
+4.5
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0.5
+4.5
+0
+0.2
+== TO ==
+[profilepnt]
+0.5
+0
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0.5
+0
+0
+0.2
+== TO ==
+[profilepnt]
+0.5
+4.5
+1
+0.2
+== END ==
+
+=== Pathes ===

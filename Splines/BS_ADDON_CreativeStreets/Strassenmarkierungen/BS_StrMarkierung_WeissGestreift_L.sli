@@ -1,0 +1,42 @@
+BS_StrMarkierung_WeissGestreift_L.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-3
+3
+0.1
+0.1
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+BS_StrMarkierung_white_side.tga
+
+[matl_alpha]
+1
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Markierung ###
+
+[profile]
+0
+
+[profilepnt]
+-3
+0.105
+0.005
+0.15
+
+[profilepnt]
+3
+0.105
+0.995
+0.15

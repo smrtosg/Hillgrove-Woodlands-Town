@@ -1,0 +1,40 @@
+File created with StreetCreator v1.000
+Original from "ADDON SimpleStreets"
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+0.000
+3.000
+0.130
+0.130
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+empty2.jpg
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Left sidewalk:
+
+[profile]
+0
+
+[profilepnt]
+0.000
+0.130
+1.000
+0.167
+
+[profilepnt]
+3.000
+0.130
+0.000
+0.167

@@ -1,0 +1,10 @@
+cockpit_temperatur
+aussen_temperatur
+odometr_full
+odometr_day
+km_counter_m
+engine_tank_content1
+vdo_panel_time
+vdo_panel_speed
+
+VDV_Display_P

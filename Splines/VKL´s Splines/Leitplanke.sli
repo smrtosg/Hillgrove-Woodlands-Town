@@ -1,0 +1,57 @@
+File created with StreetCreator v1.000
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+0.000
+0.000
+0.450
+0.750
+
+[heightprofile]
+0.000
+0.000
+0.750
+0.450
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+Leitplanke.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Bariera:
+
+[profile]
+0
+
+[profilepnt]
+0.000
+0.450
+0.000
+1.000
+
+[profilepnt]
+0.000
+0.750
+1.000
+1.000
+
+[profilepnt]
+0.000
+0.750
+1.000
+1.000
+
+[profilepnt]
+0.000
+0.450
+1.000
+0.000

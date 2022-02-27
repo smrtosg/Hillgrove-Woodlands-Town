@@ -1,0 +1,4456 @@
+'##############
+'IBIS Script
+'##############
+
+'80s style IBIS (Integrated Board Information System)
+
+'(c) 15.04.2009 Rüdiger Hülsmann
+'(c) 17.01.2011 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 1.0
+
+'Needs:
+'- Cockpit (Batterietrennschalter)
+'- Door (Haltestellenbremse)
+'- Ticketprinter
+
+'Revision History:
+
+'- Rüdiger Hülsmann		05.01.2011		File created based on IBIS.osc (last revision 05.01.2011)
+'- Marcel Kuhnt			07.01.2011		Don't show busstops if no route	
+'- Marcel Kuhnt			17.01.2011		9xx00 => 9xx04 instead of 9xx35!
+'- Rüdiger Hülsmann		24.01.2011		Delay display on IBIS
+'- Rüdiger Hülsmann		26.01.2011		IBIS blink bug fixed, "+/- 0 min" removed
+'- Rüdiger Hülsmann		06.02.2011		Cabin-display init
+'- Marcel Kuhnt			24.02.2011		Announcements from string act_busstop
+'- Manu			  23.06-02.12.2013		RBL functions added
+
+'--------------------------------------------------------------------------------
+'IBIS-Modi: - Ausgabe via Ticketprinter
+
+'	0	*:	Normal
+'	1	 :	Betriebsfahrt-Code eingeben
+'	100	 :	L/S/K-Eingabe - Bitte warten 1
+'TD	101	 :	L/S/K-Eingabe
+'	102	 :	L/S/K/R-Eingabe - Bitte warten 2
+'	103	 :	L/S/K/R-Eingabe
+' 104	 :	L/S/K/R-Eingabe - Bitte warten 3
+'	105	²:	L/S/K/R-Eingabe - Ziel bestätigen/ändern
+'	106	²:	L/S/K/R-Eingabe - Haltestelle bestätigen/ändern
+'TD	107	²:	L/S/K/R-Eingabe - Abfahrtszeit bestätigen/ändern
+'	151 *:	L/S/K-Eingabe - Kurs ungültig
+'	152 *:	L/S/K-Eingabe - Kurs ungültig (verkehrt aktuell nicht)
+'	153 *:	L/S/K/R-Eingabe - Kurs ungültig
+'	154 *:	L/S/K/R-Eingabe - Kurs ungültig (verkehrt aktuell nicht)
+'	155 *:	L/S/K/R-Eingabe - Route ungültig
+'	156 *:	L/S/K/R-Eingabe - Ziel ungültig
+'	157 *:	L/S/K/R-Eingabe - Kurs-Route-Kombi ungültig
+'	201	 :	Funktionsmenü - Automatische Haltenstellenweiterschaltung ein-/ausgeschaltet
+'	202  :	Funktionsmenü - Zwischeneinnahmen
+'	203	 :	Funktionsmenü - Innenanzeige und Ansagen ein-/ausschalten
+'	204	 :	Funktionsmenü - Ziel ändern
+'	301	 :	Automatische Haltenstellenweiterschaltung ein-/ausgeschaltet
+'	302 *:	Zwischeneinnahmen
+'	303	 :	Innenanzeige und Ansagen ein-/ausschalten
+'	304	²:	Ziel ändern
+'	3041²:	Ziel ändern - ungültig
+'	4	*:	Warten auf IBIS-Daten
+'	5	*:	Stornieren?
+'	501	*:	Verkauf stoniert
+
+' * - nur Anzeige
+' ² - Anzeige auch auf dem Display
+' TD - To-do/noch nicht fertig
+
+
+'"Bitte warten" ist kein eigenständiger IBIS-Mod und gehört zu dem Mod 0.
+
+'Cockpit-Display-Modi: (L.L.CockpDispl_mode)
+
+'   0:  Normal/nur Verspätungsanzeige
+'		oder was eben bei L/S/K/R eingegeben wird.
+'   1:  L/S/K-Änderung (zum quitieren) anzeigen
+'	2:	Ziel (zum quitieren) anzeigen
+'   3:  nächste Route (zum quitieren) anzeigen
+'	4:	Haltestelle (zum quitieren) anzeigen
+'	5:	Ziel und Haltestelle (zum quitieren) anzeigen
+
+
+'----------------------
+'	Trigger
+'----------------------
+
+{trigger:ALMEX_F}
+	(L.L.ticketprinter_button_F) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+			201 (S.L.IBIS_mode)
+		{endif}
+		1 (S.L.ticketprinter_button_F)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_F_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_F)
+{end}
+
+{trigger:ALMEX_P}
+	(L.L.ticketprinter_button_P) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}	
+		1 (S.L.ticketprinter_button_P)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_P_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_P)
+{end}
+
+{trigger:ALMEX_X}
+	(L.L.ticketprinter_button_X) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}	
+		1 (S.L.ticketprinter_button_X)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_X_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_X)
+{end}
+
+{trigger:ALMEX_Leer}
+	(L.L.ticketprinter_button_Leer) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}	
+		1 (S.L.ticketprinter_button_Leer)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_Leer_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_Leer)
+{end}
+
+{trigger:ALMEX_Left}
+	(L.L.ticketprinter_button_Left) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+			(L.L.IBIS_mode) 190 > (L.L.IBIS_mode) 300 < &&
+			{if}
+				(L.L.IBIS_mode) 1 - (S.L.IBIS_mode)
+				(L.L.IBIS_mode) 201 <
+				{if}
+					204 (S.L.IBIS_mode)
+				{endif}
+			{endif}					
+		{endif}	
+		(L.L.IBIS_mode) 106 =
+		{if}
+			(L.L.ALMEX_Input_Stop) 0 >
+			{if}
+				(L.L.ALMEX_Input_Stop) 1 - (S.L.ALMEX_Input_Stop)		
+				(L.L.ALMEX_Input_Linie) 100 * (L.L.ALMEX_Input_Route) + (M.V.GetRouteIndex) (L.L.ALMEX_Input_Stop) (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.V.GetBusstopIndex) (M.L.Display_COMING_Stop)			
+			{endif}
+		{endif}	
+		1 (S.L.ticketprinter_button_Left)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_Left_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_Left)
+{end}
+
+{trigger:ALMEX_Right}
+	(L.L.ticketprinter_button_Right) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+			(L.L.IBIS_mode) 199 > (L.L.IBIS_mode) 300 < &&
+			{if}
+				(L.L.IBIS_mode) 1 + (S.L.IBIS_mode)
+				(L.L.IBIS_mode) 204 >
+				{if}
+					201 (S.L.IBIS_mode)
+				{endif}
+			{endif}
+		{endif}	
+		(L.L.IBIS_mode) 106 =
+		{if}
+			(L.L.ALMEX_Input_Linie) 100 * (L.L.ALMEX_Input_Route) + (M.V.GetRouteIndex) (M.V.GetBusstopCount) (L.L.ALMEX_Input_Stop) 2 + >
+			{if}
+				(L.L.ALMEX_Input_Stop) 1 + (S.L.ALMEX_Input_Stop)		
+				(L.L.ALMEX_Input_Linie) 100 * (L.L.ALMEX_Input_Route) + (M.V.GetRouteIndex) (L.L.ALMEX_Input_Stop) (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.V.GetBusstopIndex) (M.L.Display_COMING_Stop)			
+			{endif}
+		{endif}	
+		1 (S.L.ticketprinter_button_Right)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_Right_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_Right)
+{end}
+
+{trigger:ALMEX_LSK}
+	(L.L.ticketprinter_button_LSK) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+			0 (S.L.IBIS_input) (S.L.IBIS_input_count) (S.L.IBIS_input_ext) (S.L.IBIS_input_count_ext)	
+			(S.L.ALMEX_Input_Linie) (S.L.ALMEX_Input_Suffix) (S.L.ALMEX_Input_Kurs) (S.L.ALMEX_Input_Kurs_Index)
+			(S.L.ALMEX_Input_Route) (S.L.ALMEX_Input_Ziel) (S.L.ALMEX_Input_Stop) (S.L.ALMEX_Input_DepatureTime) (S.L.ALMEX_Input_ArrivalTime)			
+			(L.L.ticketprinter_ticket_lastselection_timer) 6 <
+			{if}
+				5 (S.L.IBIS_mode)
+			{else}
+'				100 (S.L.IBIS_mode)
+'				Vorrübergehend, da mode 100+101 noch nicht fertig, in 102 übergehen
+				102 (S.L.IBIS_mode)
+				1 (S.L.ALMEX_Input_Y_On)
+			{endif}
+		{endif}
+		1 (S.L.ticketprinter_button_LSK)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_LSK_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_LSK)
+{end}
+
+{trigger:ALMEX_RBL}
+	(L.L.ticketprinter_button_RBL) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+			0 (S.L.IBIS_input) (S.L.IBIS_input_count) (S.L.IBIS_input_ext) (S.L.IBIS_input_count_ext)
+			(S.L.ALMEX_Input_Linie) (S.L.ALMEX_Input_Suffix) (S.L.ALMEX_Input_Kurs) (S.L.ALMEX_Input_Kurs_Index)
+			(S.L.ALMEX_Input_Route) (S.L.ALMEX_Input_Ziel) (S.L.ALMEX_Input_Stop) (S.L.ALMEX_Input_DepatureTime) (S.L.ALMEX_Input_ArrivalTime)	
+			102 (S.L.IBIS_mode)
+			0 (S.L.ALMEX_Input_Y_On)
+		{endif}
+		1 (S.L.ticketprinter_button_RBL)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_RBL_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_RBL)
+{end}
+
+{trigger:ALMEX_1}
+	(L.L.ticketprinter_button_1) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		1 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_1)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_1_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_1)
+{end}
+
+{trigger:ALMEX_2}
+	(L.L.ticketprinter_button_2) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		2 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_2)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_2_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_2)
+{end}
+
+{trigger:ALMEX_3}
+	(L.L.ticketprinter_button_3) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		3 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_3)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_3_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_3)
+{end}
+
+{trigger:ALMEX_4}
+	(L.L.ticketprinter_button_4) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		4 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_4)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_4_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_4)
+{end}
+
+{trigger:ALMEX_5}
+	(L.L.ticketprinter_button_5) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		5 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_5)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_5_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_5)
+{end}
+
+{trigger:ALMEX_6}
+	(L.L.ticketprinter_button_6) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		6 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_6)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_6_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_6)
+{end}
+
+{trigger:ALMEX_7}
+	(L.L.ticketprinter_button_7) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		7 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_7)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_7_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_7)
+{end}
+
+{trigger:ALMEX_8}
+	(L.L.ticketprinter_button_8) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		8 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_8)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_8_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_8)
+{end}
+
+{trigger:ALMEX_9}
+	(L.L.ticketprinter_button_9) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		9 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_9)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_9_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_9)
+{end}
+
+{trigger:ALMEX_0}
+	(L.L.ticketprinter_button_0) !
+	{if}
+		(L.L.elec_busbar_main)
+		{if}
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		{endif}
+		0 (M.L.IBIS_Zahlentasten)
+		1 (S.L.ticketprinter_button_0)
+		(T.L.ev_printer_button_on)
+	{endif}
+{end}
+
+{trigger:ALMEX_0_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_0)
+{end}
+
+{trigger:RBL_vor}
+	(L.L.RBL_switch_vor_rueck) 1 = !
+	{if}
+		(L.L.CockpDispl_mode) 4 =
+		(L.L.CockpDispl_mode) 5 = ||
+		(L.L.elec_busbar_main) &&
+		{if}
+			(L.L.RBL_COMING_Linie) 100 * (L.L.RBL_COMING_Route) + (M.V.GetRouteIndex) (M.V.GetBusstopCount) (L.L.RBL_COMING_Stop) 2 + >
+			{if}
+				(L.L.RBL_COMING_Stop) 1 + (S.L.RBL_COMING_Stop)		
+				(L.L.RBL_COMING_Linie) 100 * (L.L.RBL_COMING_Route) + (M.V.GetRouteIndex) (L.L.RBL_COMING_Stop) (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.V.GetBusstopIndex) (M.L.Display_COMING_Stop)			
+			{endif}
+		{else}
+		(L.L.elec_busbar_main) (L.L.IBIS_mode) s0 0 = l0 8 = || l0 199 > l0 299 < && || &&
+		{if}
+			(M.L.IBIS_Set_Act_Bus_Stop)
+			(L.L.RBL_Route)
+			{if}
+				(L.L.IBIS_busstop) 1 + (S.L.IBIS_busstop)
+				(M.L.IBIS_RefreshBusstop)
+			{endif}
+			0 (S.L.IBIS_AA_Abschnitt)
+			(M.L.IBIS_PlayAnnouncement)
+			
+'			Nullsetzen des Timers für den Zeilenwechsel der LCD-Innenanzeige
+			0 (S.L.IBIS_LCD-zeilentimer) (S.L.IBIS_LCD-zeile)
+			0 (S.L.IBIS_LCD_showdest)
+			(M.L.IBIS_LCD-refresh)
+		{endif}
+		{endif}
+		1 (S.L.RBL_switch_vor_rueck)
+		1 (S.L.comp_button_system_mode)
+		(T.L.ev_VDV_toggle_on)
+	{endif}
+{end}
+
+{trigger:RBL_vor_off}
+	(T.L.ev_VDV_toggle_off)
+	0 (S.L.RBL_switch_vor_rueck)
+	0 (S.L.comp_button_system_mode)
+{end}
+
+{trigger:RBL_rueck}
+	(L.L.RBL_switch_vor_rueck) -1 = !
+	{if}
+		(L.L.CockpDispl_mode) 4 =
+		(L.L.CockpDispl_mode) 5 = ||
+		(L.L.elec_busbar_main) &&
+		{if}	
+			(L.L.RBL_COMING_Stop) 0 >
+			{if}
+				(L.L.RBL_COMING_Stop) 1 - (S.L.RBL_COMING_Stop)		
+				(L.L.RBL_COMING_Linie) 100 * (L.L.RBL_COMING_Route) + (M.V.GetRouteIndex) (L.L.RBL_COMING_Stop) (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.V.GetBusstopIndex) (M.L.Display_COMING_Stop)			
+			{endif}
+		{else}
+		(L.L.elec_busbar_main) (L.L.IBIS_mode) s0 0 = l0 8 = || l0 199 > l0 299 < && || &&
+		{if}
+			(M.L.IBIS_Set_Act_Bus_Stop)
+			(L.L.RBL_Route)
+			(L.L.IBIS_busstop) 0 > &&
+			{if}
+				(L.L.RBL_Route)
+				{if}
+					(L.L.IBIS_busstop) 1 - (S.L.IBIS_busstop)
+					(M.L.IBIS_RefreshBusstop)
+				{endif}
+				0 (S.L.IBIS_AA_Abschnitt)
+			
+'				Nullsetzen des Timers für den Zeilenwechsel der LCD-Innenanzeige
+				0 (S.L.IBIS_LCD-zeilentimer) (S.L.IBIS_LCD-zeile)
+				0 (S.L.IBIS_LCD_showdest)
+				(M.L.IBIS_LCD-refresh)
+			{endif}
+		{endif}
+		{endif}
+		-1 (S.L.RBL_switch_vor_rueck)
+		1 (S.L.comp_button_info_mode)
+		(T.L.ev_VDV_toggle_on)
+	{endif}
+{end}
+
+{trigger:RBL_rueck_off}
+	(T.L.ev_VDV_toggle_off)
+	0 (S.L.RBL_switch_vor_rueck)
+	0 (S.L.comp_button_info_mode)
+{end}
+
+{trigger:RBL_quit}
+	(L.L.RBL_switch_quit) !
+	{if}
+		1 (S.L.RBL_switch_quit)
+		(T.L.ev_VDV_toggle_on)
+		
+			
+'----------------
+'Quitieren
+	
+	(L.L.ALMEX_quitiert) !
+	{if}
+		(L.L.RBL_COMING_Linie) (L.L.RBL_COMING_Route) &&
+		(L.L.CockpDispl_mode) 1 =
+		(L.L.CockpDispl_mode) 5 = ||
+		{if}		
+			(L.L.RBL_COMING_Kurs_Index) 0 >
+			{if}
+'Wenn ein Umlauf quitiert wird, die passende Route suchen:
+				(L.L.RBL_Kurs_Index) 0 > s1
+				{if}
+					(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) 1 -
+					(L.L.RBL_Umlauf_CurrentRoute_Index) > s1
+					{if}
+						(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent)
+						9 $SetLengthL 1 $SetLengthR "A" $= s1
+						9 $SetLengthL 1 $SetLengthR "O" $= l1 || s1
+					{endif}
+				{endif}
+				l1
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 8 $SetLengthL 4 $SetLengthR
+					$StrToFloat  s0 100 / trunc 24 % 60 * l0 100 % trunc + s0
+				{else}
+					(L.L.ALMEX_Input_DepatureTime) 60 / trunc 1 - s0
+				{endif}
+				(L.L.RBL_COMING_Kurs_Index) 0 (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 24 % 60 * l2 100 % trunc + 60 - l0 < s2
+				(L.L.RBL_COMING_Kurs_Index) 0 (M.V.GetRouteBusstopIdent) 4 $SetLengthR $StrToFloat s2 100 / trunc 24 % 60 * l2 100 % trunc + l0 > l2 &&
+				{if}
+						
+				{else}
+				(L.L.RBL_COMING_Kurs_Index) 0 (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 24 % 60 * l2 100 % trunc + 60 - l0 1440 + < s2
+				(L.L.RBL_COMING_Kurs_Index) 0 (M.V.GetRouteBusstopIdent) 4 $SetLengthR $StrToFloat s2 100 / trunc 24 % 60 * l2 100 % trunc + l0 1440 + > l2 &&
+				{if}
+					l0 1440 + s0	
+				{else}	
+					l0 1440 - s0		
+				{endif}
+				{endif}
+				
+				
+				(L.L.RBL_COMING_Linie) (S.L.RBL_Linie)
+				(L.L.RBL_COMING_Kurs) (S.L.RBL_Kurs)
+				(L.L.RBL_COMING_Kurs_Index) (S.L.RBL_Kurs_Index)
+				2 (S.L.RBL_Umlauf_CurrentRoute_Index)
+				
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) (L.L.RBL_Umlauf_CurrentRoute_Index) 256 + >
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 255 + (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 256 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				{endif}
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) (L.L.RBL_Umlauf_CurrentRoute_Index) 128 + >
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 127 + (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 128 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				{endif}
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) (L.L.RBL_Umlauf_CurrentRoute_Index) 64 + >
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 63 + (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 64 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				{endif}
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) (L.L.RBL_Umlauf_CurrentRoute_Index) 32 + >
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 31 + (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 32 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				{endif}
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) (L.L.RBL_Umlauf_CurrentRoute_Index) 16 + >
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 15 + (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 16 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				{endif}
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) (L.L.RBL_Umlauf_CurrentRoute_Index) 8 + >
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 7 + (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 8 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				{endif}
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) (L.L.RBL_Umlauf_CurrentRoute_Index) 4 + >
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 3 + (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 4 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				{endif}
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) (L.L.RBL_Umlauf_CurrentRoute_Index) 2 + >
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 2 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				{endif}
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + >
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				{endif}
+				(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < s3 (L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) 1 - (L.L.RBL_Umlauf_CurrentRoute_Index) > l3 && {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < s3 (L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) 1 - (L.L.RBL_Umlauf_CurrentRoute_Index) > l3 && {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < s3 (L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) 1 - (L.L.RBL_Umlauf_CurrentRoute_Index) > l3 && {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat s2 100 / trunc 60 * l2 100 % trunc + l0 < s3 (L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) 1 - (L.L.RBL_Umlauf_CurrentRoute_Index) > l3 && {if} (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (S.L.RBL_Umlauf_CurrentRoute_Index) {endif}
+				
+			
+				(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 8 $cutBegin 1 $SetLengthL "A" $= s0
+				(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 8 $cutBegin 1 $SetLengthL "O" $= l0 ||
+				{if}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 9 $cutBegin 3 $SetLengthL $StrToFloat  (S.L.RBL_COMING_Linie)
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 12 $cutBegin 2 $SetLengthL $StrToFloat  (S.L.RBL_COMING_Kurs)
+					15000000 (L.L.RBL_COMING_Linie) 1000 * + (L.L.RBL_COMING_Kurs) 10 * + s0
+					(M.L.RBL_Finde_Umlauf)
+					(L.L.RBL_COMING_Kurs_Index) 0 <
+					{if}
+						l1
+						{if}
+							1100 (S.L.IBIS_mode)
+						{else}
+							12 (S.L.IBIS_mode)
+						{endif}	
+					{else}
+						0 (S.L.ALMEX_quitiert)
+						1 (S.L.CockpDispl_mode)
+					{endif}
+				{else}
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 5 $SetLengthR 3 $SetLengthL $StrToFloat  (S.L.IBIS_LinieKurs)
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) (M.V.GetRouteBusstopIdent) 2 $SetLengthR $StrToFloat  (S.L.RBL_Route)
+					(L.L.RBL_Route) (L.L.IBIS_LinieKurs)
+					(L.L.IBIS_LinieKurs) 100 * (L.L.RBL_Route) + (M.V.GetRouteIndex) s1
+					(M.L.IBIS_SetRoute)
+					0 (S.L.IBIS_busstop)
+					(M.L.IBIS_RefreshBusstop)
+					(T.L.ev_IBIS_entwerter)
+					(L.L.IBIS_busstop_entwerter_soll) (S.L.IBIS_busstop_entwerter_ist)
+					(M.L.IBIS_Set_Act_Bus_Stop)
+					4 (S.L.IBIS_mode)	
+					
+					(L.L.CockpDispl_mode) 5 =
+					{if}
+						4 (S.L.CockpDispl_mode)
+						0 (S.L.ALMEX_quitiert)
+					{else}
+						0 (S.L.CockpDispl_mode)
+						1 (S.L.ALMEX_quitiert)
+						0 (S.L.IBIS_NEXT_LinieKurs)
+						0 (S.L.IBIS_NEXT_Linie_Suffix)
+						0 (S.L.IBIS_NEXT_Route)	
+						0 (S.L.RBL_COMING_Linie)
+						0 (S.L.RBL_COMING_Suffix)
+						0 (S.L.RBL_COMING_Route)	
+						0 (S.L.RBL_COMING_Stop)
+						0 (S.L.RBL_COMING_Linie)
+						0 (S.L.RBL_COMING_Kurs)
+						4 (S.L.IBIS_mode)
+					{endif}
+					-1 (S.L.RBL_COMING_Kurs_Index)
+				{endif}
+							
+				
+				
+				
+			{else}
+
+				(T.L.ev_IBIS_entwerter)
+					
+				(L.L.RBL_Suffix) !
+				{if}
+					(L.L.RBL_Linie) s2 100 / trunc s3
+					l3 8 =
+					{if}
+						28 (S.L.RBL_Suffix)
+					{endif}
+					l3 5 =
+					{if}
+						36 (S.L.RBL_Suffix)
+					{endif}
+					l3 9 =
+					{if}
+						35 (S.L.RBL_Suffix)
+					{endif}
+				{endif}
+				
+				(L.L.RBL_COMING_Linie) (S.L.RBL_Linie) (S.L.IBIS_LinieKurs) 100 * (L.L.RBL_COMING_Suffix) (S.L.RBL_Suffix) (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)
+				(L.L.RBL_COMING_Route) (S.L.RBL_Route)	
+
+				(L.L.RBL_Route) s0
+' Das Folgende soll künftig erst nach "Route" gemacht werden!
+				(L.L.RBL_Linie) 100 * l0 + (M.V.GetRouteIndex) s1
+				0 <
+				{if}
+' Falls kleiner 0, also -1, dann fehlerhaft, dann nicht übernehmen sondern Fehlermeldung ausgeben:
+'					3 (S.L.IBIS_mode)
+'		Blinker aktivieren:
+'					1 (S.L.IBIS_BlinkOn) (S.L.IBIS_BlinkInitial)
+'					(L.S.GetTime) (S.L.IBIS_BlinkTimer)
+'		Fehler-piepen
+					(T.L.ev_IBIS_pieperror)
+				{else}
+					
+					(M.L.IBIS_SetRoute)
+' Bushaltestellen zurücksetzen:
+					(L.L.CockpDispl_mode) 1 =
+					{if}
+						0 (S.L.IBIS_busstop)
+					{else}
+						(L.L.RBL_COMING_Stop) (S.L.IBIS_busstop)
+					{endif}
+					(M.L.IBIS_RefreshBusstop)
+
+
+' Entwerter umstellen:
+					(T.L.ev_IBIS_entwerter)
+					(L.L.IBIS_busstop_entwerter_soll) (S.L.IBIS_busstop_entwerter_ist)
+					(M.L.IBIS_Set_Act_Bus_Stop)
+				{endif}	
+				
+				(L.L.CockpDispl_mode) 1 =
+				{if}
+					0 (S.L.RBL_COMING_Stop)
+					(S.L.RBL_COMING_Linie)
+					(S.L.RBL_COMING_Suffix)
+					(S.L.RBL_COMING_Route)
+					(S.L.RBL_COMING_Ziel)
+					
+					0 (S.L.CockpDispl_mode)
+					1 (S.L.ALMEX_quitiert)	
+				{endif}
+				(L.L.CockpDispl_mode) 5 =	
+				{if}			
+					(L.L.RBL_COMING_Ziel) (S.L.IBIS_TerminusCode) 
+					(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+					(M.L.IBIS_RefreshTerminusText)
+				
+					4 (S.L.CockpDispl_mode)
+					0 (S.L.ALMEX_quitiert)
+				{endif}
+				0 (S.L.IBIS_NEXT_LinieKurs)
+				0 (S.L.IBIS_NEXT_Linie_Suffix)
+				0 (S.L.IBIS_NEXT_Route)	
+				0 (S.L.RBL_Kurs)
+				-1 (S.L.RBL_Kurs_Index)
+				0 (S.L.RBL_Umlauf_CurrentRoute_Index)
+				4 (S.L.IBIS_mode)
+			{endif}
+		{else}
+'nächste Route quitieren
+		(L.L.RBL_COMING_Route)
+		(L.L.CockpDispl_mode) 3 = &&
+		{if}
+			(L.L.RBL_COMING_Linie) (S.L.RBL_Linie) (S.L.IBIS_LinieKurs)
+			(L.L.RBL_COMING_Suffix) (S.L.RBL_Suffix) (S.L.IBIS_Linie_Suffix)
+			(L.L.RBL_COMING_Route) (S.L.RBL_Route) s0		
+			(L.L.RBL_Linie) 100 * l0 + (M.V.GetRouteIndex) s1
+			0 <
+			{if}
+'			Falls kleiner 0, also -1, dann fehlerhaft, dann nicht übernehmen sondern Fehlermeldung ausgeben:
+				3 (S.L.IBIS_mode)
+'				Blinker aktivieren:
+				1 (S.L.IBIS_BlinkOn) (S.L.IBIS_BlinkInitial)
+				(L.S.GetTime) (S.L.IBIS_BlinkTimer)
+'				Fehler-piepen
+				(T.L.ev_IBIS_pieperror)
+			{else}
+				l0 (S.L.RBL_Route)
+				(M.L.IBIS_SetRoute)
+'				Bushaltestellen zurücksetzen:
+				0 (S.L.IBIS_busstop)	
+				(M.L.IBIS_RefreshBusstop)
+
+
+'				Entwerter umstellen:
+				(T.L.ev_IBIS_entwerter)
+				(L.L.IBIS_busstop_entwerter_soll) (S.L.IBIS_busstop_entwerter_ist)
+				(M.L.IBIS_Set_Act_Bus_Stop)
+				(M.L.IBIS_PlayAnnouncement)
+			{endif}	
+			1 (S.L.ALMEX_quitiert)
+			0 (S.L.CockpDispl_mode)	
+			4 (S.L.IBIS_mode)
+			0 (S.L.RBL_COMING_Route)
+			0 (S.L.RBL_COMING_Stop)		
+			0 (S.L.RBL_COMING_Linie)
+			0 (S.L.RBL_COMING_Suffix)
+			0 (S.L.RBL_COMING_Ziel)
+			0 (S.L.RBL_COMING_Kurs)
+			0 (S.L.RBL_COMING_Kurs_Index)
+			(L.L.RBL_Kurs_Index) 0 >
+			{if}
+				(L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (S.L.RBL_Umlauf_CurrentRoute_Index)
+			{endif}
+		{else}
+'Haltestelle quitieren
+		(L.L.CockpDispl_mode) 4 =
+		{if}
+			(L.L.RBL_COMING_Stop) (S.L.IBIS_busstop)	
+'				Entwerter umstellen:
+				(M.L.IBIS_RefreshBusstop)
+				(T.L.ev_IBIS_entwerter)
+				(L.L.IBIS_busstop_entwerter_soll) (S.L.IBIS_busstop_entwerter_ist)
+				(M.L.IBIS_Set_Act_Bus_Stop)
+				(M.L.IBIS_PlayAnnouncement)
+			1 (S.L.ALMEX_quitiert)
+			0 (S.L.CockpDispl_mode)	
+			0 (S.L.ALMEX_Input_Stop)
+			0 (S.L.RBL_COMING_Route)
+			0 (S.L.RBL_COMING_Stop)		
+			0 (S.L.RBL_COMING_Linie)
+			0 (S.L.RBL_COMING_Suffix)
+			0 (S.L.RBL_COMING_Ziel)			
+		{else}
+		(L.L.RBL_COMING_Ziel)
+		(L.L.CockpDispl_mode) 2 = &&
+		{if}
+			(L.L.RBL_COMING_Ziel) (S.L.IBIS_TerminusCode) (M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+' 			Aktualisieren des Zielschild-Textes:
+			(M.L.IBIS_RefreshTerminusText)
+			1 (S.L.ALMEX_quitiert)	
+			0 (S.L.CockpDispl_mode)
+			0 (S.L.RBL_COMING_Ziel)		
+		{endif}
+		{endif}			
+		{endif}
+		{endif}
+	{endif}
+	(L.$.RBL_Message0) "" $= !	
+	{if}		
+		(L.$.RBL_Message1) (S.$.RBL_Message0) "" (S.$.RBL_Message1) {endif}
+		(L.$.RBL_Message1) "" $= {if} (L.$.RBL_Message2) (S.$.RBL_Message1) "" (S.$.RBL_Message2) {endif}
+		(L.$.RBL_Message2) "" $= {if} (L.$.RBL_Message3) (S.$.RBL_Message2) "" (S.$.RBL_Message3) {endif}
+		(L.$.RBL_Message3) "" $= {if} (L.$.RBL_Message4) (S.$.RBL_Message3) "" (S.$.RBL_Message4) {endif}
+		(L.$.RBL_Message4) "" $= {if} (L.$.RBL_Message5) (S.$.RBL_Message4) "" (S.$.RBL_Message5) {endif}
+	{endif}
+	{endif}
+{end}
+
+{trigger:RBL_quit_off}
+	(T.L.ev_VDV_toggle_off)
+	0 (S.L.RBL_switch_quit)
+{end}
+
+
+
+{trigger:ticketprinter_button_ticket_0}
+	(L.L.elec_busbar_main)
+	{if}
+		0 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_ticket_0) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_0)
+	
+{end}
+
+{trigger:ticketprinter_button_ticket_0_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_0)
+{end}		
+			
+{trigger:ticketprinter_button_ticket_1}
+	(L.L.elec_busbar_main)
+	{if}
+		1 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_ticket_1) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_1)
+{end}
+
+{trigger:ticketprinter_button_ticket_1_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_1)
+{end}
+	
+
+{trigger:ticketprinter_button_ticket_2}
+	(L.L.elec_busbar_main)
+	{if}
+		2 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_ticket_2) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_2)
+{end}
+
+{trigger:ticketprinter_button_ticket_2_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_2)
+{end}	
+
+
+{trigger:ticketprinter_button_ticket_3}
+	(L.L.elec_busbar_main)
+	{if}
+		3 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_ticket_3) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_3)
+{end}
+
+{trigger:ticketprinter_button_ticket_3_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_3)
+{end}
+
+
+{trigger:ticketprinter_button_ticket_4}
+	(L.L.elec_busbar_main)
+	{if}
+		4 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_ticket_4) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_4)
+{end}
+
+{trigger:ticketprinter_button_ticket_4_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_4)
+{end}
+
+{trigger:ticketprinter_button_dummy_0}
+	(L.L.elec_busbar_main)
+	{if}
+		5 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_dummy_0) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_0)
+{end}
+
+{trigger:ticketprinter_button_dummy_0_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_0)
+{end}
+
+
+{trigger:ticketprinter_button_dummy_1}
+	(L.L.elec_busbar_main)
+	{if}
+		6 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_dummy_1) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_1)
+{end}
+
+{trigger:ticketprinter_button_dummy_1_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_1)
+{end}
+
+
+{trigger:ticketprinter_button_dummy_2}
+	(L.L.elec_busbar_main)
+	{if}
+		7 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_dummy_2) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_2)
+{end}
+
+{trigger:ticketprinter_button_dummy_2_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_2)
+{end}
+
+
+{trigger:ticketprinter_button_dummy_3}
+	(L.L.elec_busbar_main)
+	{if}
+		8 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_dummy_3) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_3)
+{end}
+
+{trigger:ticketprinter_button_dummy_3_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_3)
+{end}
+
+
+{trigger:ticketprinter_button_dummy_4}
+	(L.L.elec_busbar_main)
+	{if}
+		9 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	{endif}
+	(L.L.ticketprinter_button_dummy_4) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_4)
+{end}
+
+{trigger:ticketprinter_button_dummy_4_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_4)
+{end}
+
+
+{trigger:ticketprinter_button_enter}
+	(L.L.elec_busbar_main) 
+	(L.L.ticketprinter_ticket_preselection) -1 > &&
+	(L.L.ticketprinter_druckt) ! &&
+	(L.L.ticketprinter_ticket_pos) 0 = &&
+	{if}
+		(L.L.ticketprinter_ticket_preselection) (S.L.ticketprinter_ticket_selection) (S.L.ticketprinter_ticket_lastselection)
+		0 (S.L.ticketprinter_ticket_lastselection_timer)
+		1 (S.L.ticketprinter_druckt)
+		(T.L.ev_printer_printing)
+			
+		(L.L.ticketprinter_ticket_preselection) 0 >=
+		(L.L.ticketprinter_ticket_preselection) 4 <= &&
+		{if}	
+			(L.L.ticketprinter_ticket_preselection) (M.V.GetTicketValue) s0
+			
+		{else}
+			(L.L.ticketprinter_ticket_preselection) 0 <
+			{if}
+			0 s0
+			{else}
+'				Hier hardcodiert die restlichen unverkäuflichen Fahrscheine
+				(L.L.ticketprinter_ticket_preselection) 5 =
+				{if}
+					1.00 s0
+				{else}
+					(L.L.ticketprinter_ticket_preselection) 6 =
+					{if}
+						5.00 s0
+					{else}
+						(L.L.ticketprinter_ticket_preselection) 7 =
+						{if}
+							15.00 s0
+						{else}
+							(L.L.ticketprinter_ticket_preselection) 8 =
+							{if}
+								10.00 s0
+							{else}
+								(L.L.ticketprinter_ticket_preselection) 9 =
+								{if}
+									7.00 s0
+								{endif}
+							{endif}
+						{endif}
+					{endif}
+				{endif}
+			{endif}
+		{endif}		
+		l0 (S.L.ticketprinter_ticket_lastselection_price) (L.L.ALMEX_Zwischeneinnahmen) + (S.L.ALMEX_Zwischeneinnahmen)
+		-1 (S.L.ticketprinter_ticket_preselection)
+		
+		
+	{endif}
+	(L.L.elec_busbar_main) 
+	(L.L.ticketprinter_ticket_preselection) 0 < &&
+	(L.L.ticketprinter_button_enter) ! &&
+	{if}
+		(M.L.IBIS_eingabe)
+	{endif}
+	(L.L.elec_busbar_main) 
+	{if}
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)	
+	{endif}
+	(L.L.ticketprinter_button_enter) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_enter)
+{end}
+
+{trigger:ticketprinter_button_enter_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_enter)
+{end}
+
+{trigger:ticketprinter_button_cancel}
+	(L.L.elec_busbar_main)
+	{if}
+		-1 (S.L.ticketprinter_ticket_preselection)
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		
+		(L.L.IBIS_input_count)
+		{if}
+			(L.L.IBIS_input_count_ext)
+			{if}
+				(L.L.IBIS_input_ext) 10 / trunc (S.L.IBIS_input_ext)
+				(L.L.IBIS_input_count_ext) 1 - (S.L.IBIS_input_count_ext)
+			{else}	
+				(L.L.IBIS_input) 10 / trunc (S.L.IBIS_input)
+				(L.L.IBIS_input_count) 1 - (S.L.IBIS_input_count)
+			{endif}	
+			
+			(L.L.IBIS_mode) 105 = (L.L.IBIS_mode) 304 = ||
+			{if}
+				(L.L.IBIS_input_count)
+				{if}
+				(L.L.IBIS_input)
+					(M.V.GetTerminusIndex) s0
+					0 >
+					{if}
+						l0 (M.L.Display_COMING_Terminus)
+					{endif}
+				{else}
+					(L.L.IBIS_mode) 105 =
+					{if}
+						(L.L.ALMEX_Input_Ziel)
+					{else}
+						(L.L.IBIS_TerminusCode)
+					{endif}
+					(M.V.GetTerminusIndex) s0
+					0 >
+					{if}
+						l0 (M.L.Display_COMING_Terminus)
+					{endif}
+				{endif}
+			{endif}
+		{else}
+			(L.L.IBIS_mode) 1 =
+			{if}
+				0 (S.L.IBIS_input) (S.L.IBIS_input_count)
+			{else}	
+				(L.L.IBIS_mode) 100 =
+				(L.L.IBIS_mode) 101 = ||
+				(L.L.IBIS_mode) 102 = ||
+				(L.L.IBIS_mode) 103 = ||
+				{if}
+					0 (S.L.IBIS_mode)
+					1 (S.L.ALMEX_quitiert)
+					0 (S.L.ALMEX_Input_Linie)
+					(S.L.ALMEX_Input_Suffix)
+					(S.L.ALMEX_Input_Kurs)
+					(S.L.ALMEX_Input_Route)
+					(S.L.ALMEX_Input_Ziel)
+					(S.L.ALMEX_Input_Stop)
+					-1 (S.L.ALMEX_Input_Kurs_Index)
+				{endif}
+				(L.L.IBIS_mode) 104 =
+				{if}
+					103 (S.L.IBIS_mode)
+					(L.L.ALMEX_Input_Linie) 100 * (L.L.ALMEX_Input_Suffix) + 100 * (L.L.ALMEX_Input_Kurs) + (S.L.IBIS_input) 7 (S.L.IBIS_input_count)
+					(L.L.ALMEX_Input_Route) (S.L.IBIS_input_ext) 3 (S.L.IBIS_input_count_ext)
+				{endif}	
+				(L.L.IBIS_mode) 105 =
+				(L.L.IBIS_mode) 153 = ||
+				(L.L.IBIS_mode) 154 = ||
+				(L.L.IBIS_mode) 155 = ||
+				(L.L.IBIS_mode) 157 = ||
+				{if}
+					103 (S.L.IBIS_mode)
+					(L.L.ALMEX_Input_Linie) 100 * (L.L.ALMEX_Input_Suffix) + 100 * (L.L.ALMEX_Input_Kurs) + (S.L.IBIS_input) 7 (S.L.IBIS_input_count)
+					(L.L.ALMEX_Input_Route) (S.L.IBIS_input_ext) 3 (S.L.IBIS_input_count_ext)
+				{endif}	
+				(L.L.IBIS_mode) 151 =
+				(L.L.IBIS_mode) 152 = ||
+				{if}
+					101 (S.L.IBIS_mode)
+				{endif}
+				(L.L.IBIS_mode) 106 =
+				(L.L.IBIS_mode) 156 = ||
+				{if}
+					105 (S.L.IBIS_mode)
+				{endif}	
+				(L.L.IBIS_mode) 107 =
+				{if}
+					106 (S.L.IBIS_mode)
+				{endif}	
+				(L.L.IBIS_mode) 200 > (L.L.IBIS_mode) 300 < &&
+				(L.L.IBIS_mode) 5 = ||
+				(L.L.IBIS_mode) 501 = ||
+				{if}
+					0 (S.L.IBIS_mode)
+				{endif}	
+				(L.L.IBIS_mode) 300 > (L.L.IBIS_mode) 400 < &&
+				{if}
+					(L.L.IBIS_mode) 100 - (S.L.IBIS_mode)
+				{endif}	
+				(L.L.IBIS_mode) 3041 =
+				{if}
+					304 (S.L.IBIS_mode)
+				{endif}	
+			{endif}	
+		{endif}
+	{endif}
+	(L.L.ticketprinter_button_cancel) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_cancel)
+{end}
+
+{trigger:ticketprinter_button_cancel_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_cancel)
+{end}
+
+{trigger:ticketprinter_getticket}
+	0 (S.L.ticketprinter_ticket_pos)
+	-1 (S.L.ticketprinter_ticket_selection) (S.L.GivenTicket)
+	(T.L.ev_ticketsale_giveticket)
+{end}
+
+'----------------------
+'	Init
+'----------------------
+
+{macro:IBIS_init}
+	-1 (S.L.IBIS_RouteIndex)
+
+	0 (S.L.IBIS_ALREADY_SET)
+	0 (S.L.CockpDispl_mode)
+	0 (S.L.ALMEX_ACT_ROUTE) (S.L.ALMEX_ACT_LINE)
+	11 (S.L.ALMEX_Warten_auf_IBIS_Timer)
+	3 (S.L.ticketprinter_druckt_timer)
+	1 (S.L.ALMEX_quitiert)
+	1 (S.L.IBIS_AA_On)
+	0 (S.L.RBL_Linie)
+	0 (S.L.RBL_Kurs)
+	-1 (S.L.RBL_Kurs_Index)
+	0 (S.L.RBL_Umlauf_CurrentRoute_Index)
+	1 (S.L.RBL_Date_CheckDate)
+	1 (S.L.RBL_FIS_On)
+{end}
+
+{macro:ticketprinter_init}
+	-1 (S.L.ticketprinter_ticket_preselection) (S.L.ticketprinter_ticket_selection) (S.L.ticketprinter_ticket_lastselection)
+	30 (S.L.ticketprinter_ticket_lastselection_timer)
+	0 (S.L.ALMEX_Zwischeneinnahmen)
+	(M.L.ticketprinter_standbytext)
+{end}
+
+
+'----------------------
+'	Frame
+'----------------------
+
+{macro:IBIS_frame}
+
+'Fuer die Wochentag.dll:	
+	(L.L.RBL_Date_CheckDate) 13 = !	(L.L.RBL_Date_CheckDate) 99 = ! &&
+	{if}
+		(L.S.Year) (L.L.RBL_Date_Year) = !
+		(L.S.DayOfYear) (L.L.RBL_Date_DayOfYear) = ! ||
+		{if}
+			(L.S.Year) (S.L.RBL_Date_Year)
+			(L.S.DayOfYear) (S.L.RBL_Date_DayOfYear)
+			1 (S.L.RBL_Date_CheckDate)
+		{endif}
+	{endif}
+  
+
+'Ansagenordnerpfad festlegen, sodass dieser bei Bedarf hier für jeden einfach verändert werden kann:
+	"..\..\Announcements\" 0 (M.V.GetDepotStringGlobal) $+ "\" $+ (S.$.Ansagenpfad)
+	(L.L.elec_busbar_main)
+	{if}
+	
+	
+'----------------
+'Haltedauer aktualisieren:
+
+		(L.L.door_freigabe)
+		{if}
+			(L.L.IBIS_Haltedauer) (L.S.Timegap) + (S.L.IBIS_Haltedauer)
+			80000 >
+			{if}
+				70000 (S.L.IBIS_Haltedauer)
+			{endif}
+		{else}
+			0 (S.L.IBIS_Haltedauer)
+		{endif}
+	
+
+'----------------
+'Abfahrtssignal:
+
+		(L.L.schedule_active)
+		{if}
+'			(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <= !
+			(L.L.IBIS_busstop) 0 = (L.L.IBIS_RouteIndex) 0 > &&
+			{if}
+				(M.V.GetTTDelay) 0 > &&
+				(L.L.IBIS_busstop) 0 = (M.V.GetTTDelay) 0 >	&& ||
+				(L.L.IBIS_Abfahren_Piep) ! &&
+				{if}
+					(T.L.ev_ALMEX_piep_abfahren)			
+					1 (S.L.IBIS_Abfahren_Piep)
+				{endif}
+			{else}			
+				0 (S.L.IBIS_Abfahren_Piep)
+			{endif}
+		{endif}
+
+	
+'----------------	
+'Wenn Türfreigabe, die Linie und das Ziel auf der Innenanzeige anzeigen		
+		
+		
+		(L.L.door_freigabe)
+		(L.L.IBIS_LCD_showdest_timer) 6 > &&
+		(L.L.IBIS_LCD_showdest) ! &&
+		{if}
+'	Das Ziel erst mit einer zufälligen Verzögerung anzeigen:
+			24 random 5 / 1 + (S.L.IBIS_LCD_showdest_timer)
+		{endif}
+
+		(L.L.IBIS_LCD_showdest_timer) 0 <
+		{if}
+			1 (S.L.IBIS_LCD_showdest)
+			2 (S.L.IBIS_LCD-zeilentimer)
+			7 (S.L.IBIS_LCD_showdest_timer)
+		{else}	
+			(L.L.IBIS_LCD_showdest_timer) 6 <
+			{if}
+				(L.L.IBIS_LCD_showdest_timer) (L.S.Timegap) - (S.L.IBIS_LCD_showdest_timer)
+			{endif}
+		{endif}
+		
+	
+
+'----------------
+'Anfangsmelodie und eventuell die Betriebsfahrt-Code-Eingabe anfordern
+		(L.L.IBIS_energy_last) !
+		{if}
+			(T.L.ev_IBIS-startupsound)
+			1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+	
+			(L.L.IBIS_ALREADY_SET) !
+			{if}		
+'				// l0 = (L.IBIS_StandbyTerminusCode) gesetzt?
+				0 s0 (S.L.IBIS_LastStopTerminusCode)
+				(M.L.SearchStandbyTerminus)
+				l0
+				{if}
+					0 (S.L.IBIS_mode)
+				{else}
+					1 (S.L.IBIS_mode)
+				{endif}
+				1 (S.L.IBIS_ALREADY_SET)
+			{endif}
+		{endif}
+
+'----------------
+'Blinker laufen lassen:
+
+		(L.L.IBIS_BlinkTimer) s0 0 <
+		{if}
+			(L.S.GetTime) (S.L.IBIS_BlinkTimer) s0
+		{endif}
+
+' Wenn Zeit abgelaufen:
+		(L.S.GetTime) l0 - 1.5 >
+		{if}
+			(L.L.IBIS_BlinkOn) ! (S.L.IBIS_BlinkOn)
+			0 (S.L.IBIS_BlinkInitial)
+			(L.S.GetTime) (S.L.IBIS_BlinkTimer)
+		{endif}
+		
+'	Nach 5, 9 oder 15 Sekunden bei bestimmten Modi in den normalen Mod zurückkehren
+		(L.L.IBIS_mode) 3 = 
+		(L.L.IBIS_mode) 4 = ||
+		(L.L.IBIS_mode) 5 = ||
+		(L.L.IBIS_mode) 7 = ||
+		(L.L.IBIS_mode) 8 = ||
+		(L.L.IBIS_mode) 11 = ||
+		{if}		
+			(L.L.IBIS_timer_mode) 10 < (L.L.IBIS_mode) 8 = &&
+			{if}
+				10 (S.L.IBIS_timer_mode)
+			{endif}
+			(L.L.IBIS_timer_mode) 6 < (L.L.IBIS_mode) 7 = ! &&
+			{if}
+				6 (S.L.IBIS_timer_mode)
+			{endif}
+			(L.L.IBIS_timer_mode) (L.S.Timegap) + (S.L.IBIS_timer_mode) 15 >
+			{if}
+				0 (S.L.IBIS_mode)
+				0 (S.L.IBIS_timer_mode)
+			{endif}
+		{endif}
+		
+
+'----------------
+'CockpitDisplay-Darstellung:		
+
+'	Ziel-/Haltestellen-Timer:
+
+		(L.L.RBL_5sec_timer) (L.S.Timegap) + 10 % (S.L.RBL_5sec_timer)
+
+'	Soll die Verspätung angezeigt werden?		
+		(L.L.Velocity) 2 <
+		{if}
+			(L.L.CockpDispl_standing) 3 >
+			{if}
+				9 (S.L.CockpDispl_standing)
+			{else}
+				(L.L.CockpDispl_standing) (L.S.Timegap) + (S.L.CockpDispl_standing)
+			{endif}
+		{else}
+			(L.L.CockpDispl_standing) 8 >
+			(L.L.CockpDispl_standing) 10 < &&
+			{if}
+				(L.L.CockpDispl_standing) (L.S.Timegap) + (S.L.CockpDispl_standing)
+			{else}
+				0 (S.L.CockpDispl_standing)
+			{endif}	
+		{endif}
+		
+		(L.L.IBIS_mode) 105 =
+		(L.L.IBIS_mode) 304 = ||
+		(L.L.IBIS_mode) 3041 = ||
+		{if}		
+			"Z:" (L.$.RBL_COMING_Dest_Cap_1) $+ 20 $SetLengthL
+			"@  " (L.$.RBL_COMING_Dest_Cap_2) $+ 21 $SetLengthL $+
+			(S.$.IBIS_Cockpit_Display)
+		{else}
+		(L.L.IBIS_mode) 106 =
+		(L.L.IBIS_mode) 107 = ||
+		{if}		
+			"E:" (L.$.RBL_COMING_Busstop_Cap_1) $+ 20 $SetLengthL
+			"@  " (L.$.RBL_COMING_Busstop_Cap_2) $+ 21 $SetLengthL $+
+			(S.$.IBIS_Cockpit_Display)
+		{else}
+		
+		
+			(L.L.RBL_Y_On) 0 >
+			{if}
+				"Y " (S.$.IBIS_Cockpit_Displ_Info_SecLn)
+			{else}
+				"X " (S.$.IBIS_Cockpit_Displ_Info_SecLn)
+			{endif}
+			
+			
+			(L.L.CockpDispl_mode) 2 =
+			(L.L.CockpDispl_mode) 5 = (L.L.RBL_5sec_timer) 5 < && ||
+			{if}
+
+'		Ziel-Anzeige:
+			"->" (L.$.RBL_COMING_Dest_Cap_1) $+ 20 $SetLengthL
+			"@" (L.$.IBIS_Cockpit_Displ_Info_SecLn) $+ (L.$.RBL_COMING_Dest_Cap_2) $+ 21 $SetLengthL $+
+			(S.$.IBIS_Cockpit_Display)
+				
+
+			{else}
+		
+			(L.L.CockpDispl_mode) 4 =
+			{if}
+
+'		Starthaltestellen-Anzeige:
+			"? " (L.$.RBL_COMING_Busstop_Cap_1) $+ 20 $SetLengthL
+			"@" (L.$.IBIS_Cockpit_Displ_Info_SecLn) $+ (L.$.RBL_COMING_Busstop_Cap_2) $+ 21 $SetLengthL $+
+			(S.$.IBIS_Cockpit_Display)			
+			{else}
+			(L.L.CockpDispl_mode) 5 =
+			{if}
+
+'		Starthaltestellen-Anzeige:
+			"E:" (L.$.RBL_COMING_Busstop_Cap_1) $+ 20 $SetLengthL
+			"@" (L.$.IBIS_Cockpit_Displ_Info_SecLn) $+ (L.$.RBL_COMING_Busstop_Cap_2) $+ 21 $SetLengthL $+
+			(S.$.IBIS_Cockpit_Display)
+			
+			{else}
+		
+'	Normale Anzeige (Fahrplanlage):
+		(L.L.CockpDispl_mode) 0 =
+		{if}
+		
+			"" (S.$.IBIS_Cockpit_Displ_Info_FirstLn)
+			
+			(L.L.CockpDispl_standing) 8 >
+			(L.L.ALMEX_JustDeparted) &&		
+			(L.L.schedule_active) &&
+			(M.V.GetTTBusstopCount) &&
+			{if}
+				(L.S.Time) (M.V.GetTTBusstopIndex) (M.V.GetTTBusstopDep) 86400 % - 60 / s0
+				l0 -720 <
+				{if}
+					l0 1440 + s0
+				{endif}
+				l0 720 >
+				{if}
+					l0 1440 - s0
+				{endif}
+				l0 abs trunc s1
+			{else}
+				(M.V.GetTTDelay) 60 / s0 abs trunc s1
+			{endif}
+			
+			
+			(L.$.RBL_Message0) "" $= !
+			{if}
+				(L.$.RBL_Message0) (S.$.IBIS_Cockpit_Display)
+			{else}
+				l0 0 >= s2
+				(L.L.CockpDispl_standing) 8 > &&
+				l0 0 < ||
+				(L.L.schedule_active) &&
+				{if}
+				
+'		0: Verspätung in Minuten, 1: Versp. in Min.	ganzzahlig und absolut, 2: Bool - Zu spät?		
+				
+					(M.V.GetTTBusstopIndex) 0 =
+					(L.L.IBIS_busstop) 0 = &&
+					(L.L.RBL_Route) &&
+					{if}
+						l2
+						{if}
+							"Bitte abfahren    " (S.$.IBIS_Cockpit_Display)
+							1 (S.L.abfahrt_signal)
+						{else}
+							0 (M.V.GetTTBusstopDep) 60 / s0 60 / 24 % trunc " 2" $IntToStrEnh ":" $+ l0 trunc 60 % "02" $IntToStrEnh $+ (S.$.IBIS_Cockpit_Display)
+							0 (S.L.abfahrt_signal)
+						{endif}	
+					{else}
+						l2
+						{if}
+							"+"
+							l1 0 >
+							{if}
+								l1 $IntToStr $+
+							{endif}
+							(S.$.IBIS_Cockpit_Display)
+						{else}
+							l1 0 >
+							{if}
+								"-" l1 $IntToStr $+
+							{else}
+								"0"
+							{endif}
+							(S.$.IBIS_Cockpit_Display)
+						{endif}			
+					{endif}		
+				{else}
+					"" (S.$.IBIS_Cockpit_Display)
+				{endif}
+			{endif}
+		{endif}
+'	LSK-Anzeige:
+		(L.L.CockpDispl_mode) 1 =
+		{if}
+			"" (S.$.IBIS_Cockpit_Displ_Info_FirstLn)
+			(L.L.ALMEX_quitiert)
+			{if}
+				(L.L.RBL_Kurs_Index) 0 >
+				{if}
+					"Neue LSK " (L.L.RBL_Linie) "03" $IntToStrEnh $+ "/" $+ (L.L.RBL_Suffix) "02" $IntToStrEnh $+ "/" $+ (L.L.RBL_Kurs) "02" $IntToStrEnh $+	
+				{else}
+					"Neue LSK " (L.L.RBL_Linie) "03" $IntToStrEnh $+ "/" $+ (L.L.RBL_Suffix) "02" $IntToStrEnh $+ "/00" $+			
+				{endif}	
+				(S.$.IBIS_Cockpit_Display)
+				(L.L.CockpDispl_timer) (L.S.Timegap) + (S.L.CockpDispl_timer) 3 >
+				{if}
+					0 (S.L.CockpDispl_mode) (S.L.CockpDispl_timer)
+				{endif}			
+			{else}
+				(L.L.ALMEX_Input_Kurs_Index) 0 >
+				{if}
+					"Neue LSK " (L.L.RBL_COMING_Linie) "03" $IntToStrEnh $+ "/" $+ (L.L.RBL_COMING_Suffix) "02" $IntToStrEnh $+ "/" $+ (L.L.RBL_COMING_Kurs) "02" $IntToStrEnh $+	
+					(S.$.IBIS_Cockpit_Display)
+					0 (S.L.CockpDispl_timer)
+				{else}
+					"Neue LSK " (L.L.RBL_COMING_Linie) "03" $IntToStrEnh $+ "/" $+ (L.L.RBL_COMING_Suffix) "02" $IntToStrEnh $+ "/00" $+
+					(S.$.IBIS_Cockpit_Display)
+					0 (S.L.CockpDispl_timer)
+				{endif}
+			{endif}
+		{endif}
+'	Anzeige der nächsten Route:
+		(L.L.CockpDispl_mode) 3 =
+		{if}
+			"" (S.$.IBIS_Cockpit_Displ_Info_FirstLn)
+			(L.L.ALMEX_quitiert)
+			{if}
+				"Naechste Route " (L.L.RBL_Route) "02" $IntToStrEnh $+ "    " $+	
+				(S.$.IBIS_Cockpit_Display)
+				(L.L.CockpDispl_timer) (L.S.Timegap) + (S.L.CockpDispl_timer) 3 >
+				{if}
+					0 (S.L.CockpDispl_mode) (S.L.CockpDispl_timer)
+				{endif}			
+			{else}
+				"Naechste Route " (L.L.RBL_COMING_Route) "02" $IntToStrEnh $+	
+				(S.$.IBIS_Cockpit_Display)
+			{endif}
+		{endif}
+
+		
+		
+'	Beides auf gleiche Längen bekommen
+		(L.$.IBIS_Cockpit_Displ_Info_SecLn) $length s0 (L.$.IBIS_Cockpit_Displ_Info_FirstLn) $length s1 >
+		{if}
+			(L.$.IBIS_Cockpit_Displ_Info_FirstLn) l0 $SetLengthL (S.$.IBIS_Cockpit_Displ_Info_FirstLn)
+		{else}
+			(L.$.IBIS_Cockpit_Displ_Info_SecLn) l1 $SetLengthL (S.$.IBIS_Cockpit_Displ_Info_SecLn)		
+		{endif}
+		
+'	Es wird dazu immer die aktuelle Haltestelle angezeigt:
+		(L.$.IBIS_Cockpit_Display) $length s0
+		{if}
+			l0 18 <
+			{if}
+				l0 1 + s0 " " (L.$.IBIS_Cockpit_Display) $+ (S.$.IBIS_Cockpit_Display)
+			{else}
+				l0 17 =
+				{if}
+					l0 1 + s0 " " (L.$.IBIS_Cockpit_Display) $+ (S.$.IBIS_Cockpit_Display)
+				{endif}
+			{endif}
+		{endif}
+		(L.L.IBIS_RouteIndex) 0 >=
+		{if}
+			(L.$.IBIS_Cockpit_Displ_Info_FirstLn) (L.$.RBL_Busstop_Cap_1) $+ 20 $SetLengthL "@" $+
+			(L.$.IBIS_Cockpit_Displ_Info_SecLn)	(L.$.RBL_Busstop_Cap_2) $+ 20 l0 - $SetLengthL $+ (L.$.IBIS_Cockpit_Display) $+ (S.$.IBIS_Cockpit_Display)
+		{else}
+			(L.$.IBIS_Cockpit_Displ_Info_FirstLn) 20 $SetLengthL "@" $+
+			(L.$.IBIS_Cockpit_Displ_Info_SecLn) 1 $SetLengthL $+ ":L/S/K/R eingeben" $+ 20 l0 - $SetLengthL (L.$.IBIS_Cockpit_Display) $+ (S.$.IBIS_Cockpit_Display)
+		{endif}
+		
+		
+		{endif}
+		{endif}
+		{endif}
+		{endif}			
+		{endif}
+		
+	{else}
+		"" (S.$.IBIS_Delay_min) (S.$.IBIS_Delay_sec) (S.$.IBIS_Delay_state) (S.$.IBIS_Cockpit_Display) (S.$.IBIS_cabindisplay)
+	{endif}
+
+
+'----------------
+'Omsi sagen, dass die Strings-Ausgaben aktualisiert werden sollen:
+	1 (S.L.Refresh_Strings)
+
+
+'----------------
+'Microphon-Taster:
+	(L.L.Snd_Microphone) (L.L.IBIS_LastMicro) ! &&
+	{if}
+		(L.L.RBL_Route)
+		{if}
+			(L.L.IBIS_busstop) 1 + (S.L.IBIS_busstop)
+			(M.L.IBIS_RefreshBusstop)
+		{endif}
+		(M.L.IBIS_PlayAnnouncement)
+		(M.L.IBIS_Set_Act_Bus_Stop)	
+'		Nullsetzen des Timers für den Zeilenwechsel der LCD-Innenanzeige
+		0 (S.L.IBIS_LCD-zeilentimer) (S.L.IBIS_LCD-zeile)
+		0 (S.L.IBIS_LCD_showdest)
+		(M.L.IBIS_LCD-refresh)
+	{endif}
+	(L.L.Snd_Microphone) (S.L.IBIS_LastMicro)
+
+'----------------
+'Last energy:
+	(L.L.elec_busbar_main) (S.L.IBIS_energy_last)
+
+'----------------
+'LCD-Anzeigetimer hochlaufen lassen
+	(L.L.IBIS_LCD-zeilentimer) (L.S.Timegap) + (S.L.IBIS_LCD-zeilentimer)
+	3 >
+	(L.L.elec_busbar_main) &&
+	{if}
+		(L.L.IBIS_LCD-zeile) ! (S.L.IBIS_LCD-zeile)
+		0 (S.L.IBIS_LCD-zeilentimer)
+		(M.L.IBIS_LCD-refresh)
+	{endif}
+
+
+	
+'----------------
+'Gefahrene Strecke aktualisieren
+	
+'	Integerüberlauf verhindern:
+	(L.L.DrivenDist_1000km) 10000 >
+	{if}
+		0 (S.L.DrivenDist_1000km)
+	{endif}
+		
+	(L.L.DrivenDist_last_km) 500 - (L.L.kmcounter_m) >
+	{if}
+		(L.L.DrivenDist_1000km) 1000 + (S.L.DrivenDist_1000km)			
+	{endif}	
+	(L.L.DrivenDist_last_km) 500 + (L.L.kmcounter_m) <
+	{if}
+		(L.L.DrivenDist_1000km) 1000 - (S.L.DrivenDist_1000km)			
+	{endif}	
+	(L.L.kmcounter_m) (S.L.DrivenDist_last_km) (L.L.DrivenDist_1000km) + (L.L.DrivenDist_start) - (S.L.DrivenDistance)	
+	
+	
+'----------------
+'Automatische Haltestellenweiterschaltung
+
+	(L.L.IBIS_AA_On)
+	(L.L.schedule_active) &&
+	{if}
+		(L.L.DrivenDistance) (L.L.IBIS_AA_Laenge_1) >
+		(L.L.IBIS_AA_Abschnitt) 1 = &&
+		(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <= ! &&
+		{if}
+			(L.L.IBIS_busstop) 1 + (S.L.IBIS_busstop) (M.L.IBIS_RefreshBusstop) 0 (S.L.IBIS_LCD-zeilentimer) (S.L.IBIS_LCD-zeile) 0 (S.L.IBIS_LCD_showdest) (M.L.IBIS_LCD-refresh)
+			2 (S.L.IBIS_AA_Abschnitt)
+		{endif}	
+		(L.L.DrivenDistance) (L.L.IBIS_AA_Laenge_1) (L.L.IBIS_AA_Laenge_2) + >
+		(L.L.IBIS_AA_Abschnitt) 2 = &&
+		{if}
+			0 (S.L.IBIS_AA_Abschnitt)
+			(M.L.IBIS_PlayAnnouncement)	
+			0 (S.L.IBIS_TT_busstop_diff)
+			(M.L.Check_act_busstop)
+		{endif}		
+	{endif}
+
+'	Wenn der Bus an der Haltestelle durchfährt oder die Türen freigibt, die aktuelle Haltestelle als erreicht melden.		
+	(M.V.GetTTBusstopIndex) 1 - (L.L.IBIS_TT_LastStopIndex) >=
+	{if}
+		-1 (S.L.IBIS_TT_busstop_diff)
+		(M.L.Check_act_busstop)
+		(M.L.IBIS_Set_Act_Bus_Stop)
+		(L.L.DrivenDist_start) 8 - (S.L.DrivenDist_start)
+	{endif}
+	
+	
+	
+	(L.L.IBIS_AA_Abschnitt) 0 =
+	(L.L.Velocity) 5 < &&
+	(L.L.IBIS_Haltedauer) 1.5 >
+	(L.L.IBIS_Haltedauer_last) 1.5 <= && ||
+	(L.L.RBL_Kurs_Index) 0 > &&
+	(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <= &&
+	{if}
+		(M.L.RBL_Umlauf_GetNextRoute)
+	{endif}
+	
+	
+	(L.L.IBIS_Haltedauer) 1 >
+	(L.L.IBIS_Haltedauer_last) 1 <= &&
+	{if}
+		0 (S.L.IBIS_TT_busstop_diff)
+		(M.L.Check_act_busstop)
+	{endif}
+	(L.L.IBIS_Haltedauer) 3 >
+	(L.L.IBIS_Haltedauer_last) 3 <= &&
+	{if}
+		(M.L.IBIS_Set_Act_Bus_Stop)
+	{endif}
+	(L.L.IBIS_Haltedauer) (S.L.IBIS_Haltedauer_last)
+	
+	
+'----------------
+'Wenn der Bus von der letzten Haltestelle abgefahren ist und nichts quitiert worden ist, dann auf "Betriebsfahrt" umstellen:
+	
+	0 (S.L.RBL_Just_Departed)
+	(L.L.door_freigabe)
+	{if}		
+		1 (S.L.RBL_Just_Departed_door_freigabe_last)
+	{endif}
+	(L.L.Velocity) 0.5 >
+	(L.L.RBL_Just_Departed_door_freigabe_last) &&
+	(L.L.door_freigabe) ! &&
+	{if}
+		0 (S.L.RBL_Just_Departed_door_freigabe_last)
+		1 (S.L.RBL_Just_Departed)
+	{endif}
+	
+	(L.L.IBIS_RouteIndex) 0 >=
+	{if}
+		(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <=
+		(L.L.RBL_Just_Departed) &&
+		{if}	
+			0 (S.L.IBIS_LinieKurs) (S.L.IBIS_Linie_Complex) (S.L.IBIS_Linie_Suffix)
+			(L.L.IBIS_StandbyTerminusCode) (S.L.IBIS_TerminusCode)
+			(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+			(M.L.IBIS_RefreshTerminusText)	
+		{endif}
+	{endif}
+		
+	
+'----------------
+'Ansage eventuell fortsetzen:
+
+	(L.$.IBIS_Ansage_string0) "" $= !
+	{if}
+		(L.L.IBIS_Ansage_time_countdown) 0 <=
+		{if}
+			(L.$.IBIS_Ansage_string0) (T.F.ev_IBIS_Ansagen)
+			(L.$.IBIS_Ansage_string1) (S.$.IBIS_Ansage_string0)
+			(L.$.IBIS_Ansage_string2) (S.$.IBIS_Ansage_string1)
+			(L.$.IBIS_Ansage_string3) (S.$.IBIS_Ansage_string2)
+			(L.$.IBIS_Ansage_string4) (S.$.IBIS_Ansage_string3)
+			"" (S.$.IBIS_Ansage_string4)
+			(L.L.IBIS_Ansage_time0) (S.L.IBIS_Ansage_time_countdown)
+			(L.L.IBIS_Ansage_time1) (S.L.IBIS_Ansage_time0)
+			(L.L.IBIS_Ansage_time2) (S.L.IBIS_Ansage_time1)
+			(L.L.IBIS_Ansage_time3) (S.L.IBIS_Ansage_time2)
+			(L.L.IBIS_Ansage_time4) (S.L.IBIS_Ansage_time3)
+			0 (S.L.IBIS_Ansage_time4)
+		{else}
+			(L.L.IBIS_Ansage_time_countdown) (L.S.Timegap) - (S.L.IBIS_Ansage_time_countdown)
+		{endif}
+	{endif}
+	
+{end}
+
+{macro:ticketprinter_frame}
+
+(L.L.elec_busbar_main)
+{if}
+
+'Das Licht nach 20 Sekunden ausgehen lassen
+
+	(L.L.ticketprinter_LightOn)
+	{if}
+		(L.L.ticketprinter_LightOn_timer) (L.S.Timegap) + (S.L.ticketprinter_LightOn_timer) 20 >
+		{if}
+			0 (S.L.ticketprinter_LightOn_timer)
+			0 (S.L.ticketprinter_LightOn)
+		{endif}	
+	{endif}
+	(L.L.ticketprinter_druckt)
+	{if}
+		0 (S.L.ticketprinter_druckt_timer)
+	{else}
+		(L.L.ticketprinter_druckt_timer) 4 <
+		{if}
+			(L.L.ticketprinter_druckt_timer) (L.S.Timegap) + (S.L.ticketprinter_druckt_timer)
+		{endif}
+	{endif}
+	
+'Anzeige des Fahrscheins aufm Display
+
+		(L.L.ticketprinter_ticket_preselection) 0 >=
+		(L.L.ticketprinter_ticket_preselection) 4 <= &&
+		{if}	
+			(L.L.ticketprinter_ticket_preselection) (M.V.GetTicketName) 14 $SetLengthL ":" $+
+			(L.L.ticketprinter_ticket_preselection) (M.V.GetTicketValue) s0
+
+'			Mark:
+			l0 " 2" $IntToStrEnh $+ "." $+
+
+'			Pfennige:	
+			l0 100 * 100 % "02" $IntToStrEnh $+
+			
+		{else}
+			(L.L.ticketprinter_ticket_preselection) 0 <
+			{if}
+				(M.L.ticketprinter_standbytext)
+			{else}
+'				Hier hardcodiert die restlichen unverkäuflichen Fahrscheine
+				(L.L.ticketprinter_ticket_preselection) 5 =
+				{if}
+					"KuDamm-Ticket : 1.00"
+				{else}
+					(L.L.ticketprinter_ticket_preselection) 6 =
+					{if}
+						"Tageskarte Erm: 5.00"
+					{else}
+						(L.L.ticketprinter_ticket_preselection) 7 =
+						{if}
+							"Komb-Tageskart:15.00"
+						{else}
+							(L.L.ticketprinter_ticket_preselection) 8 =
+							{if}
+								"Tageskarte Fam:10.00"
+							{else}
+								(L.L.ticketprinter_ticket_preselection) 9 =
+								{if}
+									"Komb-Tagesk Er: 7.00"
+								{else}
+									(M.L.ticketprinter_standbytext)
+								{endif}
+							{endif}
+						{endif}
+					{endif}
+				{endif}
+			{endif}
+		{endif}
+	20 $SetLengthL
+{else}
+	"" 20 $SetLengthL
+	0 (S.L.ticketprinter_LightOn)
+{endif}
+
+(S.$.ticketprinter_display)
+
+
+'Ausgeben des Fahrscheins
+
+(L.L.ticketprinter_druckt)
+{if}
+	(L.L.ticketprinter_ticket_pos_last) (L.L.ticketprinter_ticket_pos) >
+	{if}
+		0 (S.L.ticketprinter_druckt)
+	{else}
+		(L.L.ticketprinter_ticket_pos) (L.S.Timegap) 2 * + (S.L.ticketprinter_ticket_pos)
+		1 >
+		{if}
+			1 (S.L.ticketprinter_ticket_pos)
+			0 (S.L.ticketprinter_druckt)
+			(L.L.ticketprinter_ticket_selection) (S.L.GivenTicket)
+		{endif}
+	{endif}
+{endif}
+
+(L.L.ticketprinter_ticket_visible)
+(L.L.ticketprinter_druckt) ! &&
+(L.L.GivenTicket) 0 < &&
+{if}
+	0 (S.L.ticketprinter_ticket_pos)
+	-1 (S.L.ticketprinter_ticket_selection) 
+	(T.L.ev_ticketsale_giveticket)
+{endif}
+
+(L.L.ticketprinter_druckt) (L.L.GivenTicket) 0 >= || (S.L.ticketprinter_ticket_visible)
+
+(L.L.ticketprinter_ticket_pos) (S.L.ticketprinter_ticket_pos_last)
+  
+  
+{end}
+
+
+{macro:ticketprinter_standbytext}
+	(L.L.elec_busbar_main)
+	{if}
+'Prüfen, ob der Bus vor weniger als 10 Meter abgefahren ist für die "Bitte warten"-Anzeige:
+	    (L.L.DrivenDistance) abs 10 < (L.L.ALMEX_JustDeparted) && (L.L.bremse_halte) || (S.L.ALMEX_JustDeparted)  			
+
+'Normal:
+		(L.L.IBIS_mode) 0 =
+		{if}
+			(L.L.ticketprinter_ticket_lastselection_timer) 6 <
+			{if}
+				(L.L.ticketprinter_ticket_lastselection_timer) (L.S.Timegap) + (S.L.ticketprinter_ticket_lastselection_timer)
+				(L.L.ticketprinter_ticket_lastselection) 0 >=
+				(L.L.ticketprinter_ticket_lastselection) 4 <= &&
+				{if}	
+					(L.L.ticketprinter_ticket_lastselection) (M.V.GetTicketName) 14 $SetLengthL ":" $+
+					(L.L.ticketprinter_ticket_lastselection) (M.V.GetTicketValue) s0
+					l0 " 2" $IntToStrEnh $+ "." $+
+					l0 100 * 100 % "02" $IntToStrEnh $+		
+				{else}
+					(L.L.ticketprinter_ticket_lastselection) 0 <
+					{if}
+					{else}
+						(L.L.ticketprinter_ticket_lastselection) 5 =
+						{if}
+							"KuDamm-Ticket : 1.00"
+						{else}
+							(L.L.ticketprinter_ticket_lastselection) 6 =
+							{if}
+								"Tageskarte Erm: 5.00"
+							{else}
+								(L.L.ticketprinter_ticket_lastselection) 7 =
+								{if}
+									"Komb-Tageskart:15.00"
+								{else}
+									(L.L.ticketprinter_ticket_lastselection) 8 =
+									{if}
+										"Tageskarte Fam:10.00"
+									{else}
+										(L.L.ticketprinter_ticket_lastselection) 9 =
+										{if}
+											"Komb-Tagesk Er: 7.00"
+										{endif}
+									{endif}
+								{endif}
+							{endif}
+						{endif}
+					{endif}
+				{endif}	
+			{else}
+'	Wenn eine neue Route eingegeben wurde (die Bedingung wird im IBIS-2.osc geprüft), dann "Warten auf IBIS-Daten..." anzeigen und Linie sowie Route in den Drucker übernehmen:
+			(L.L.ALMEX_Warten_auf_IBIS_Timer) (L.S.Timegap) + (S.L.ALMEX_Warten_auf_IBIS_Timer) 1 >
+			(L.L.ALMEX_Warten_auf_IBIS_Timer) 10 < &&
+			{if}
+				"Warten auf IBIS-Date"
+				(L.L.RBL_Linie) (S.L.ALMEX_ACT_LINE)
+				(L.L.RBL_Route) (S.L.ALMEX_ACT_ROUTE)
+			{else}
+				(L.L.ALMEX_Warten_auf_IBIS_Timer) 10 > {if} 11 (S.L.ALMEX_Warten_auf_IBIS_Timer) {endif}
+'	Wenn der Bus gerade abgefahren ist und er zu früh ist, "Bitte warten" anzeigen:			
+				(L.L.ALMEX_JustDeparted)
+				(M.V.GetTTDelay) -2 < &&
+				(L.L.bremse_halte_sw) ! &&
+				{if}
+					"Bitte warten"
+				{else}
+'	Ansonsten die Uhrzeit und die Linie, Route oder, wenn nicht möglich, das Datum anzeigen:
+					(L.L.ALMEX_ACT_LINE)
+					(L.L.ALMEX_ACT_ROUTE) &&
+					{if}
+						(L.S.Time) 3600 / s0 trunc s1 "02" $IntToStrEnh ":" $+
+						l0 l1 - 60 * trunc "02" $IntToStrEnh $+
+						" LINIE " $+
+						(L.L.ALMEX_ACT_LINE) "03" $IntToStrEnh $+
+						(L.L.ALMEX_ACT_ROUTE)
+							{if}
+							" "  $+
+							(L.L.ALMEX_ACT_ROUTE) 2 % 0.5 >
+							{if}
+								"A" $+
+							{else}
+								"B" $+
+							{endif}
+						{endif}
+					{else}
+						(L.S.Day) "02" $IntToStrEnh "." $+
+						(L.S.Month) "02" $IntToStrEnh $+ "." $+
+						(L.S.Year) $IntToStr 2 $SetLengthR $+ " " $+
+						(L.S.Time) 3600 / s0 trunc s1 "02" $IntToStrEnh $+ ":" $+		
+						l0 l1 - 60 * trunc "02" $IntToStrEnh $+ 				
+						" RBL" $+
+					{endif}
+				{endif}
+			{endif}
+			{endif}
+	        20 $SetLengthL  (S.$.ticketprinter_display) 
+		{else}
+			30 (S.L.ticketprinter_ticket_lastselection_timer)
+		{endif}
+'Leerfahrt-Ziel-Code-Eingabe:
+		(L.L.IBIS_mode) 1 =
+		{if}
+			"BETRIEBSFAHRT : " (L.L.IBIS_input) "03" $IntToStrEnh $+ 20 $SetLengthL (S.$.ticketprinter_display)
+		{endif}
+'Funktionsmenüs:
+		(L.L.IBIS_mode) 201 =
+		{if}
+			"F:Autom. Ansagen    " (S.$.ticketprinter_display)
+		{endif}
+		(L.L.IBIS_mode) 301 =
+		{if}		
+			(L.L.IBIS_AA_On)
+			{if}
+			  "Autom. Ans. aussch.?"
+			{else}
+			  "Autom. Ans. einsch.?" 
+			{endif}
+			(S.$.ticketprinter_display)
+		{endif}
+		(L.L.IBIS_mode) 202 =
+		{if}
+			"F:Zwischeneinnahmen " (S.$.ticketprinter_display)
+		{endif}
+		(L.L.IBIS_mode) 302 =
+		{if}
+			(L.L.ALMEX_Zwischeneinnahmen) 100 >=
+			{if}
+				"Zwischeneinn.:" 
+			{else}
+				"Zwischeneinn.: " 			
+			{endif}
+			(L.L.ALMEX_Zwischeneinnahmen) trunc $IntToStr $+ "." $+
+			(L.L.ALMEX_Zwischeneinnahmen) 100 * trunc 100 % "02" $IntToStrEnh $+
+			20 $SetLengthL (S.$.ticketprinter_display)
+		{endif}
+		(L.L.IBIS_mode) 203 =
+		{if}
+			"F:Stoerung          " (S.$.ticketprinter_display)
+		{endif}
+		(L.L.IBIS_mode) 303 =
+		{if}
+			(L.L.RBL_FIS_On)
+			{if}
+			  "Stoerung einschalt.?"
+			{else}
+			  "Stoerung ausschalt.?" 
+			{endif}
+			(S.$.ticketprinter_display)
+		{endif}
+		(L.L.IBIS_mode) 204 =
+		{if}
+			"F:Ziel eingeben     " (S.$.ticketprinter_display)
+		{endif}
+		(L.L.IBIS_mode) 304 =
+		{if}
+			"Ziel: " (L.L.IBIS_input) "0" (L.L.IBIS_input_count) $IntToStr $+ $IntToStrEnh $+ 20 $SetLengthL (S.$.ticketprinter_display)
+		{endif}
+		(L.L.IBIS_mode) 3041 =
+		{if}
+			"Unguelitges Ziel    " (S.$.ticketprinter_display)
+		{endif}
+'L/S/K-Eingabe:
+'	Bitte warten 1
+		(L.L.IBIS_mode) 100 =
+		{if}
+			"Bitte warten        " (S.$.ticketprinter_display)
+			(L.L.IBIS_mode_last) 100 = !
+			{if}
+				0 (S.L.IBIS_mode_timer)
+			{endif}
+			(L.L.IBIS_mode_timer) (L.S.Timegap) + (S.L.IBIS_mode_timer)
+			(L.L.IBIS_mode_timer) 0.5 >
+			{if}
+				101 (S.L.IBIS_mode)
+			{endif}
+		{endif}
+'	L/S/K eingeben
+		(L.L.IBIS_mode) 101 =
+		{if}
+			(L.L.IBIS_input_count)
+			{if}		
+				(L.L.IBIS_input_count) 4 <
+				{if}
+					"L/S/K:" (L.L.IBIS_input) "0" (L.L.IBIS_input_count) $IntToStr $+ $IntToStrEnh 3 $SetLengthL $+ " SS KK    " $+
+				{endif}
+				(L.L.IBIS_input_count) 4 =
+				{if}
+					"L/S/K:" (L.L.IBIS_input) 10 / trunc "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 10 % $IntToStr $+ "  KK    " $+
+				{endif}
+				(L.L.IBIS_input_count) 5 =
+				{if}
+					"L/S/K:" (L.L.IBIS_input) 100 / trunc "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 100 % "02" $IntToStrEnh $+ " KK    " $+
+				{endif}
+				(L.L.IBIS_input_count) 6 =
+				{if}
+					"L/S/K:" (L.L.IBIS_input) 1000 / trunc "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 10 / trunc 100 % "02" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 10 % $IntToStr $+ "     " $+
+				{endif}
+				(L.L.IBIS_input_count) 7 =
+				{if}
+					"L/S/K:" (L.L.IBIS_input) 10000 / trunc "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 100 / trunc 100 % "02" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 100 % "02" $IntToStrEnh $+ "    " $+
+				{endif}		
+			{else}
+				(L.L.RBL_Kurs) {if}
+					"L/S/K:" (L.L.RBL_Linie) "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_Linie_Suffix) "02" $IntToStrEnh $+ " " $+ (L.L.RBL_Kurs) "02" $IntToStrEnh $+ "    " $+ 20 $SetLengthL
+				{else}
+					(L.L.IBIS_LinieKurs)
+					{if}
+						"L/S/K:" (L.L.IBIS_LinieKurs) "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_Linie_Suffix) "02" $IntToStrEnh $+ " 00    " $+ 20 $SetLengthL
+					{else}
+						"L/S/K:LLL SS KK    "
+					{endif}
+				{endif}
+			{endif}
+	        20 $SetLengthL
+	        (S.$.ticketprinter_display)
+		{endif}
+'	Bitte warten 2
+		(L.L.IBIS_mode) 102 =
+		{if}
+			"Bitte warten        " (S.$.ticketprinter_display)
+			(L.L.IBIS_mode_last) 102 = !
+			{if}
+				0 (S.L.IBIS_mode_timer)
+			{endif}
+			(L.L.IBIS_mode_timer) (L.S.Timegap) + (S.L.IBIS_mode_timer)
+			(L.L.IBIS_mode_timer) 0.5 >
+			{if}
+				103 (S.L.IBIS_mode)
+			{endif}
+		{endif}
+'	L/S/K/R eingeben
+		(L.L.IBIS_mode) 103 =
+		{if}
+			(L.L.IBIS_input_count)
+			{if}
+			
+				(L.L.IBIS_input_count) 4 <
+				{if}
+					"L/S/K:" (L.L.IBIS_input) "0" (L.L.IBIS_input_count) $IntToStr $+ $IntToStrEnh 3 $SetLengthL $+ " SS KK RRR" $+
+				{endif}
+				(L.L.IBIS_input_count) 4 =
+				{if}
+					"L/S/K:" (L.L.IBIS_input) 10 / trunc "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 10 % $IntToStr $+ "  KK RRR" $+
+				{endif}
+				(L.L.IBIS_input_count) 5 =
+				{if}
+					"L/S/K:" (L.L.IBIS_input) 100 / trunc "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 100 % "02" $IntToStrEnh $+ " KK RRR" $+
+				{endif}
+				(L.L.IBIS_input_count) 6 =
+				{if}
+					"L/S/K:" (L.L.IBIS_input) 1000 / trunc "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 10 / trunc 100 % "02" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 10 % $IntToStr $+ "  RRR" $+
+				{endif}
+				(L.L.IBIS_input_count) 7 =
+				{if}
+					"L/S/K:" (L.L.IBIS_input) 10000 / trunc "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 100 / trunc 100 % "02" $IntToStrEnh $+ " " $+ (L.L.IBIS_input) 100 % "02" $IntToStrEnh $+ " " $+
+					(L.L.IBIS_input_count_ext)
+					{if}
+						(L.L.IBIS_input_ext) "0" (L.L.IBIS_input_count_ext) $IntToStr $+ $IntToStrEnh 3 $SetLengthL $+
+					{else}
+						"RRR" $+
+					{endif}
+				{endif}		
+			{else}
+				(L.L.RBL_Kurs) {if}
+					"L/S/K:" (L.L.RBL_Linie) "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_Linie_Suffix) "02" $IntToStrEnh $+ " " $+ (L.L.RBL_Kurs) "02" $IntToStrEnh $+ " " $+ (L.L.RBL_Route) "03" $IntToStrEnh $+ 20 $SetLengthL
+				{else}
+					(L.L.IBIS_LinieKurs)
+					{if}
+						"L/S/K:" (L.L.IBIS_LinieKurs) "03" $IntToStrEnh $+ " " $+ (L.L.IBIS_Linie_Suffix) "02" $IntToStrEnh $+ " 00 " $+ (L.L.RBL_Route) "03" $IntToStrEnh $+ 20 $SetLengthL
+					{else}
+						"L/S/K:LLL SS KK RRR"
+					{endif}
+				{endif}
+			{endif}
+	        20 $SetLengthL
+	        (S.$.ticketprinter_display)
+		{endif}
+'	Bitte warten 3
+		(L.L.IBIS_mode) 104 =
+		{if}
+			":Bitte warten       " (S.$.ticketprinter_display)
+			(L.L.IBIS_mode_last) 104 = !
+			{if}
+				0 (S.L.IBIS_mode_timer)
+			{endif}
+			(L.L.IBIS_mode_timer) (L.S.Timegap) + (S.L.IBIS_mode_timer)
+			(L.L.IBIS_mode_timer) 2.5 >
+			{if}
+				1 (S.L.ALMEX_enter_sent_by_almex)
+				(M.L.IBIS_eingabe)
+			{endif}
+		{endif}
+'	Ziel bestätigen/ändern
+		(L.L.IBIS_mode) 105 =
+		{if}
+			(L.L.ALMEX_Input_Linie) "03" $IntToStrEnh "/" $+
+			(L.L.ALMEX_Input_Route) "03" $IntToStrEnh $+ " Ziel: " $+
+			(L.L.IBIS_input_count)
+			{if}
+				(L.L.IBIS_input) "0" (L.L.IBIS_input_count) $IntToStr $+ $IntToStrEnh $+ 20 $SetLengthL
+			{else}
+				(L.L.ALMEX_Input_Ziel) "03" $IntToStrEnh $+
+			{endif}
+			20 $SetLengthL (S.$.ticketprinter_display)
+		{endif}
+'	Haltestelle bestätigen/ändern
+		(L.L.IBIS_mode) 106 =
+		{if}
+			(L.L.ALMEX_Input_Linie) "03" $IntToStrEnh "/" $+
+			(L.L.ALMEX_Input_Route) "03" $IntToStrEnh $+ " " $+
+			(L.$.RBL_COMING_Busstop_Cap_1) $+ " " $+ (L.$.RBL_COMING_Busstop_Cap_2) $+
+			20 $SetLengthL (S.$.ticketprinter_display)
+		{endif}
+'	Abfahrtszeit bestätigen/ändern
+		(L.L.IBIS_mode) 107 =
+		{if}
+			"Ab "
+			(L.L.ALMEX_Input_DepatureTime)
+			24 % 60 / trunc "02" $IntToStrEnh $+ ":" $+
+			(L.L.ALMEX_Input_DepatureTime)
+			60 % trunc "02" $IntToStrEnh $+ ", An " $+	
+			(L.L.ALMEX_Input_ArrivalTime)
+			24 % 60 / trunc "02" $IntToStrEnh $+ ":" $+
+			(L.L.ALMEX_Input_ArrivalTime)
+			60 % trunc "02" $IntToStrEnh $+		
+			(S.$.ticketprinter_display)
+		{endif}
+'	Kurs ungültig
+		(L.L.IBIS_mode) 151 =
+		(L.L.IBIS_mode) 153 = ||
+		{if}
+			"Ungueltiger Kurs    "		
+			(S.$.ticketprinter_display)
+		{endif}
+'	Kurs ungültig
+		(L.L.IBIS_mode) 152 =
+		(L.L.IBIS_mode) 154 = ||
+		{if}
+			"K. faehrt zurzeit n."		
+			(S.$.ticketprinter_display)
+		{endif}
+'	Route ungültig
+		(L.L.IBIS_mode) 155 =
+		{if}
+			"Ungueltige Route    "		
+			(S.$.ticketprinter_display)
+		{endif}
+'	Ziel ungültig
+		(L.L.IBIS_mode) 156 =
+		{if}
+			"Ungueltiges Ziel    "		
+			(S.$.ticketprinter_display)
+		{endif}
+'	Kurs-Route-Kombi ungültig
+		(L.L.IBIS_mode) 157 =
+		{if}
+			"Ungueltige K-R-Kombi"		
+			(S.$.ticketprinter_display)
+		{endif}
+'	Warten auf IBIS-Daten
+		(L.L.IBIS_mode) 4 =
+		{if}
+			"Warten auf IBIS-Date" (S.$.ticketprinter_display)
+			(L.L.RBL_Linie) (S.L.ALMEX_ACT_LINE)
+			(L.L.RBL_Route) (S.L.ALMEX_ACT_ROUTE)
+			(L.L.IBIS_mode_last) 4 = !
+			{if}
+				0 (S.L.IBIS_mode_timer)
+			{endif}
+			(L.L.IBIS_mode_timer) (L.S.Timegap) + (S.L.IBIS_mode_timer)
+			(L.L.IBIS_mode_timer) 9 >
+			{if}
+				0 (S.L.IBIS_mode)
+			{endif}
+		{endif}
+'	Stornieren?
+		(L.L.IBIS_mode) 5 =
+		{if}
+			"Verkauf stornieren? " (S.$.ticketprinter_display)
+		{endif}
+'	Verkauf storniert
+		(L.L.IBIS_mode) 501 =
+		{if}
+			"Verkauf storniert   " (S.$.ticketprinter_display)
+			(L.L.IBIS_mode_last) 501 = !
+			{if}
+				0 (S.L.IBIS_mode_timer)
+			{endif}
+			(L.L.IBIS_mode_timer) (L.S.Timegap) + (S.L.IBIS_mode_timer)
+			(L.L.IBIS_mode_timer) 2 >
+			{if}
+				0 (S.L.IBIS_mode)
+			{endif}
+		{endif}
+	{else}
+		"" (S.$.ticketprinter_display)
+	{endif}
+	(L.L.IBIS_mode) (S.L.IBIS_mode_last)
+{end}
+
+'----------------------
+'	Macros
+'----------------------
+
+{macro:IBIS_Zahlentasten}
+	s0
+	(L.L.elec_busbar_main)
+	{if}
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+		(L.L.IBIS_mode) 103 = 
+		{if}			
+			(L.L.IBIS_input_count) 7 <
+			{if}
+				(L.L.IBIS_input) 10 * l0 + (S.L.IBIS_input)
+				(L.L.IBIS_input_count) 1 + (S.L.IBIS_input_count)
+			{else}
+'Marcel und Rüdiger kamen leider nicht auf die Idee, dass man vielleicht auch mal Zahlen mit einer größeren Präzision als 7 bzw. reine Integervariablen brauch und haben deshalb den Datentyp single verwendet...
+'Das heißt, die größte Zahl, die ich hätte haben können ohne die Einerstelle ungenau werden zu lassen ist 16777215, was mir aber nicht für die L/S/K/R-Eingabe ausreicht.
+'Aus diesem Grund muss ich das mit der Routeneingabe umständlicher machen...
+				(L.L.IBIS_input_count) 7 = (L.L.IBIS_input_count_ext) 3 < &&
+				{if}
+					(L.L.IBIS_input_ext) 10 * l0 + (S.L.IBIS_input_ext)
+					(L.L.IBIS_input_count_ext) 1 + (S.L.IBIS_input_count_ext)
+				{endif}
+			{endif}
+		{endif}	
+		(L.L.IBIS_mode) 101 =
+		(L.L.IBIS_input_count) 7 < && 
+		(L.L.IBIS_mode) 1 = (L.L.IBIS_mode) 105 = || (L.L.IBIS_mode) 304 = ||
+		(L.L.IBIS_input_count) 3 < && ||
+		{if}
+			(L.L.IBIS_input) 10 * l0 + (S.L.IBIS_input)
+			(L.L.IBIS_input_count) 1 + (S.L.IBIS_input_count)
+		{endif}
+		(L.L.IBIS_mode) 105 = (L.L.IBIS_mode) 304 = ||
+		{if}
+			(L.L.IBIS_input)
+			(M.V.GetTerminusIndex) s0
+			0 >
+			{if}
+				l0 (M.L.Display_COMING_Terminus)
+			{endif}
+		{endif}
+	
+	{endif}
+{end}
+
+{macro:IBIS_eingabe}
+	(L.L.elec_busbar_main)
+	{if}
+		1 (S.L.ticketprinter_LightOn) 0 (S.L.ticketprinter_LightOn_timer)
+
+'***********************
+' Eingabe des Codes für Betriebsfahrt:
+'***********************
+		(L.L.IBIS_mode) 1 =
+		{if}
+			0 (S.L.IBIS_mode)
+' Eingabe ist der Terminus-Code
+			(L.L.IBIS_input) (S.L.IBIS_StandbyTerminusCode) (M.V.GetTerminusIndex)
+			0 <
+			{if}
+				1 (S.L.IBIS_mode)
+				0 (S.L.IBIS_input) (S.L.IBIS_input_count) (S.L.IBIS_input_ext) (S.L.IBIS_input_count_ext)
+				(T.L.ev_IBIS_pieperror)
+			{else}		
+				(L.L.IBIS_StandbyTerminusCode) (S.L.IBIS_TerminusCode)
+				(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+				(M.L.IBIS_RefreshTerminusText)
+			{endif}
+		{endif}
+		
+'***********************
+' Eingabe Linie/Suffix/Kurs/Route:
+'***********************
+		(L.L.IBIS_mode) 103 =
+		{if}
+			(L.L.IBIS_input_count)
+			{if}
+				(L.L.IBIS_input_count) 1 = 
+				(L.L.IBIS_input_count) 2 = ||
+				(L.L.IBIS_input_count) 3 = || {if} (L.L.IBIS_input) 10000 * (S.L.IBIS_input) {endif}
+				(L.L.IBIS_input_count) 4 = {if} (L.L.IBIS_input) 10 / trunc 10000 * (L.L.IBIS_input) 10 % + (S.L.IBIS_input) {endif}
+				(L.L.IBIS_input_count) 5 = {if} (L.L.IBIS_input) 100 * (S.L.IBIS_input) {endif}
+				(L.L.IBIS_input_count) 6 = {if} (L.L.IBIS_input) 10 / trunc 100 * (L.L.IBIS_input) 10 % + (S.L.IBIS_input) {endif} 
+
+' Input teilen...
+
+
+				(L.L.IBIS_input) s0 100 / trunc
+'				(S.L.IBIS_Linie_Complex)
+				s1
+	
+				100 / trunc
+	
+				(S.L.ALMEX_Input_Linie)
+	
+				l1 100 %
+
+				(S.L.ALMEX_Input_Suffix)
+			
+				l0 100 %
+	
+				(S.L.ALMEX_Input_Kurs)
+
+				(L.L.IBIS_input_ext)
+				
+				(S.L.ALMEX_Input_Route)
+				
+				0 (S.L.ALMEX_Input_Stop)
+				
+				104 (S.L.IBIS_mode)
+				
+				0 (S.L.IBIS_input) (S.L.IBIS_input_count) (S.L.IBIS_input_ext) (S.L.IBIS_input_count_ext)
+			{else}
+				(L.L.RBL_Linie)
+				{if}
+					(L.L.RBL_Linie) (S.L.ALMEX_Input_Linie)
+					(L.L.RBL_Suffix) (S.L.ALMEX_Input_Suffix)
+					(L.L.RBL_Kurs) (S.L.ALMEX_Input_Kurs)
+					(L.L.RBL_Route) (S.L.ALMEX_Input_Route)
+					104 (S.L.IBIS_mode)
+					0 (S.L.IBIS_input) (S.L.IBIS_input_count) (S.L.IBIS_input_ext) (S.L.IBIS_input_count_ext)
+				{endif}
+			{endif}
+			0 (S.L.ALMEX_enter_sent_by_almex)
+		{else}
+		(L.L.IBIS_mode) 104 =
+		(L.L.ALMEX_enter_sent_by_almex) &&
+		{if}					
+				(L.L.ALMEX_Input_Linie) 0 =
+				{if}
+					-1 (S.L.RBL_Kurs_Index) 0 (S.L.RBL_Linie) (S.L.IBIS_LinieKurs) (S.L.RBL_Suffix) (S.L.IBIS_Linie_Suffix) (S.L.RBL_Kurs) (S.L.IBIS_Linie_Complex) 
+					(S.L.RBL_Umlauf_CurrentRoute_Index)
+					9.5 (S.L.ALMEX_Warten_auf_IBIS_Timer)
+					1 (S.L.IBIS_LCD_showdest)
+					-1 (S.L.IBIS_RouteIndex)
+					0 (S.L.RBL_Route)
+					-1 (S.L.IBIS_RouteIndex)
+					0 (S.L.IBIS_busstop)			
+					(M.L.IBIS_RefreshBusstop)
+					0 (S.L.IBIS_busstop_entwerter_ist)
+					(L.L.IBIS_StandbyTerminusCode) (S.L.IBIS_TerminusCode)
+					(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+					(M.L.IBIS_RefreshTerminusText)
+					(L.L.ALMEX_Input_Y_On) (S.L.RBL_Y_On)
+					0 (S.L.IBIS_mode)
+					0 (S.L.RBL_COMING_Linie)
+					0 (S.L.RBL_COMING_Suffix)
+					0 (S.L.RBL_COMING_Kurs)
+					0 (S.L.RBL_COMING_Route)
+					0 (S.L.RBL_COMING_Stop)
+					0 (S.L.CockpDispl_mode)
+				{else}		
+						(L.L.ALMEX_Input_Route) 0 =
+						{if}
+							(L.L.IBIS_StandbyTerminusCode) (S.L.IBIS_TerminusCode) (S.L.ALMEX_Input_Ziel)
+							(M.V.GetTerminusIndex)  (M.L.Display_COMING_Terminus)		
+							105 (S.L.IBIS_mode)
+						{else}
+						
+							(L.L.ALMEX_Input_Route) s0
+' Das Folgende soll künftig erst nach "Route" gemacht werden!
+							(L.L.ALMEX_Input_Linie) 100 * l0 + (M.V.GetRouteIndex) s1
+							0 <
+							{if}
+' Falls kleiner 0, also -1, dann fehlerhaft, dann nicht übernehmen sondern Fehlermeldung ausgeben:
+								155 (S.L.IBIS_mode)
+'		Blinker aktivieren:
+'								1 (S.L.IBIS_BlinkOn) (S.L.IBIS_BlinkInitial)
+'								(L.S.GetTime) (S.L.IBIS_BlinkTimer)
+'		Fehler-piepen
+'								(T.L.ev_IBIS_pieperror)
+							{else}								
+								l1 (M.V.GetRouteTerminusIndex) s1 (M.V.GetTerminusCode) (S.L.ALMEX_Input_Ziel)
+								0 (S.L.ALMEX_Input_Stop)
+								105 (S.L.IBIS_mode)
+								l1 (M.L.Display_COMING_Terminus)
+							{endif}
+						{endif}
+					
+					(L.L.ALMEX_Input_Kurs) 0 = !	
+					{if}
+'Wenn ein Umlauf eingegeben wurde:
+
+'Grunddesign einer "Umlaufroute" in der Hof-Datei:
+'				15137011
+'				15    	 - damit man weiß, dass es sich um einen Umlauf handelt,
+'				    	   eigentlich war dafür 999 gedacht, aber das war nicht möglich,
+'				    	   da für die Zahlvariablen ein Datentyp benutzt wurde, der max.
+'				    	   die Zahl 16777216 zulässt.
+'				  137	 - Linie, sollte klar sein
+'				     01  - Die Umlaufnummer
+'				       1 - Da es mehrere Umläufe 13701 gibt (welche für Mo-Fr, welche
+'						   für Sa/So...), kann man somit mehrere 13701-Umläufe haben.
+'						   Hier sind alle Zahlen von 0 bis 9 möglich
+'
+'
+'				[infosystem_busstop_list]						
+'				6 - Anzahl der Einträge...
+'				04001620		- Dieser Umlauf fährt von 4 Uhr bis 16:20 Uhr. Bei Zeiten nach Mitternacht, wie im Fahrplaneditor 26 Uhr etc. eintragen.
+'				1111100011		- Ebenfalls wie im Fahrplaneditor: Fährt dieser Umlauf...
+'								  1. Ziffer - am Montag?
+'								  7. Ziffer - am Sonntag?
+'								  8. Ziffer - an Feiertagen?
+'								  9. Ziffer - außerhalb der Ferien?
+'								  10. Ziffer - in den Ferien?
+'			Nach diesen beiden Einträgen kommen die Fahrten und andere Umläufe, mit denen der Umlauf gekoppelt ist:
+'				0400045013701	- von 4 Uhr bis 4:50 Uhr fährt der Umlauf auf der Linie 137 Route 01
+'				0510053013710	- von 5:10 Uhr bis 5:30 Uhr fährt der Umlauf auf der Linie 137 Route 10
+'				05301600A33701	- von 5:30 Uhr bis 16 Uhr gibt es eine Änderung (A), der Umlauf wechselt zum Umlauf 337/01
+'								  Dabei wird automatisch an der Endhaltestelle davor "Dieser Bus fährt weiter als Linie..."
+'								  angesagt. Um die normale Endhaltestellenansage abzuspielen, muss anstelle des "A"s ein
+'								  "O" (Ohne Ansage ;) ) benutzt werden.
+'				1600162013707	- von 16 Uhr bis 16:20 Uhr fährt der Umlauf auf der Linie 137 Route 07
+'						
+'			Der Umlauf 33701 würde dann so aussehen:
+'
+'				04001620
+'				1111100011		- kann auch verschieden sein
+'				04000510A13701
+'				...				- hier die 337er Fahrten
+'				16001620A13701
+'
+'
+'						15000000 (L.L.ALMEX_Input_Linie) 1000 * + (L.L.ALMEX_Input_Kurs) 10 * + s0
+'						(M.L.RBL_Finde_Umlauf)
+'						(L.L.ALMEX_Input_Kurs_Index) 0 <
+'						{if}
+'							l1
+'							{if}
+'								154 (S.L.IBIS_mode)
+'							{else}
+								153 (S.L.IBIS_mode)
+'							{endif}	
+'						{else}
+'							105 (S.L.IBIS_mode)
+'							(L.S.Time) (S.L.ALMEX_Input_DepatureTime)
+'						{endif}
+					{endif}
+				{endif}
+		{else}
+'***********************
+' Eingabe Linie/Suffix/Kurs/Route    // Ziel:
+'***********************
+		(L.L.IBIS_mode) 105 =
+		{if}
+			(L.L.IBIS_input_count)
+			{if}
+				(L.L.IBIS_input)
+				(M.V.GetTerminusIndex)
+				0 <
+				{if}
+					156 (S.L.IBIS_mode)
+				{else}				
+					(L.L.IBIS_input) (S.L.ALMEX_Input_Ziel)
+					(L.L.ALMEX_Input_Route)
+					{if}
+						106 (S.L.IBIS_mode)
+						(L.L.ALMEX_Input_Linie) 100 * (L.L.ALMEX_Input_Route) + (M.V.GetRouteIndex) 0 (S.L.ALMEX_Input_Stop) (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.V.GetBusstopIndex) (M.L.Display_COMING_Stop)		
+					{else}		
+						0 (S.L.IBIS_mode) (S.L.CockpDispl_mode)
+						(L.L.ALMEX_Input_Ziel) (S.L.IBIS_TerminusCode) 
+						(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+						(M.L.IBIS_RefreshTerminusText)
+						0 (S.L.RBL_COMING_Linie) (S.L.RBL_COMING_Suffix) (S.L.RBL_COMING_Kurs) (S.L.RBL_COMING_Route) (S.L.RBL_COMING_Stop)
+										
+						-1 (S.L.RBL_Kurs_Index) 0 (S.L.RBL_Kurs) (S.L.RBL_Umlauf_CurrentRoute_Index)
+						9.5 (S.L.ALMEX_Warten_auf_IBIS_Timer) 1 (S.L.IBIS_LCD_showdest)
+						-1 (S.L.IBIS_RouteIndex) 0 (S.L.RBL_Route)
+						0 (S.L.IBIS_busstop) (M.L.IBIS_RefreshBusstop)
+						0 (S.L.IBIS_busstop_entwerter_ist)
+						(L.L.ALMEX_Input_Y_On) (S.L.RBL_Y_On)
+						
+						(L.L.ALMEX_Input_Linie) (S.L.RBL_Linie) (S.L.IBIS_LinieKurs) 100 * (L.L.ALMEX_Input_Suffix) (S.L.RBL_Suffix) (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)		
+					{endif}
+				{endif}
+			{else}
+				(L.L.ALMEX_Input_Route)
+				{if}
+					106 (S.L.IBIS_mode)
+					(L.L.ALMEX_Input_Linie) 100 * (L.L.ALMEX_Input_Route) + (M.V.GetRouteIndex) 0 (S.L.ALMEX_Input_Stop) (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.V.GetBusstopIndex) (M.L.Display_COMING_Stop)				
+				{else}		
+					0 (S.L.IBIS_mode) (S.L.CockpDispl_mode)
+					(L.L.ALMEX_Input_Ziel) (S.L.IBIS_TerminusCode) 
+					(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+					(M.L.IBIS_RefreshTerminusText)
+					0 (S.L.RBL_COMING_Linie) (S.L.RBL_COMING_Suffix) (S.L.RBL_COMING_Kurs) (S.L.RBL_COMING_Route) (S.L.RBL_COMING_Stop)
+									
+					-1 (S.L.RBL_Kurs_Index) 0 (S.L.RBL_Kurs) (S.L.RBL_Umlauf_CurrentRoute_Index)
+					9.5 (S.L.ALMEX_Warten_auf_IBIS_Timer) 1 (S.L.IBIS_LCD_showdest)
+					-1 (S.L.IBIS_RouteIndex) 0 (S.L.RBL_Route)
+					0 (S.L.IBIS_busstop) (M.L.IBIS_RefreshBusstop)
+					0 (S.L.IBIS_busstop_entwerter_ist)
+					(L.L.ALMEX_Input_Y_On) (S.L.RBL_Y_On)
+					
+					(L.L.ALMEX_Input_Linie) (S.L.RBL_Linie) (S.L.IBIS_LinieKurs) 100 * (L.L.ALMEX_Input_Suffix) (S.L.RBL_Suffix) (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)										
+				{endif}
+			{endif}	
+			0 (S.L.IBIS_input) (S.L.IBIS_input_count)			
+		{else}
+		
+'***********************
+' Eingabe Linie/Suffix/Kurs/Route    // Haltestelle:
+'***********************
+		(L.L.IBIS_mode) 106 =
+		{if}
+			(L.L.ALMEX_Input_Kurs)
+			{if}
+				107 (S.L.ALMEX_Input_Kurs) 
+			{else}
+				(L.L.ALMEX_Input_Y_On) (S.L.RBL_Y_On)
+' 				Falls es entweder ein 500, ein 800 oder 900-Code ist, dann bitte beim Complex-Code eine 28 (M), eine 36 (X) bzw. 35 (N) verwenden:
+				(L.L.ALMEX_Input_Linie) (S.L.RBL_COMING_Linie) (S.L.IBIS_LinieKurs)
+				(L.L.ALMEX_Input_Suffix) (S.L.RBL_COMING_Suffix) (S.L.IBIS_Linie_Suffix)
+				(L.L.IBIS_LinieKurs) 100 * (L.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)
+							
+				(L.L.ALMEX_Input_Kurs) (S.L.RBL_COMING_Kurs)
+				(L.L.ALMEX_Input_Kurs_Index) (S.L.RBL_COMING_Kurs_Index)
+				(L.L.ALMEX_Input_Route) (S.L.RBL_COMING_Route)
+				(L.L.ALMEX_Input_Ziel) (S.L.RBL_COMING_Ziel)
+				(L.L.ALMEX_Input_Stop) (S.L.RBL_COMING_Stop)
+				
+				5 (S.L.CockpDispl_mode)						
+				0 (S.L.ALMEX_quitiert)	
+				0 (S.L.IBIS_mode)
+				
+				(L.L.IBIS_StandbyTerminusCode) (S.L.IBIS_TerminusCode)
+				(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+				(M.L.IBIS_RefreshTerminusText)
+			
+'								(L.L.ALMEX_Input_Linie) (S.L.RBL_COMING_Linie) 100 * (L.L.ALMEX_Input_Route) (S.L.RBL_Route) + (M.V.GetRouteIndex) s1
+'								(M.L.IBIS_SetRoute)
+'								(L.L.ALMEX_Input_Ziel) (S.L.IBIS_TerminusCode) 
+'								(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+'								(M.L.IBIS_RefreshTerminusText)
+' Bushaltestellen zurücksetzen:
+'								(L.L.ALMEX_Input_Stop) (S.L.RBL_COMING_Stop) (S.L.IBIS_busstop)			
+'								(M.L.IBIS_RefreshBusstop)
+
+
+' Entwerter umstellen:
+'								(T.L.ev_IBIS_entwerter)
+'								(L.L.IBIS_busstop_entwerter_soll) (S.L.IBIS_busstop_entwerter_ist)
+'								0 (S.L.ALMEX_Warten_auf_IBIS_Timer)
+'								0 (S.L.RBL_COMING_Linie)
+'								0 (S.L.RBL_COMING_Suffix)
+'								0 (S.L.ALMEX_Input_Route)	
+'								0 (S.L.RBL_COMING_Stop)
+'				4 (S.L.IBIS_mode)
+			{endif}	
+		{endif}
+'***********************
+' Andere Sachen im Funktionsmenü:
+'***********************
+		
+
+		(L.L.IBIS_mode) 301 =
+		{if}
+			(L.L.IBIS_AA_On) ! (S.L.IBIS_AA_On)
+			201 (S.L.IBIS_mode)
+		{else}
+			(L.L.IBIS_mode) 201 =
+			{if}
+				301 (S.L.IBIS_mode)
+			{endif}
+		{endif}
+		(L.L.IBIS_mode) 302 =
+		{if}
+			202 (S.L.IBIS_mode)	
+		{else}
+			(L.L.IBIS_mode) 202 =
+			{if}
+				302 (S.L.IBIS_mode)
+			{endif}
+		{endif}
+		(L.L.IBIS_mode) 303 =
+		{if}
+			(L.L.RBL_FIS_On) ! (S.L.RBL_FIS_On)
+			203 (S.L.IBIS_mode)	
+		{else}
+			(L.L.IBIS_mode) 203 =
+			{if}
+				303 (S.L.IBIS_mode)
+			{endif}
+		{endif}
+		(L.L.IBIS_mode) 204 =
+		{if}
+			304 (S.L.IBIS_mode)	
+			(L.L.IBIS_TerminusIndex) (M.L.Display_COMING_Terminus)
+		{else}
+		
+'***********************
+' Eingabe Ziel (Funktionsmenü):
+'***********************
+			(L.L.IBIS_mode) 3041 =
+			{if}
+				304 (S.L.IBIS_mode)	
+			{else}
+				(L.L.IBIS_mode) 304 =
+				{if}
+					204 (S.L.IBIS_mode)
+'		 Eingabe ist der Terminus-Code
+					(L.L.IBIS_input)
+'		 Daraus wird noch der Terminus-Index generiert:
+					(M.V.GetTerminusIndex) s0
+					0 <
+					{if}
+'		 Falls kleiner 0, also -1, dann fehlerhaft, dann nicht übernehmen sondern Fehlermeldung ausgeben:
+						3041 (S.L.IBIS_mode)
+'				Fehler-piepen
+						(T.L.ev_IBIS_pieperror)
+					{else}	
+						(L.L.IBIS_input) (S.L.ALMEX_Input_Ziel)
+						0 (S.L.IBIS_input) (S.L.IBIS_input_count)
+						0 (S.L.CockpDispl_timer) 
+						2 (S.L.CockpDispl_mode)
+						0 (S.L.ALMEX_quitiert)
+					{endif}
+				{endif}
+			{endif}
+		{endif}
+		
+	
+
+'***********************
+' Stornierungen:
+'***********************
+	
+		(L.L.IBIS_mode) 501 =
+		{if}
+			0 (S.L.IBIS_mode)
+		{else}		
+		(L.L.IBIS_mode) 5 =
+		{if}
+			501 (S.L.IBIS_mode)
+			(L.L.ALMEX_Zwischeneinnahmen) (L.L.ticketprinter_ticket_lastselection_price) - (S.L.ALMEX_Zwischeneinnahmen)
+		{else}		
+		
+'***********************
+' Bestätigen von Fehlermeldungen:
+'***********************
+		(L.L.IBIS_mode) 151 =
+		(L.L.IBIS_mode) 152 = ||
+		{if}
+			101 (S.L.IBIS_mode)
+		{else}
+		(L.L.IBIS_mode) 153 =
+		(L.L.IBIS_mode) 154 = ||
+		(L.L.IBIS_mode) 155 = ||
+		(L.L.IBIS_mode) 157 = ||
+		{if}
+			103 (S.L.IBIS_mode)
+		{else}
+		(L.L.IBIS_mode) 156 =
+		{if}
+			105 (S.L.IBIS_mode)
+		{endif}
+		{endif}
+		{endif}
+		{endif}
+		{endif}
+		{endif}
+		{endif}
+		{endif}		
+		{endif}
+
+	{endif}
+	
+{end}
+
+{macro:IBIS_Set_Act_Bus_Stop}
+'	Entwerter-Weiterschaltung:
+	(L.L.IBIS_busstop_entwerter_ist) (L.L.IBIS_busstop_entwerter_soll) = !
+	{if}
+		(L.L.IBIS_busstop_entwerter_soll) (S.L.IBIS_busstop_entwerter_ist)
+		(T.L.ev_IBIS_entwerter_weiter)
+	{endif}	
+	0 (S.L.DrivenDist_1000km)
+	1 (S.L.IBIS_AA_Abschnitt)
+	(L.L.kmcounter_m) (S.L.DrivenDist_start)
+	(L.L.IBIS_busstop_suffix_AA_Laenge_1) (S.L.IBIS_AA_Laenge_1)
+	(L.L.IBIS_busstop_suffix_AA_Laenge_2) (S.L.IBIS_AA_Laenge_2)	
+'Zielmatrix ändern, wenn nötig
+	(L.L.IBIS_busstop_suffix_ziel)
+	{if}
+		(L.L.IBIS_busstop_suffix_ziel) (S.L.IBIS_TerminusCode)
+		(M.V.GetTerminusIndex) s0
+		l0 (S.L.IBIS_TerminusIndex)
+		(M.L.IBIS_RefreshTerminusText)	
+	{endif}
+	
+	(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <=
+	(L.L.RBL_Route) &&
+	(L.L.RBL_Kurs_Index) 0 > ! &&
+	{if}
+		(L.L.IBIS_NEXT_Route)
+		(L.L.IBIS_busstop_suffix_route) ||
+		{if}	
+'wenn neue Route eingegeben ist'			
+			(L.L.IBIS_NEXT_LinieKurs) (L.L.IBIS_NEXT_Route) &&
+			(L.L.IBIS_NEXT_LinieKurs) (L.L.RBL_Linie) = ! &&
+			(L.L.IBIS_busstop_suffix_linie) ||
+			{if}							
+				(L.L.IBIS_NEXT_LinieKurs) (L.L.IBIS_NEXT_Route) &&
+				(L.L.IBIS_NEXT_LinieKurs) (L.L.RBL_Linie) = ! &&
+				{if}
+					(L.L.IBIS_NEXT_LinieKurs) (S.L.RBL_COMING_Linie) (L.L.IBIS_NEXT_Linie_Suffix) (S.L.RBL_COMING_Suffix)
+				{else}
+					(L.L.IBIS_busstop_suffix_linie) s0 100 / trunc (S.L.RBL_COMING_Linie) l0 100 % (S.L.RBL_COMING_Suffix)
+				{endif}
+				1 (S.L.CockpDispl_mode)
+				(L.L.RBL_COMING_Linie) 100 * s0
+			{else}			
+				3 (S.L.CockpDispl_mode)
+				(L.L.RBL_Linie) (S.L.RBL_COMING_Linie) 100 * s0 (L.L.RBL_Suffix) (S.L.RBL_COMING_Suffix)
+			{endif}
+			(L.L.IBIS_NEXT_LinieKurs) (L.L.IBIS_NEXT_Route) &&
+			{if}
+				(L.L.IBIS_NEXT_Route) (S.L.RBL_COMING_Route) 0 (S.L.RBL_COMING_Stop)
+			{else}
+				(L.L.IBIS_busstop_suffix_route) (S.L.RBL_COMING_Route) 0 (S.L.RBL_COMING_Stop)
+			{endif}
+'Schon an der Haltestelle die Zielmatrix aktualisieren: ABGESCHALTET! (ist nur in den Bussen mit Atron so)
+			l0 (L.L.RBL_COMING_Route) + (M.V.GetRouteIndex) s0 0 >=
+'			{if}
+'				l0 (M.V.GetRouteTerminusIndex)
+'				(S.L.IBIS_TerminusIndex)
+'				(M.V.GetTerminusCode) (S.L.IBIS_TerminusCode)
+'				(M.L.IBIS_RefreshTerminusText)	
+'			{endif}
+			0 (S.L.ALMEX_quitiert)
+		{else}
+			(L.L.IBIS_Haltedauer) 3 >
+			{if}
+'			(M.V.GetTTLineString)  (L.$.IBIS_TT_LastLine)
+'Ansonten, wenn ein Fahrplan aktiv ist:
+				0 s2 s3 s7
+'		Zuerst Liniennummer herausfinden:
+'			l7 = Alles ok  ---    l1 = Liniennummer ohne N/M/X    ---    l2 = Suffix     ---     l3 = Liniennummer für N/M/X
+				(L.L.schedule_active) s0
+				{if}
+					(M.V.GetTTLineString) (S.$._temps_)
+					(L.$._temps_) $StrToFloat s1 0 <
+					{if}
+						(L.$._temps_) 2 $SetLengthR $StrToFloat s1 0 <
+						{if}
+							(L.$._temps_) 1 $cutBegin $StrToFloat s1 0 <
+							{if}
+								(L.$._temps_) "TXL" $=
+								{if}
+									28 s2 500 s1 1 s7
+								{else}
+									(L.$._temps_) 2 $SetLengthL $StrToFloat s1 0 <
+									{if}
+										(L.$._temps_) 1 $CutEnd $StrToFloat s1 0 <
+										{if}
+											0 s7
+										{else}
+											(L.$._temps_) 1 $SetLengthR "E" $=
+											{if}
+												10 s2 1 s7
+											{else}
+											(L.$._temps_) 1 $SetLengthR "N" $=
+											{if}
+												04 s2 900 s3 1 s7
+											{else}
+												0 s7
+											{endif}
+											{endif}
+										{endif}
+									{else}
+										(L.$._temps_) 1 $SetLengthR "E" $=
+										{if}
+											10 s2 1 s7
+										{else}
+										(L.$._temps_) 1 $SetLengthR "N" $=
+										{if}
+											04 s2 900 s3 1 s7
+										{else}
+											0 s7
+										{endif}
+										{endif}
+									{endif}
+								{endif}
+							{else}
+								(L.$._temps_) 1 $SetLengthL "N" $=
+								{if}
+									15 s2 900 s3 1 s7
+								{else}
+								(L.$._temps_) 1 $SetLengthL "M" $=
+								{if}
+									27 s2 800 s3 1 s7
+								{else}
+								(L.$._temps_) 1 $SetLengthL "X" $=
+								{if}
+									36 s2 500 s3 1 s7
+								{else}
+									0 s7
+								{endif}
+								{endif}
+								{endif}
+							{endif}
+						{else}
+							(L.$._temps_) 1 $SetLengthL "N" $=
+							{if}
+								35 s2 900 s3 1 s7
+							{else}
+							(L.$._temps_) 1 $SetLengthL "M" $=
+							{if}
+								28 s2 800 s3 1 s7
+							{else}
+							(L.$._temps_) 1 $SetLengthL "X" $=
+							{if}
+								36 s2 500 s3 1 s7
+							{else}
+								0 s7
+							{endif}
+							{endif}
+							{endif}
+						{endif}
+					{else}
+						1 s7
+					{endif}	
+					l7
+					{if}
+'				Prüfen, ob die Linie eine Route hat:
+						l1 l3 + 100 * 1 + (M.V.GetRouteIndex) 0 <
+						l1 l3 + 100 * 2 + (M.V.GetRouteIndex) 0 < &&
+						{if}
+							0 s3
+						{endif}
+						l1 l3 + 100 * 1 + (M.V.GetRouteIndex) 0 <
+						l1 l3 + 100 * 2 + (M.V.GetRouteIndex) 0 < &&
+						{if}
+							0 s7
+						{endif}			
+'						l7
+'						{if}
+'							l1 l3 + (S.L.RBL_COMING_Linie) l2 (S.L.RBL_COMING_Suffix)
+'						{endif}
+					{endif}
+					
+'					0 (M.V.GetTTBusstopName) (L.$.IBIS_TT_LastFirstStop) $= ! s0
+'					(M.V.GetTTTerminusIndex) (M.V.GetTTBusstopName) (L.$.IBIS_TT_LastLastStop) $= ! l0 || s0
+
+					
+					
+					l1 l3 + (L.L.RBL_Linie) = ! l7 &&
+					{if}
+						l1 l3 + (S.L.RBL_COMING_Linie) l2 (S.L.RBL_COMING_Suffix)
+						0 s0 (L.L.RBL_COMING_Linie) 100 * s1
+						(M.L.IBIS_TT_GetRouteNo)							
+						l0 !
+						{if}
+							0 (S.L.RBL_COMING_Linie) (S.L.RBL_COMING_Suffix)
+						{endif}						
+					{else}
+						0 s0 (L.L.RBL_Linie) 100 * s1
+						(M.L.IBIS_TT_GetRouteNo)		
+					{endif}		
+				{endif}
+				l0 !
+				{if}
+					(L.L.RBL_Route) s2
+					2 % 0.5 >
+					{if}
+						l2 1 + s1
+					{else}
+						l2 1 - s1
+					{endif}
+'		Suche den Routeindex:
+					(L.L.RBL_Linie) 100 * l1 + (M.V.GetRouteIndex)
+					0 <
+					{if}
+'		Wenn nicht gültig, bleibe auf der Route:
+						(L.L.RBL_Route) s1
+					{endif}	
+					l1 (S.L.RBL_COMING_Route)
+					0 (S.L.RBL_COMING_Stop)
+				
+				{endif}
+				(L.L.RBL_COMING_Linie)
+				{if}
+					(L.L.RBL_COMING_Linie) (S.L.IBIS_LinieKurs) 100 * (L.L.RBL_COMING_Suffix) (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)
+					1 (S.L.CockpDispl_mode)
+				{else}
+					(L.L.RBL_Linie) (S.L.RBL_COMING_Linie) (L.L.RBL_Suffix) (S.L.RBL_COMING_Suffix)
+					3 (S.L.CockpDispl_mode)	
+				{endif}
+'				(L.L.RBL_Linie) 100 * (L.L.RBL_COMING_Route) + (M.V.GetRouteIndex) s1 0 >=
+'				l0 &&
+'				{if}
+'					l1 (M.V.GetRouteTerminusIndex)
+'					(S.L.IBIS_TerminusIndex)
+'					(M.V.GetTerminusCode) (S.L.IBIS_TerminusCode)
+'					(M.L.IBIS_RefreshTerminusText)
+'				{endif}
+				0 (S.L.ALMEX_quitiert)	
+			{endif}		
+		{endif}
+	{endif}
+	(L.L.schedule_active)
+	{if}
+		(M.V.GetTTBusstopIndex) (S.L.IBIS_TT_LastStopIndex)
+		0 (M.V.GetTTBusstopName) (S.$.IBIS_TT_LastFirstStop)
+		(M.V.GetTTTerminusIndex) (M.V.GetTTBusstopName) (S.$.IBIS_TT_LastLastStop)
+		(M.V.GetTTLineString)  (S.$.IBIS_TT_LastLine)
+	{else}
+		-1 (S.L.IBIS_TT_LastStopIndex)
+		"" (S.$.IBIS_TT_LastFirstStop)
+		"" (S.$.IBIS_TT_LastLastStop)
+		"" (S.$.IBIS_TT_LastLine)
+	{endif}
+	
+{end}
+
+
+{macro:Check_act_busstop}
+'	Automatische Haltestellenkorrektur:
+	(L.L.IBIS_AA_On)
+	(L.L.schedule_active) &&
+	{if}
+		(M.V.GetTTBusstopIndex) (L.L.IBIS_TT_busstop_diff) + 0 >=
+		{if}
+			(M.V.GetTTBusstopIndex) (L.L.IBIS_TT_busstop_diff) + 
+		{else}
+			(M.V.GetTTBusstopIndex)
+		{endif}
+		(M.V.GetTTBusstopName) (M.L.GetBusstopName) (S.$.IBIS_CheckBusstop_TT_Stop)
+		(L.L.IBIS_RouteIndex) s0
+		
+'Verhindern, dass der Bus schon auf dem Weg von der Betriebshaltestelle zur ersten Haltestelle (z.B. Reimerweg) weiterschaltet:		
+		(M.V.GetTTBusstopIndex) 0 = (L.L.IBIS_busstop) 1 = && (L.L.IBIS_TT_busstop_diff) 0 = &&
+		{if}					
+			l0 0 (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.L.GetBusstopName)
+			(L.$.IBIS_CheckBusstop_TT_Stop) $=
+			{if}
+				(L.L.IBIS_busstop) 1 - (S.L.IBIS_busstop) (M.L.IBIS_RefreshBusstop) 0 (S.L.IBIS_LCD-zeilentimer) (S.L.IBIS_LCD-zeile) 0 (S.L.IBIS_LCD_showdest) (M.L.IBIS_LCD-refresh)
+				1 (S.L.IBIS_bool_Ansagen) (M.L.IBIS_PlayAnnouncement)
+			{endif}
+		{endif}
+				
+		l0 (L.L.IBIS_busstop) (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.L.GetBusstopName) (L.$.IBIS_CheckBusstop_TT_Stop) $= ! s1
+		{if}
+			(L.L.IBIS_busstop) 1 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 1 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 2 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 2 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 3 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 3 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 4 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 4 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 5 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 5 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 6 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 6 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 7 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 7 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 8 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 8 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 9 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 9 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 10 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 10 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 11 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 11 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 12 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 12 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 13 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 13 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 14 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 14 - s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 15 + s2 (M.L.IBIS_Check_that_Busstop)
+			(L.L.IBIS_busstop) 15 - s2 (M.L.IBIS_Check_that_Busstop)
+			l0
+			{if}
+				(L.L.IBIS_busstop) 16 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 16 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 17 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 17 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 18 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 18 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 19 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 19 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 20 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 20 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 21 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 21 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 22 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 22 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 23 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 23 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 24 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 24 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 25 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 25 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 26 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 26 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 27 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 27 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 28 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 28 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 29 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 29 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 30 + s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) 30 - s2 (M.L.IBIS_Check_that_Busstop)
+				(L.L.IBIS_busstop) (M.V.GetTTBusstopIndex) - 15 > l0 &&
+				{if}
+					(L.L.IBIS_busstop) 31 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 32 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 33 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 34 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 35 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 36 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 37 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 38 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 39 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 40 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 41 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 42 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 43 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 44 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 45 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 46 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 47 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 48 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 49 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 50 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 51 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 52 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 53 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 54 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 55 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 56 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 57 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 58 - s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 59 - s2 (M.L.IBIS_Check_that_Busstop)
+				{else}		
+				(M.V.GetTTBusstopIndex) (L.L.IBIS_busstop) - 15 > l0 &&
+				{if}
+					(L.L.IBIS_busstop) 31 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 32 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 33 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 34 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 35 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 36 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 37 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 38 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 39 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 40 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 41 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 42 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 43 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 44 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 45 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 46 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 47 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 48 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 49 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 50 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 51 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 52 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 53 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 54 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 55 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 56 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 57 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 58 + s2 (M.L.IBIS_Check_that_Busstop)
+					(L.L.IBIS_busstop) 59 + s2 (M.L.IBIS_Check_that_Busstop)
+				{endif}
+				{endif}
+			{endif}
+		{endif}
+	{endif}
+{end}
+
+{macro:IBIS_Check_that_Busstop}	
+	l0 (M.V.GetBusstopCount) l2 > l2 0 > && l1 &&
+	{if}
+		l0 l2 (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.L.GetBusstopName)
+		(L.$.IBIS_CheckBusstop_TT_Stop) $=
+		{if}
+			l2 (S.L.IBIS_busstop) (M.L.IBIS_RefreshBusstop) 0 (S.L.IBIS_LCD-zeilentimer) (S.L.IBIS_LCD-zeile) 0 (S.L.IBIS_LCD_showdest) (M.L.IBIS_LCD-refresh)
+			1 (S.L.IBIS_bool_Ansagen) (M.L.IBIS_PlayAnnouncement)
+			0 s1
+		{endif}
+	{endif}
+{end}
+
+{macro:RBL_Umlauf_GetNextRoute}				
+	(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) 1 - (L.L.RBL_Umlauf_CurrentRoute_Index) >
+	{if}
+		(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 8 $cutBegin 1 $SetLengthL "A" $= s0
+		(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 8 $cutBegin 1 $SetLengthL "O" $= l0 ||
+		{if}
+			(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 9 $cutBegin 3 $SetLengthL $StrToFloat  (S.L.ALMEX_Input_Linie)
+			(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 12 $cutBegin 2 $SetLengthL $StrToFloat  (S.L.ALMEX_Input_Kurs)
+			15000000 (L.L.ALMEX_Input_Linie) 1000 * + (L.L.ALMEX_Input_Kurs) 10 * + s0
+			(M.L.RBL_Finde_Umlauf)
+			(L.L.ALMEX_Input_Kurs_Index) 0 <
+			{if}
+				l1
+				{if}
+					1100 (S.L.IBIS_mode)
+				{else}
+					12 (S.L.IBIS_mode)
+				{endif}	
+			{else}
+				0 (S.L.ALMEX_quitiert)
+				1 (S.L.CockpDispl_mode)
+			{endif}
+		{else}
+			0 (S.L.RBL_COMING_Linie)
+			(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 11 $cutBegin 2 $SetLengthL $StrToFloat  (S.L.RBL_COMING_Route)
+			0 (S.L.RBL_COMING_Stop)
+			0 (S.L.ALMEX_quitiert)
+			3 (S.L.CockpDispl_mode)
+		{endif}
+	{else}
+		0 (S.L.IBIS_LinieKurs) (S.L.RBL_Linie) (S.L.IBIS_Linie_Complex) (S.L.IBIS_Linie_Suffix) (S.L.RBL_Suffix)
+		-1 (S.L.IBIS_RouteIndex)
+		0 (S.L.RBL_Route)
+		-1 (S.L.IBIS_RouteIndex)
+		0 (S.L.IBIS_busstop_entwerter_ist)
+		(L.L.IBIS_StandbyTerminusCode) (S.L.IBIS_TerminusCode)
+		(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+		(M.L.IBIS_RefreshTerminusText)
+	{endif}
+{end}
+
+{macro:RBL_Finde_Umlauf}
+	-1 (S.L.ALMEX_Input_Kurs_Index)
+	0 s1
+	l0 s2 (M.L.RBL_Check_Umlauf)
+	l0 1 + s2 (M.L.RBL_Check_Umlauf)
+	l0 2 + s2 (M.L.RBL_Check_Umlauf)
+	l0 3 + s2 (M.L.RBL_Check_Umlauf)
+	l0 4 + s2 (M.L.RBL_Check_Umlauf)
+	l0 5 + s2 (M.L.RBL_Check_Umlauf)
+	l0 6 + s2 (M.L.RBL_Check_Umlauf)
+	l0 7 + s2 (M.L.RBL_Check_Umlauf)
+	l0 8 + s2 (M.L.RBL_Check_Umlauf)
+	l0 9 + s2 (M.L.RBL_Check_Umlauf)
+{end}
+
+{macro:RBL_Check_Umlauf}
+	l2 (M.V.GetRouteIndex) s2 0 >
+	(L.L.ALMEX_Input_Kurs_Index) 0 < &&
+	{if}
+		1 s1
+		(L.S.Time) 60 / trunc s4
+		l2 0 (M.V.GetRouteBusstopIdent) 4 $SetLengthL $StrToFloat  s5
+		l2 0 (M.V.GetRouteBusstopIdent) 4 $SetLengthR $StrToFloat  s6 
+
+		l5 100 / trunc 60 * l5 100 % + s5
+		l6 100 / trunc 60 * l6 100 % + s6
+		
+		l5 s7
+
+		l5 90 - l4 <
+		l4 l6 < &&
+		{if}
+			0 s3 1 s5
+		{else}
+		l5 90 - l4 1440 + <
+		l4 1440 + l6 < &&
+		{if}
+			1 s3 1 s5
+		{else}
+		l5 90 - l4 1440 - <
+		l4 1440 - l6 < &&
+		{if}
+			-1 s3 1 s5
+		{else}
+			0 s5
+		{endif}
+		{endif}
+		{endif}
+		
+		l5 
+		{if}
+'	l3 sagt aus, ob ein Umlauf des vorherigen (-1) oder des nächsten Tages (+1) benutzt wird:
+			(L.L.RBL_Date_Day) l3 + s4
+			l4 1 <
+			{if}
+				l4 7 + s4
+			{endif}
+			l4 7 >
+			{if}
+				l4 7 - s4
+			{endif}
+			l2 1 (M.V.GetRouteBusstopIdent) (S.$._temps_)
+			l3 -1 =
+			{if}
+				(L.L.RBL_Date_Last_Holliday)
+				{if}
+					(L.$._temps_) 7 $cutBegin 1 $SetLengthL $StrToFloat s5
+				{else}
+					(L.$._temps_) l4 1 - $cutBegin 1 $SetLengthL $StrToFloat s5				
+				{endif}
+				l5
+				{if}
+					(L.L.RBL_Date_Last_Hollidays)
+					{if}
+						(L.$._temps_) 9 $cutBegin 1 $SetLengthL "1" = s5
+					{else}
+						(L.$._temps_) 8 $cutBegin 1 $SetLengthL "1" = s5				
+					{endif}
+				{endif}				
+			{endif}
+			l3 0 =
+			{if}
+				(L.L.RBL_Date_Holliday)
+				{if}
+					(L.$._temps_) 7 $cutBegin 1 $SetLengthL $StrToFloat s5
+				{else}
+					(L.$._temps_) l4 1 - $cutBegin 1 $SetLengthL $StrToFloat s5				
+				{endif}
+				
+				l4 l5 
+				{if}
+					(L.L.RBL_Date_Hollidays)
+					{if}
+						(L.$._temps_) 9 $cutBegin 1 $SetLengthL "1" = s5
+					{else}
+						(L.$._temps_) 8 $cutBegin 1 $SetLengthL "1" = s5				
+					{endif}
+				{endif}	
+			{endif}
+			l3 1 =
+			{if}
+				(L.L.RBL_Date_Next_Holliday)
+				{if}
+					(L.$._temps_) 7 $cutBegin 1 $SetLengthL $StrToFloat s5
+				{else}
+					(L.$._temps_) l4 1 - $cutBegin 1 $SetLengthL $StrToFloat s5				
+				{endif}
+				l5
+				{if}
+					(L.L.RBL_Date_Next_Hollidays)
+					{if}
+						(L.$._temps_) 9 $cutBegin 1 $SetLengthL "1" = s5
+					{else}
+						(L.$._temps_) 8 $cutBegin 1 $SetLengthL "1" = s5				
+					{endif}
+				{endif}	
+			{endif}	
+			l5
+			{if}
+				l2 (S.L.ALMEX_Input_Kurs_Index)
+			{endif}
+		{endif}
+	{endif}
+{end}
+
+{macro:IBIS_RefreshBusstop}
+	(L.L.IBIS_RouteIndex) 0 <
+	{if}
+		"" (S.$.act_busstop)
+	{else}
+	(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) (L.L.IBIS_busstop) <=
+	{if}
+'Wenn der Bushaltestellenindex größer oder gleich der Anzahl ist und somit zu groß (der Bushaltestellenindex ist wie alle Indizes nullbasiert)
+		(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (S.L.IBIS_busstop)
+		0 (S.L.IBIS_bool_Ansagen)
+	{else}
+		0 (S.L.IBIS_mode)
+		1 (S.L.IBIS_bool_Ansagen)
+		
+		0 (S.L.IBIS_Haltedauer)
+	
+		(L.L.CockpDispl_mode) 1 =
+		(L.L.CockpDispl_mode) 3 = ||
+		{if}
+			0 (S.L.RBL_COMING_Linie)
+			0 (S.L.RBL_COMING_Suffix)
+			0 (S.L.RBL_COMING_Route)
+			0 (S.L.RBL_COMING_Kurs)	
+			0 (S.L.RBL_COMING_Kurs_Index)	
+			0 (S.L.RBL_COMING_Stop)
+			1 (S.L.ALMEX_quitiert)
+			0 (S.L.CockpDispl_mode)
+		{endif}
+	{endif}
+	{endif}
+
+'Setzen der String-Variable "act_busstop" für die OMSI-interne Berechnung und daraus Ableitung des "globalen" Haltestellenindexes:
+
+	(L.L.IBIS_RouteIndex) (L.L.IBIS_busstop) (M.V.GetRouteBusstopIdent) (S.$.act_busstop)
+'		Funktionsweise des Haltestellensuffix: "#0000000"
+'		Ob 1 oder 0 (Ja oder Nein) gibt an, ob es Besonderheiten gibt bei:
+'		1. Zeichen:                               2. Zeichen:  3. Zeichen     4. Zeichen     5. Zeichen                                 6. Zeichen                               7. Zeichen
+'		Mitfahrt zur Betriebshaltestelle erlaubt; Zielwechsel; Linienwechsel; Routenwechsel; Abstand zur Anzeige der nächsten Haltest.; Abst. von der Anzeige zur Ansage dieser; Ergänzungen an der Ansage
+'		Wenn die 2. Zahl 1: dann ergänze "_XXX" XXX ist das Ziel
+'		Wenn die 3. Zahl 1: dann ergänze "_XXXXX" XXXXX ist die Linie/Kurs
+'		Wenn die 4. Zahl 1: dann ergänze "_XX" XX ist die Route
+'		Wenn die 5. Zahl 1: dann ergänze "_XXXX", der Abstand bis zur Anzeige (Standard: 75)
+'		Wenn die 6. Zahl 1: dann ergänze "_XXXX", der Abstand von der Anzeige bis zur Ansage (Standard: 0)
+'			(wird in Berlin gemacht, wenn die Haltestellen mehr als 500 Meter voneinander entfernt sind)
+'		Wenn die 7. Zahl 1: dann ergänze "_XXXXX" XXXXX ist die Erweiterung (kann eine beliebige Länge haben)
+'		Wenn der Haltestellenname mehr als 39 Zeichen lang ist und dieses Feature nutzt, stürzt OMSI möglicherweise mit einer Zugriffsverletzung ab.
+	"0000000" (S.$._temps_)	
+	(L.$.act_busstop) $length s0
+	(L.$.act_busstop) 1 $SetLengthL 1 $SetLengthR "#" $= {if} 0 s0 {endif}
+	(L.$.act_busstop) 2 $SetLengthL 1 $SetLengthR "#" $= {if} 1 s0 {endif}
+	(L.$.act_busstop) 3 $SetLengthL 1 $SetLengthR "#" $= {if} 2 s0 {endif}
+	(L.$.act_busstop) 4 $SetLengthL 1 $SetLengthR "#" $= {if} 3 s0 {endif}
+	(L.$.act_busstop) 5 $SetLengthL 1 $SetLengthR "#" $= {if} 4 s0 {endif}
+	(L.$.act_busstop) 6 $SetLengthL 1 $SetLengthR "#" $= {if} 5 s0 {endif}
+	(L.$.act_busstop) 7 $SetLengthL 1 $SetLengthR "#" $= {if} 6 s0 {endif}
+	(L.$.act_busstop) 8 $SetLengthL 1 $SetLengthR "#" $= {if} 7 s0 {endif}
+	(L.$.act_busstop) 9 $SetLengthL 1 $SetLengthR "#" $= {if} 8 s0 {endif}
+	(L.$.act_busstop) 10 $SetLengthL 1 $SetLengthR "#" $= {if} 9 s0 {endif}
+	(L.$.act_busstop) 11 $SetLengthL 1 $SetLengthR "#" $= {if} 10 s0 {endif}
+	(L.$.act_busstop) 12 $SetLengthL 1 $SetLengthR "#" $= {if} 11 s0 {endif}
+	(L.$.act_busstop) 13 $SetLengthL 1 $SetLengthR "#" $= {if} 12 s0 {endif}
+	(L.$.act_busstop) 14 $SetLengthL 1 $SetLengthR "#" $= {if} 13 s0 {endif}
+	(L.$.act_busstop) 15 $SetLengthL 1 $SetLengthR "#" $= {if} 14 s0 {endif}
+	(L.$.act_busstop) 16 $SetLengthL 1 $SetLengthR "#" $= {if} 15 s0 {endif}
+	(L.$.act_busstop) 17 $SetLengthL 1 $SetLengthR "#" $= {if} 16 s0 {endif}
+	(L.$.act_busstop) 18 $SetLengthL 1 $SetLengthR "#" $= {if} 17 s0 {endif}
+	(L.$.act_busstop) 19 $SetLengthL 1 $SetLengthR "#" $= {if} 18 s0 {endif}
+	(L.$.act_busstop) 20 $SetLengthL 1 $SetLengthR "#" $= {if} 19 s0 {endif}
+	(L.$.act_busstop) 21 $SetLengthL 1 $SetLengthR "#" $= {if} 20 s0 {endif}
+	(L.$.act_busstop) 22 $SetLengthL 1 $SetLengthR "#" $= {if} 21 s0 {endif}
+	(L.$.act_busstop) 23 $SetLengthL 1 $SetLengthR "#" $= {if} 22 s0 {endif}
+	(L.$.act_busstop) 24 $SetLengthL 1 $SetLengthR "#" $= {if} 23 s0 {endif}
+	(L.$.act_busstop) 25 $SetLengthL 1 $SetLengthR "#" $= {if} 24 s0 {endif}
+	(L.$.act_busstop) 26 $SetLengthL 1 $SetLengthR "#" $= {if} 25 s0 {endif}
+	(L.$.act_busstop) 27 $SetLengthL 1 $SetLengthR "#" $= {if} 26 s0 {endif}
+	(L.$.act_busstop) 28 $SetLengthL 1 $SetLengthR "#" $= {if} 27 s0 {endif}
+	(L.$.act_busstop) 29 $SetLengthL 1 $SetLengthR "#" $= {if} 28 s0 {endif}
+	(L.$.act_busstop) 30 $SetLengthL 1 $SetLengthR "#" $= {if} 29 s0 {endif}
+	(L.$.act_busstop) 31 $SetLengthL 1 $SetLengthR "#" $= {if} 30 s0 {endif}
+	(L.$.act_busstop) 32 $SetLengthL 1 $SetLengthR "#" $= {if} 31 s0 {endif}
+	(L.$.act_busstop) 33 $SetLengthL 1 $SetLengthR "#" $= {if} 32 s0 {endif}
+	(L.$.act_busstop) 34 $SetLengthL 1 $SetLengthR "#" $= {if} 33 s0 {endif}
+	(L.$.act_busstop) 35 $SetLengthL 1 $SetLengthR "#" $= {if} 34 s0 {endif}
+	(L.$.act_busstop) 36 $SetLengthL 1 $SetLengthR "#" $= {if} 35 s0 {endif}
+	(L.$.act_busstop) 37 $SetLengthL 1 $SetLengthR "#" $= {if} 36 s0 {endif}
+	(L.$.act_busstop) 38 $SetLengthL 1 $SetLengthR "#" $= {if} 37 s0 {endif}
+	(L.$.act_busstop) 39 $SetLengthL 1 $SetLengthR "#" $= {if} 38 s0 {endif}
+	(L.$.act_busstop) 40 $SetLengthL 1 $SetLengthR "#" $= {if} 39 s0 {endif}
+	(L.$.act_busstop) 41 $SetLengthL 1 $SetLengthR "#" $= {if} 40 s0 {endif}
+	(L.$.act_busstop) $length l0 =
+	{if}
+		"0000000" (S.$._temps_)	
+	{else}
+		(L.$.act_busstop) l0 1 + $cutBegin  (S.$._temps_)
+		(L.$.act_busstop) l0 $SetLengthL (S.$.act_busstop)		
+	{endif}
+	(L.$._temps_) 1 $SetLengthL $StrToFloat (S.L.IBIS_busstop_suffix_1st)
+	(L.$._temps_) 2 $SetLengthL 1 $SetLengthR $StrToFloat
+	{if}
+		(L.$._temps_) 11 $SetLengthL 3 $SetLengthR $StrToFloat (S.L.IBIS_busstop_suffix_ziel)
+		(L.$._temps_) 7 $SetLengthL (L.$._temps_) 11 $cutBegin $+ (S.$._temps_)
+	{else}
+		0 (S.L.IBIS_busstop_suffix_ziel)
+	{endif}
+	(L.$._temps_) 3 $SetLengthL 1 $SetLengthR $StrToFloat
+	{if}
+		(L.$._temps_) 13 $SetLengthL 5 $SetLengthR $StrToFloat (S.L.IBIS_busstop_suffix_linie)
+		(L.$._temps_) 7 $SetLengthL (L.$._temps_) 13 $cutBegin $+ (S.$._temps_)
+	{else}
+		0 (S.L.IBIS_busstop_suffix_linie)
+	{endif}
+	(L.$._temps_) 4 $SetLengthL 1 $SetLengthR $StrToFloat
+	{if}
+		(L.$._temps_) 10 $SetLengthL 2 $SetLengthR $StrToFloat (S.L.IBIS_busstop_suffix_route)
+		(L.$._temps_) 7 $SetLengthL (L.$._temps_) 10 $cutBegin $+ (S.$._temps_)
+	{else}
+		0 (S.L.IBIS_busstop_suffix_route)
+	{endif}
+	(L.$._temps_) 5 $SetLengthL 1 $SetLengthR $StrToFloat
+	{if}
+		(L.$._temps_) 12 $SetLengthL 4 $SetLengthR $StrToFloat (S.L.IBIS_busstop_suffix_AA_Laenge_1)
+		(L.$._temps_) 7 $SetLengthL (L.$._temps_) 12 $cutBegin $+ (S.$._temps_)
+	{else}
+		75 (S.L.IBIS_busstop_suffix_AA_Laenge_1)
+	{endif}
+	(L.$._temps_) 6 $SetLengthL 1 $SetLengthR $StrToFloat
+	{if}
+		(L.$._temps_) 12 $SetLengthL 4 $SetLengthR $StrToFloat (S.L.IBIS_busstop_suffix_AA_Laenge_2)
+		(L.$._temps_) 7 $SetLengthL (L.$._temps_) 12 $cutBegin $+ (S.$._temps_)
+	{else}
+		0 (S.L.IBIS_busstop_suffix_AA_Laenge_2)
+	{endif}
+	(L.$._temps_) 7 $SetLengthL 1 $SetLengthR $StrToFloat
+	{if}
+		(L.$._temps_) 8 $cutBegin (S.$.IBIS_busstop_suffix_AA_Ext)
+	{else}
+		"" (S.$.IBIS_busstop_suffix_AA_Ext)
+	{endif}
+
+	(L.$.act_busstop) (M.V.GetBusstopIndex) (S.L.IBIS_busstop_index)
+
+
+'Sonst zeige die Bushaltestelle
+	(L.L.IBIS_busstop_index) 3 (M.V.GetBusstopString)
+	(S.$.IBIS_busstop_name)
+	
+'Den Haltestellennamen für die Innenanzeige in Großbuchstaben umwandeln
+	(L.L.IBIS_busstop_index) 1 (M.V.GetBusstopString) 20 $SetLengthL (S.$._temps2_)
+	"" (S.$.RBL_Busstop_Cap_1)	
+	(L.$._temps2_) 0 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 1 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 2 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 3 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 4 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 5 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 6 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 7 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 8 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 9 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 10 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 11 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 12 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 13 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 14 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 15 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 16 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 17 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 18 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+	(L.$._temps2_) 19 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_1)
+		
+	(L.L.IBIS_busstop_index) 2 (M.V.GetBusstopString) 20 $SetLengthL (S.$._temps2_)
+	"" (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 0 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 1 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 2 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 3 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 4 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 5 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 6 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 7 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 8 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 9 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 10 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 11 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 12 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 13 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 14 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 15 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 16 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 17 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 18 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	(L.$._temps2_) 19 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_Busstop_Cap_2)
+	
+	
+'Ausrechnen der neuen Entwerterposition:
+	(L.L.IBIS_busstop_offset) (L.L.IBIS_busstop) + (S.L.IBIS_busstop_entwerter_soll)
+
+{end}
+
+{macro:IBIS_PlayAnnouncement}
+	(L.L.IBIS_busstop) 0 >
+	{if}	
+		(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <=
+		{if}
+			(L.L.RBL_Kurs_Index) 0 >
+			{if}
+				(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) 1 - (L.L.RBL_Umlauf_CurrentRoute_Index) >
+				{if}					
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 9 $SetLengthL 1 $SetLengthR "A" $=
+					(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <= &&
+				{endif}
+				{if}	
+					(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 9 $cutBegin 3 $SetLengthL $StrToFloat  (S.L.IBIS_LinieKurs) 100 * (S.L.IBIS_Linie_Complex) 0 (S.L.IBIS_Linie_Suffix)
+					(L.L.IBIS_Linie_Suffix) !
+					{if}
+						(L.L.IBIS_LinieKurs) s2 100 / trunc s3
+						l3 8 =
+						{if}
+							l2 100 * 28 (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)
+						{endif}
+						l3 5 =
+						{if}
+							l2 100 * 36 (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)
+						{endif}
+						l3 9 =
+						{if}
+							l2 100 * 35 (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)		
+						{endif}
+					{endif}
+					(L.L.IBIS_TerminusCode) (L.L.IBIS_StandbyTerminusCode) = !
+					(L.L.IBIS_LastStopTerminusCode) 0 > &&
+					{if}
+						(L.L.IBIS_LastStopTerminusCode) (S.L.IBIS_TerminusCode)
+						(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+						(M.L.IBIS_RefreshTerminusText)
+					{endif}
+				{else}
+				
+				{endif}
+			{else}
+				(L.L.IBIS_busstop_suffix_route) !
+				{if}	
+'wenn keine neue Rotue eingegeben ist zu Bus endet hier wechseln'			
+					(L.L.IBIS_TerminusCode) (L.L.IBIS_StandbyTerminusCode) = !
+					(L.L.IBIS_LastStopTerminusCode) 0 > &&
+					{if}
+						(L.L.IBIS_LastStopTerminusCode) (S.L.IBIS_TerminusCode)
+						(M.V.GetTerminusIndex) (S.L.IBIS_TerminusIndex)
+						(M.L.IBIS_RefreshTerminusText)
+					{endif}
+				{endif}
+			{endif}
+		{endif}
+		(L.L.IBIS_bool_Ansagen)
+		(L.L.RBL_FIS_On) &&
+		{if}
+			(L.$.yard) 4 $SetLengthR "RBL2" $=
+			{if}
+				-1 (S.L.IBIS_Ansage_time_countdown)
+				(L.$.Ansagenpfad) "GONG_NOR.wav" $+ (S.$.IBIS_Ansage_string0)
+				2 (S.L.IBIS_Ansage_time0)
+				(L.$.Ansagenpfad) (L.$.act_busstop) $+ ".wav" $+ (S.$.IBIS_Ansage_string1)
+				4 (S.L.IBIS_Ansage_time1)
+				"" (S.$.IBIS_Ansage_string2) (S.$.IBIS_Ansage_string3) (S.$.IBIS_Ansage_string4)
+				0 (S.L.IBIS_Ansage_time2) (S.L.IBIS_Ansage_time3) (S.L.IBIS_Ansage_time4)
+				(L.$.IBIS_busstop_suffix_AA_Ext) $length 0 >					
+				{if}
+					(L.$.IBIS_busstop_suffix_AA_Ext) "C" $=
+					{if}
+						(L.$.Ansagenpfad) "C_TICKET.wav" $+ (S.$.IBIS_Ansage_string2)
+						10 (S.L.IBIS_Ansage_time2)
+					{else}
+						(L.$.Ansagenpfad) (L.$.IBIS_busstop_suffix_AA_Ext) $+ ".wav" $+ (S.$.IBIS_Ansage_string2)
+						3 (S.L.IBIS_Ansage_time2)
+					{endif}		
+				{else}
+					(L.L.RBL_Kurs_Index) 0 >
+					{if}
+						(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) 1 - (L.L.RBL_Umlauf_CurrentRoute_Index) >
+						{if}					
+							(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 9 $SetLengthL 1 $SetLengthR "A" $=
+							(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <= &&
+						{endif}
+						{if}
+							(L.$.Ansagenpfad) "CONT_" $+ (L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 9 $cutBegin 3 $SetLengthL $+ ".wav" $+ (S.$.IBIS_Ansage_string2)
+							4.2 (S.L.IBIS_Ansage_time2)
+							(L.$.Ansagenpfad) "GONG_SON.wav" $+ (S.$.IBIS_Ansage_string0)
+							4 (S.L.IBIS_Ansage_time0)	
+						{else}
+							(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <=
+							{if}
+								(L.$.Ansagenpfad) "TERMINUS.wav" $+ (S.$.IBIS_Ansage_string2)
+								6.5 (S.L.IBIS_Ansage_time2)
+								(L.$.Ansagenpfad) "GONG_SON.wav" $+ (S.$.IBIS_Ansage_string0)
+								4 (S.L.IBIS_Ansage_time0)	
+							{else}
+								(L.L.IBIS_busstop_suffix_1st) ||
+								{if}
+									(L.$.Ansagenpfad) "BETRH.wav" $+ (S.$.IBIS_Ansage_string2)
+									5 (S.L.IBIS_Ansage_time2)
+									(L.$.Ansagenpfad) "GONG_SON.wav" $+ (S.$.IBIS_Ansage_string0)
+									4 (S.L.IBIS_Ansage_time0)
+								{else}
+'Doppelte Haltestellen nur einmal ansagen:
+'									(L.$.act_busstop) (L.$.Ansage_last_stop) $=
+'									{if}
+										"" (S.$.IBIS_Ansage_string0) (S.$.IBIS_Ansage_string1) (S.$.IBIS_Ansage_string2) (S.$.IBIS_Ansage_string3) (S.$.IBIS_Ansage_string4)
+										0 (S.L.IBIS_Ansage_time0) (S.L.IBIS_Ansage_time1) (S.L.IBIS_Ansage_time2) (S.L.IBIS_Ansage_time3) (S.L.IBIS_Ansage_time4)
+'									{endif}
+								{endif}
+							{endif}		
+						{endif}						
+					{else}
+						(L.L.IBIS_busstop_suffix_route)
+						(L.L.IBIS_busstop_suffix_linie) &&
+						(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <= &&
+						{if}
+							(L.$.Ansagenpfad) "CONT_" $+ (L.L.IBIS_busstop_suffix_linie) 100 / trunc
+							"03" $IntToStrEnh $+ ".wav" $+ (S.$.IBIS_Ansage_string2)
+							4.2 (S.L.IBIS_Ansage_time2)
+							(L.$.Ansagenpfad) "GONG_SON.wav" $+ (S.$.IBIS_Ansage_string0)
+							4 (S.L.IBIS_Ansage_time0)			
+							(L.L.IBIS_busstop_suffix_linie) (S.L.IBIS_Linie_Complex) s0 100 / trunc (S.L.IBIS_LinieKurs) l0 100 % (S.L.IBIS_Linie_Suffix)
+							(L.L.IBIS_Linie_Suffix) !
+							{if}
+								(L.L.IBIS_LinieKurs) s2 100 / trunc s3
+								l3 8 =
+								{if}
+									l2 100 * 28 (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)
+								{endif}
+								l3 5 =
+								{if}
+									l2 100 * 36 (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)
+								{endif}
+								l3 9 =
+								{if}
+									l2 100 * 35 (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)		
+								{endif}
+							{endif}
+							
+						{else}
+							(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <=
+							{if}
+								(L.$.Ansagenpfad) "TERMINUS.wav" $+ (S.$.IBIS_Ansage_string2)
+								6.5 (S.L.IBIS_Ansage_time2)
+								(L.$.Ansagenpfad) "GONG_SON.wav" $+ (S.$.IBIS_Ansage_string0)
+								4 (S.L.IBIS_Ansage_time0)	
+							{else}
+								(L.L.IBIS_busstop_suffix_1st) ||
+								{if}
+									(L.$.Ansagenpfad) "BETRH.wav" $+ (S.$.IBIS_Ansage_string2)
+									5 (S.L.IBIS_Ansage_time2)
+									(L.$.Ansagenpfad) "GONG_SON.wav" $+ (S.$.IBIS_Ansage_string0)
+									4 (S.L.IBIS_Ansage_time0)	
+								{else}
+'Doppelte Haltestellen nur einmal ansagen:
+'									(L.$.act_busstop) (L.$.Ansage_last_stop) $=
+'									{if}
+										"" (S.$.IBIS_Ansage_string0) (S.$.IBIS_Ansage_string1) (S.$.IBIS_Ansage_string2) (S.$.IBIS_Ansage_string3) (S.$.IBIS_Ansage_string4)
+										0 (S.L.IBIS_Ansage_time0) (S.L.IBIS_Ansage_time1) (S.L.IBIS_Ansage_time2) (S.L.IBIS_Ansage_time3) (S.L.IBIS_Ansage_time4)
+'									{endif}
+								{endif}
+							{endif}		
+						{endif}		
+					{endif}
+				{endif}			
+			{else}
+				(L.$.IBIS_busstop_suffix_AA_Ext) $length 0 >					
+				{if}
+					(L.$.Ansagenpfad) (L.$.act_busstop) $+ "_#" $+
+					(L.$.IBIS_busstop_suffix_AA_Ext) $+
+					".wav" $+ (T.F.ev_IBIS_Ansagen)			
+				{else}
+					(L.L.RBL_Kurs_Index) 0 >
+					{if}
+						(L.L.RBL_Kurs_Index) (M.V.GetBusstopCount) 1 - (L.L.RBL_Umlauf_CurrentRoute_Index) >
+						{if}					
+							(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 9 $SetLengthL 1 $SetLengthR "A" $=
+							(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <= &&
+						{endif}
+						{if}
+							(L.$.Ansagenpfad) (L.$.act_busstop) $+
+							"_#continue_as_line_" $+			
+							(L.L.RBL_Kurs_Index) (L.L.RBL_Umlauf_CurrentRoute_Index) 1 + (M.V.GetRouteBusstopIdent) 9 $cutBegin 3 $SetLengthL $+
+							".wav" $+ (T.F.ev_IBIS_Ansagen)		
+							
+						{else}
+							(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <=
+							{if}
+								(L.$.Ansagenpfad) (L.$.act_busstop) $+
+								"_#terminus" $+
+								".wav" $+ (T.F.ev_IBIS_Ansagen)
+							{else}
+								(L.L.IBIS_busstop_suffix_1st) ||
+								{if}
+									(L.$.Ansagenpfad) (L.$.act_busstop) $+
+									"_#Betrh" $+
+									".wav" $+ (T.F.ev_IBIS_Ansagen)	
+								{else}
+'Doppelte Haltestellen nur einmal ansagen:
+'									(L.$.act_busstop) (L.$.Ansage_last_stop) $= !
+'									{if}
+										(L.$.Ansagenpfad) (L.$.act_busstop) $+
+										".wav" $+ (T.F.ev_IBIS_Ansagen)
+'									{endif}
+								{endif}
+							{endif}		
+						{endif}						
+					{else}
+						(L.L.IBIS_busstop_suffix_route)
+						(L.L.IBIS_busstop_suffix_linie) &&
+						(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <= &&
+						{if}
+							(L.$.Ansagenpfad) (L.$.act_busstop) $+
+							"_#continue_as_line_" $+
+							(L.L.IBIS_busstop_suffix_linie) 100 / trunc
+							"03" $IntToStrEnh $+
+							".wav" $+ $msg (T.F.ev_IBIS_Ansagen)			
+							(L.L.IBIS_busstop_suffix_linie) (S.L.IBIS_Linie_Complex) s0 100 / trunc (S.L.IBIS_LinieKurs) l0 100 % (S.L.IBIS_Linie_Suffix)
+							(L.L.IBIS_Linie_Suffix) !
+							{if}
+								(L.L.IBIS_LinieKurs) s2 100 / trunc s3
+								l3 8 =
+								{if}
+									l2 100 * 28 (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)
+								{endif}
+								l3 5 =
+								{if}
+									l2 100 * 36 (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)
+								{endif}
+								l3 9 =
+								{if}
+									l2 100 * 35 (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)		
+								{endif}
+							{endif}
+							
+						{else}
+							(L.L.IBIS_RouteIndex) (M.V.GetBusstopCount) 1 - (L.L.IBIS_busstop) <=
+							{if}
+								(L.$.Ansagenpfad) (L.$.act_busstop) $+
+								"_#terminus" $+
+								".wav" $+ (T.F.ev_IBIS_Ansagen)
+							{else}
+								(L.L.IBIS_busstop_suffix_1st) ||
+								{if}
+									(L.$.Ansagenpfad) (L.$.act_busstop) $+
+									"_#Betrh" $+
+									".wav" $+ (T.F.ev_IBIS_Ansagen)	
+								{else}
+'Doppelte Haltestellen nur einmal ansagen:
+'									(L.$.act_busstop) (L.$.Ansage_last_stop) $= !
+'									{if}
+										(L.$.Ansagenpfad) (L.$.act_busstop) $+
+										".wav" $+ (T.F.ev_IBIS_Ansagen)
+'									{endif}
+								{endif}
+							{endif}		
+						{endif}		
+					{endif}
+				{endif}
+			{endif}
+			(L.$.act_busstop) (S.$.Ansage_last_stop)
+		{endif}
+	{endif}
+{end}
+
+{macro:IBIS_LCD-refresh}
+
+'Formatierung der D92-Innenanzeige
+	(L.L.RBL_FIS_On)
+	{if}
+		(L.L.IBIS_LCD_showdest) 0 =
+		{if}
+			(L.L.IBIS_LCD-zeile) 1 = 
+			(L.L.IBIS_busstop_index) 2 (M.V.GetBusstopString) $length 0 > &&
+			{if}
+				(L.L.IBIS_RouteIndex) 0 >=
+				{if}
+					(L.L.IBIS_LCD-zeile) 
+					(L.L.IBIS_busstop_index) 2 (M.V.GetBusstopString)
+					(S.$.IBIS_cabindisplay)
+				{endif}
+			{else}
+				(L.L.IBIS_RouteIndex) 0 >=
+				{if}
+					(L.L.IBIS_LCD-zeile) 
+					(L.L.IBIS_busstop_index) 1 (M.V.GetBusstopString) 
+					(S.$.IBIS_cabindisplay)
+				{endif}
+			{endif}
+		{else}
+			(L.L.RBL_Linie) (L.L.IBIS_LinieKurs) = (L.L.IBIS_LinieKurs) &&
+			{if}
+				(L.L.IBIS_Linie_Suffix) s0
+				{if}
+					l0 28 =
+					{if}
+						"M"
+					{endif}
+					l0 35 =
+					{if}
+						"N"
+					{endif}
+					l0 36 =
+					{if}
+						"X"
+					{endif}
+					(L.L.RBL_Linie) 100 % $IntToStr $+
+				{else}
+					(L.L.RBL_Linie) $IntToStr
+				{endif}
+				" " $+
+				(L.$.IBIS_cabindisplayDest) $+
+			{else}
+				""
+			{endif}
+			(S.$.IBIS_cabindisplay)
+		{endif}
+	{else}	
+		"" (S.$.IBIS_cabindisplay)
+	{endif}
+	
+{end}
+
+
+{macro:IBIS_SetRoute}
+
+' Macro setzt den Routeindex auf den Wert von l1 und führt die nötigen Schritte aus
+
+' Wenn gültig, dann übernehmen:
+	l1 (S.L.IBIS_RouteIndex)
+' Finden des zugehörigen Ziel-Index':
+	(M.V.GetRouteTerminusIndex) (S.L.IBIS_TerminusIndex)
+' Finden des zugehörigen Ziel-Codes:
+	(M.V.GetTerminusCode) (S.L.IBIS_TerminusCode)
+' Aktualisieren des Zielschild-Textes:
+	(M.L.IBIS_RefreshTerminusText)
+
+' Falls es entweder ein 500, ein 800 oder 900-Code ist, dann bitte beim Complex-Code eine 28 (M), eine 36 (X) bzw. 04 (N) verwenden:
+	(L.L.RBL_Suffix) !
+	{if}
+		(L.L.RBL_Linie) s2 100 / trunc s3
+		l3 8 =
+		{if}
+			28 (S.L.RBL_Suffix)
+		{endif}
+		l3 5 =
+		{if}
+			36 (S.L.RBL_Suffix)
+		{endif}
+		l3 9 =
+		{if}
+			35 (S.L.RBL_Suffix)	
+		{endif}	
+	{endif}
+	(L.L.RBL_Linie) (S.L.IBIS_LinieKurs) 100 * (L.L.RBL_Suffix) (S.L.IBIS_Linie_Suffix) + (S.L.IBIS_Linie_Complex)	
+	 	 
+' Entwerter-Busstop-Offset festlegen (pseudo-Zufall aus Linien-Code und Route-Index):
+
+	(L.L.RBL_Linie) 100 * (L.L.IBIS_RouteIndex) + 10000 * sin 10 * 15 + trunc (S.L.IBIS_busstop_offset)
+
+	0 (S.L.CockpDispl_timer)
+	"" (S.$.Ansage_last_stop)	
+	
+{end}
+
+{macro:IBIS_RefreshTerminusText}
+	(L.L.IBIS_TerminusIndex) 5 (M.V.GetTerminusString) (S.$.IBIS_terminus_name)
+'Innenanzeigeanzeige
+	(L.L.IBIS_TerminusIndex) 3 (M.V.GetTerminusString) 
+	(S.$.IBIS_cabindisplayDest) 8 $SetLengthL "        " $=
+	{if}
+		(L.$.IBIS_cabindisplayDest) 8 $cutBegin (S.$.IBIS_cabindisplayDest)
+	{endif}
+	(L.$.IBIS_cabindisplayDest) 4 $SetLengthL "    " $=
+	{if}
+		(L.$.IBIS_cabindisplayDest) 4 $cutBegin (S.$.IBIS_cabindisplayDest)
+	{endif}
+	(L.$.IBIS_cabindisplayDest) 2 $SetLengthL "  " $=
+	{if}
+		(L.$.IBIS_cabindisplayDest) 2 $cutBegin (S.$.IBIS_cabindisplayDest)
+	{endif}
+	(L.$.IBIS_cabindisplayDest) 1 $SetLengthL " " $=
+	{if}
+		(L.$.IBIS_cabindisplayDest) 1 $cutBegin (S.$.IBIS_cabindisplayDest)
+	{endif}
+	(L.$.IBIS_cabindisplayDest) 8 $SetLengthR "        " $=
+	{if}
+		(L.$.IBIS_cabindisplayDest) 8 $cutEnd (S.$.IBIS_cabindisplayDest)
+	{endif}
+	(L.$.IBIS_cabindisplayDest) 4 $SetLengthR "    " $=
+	{if}
+		(L.$.IBIS_cabindisplayDest) 4 $cutEnd (S.$.IBIS_cabindisplayDest)
+	{endif}
+	(L.$.IBIS_cabindisplayDest) 2 $SetLengthR "  " $=
+	{if}
+		(L.$.IBIS_cabindisplayDest) 2 $cutEnd (S.$.IBIS_cabindisplayDest)
+	{endif}
+	(L.$.IBIS_cabindisplayDest) 1 $SetLengthR " " $=
+	{if}
+		(L.$.IBIS_cabindisplayDest) 1 $cutEnd (S.$.IBIS_cabindisplayDest)
+	{endif}
+	(L.$.IBIS_cabindisplayDest) $length 14 >
+	{if}
+		14 $SetLengthL (S.$.IBIS_cabindisplayDest)
+	{endif}
+{end}
+
+{macro:Display_COMING_Terminus}
+
+	s0 1 (M.V.GetTerminusString) 20 $SetLengthL (S.$._temps2_)
+	"" (S.$.RBL_COMING_Dest_Cap_1)	
+	(L.$._temps2_) 0 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 1 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 2 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 3 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 4 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 5 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 6 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 7 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 8 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 9 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 10 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 11 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 12 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 13 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 14 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 15 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 16 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 17 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 18 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+	(L.$._temps2_) 19 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_1)
+		
+	l0 2 (M.V.GetTerminusString) 20 $SetLengthL (S.$._temps2_)
+	"" (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 0 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 1 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 2 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 3 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 4 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 5 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 6 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 7 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 8 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 9 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 10 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 11 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 12 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 13 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 14 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 15 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 16 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 17 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 18 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+	(L.$._temps2_) 19 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Dest_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Dest_Cap_2)
+{endif}
+
+{macro:Display_COMING_Stop}
+
+	s0 1 (M.V.GetBusstopString) 20 $SetLengthL (S.$._temps2_)
+	"" (S.$.RBL_COMING_Busstop_Cap_1)	
+	(L.$._temps2_) 0 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 1 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 2 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 3 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 4 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 5 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 6 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 7 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 8 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 9 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 10 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 11 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 12 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 13 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 14 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 15 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 16 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 17 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 18 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+	(L.$._temps2_) 19 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_1) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_1)
+		
+	l0 2 (M.V.GetBusstopString) 20 $SetLengthL (S.$._temps2_)
+	"" (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 0 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 1 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 2 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 3 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 4 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 5 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 6 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 7 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 8 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 9 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 10 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 11 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 12 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 13 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 14 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 15 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 16 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 17 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 18 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+	(L.$._temps2_) 19 $cutBegin 1 $SetLengthL (S.$._temps_) (M.L.CharToCapital) (L.$.RBL_COMING_Busstop_Cap_2) (L.$._temps_) $+ (S.$.RBL_COMING_Busstop_Cap_2)
+{endif}
+
+
+{macro:SearchStandbyTerminus}
+	900 s4 (M.L.SearchStandbyTerminus100)
+	800 s4 (M.L.SearchStandbyTerminus100)
+	700 s4 (M.L.SearchStandbyTerminus100)
+	600 s4 (M.L.SearchStandbyTerminus100)
+	500 s4 (M.L.SearchStandbyTerminus100)
+	400 s4 (M.L.SearchStandbyTerminus100)
+	300 s4 (M.L.SearchStandbyTerminus100)
+	200 s4 (M.L.SearchStandbyTerminus100)
+	100 s4 (M.L.SearchStandbyTerminus100)
+	0 s4 (M.L.SearchStandbyTerminus100)
+
+
+{macro:SearchStandbyTerminus100}
+	l4 90 + s3 (M.L.SearchStandbyTerminus10)
+	l4 80 + s3 (M.L.SearchStandbyTerminus10)
+	l4 70 + s3 (M.L.SearchStandbyTerminus10)
+	l4 60 + s3 (M.L.SearchStandbyTerminus10)
+	l4 50 + s3 (M.L.SearchStandbyTerminus10)
+	l4 40 + s3 (M.L.SearchStandbyTerminus10)
+	l4 30 + s3 (M.L.SearchStandbyTerminus10)
+	l4 20 + s3 (M.L.SearchStandbyTerminus10)
+	l4 10 + s3 (M.L.SearchStandbyTerminus10)
+	l4 s3 (M.L.SearchStandbyTerminus10)
+{end}
+
+{macro:SearchStandbyTerminus10}
+	l3 9 + s2 (M.L.SearchStandbyTerminus1)
+	l3 8 + s2 (M.L.SearchStandbyTerminus1)
+	l3 7 + s2 (M.L.SearchStandbyTerminus1)
+	l3 6 + s2 (M.L.SearchStandbyTerminus1)
+	l3 5 + s2 (M.L.SearchStandbyTerminus1)
+	l3 4 + s2 (M.L.SearchStandbyTerminus1)
+	l3 3 + s2 (M.L.SearchStandbyTerminus1)
+	l3 2 + s2 (M.L.SearchStandbyTerminus1)
+	l3 1 + s2 (M.L.SearchStandbyTerminus1)
+	l3 s2 (M.L.SearchStandbyTerminus1)
+{end}
+
+{macro:SearchStandbyTerminus1}
+	l2 (M.V.GetTerminusIndex) s1
+	0 >=
+	{if}
+		l1 0 (M.V.GetTerminusString)
+		(S.$._temps_) "BETRIEBSFAHRT" $=
+		(L.$._temps_) " BETRIEBSFAHRT" $= ||
+		(L.$._temps_) "Betriebsfahrt" $= ||
+		(L.$._temps_) "DIENSTFAHRT" $= ||
+		(L.$._temps_) " LEERFAHRT" $= ||
+		(L.$._temps_) "    LEERFAHRT" $= ||
+		(L.$._temps_) "WWW.HOCHBAHN.DE" $= ||
+		(L.$._temps_) "GEISENTAL-BUSSE" $= ||
+		(L.$._temps_) "NOT IN SERVICE" $= ||
+		(L.$._temps_) "Not In Service" $= ||
+		(L.$._temps_) " NOT IN SERVICE" $= ||
+		(L.$._temps_) "OUT OF SERVICE" $= ||
+		(L.$._temps_) "OUT SERVICE" $= ||
+		(L.$._temps_) "GARAGE" $= ||
+		(L.$._temps_) "SERVICE TRIP" $= ||
+		(L.$._temps_) "GEEN DIENST" $= ||
+		(L.$._temps_) "SERVIS DISI" $= ||
+		(L.$._temps_) "ZAJEZDNIA" $= ||
+		(L.$._temps_) "    ZAJEZDNIA" $= ||
+		(L.$._temps_) "DO ZAJEZDNI" $= ||
+		(L.$._temps_) "AWARYJNY" $= ||
+		(L.$._temps_) "  ÏÎÑÀ}ÊÈ  ÍÅÒ" $= ||
+		(L.$._temps_) "UTASOKAT NEM SZ" $= ||
+		(L.$._temps_) "Â ÏÀÐÊ" $= ||
+		(L.$._temps_) "ZJAZD DO ZAJ." $= ||
+		(L.$._temps_) "   GARÁZSMENET" $= ||
+		(L.$._temps_) "     KOZLOVA" $= ||
+		(L.$._temps_) "GARAGEM" $= ||
+		(L.$._temps_) "GARAZSMENET" $= ||
+		(L.$._temps_) "POS. NEPECINO" $= ||
+		(L.$._temps_) "CHEREMUSHKI" $= ||
+		(L.$._temps_) "PAWLOWICE PETLA" $= ||
+		(L.$._temps_) "IKKE I RUTE" $= ||
+		l1 1 (M.V.GetTerminusString) "   Vestische" $= ||
+		{if}
+			l2 (S.L.IBIS_StandbyTerminusCode) 1 s0
+		{endif}
+		(L.$._temps_) "BUS ENDET HIER" $=
+		(L.$._temps_) "Bus endet hier" $= ||
+		(L.$._temps_) "FAHRTENDE" $= ||
+		{if}
+			l2 (S.L.IBIS_LastStopTerminusCode)
+		{endif}
+	{endif}
+{end}
+
+{macro:CharToCapital}
+	(L.$._temps_) "a" $= {if} "A" (S.$._temps_) {endif}
+	(L.$._temps_) "b" $= {if} "B" (S.$._temps_) {endif}
+	(L.$._temps_) "c" $= {if} "C" (S.$._temps_) {endif}
+	(L.$._temps_) "d" $= {if} "D" (S.$._temps_) {endif}
+	(L.$._temps_) "e" $= {if} "E" (S.$._temps_) {endif}
+	(L.$._temps_) "f" $= {if} "F" (S.$._temps_) {endif}
+	(L.$._temps_) "g" $= {if} "G" (S.$._temps_) {endif}
+	(L.$._temps_) "h" $= {if} "H" (S.$._temps_) {endif}
+	(L.$._temps_) "i" $= {if} "I" (S.$._temps_) {endif}
+	(L.$._temps_) "j" $= {if} "J" (S.$._temps_) {endif}
+	(L.$._temps_) "k" $= {if} "K" (S.$._temps_) {endif}
+	(L.$._temps_) "l" $= {if} "L" (S.$._temps_) {endif}
+	(L.$._temps_) "m" $= {if} "M" (S.$._temps_) {endif}
+	(L.$._temps_) "n" $= {if} "N" (S.$._temps_) {endif}
+	(L.$._temps_) "o" $= {if} "O" (S.$._temps_) {endif}
+	(L.$._temps_) "p" $= {if} "P" (S.$._temps_) {endif}
+	(L.$._temps_) "q" $= {if} "Q" (S.$._temps_) {endif}
+	(L.$._temps_) "r" $= {if} "R" (S.$._temps_) {endif}
+	(L.$._temps_) "s" $= {if} "S" (S.$._temps_) {endif}
+	(L.$._temps_) "t" $= {if} "T" (S.$._temps_) {endif}
+	(L.$._temps_) "u" $= {if} "U" (S.$._temps_) {endif}
+	(L.$._temps_) "v" $= {if} "V" (S.$._temps_) {endif}
+	(L.$._temps_) "w" $= {if} "W" (S.$._temps_) {endif}
+	(L.$._temps_) "x" $= {if} "X" (S.$._temps_) {endif}
+	(L.$._temps_) "y" $= {if} "Y" (S.$._temps_) {endif}
+	(L.$._temps_) "z" $= {if} "Z" (S.$._temps_) {endif}
+	(L.$._temps_) "ß" $= {if} "SS" (S.$._temps_) {endif}
+	(L.$._temps_) "ä" $= {if} "AE" (S.$._temps_) {endif}
+	(L.$._temps_) "ö" $= {if} "OE" (S.$._temps_) {endif}
+	(L.$._temps_) "ü" $= {if} "UE" (S.$._temps_) {endif}
+	(L.$._temps_) "Ä" $= {if} "AE" (S.$._temps_) {endif}
+	(L.$._temps_) "Ö" $= {if} "OE" (S.$._temps_) {endif}
+	(L.$._temps_) "Ü" $= {if} "UE" (S.$._temps_) {endif}
+	(L.$._temps_) "é" $= {if} "E" (S.$._temps_) {endif}
+{end}
+
+{macro:IBIS_TT_GetRouteNo}
+' l0 - Route gefunden?; l1 - Liniennummer mal 100; l2 bis l7 - intern (l7 - Haltestellenindex)
+	0 s7 (M.L.IBIS_TT_GetRouteNo2)
+	l0 !
+	{if}
+		1 s7 (M.L.IBIS_TT_GetRouteNo2)
+		l0 !
+		{if}
+			2 s7 (M.L.IBIS_TT_GetRouteNo2)
+			3 s7 (M.L.IBIS_TT_GetRouteNo2)
+			4 s7 (M.L.IBIS_TT_GetRouteNo2)
+			5 s7 (M.L.IBIS_TT_GetRouteNo2)
+			6 s7 (M.L.IBIS_TT_GetRouteNo2)
+			7 s7 (M.L.IBIS_TT_GetRouteNo2)
+			8 s7 (M.L.IBIS_TT_GetRouteNo2)
+			9 s7 (M.L.IBIS_TT_GetRouteNo2)
+			10 s7 (M.L.IBIS_TT_GetRouteNo2)
+			l0 !
+			{if}
+				11 s7 (M.L.IBIS_TT_GetRouteNo2)
+				12 s7 (M.L.IBIS_TT_GetRouteNo2)
+				13 s7 (M.L.IBIS_TT_GetRouteNo2)
+				14 s7 (M.L.IBIS_TT_GetRouteNo2)
+				15 s7 (M.L.IBIS_TT_GetRouteNo2)
+				16 s7 (M.L.IBIS_TT_GetRouteNo2)
+				17 s7 (M.L.IBIS_TT_GetRouteNo2)
+				18 s7 (M.L.IBIS_TT_GetRouteNo2)
+				19 s7 (M.L.IBIS_TT_GetRouteNo2)
+				20 s7 (M.L.IBIS_TT_GetRouteNo2)
+			{endif}
+		{endif}
+	{endif}
+{end}
+
+{macro:IBIS_TT_GetRouteNo2}
+	0 s4 (M.L.IBIS_TT_GetRouteNo3)
+	10 s4 (M.L.IBIS_TT_GetRouteNo3)
+	20 s4 (M.L.IBIS_TT_GetRouteNo3)
+	30 s4 (M.L.IBIS_TT_GetRouteNo3)
+	40 s4 (M.L.IBIS_TT_GetRouteNo3)
+	l0 !
+	{if}
+		50 s4 (M.L.IBIS_TT_GetRouteNo3)
+		60 s4 (M.L.IBIS_TT_GetRouteNo3)
+		70 s4 (M.L.IBIS_TT_GetRouteNo3)
+		80 s4 (M.L.IBIS_TT_GetRouteNo3)
+		90 s4 (M.L.IBIS_TT_GetRouteNo3)
+	{endif}
+{end}
+
+{macro:IBIS_TT_GetRouteNo3}
+	l4 0 + s5 (M.L.IBIS_TT_GetRouteNo4)
+	l4 1 + s5 (M.L.IBIS_TT_GetRouteNo4)
+	l4 2 + s5 (M.L.IBIS_TT_GetRouteNo4)
+	l4 3 + s5 (M.L.IBIS_TT_GetRouteNo4)
+	l4 4 + s5 (M.L.IBIS_TT_GetRouteNo4)
+	l4 5 + s5 (M.L.IBIS_TT_GetRouteNo4)
+	l4 6 + s5 (M.L.IBIS_TT_GetRouteNo4)
+	l4 7 + s5 (M.L.IBIS_TT_GetRouteNo4)
+	l4 8 + s5 (M.L.IBIS_TT_GetRouteNo4)
+	l4 9 + s5 (M.L.IBIS_TT_GetRouteNo4)
+{end}
+
+{macro:IBIS_TT_GetRouteNo4}
+	l1 l5 + (M.V.GetRouteIndex) s2 0 >=
+	l0 ! &&
+	{if}
+		l2 (M.V.GetBusstopCount) l7 >
+		{if}
+			l2 l7 (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.L.GetBusstopName) (S.$._temps2_) 0 (M.V.GetTTBusstopName) (M.L.GetBusstopName) (L.$._temps2_) $= s3
+			l2 (M.V.GetBusstopCount) 1 - s6 l2 l6 (M.V.GetRouteBusstopIdent) (M.L.String_ab_Nummernzeichen_abschneiden) (M.L.GetBusstopName) (S.$._temps2_) (M.V.GetTTBusstopCount) 1 - (M.V.GetTTBusstopName) (M.L.GetBusstopName) (L.$._temps2_) $= l3 &&
+			{if}
+				l5 (S.L.RBL_COMING_Route)
+				l7 (S.L.RBL_COMING_Stop)
+				1 s0
+			{endif}
+		{endif}
+	{endif} 
+{end}
+
+{macro:String_ab_Nummernzeichen_abschneiden}
+	(S.$._temps_)
+	(L.$._temps_) 1 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 0 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 2 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 1 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 3 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 2 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 4 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 3 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 5 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 4 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 6 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 5 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 7 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 6 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 8 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 7 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 9 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 8 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 10 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 9 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 11 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 10 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 12 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 11 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 13 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 12 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 14 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 13 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 15 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 14 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 16 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 15 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 17 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 16 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 18 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 17 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 19 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 18 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 20 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 19 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 21 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 20 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 22 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 21 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 23 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 22 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 24 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 23 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 25 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 24 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 26 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 25 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 27 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 26 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 28 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 27 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 29 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 28 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 30 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 29 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 31 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 30 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 32 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 31 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 33 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 32 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 34 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 33 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 35 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 34 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 36 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 35 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 37 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 36 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 38 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 37 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 39 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 38 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 40 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 39 $SetLengthL (S.$._temps_) {endif}
+	(L.$._temps_) 41 $SetLengthL 1 $SetLengthR "#" $= {if} (L.$._temps_) 40 $SetLengthL (S.$._temps_) {endif}					
+	(L.$._temps_)
+{end}
+
+{macro:GetBusstopName}
+'Da die Haltestellennamen von HOF-Datei und Map meist nicht übereinstimmen, ein paar Namen korrigieren:
+	(S.$._temps_) 4 $SetLengthL "Tel_" $= {if} (L.$._temps_) 4 $cutBegin (S.$._temps_) {endif}
+	(L.$._temps_) 3 $SetLengthR "_12" $= {if} (L.$._temps_) 3 $cutEnd (S.$._temps_) {endif}
+	(L.$._temps_) 2 $SetLengthR " T" $= {if} (L.$._temps_) 2 $cutEnd (S.$._temps_) {endif}
+	(L.$._temps_) 1 $SetLengthR "." $= {if} (L.$._temps_) 1 $cutEnd (S.$._temps_) {endif}
+	(L.$._temps_) 2 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 2 $cutEnd (L.$._temps_) 1 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 3 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 3 $cutEnd (L.$._temps_) 2 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 4 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 4 $cutEnd (L.$._temps_) 3 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 5 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 5 $cutEnd (L.$._temps_) 4 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 6 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 6 $cutEnd (L.$._temps_) 5 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 7 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 7 $cutEnd (L.$._temps_) 6 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 8 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 8 $cutEnd (L.$._temps_) 7 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 9 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 9 $cutEnd (L.$._temps_) 8 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 10 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 10 $cutEnd (L.$._temps_) 9 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 11 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 11 $cutEnd (L.$._temps_) 10 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 12 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 12 $cutEnd (L.$._temps_) 11 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 13 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 13 $cutEnd (L.$._temps_) 12 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 14 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 14 $cutEnd (L.$._temps_) 13 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 15 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 15 $cutEnd (L.$._temps_) 14 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 16 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 16 $cutEnd (L.$._temps_) 15 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 17 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 17 $cutEnd (L.$._temps_) 16 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 18 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 18 $cutEnd (L.$._temps_) 17 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 19 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 19 $cutEnd (L.$._temps_) 18 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 20 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 20 $cutEnd (L.$._temps_) 19 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 21 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 21 $cutEnd (L.$._temps_) 20 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 22 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 22 $cutEnd (L.$._temps_) 21 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 23 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 23 $cutEnd (L.$._temps_) 22 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 24 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 24 $cutEnd (L.$._temps_) 23 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 25 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 25 $cutEnd (L.$._temps_) 24 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 26 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 26 $cutEnd (L.$._temps_) 25 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 27 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 27 $cutEnd (L.$._temps_) 26 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 28 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 28 $cutEnd (L.$._temps_) 27 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 29 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 29 $cutEnd (L.$._temps_) 28 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 30 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 30 $cutEnd (L.$._temps_) 29 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 31 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 31 $cutEnd (L.$._temps_) 30 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 32 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 32 $cutEnd (L.$._temps_) 31 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 33 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 33 $cutEnd (L.$._temps_) 32 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 34 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 34 $cutEnd (L.$._temps_) 33 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 35 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 35 $cutEnd (L.$._temps_) 34 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 36 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 36 $cutEnd (L.$._temps_) 35 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 37 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 37 $cutEnd (L.$._temps_) 36 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 38 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 38 $cutEnd (L.$._temps_) 37 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) 39 $SetLengthR 1 $SetLengthL "." $= {if} (L.$._temps_) 39 $cutEnd (L.$._temps_) 38 $SetLengthR $+ (S.$._temps_) {endif}
+	(L.$._temps_) "Falkensee Bahnhof" $= {if} "Falkensee, Bahnhof" (S.$._temps_) {endif}
+	(L.$._temps_) "Falkensee Bhf" $= {if} "Falkensee, Bahnhof" (S.$._temps_) {endif}
+	(L.$._temps_) "Rathaus Spandau" $= {if} "S+U Rathaus Spandau" (S.$._temps_) {endif}
+	(L.$._temps_) "Warthestr" $= {if} "Teltow, Warthestr" (S.$._temps_) {endif}
+	(L.$._temps_) "Teltow, Rammrath-Brücke" $= {if} "Teltow, Warthestr" (S.$._temps_) {endif}
+	(L.$._temps_) "S+U Zoologischer Garten Bhf" $= {if} "S+U Zoologischer Garten" (S.$._temps_) {endif}
+	(L.$._temps_) "Zoo Wende" $= {if} "S+U Zoologischer Garten" (S.$._temps_) {endif}
+	(L.$._temps_)
+{end}
+
+{macro:RBL_Send_Message}
+	(S.$.RBL_Message5)
+	(L.$.RBL_Message4) "" $= {if} (L.$.RBL_Message5) (S.$.RBL_Message4) "" (S.$.RBL_Message5) {endif}
+	(L.$.RBL_Message3) "" $= {if} (L.$.RBL_Message4) (S.$.RBL_Message3) "" (S.$.RBL_Message4) {endif}
+	(L.$.RBL_Message2) "" $= {if} (L.$.RBL_Message3) (S.$.RBL_Message2) "" (S.$.RBL_Message3) {endif}
+	(L.$.RBL_Message1) "" $= {if} (L.$.RBL_Message2) (S.$.RBL_Message1) "" (S.$.RBL_Message2) {endif}
+	(L.$.RBL_Message0) "" $= {if} (L.$.RBL_Message1) (S.$.RBL_Message0) "" (S.$.RBL_Message1) {endif}
+{end}

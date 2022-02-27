@@ -1,0 +1,38 @@
+'##############
+'Klappern-Script
+'##############
+
+'Adds chattering when street conditions are bad
+
+'(c) 07.10.2007 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+'Revision History:
+'- Marcel Kuhnt		07.10.2007	File created
+'- Marcel Kuhnt		10.08.2009	Added Revision History
+
+'------------------------------------------------------------------------------------------
+
+{macro:klappern_frame}
+	(L.L.A_Trans_X) sqr (L.L.A_Trans_Y) sqr + 0.01 * (L.L.A_Trans_Z) sqr + sqrt s0 (L.L.Klappern_LastA) -
+	(C.L.klappern_faktor) * s1
+
+
+	(L.S.timegap) -1 * exp
+	(L.L.klappern_vol) *
+	
+
+	l1
+	max
+	1 min
+
+	(S.L.klappern_vol)
+
+	l0 (S.L.Klappern_LastA)
+{end}

@@ -1,0 +1,10 @@
+time
+schranke_pos
+schranke_run
+schranke
+klappe_pos
+klappe_run
+klappe
+klappe_zu
+red
+green

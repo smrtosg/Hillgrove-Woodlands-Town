@@ -1,0 +1,6759 @@
+[name]
+Lemmental V3
+
+[servicetrip]
+Betriebsfahrt
+
+stringcount_terminus
+8
+
+stringcount_busstop
+4
+
+[global_strings]	
+3	
+Lemmental V3
+Lemmental V3
+Lemmental V3
+
+
+########################## Sonderziele ##########################
+
+[addterminus_allexit]
+0
+Leerfeld
+LEERFELD
+
+
+
+
+
+LEERFELD
+SMRTG MAN\SMRTG_BLANK.png
+.........................
+
+
+[addterminus_allexit]
+1
+Betriebsfahrt
+BETRIEBSFAHRT
+
+Betriebsfahrt
+BETRIEBSFAHRT
+
+OFF SERVICE
+OFF SERVICE
+SMRTG MAN\SMRTG_OFFSVC.png
+.........................
+
+[addterminus_allexit]
+2
+FESTIVE
+FESTIVE
+
+FESTIVE
+FESTIVE
+FESTIVE
+FESTIVE
+FESTIVE
+SMRTG MAN\FES.png
+.........................
+
+[addterminus]
+3
+SMRT BUSES
+SMRT BUSES
+
+SMRT BUSES
+SMRT BUSES
+SMRT BUSES
+SMRT BUSES
+SMRT BUSES
+SMRTG MAN\SMRT.png
+.........................
+
+[addterminus]
+4
+LEMMENTAL
+LEMMENTAL
+
+LEMMENTAL
+LEMMENTAL
+LEMMENTAL
+LEMMENTAL
+LEMMENTAL
+SMRTG MAN\LEM.png
+.........................
+
+[addterminus]
+5
+Schienenersatzverkehr
+SCHIENENERSATZVERKEHR
+Schienen-
+ersatzverkehr
+
+Lem_Schienenersatzverkehr.tga
+Schienenersatzverkehr
+.........................
+
+[addterminus]
+6
+SightSeeing
+SIGHTSEEING
+Lemmental
+Stadtrundfahrt
+Stadtrundfahrt
+Lem_SightSeeing.tga
+SightSeeing
+.........................
+
+[addterminus_allexit]
+7
+TRG
+TRG
+Training Bus
+Lemmental
+TRG
+TRG
+TRG
+TRG
+SMRTG MAN\TRG.png
+.........................
+
+[addterminus_allexit]
+8
+Kretz
+KRETZ
+Kretz
+Autobusse
+
+Lem_Kretz.tga
+Kretz
+.........................
+
+[addterminus_allexit]
+9
+Persick.Bus
+PERSICK.BUS
+
+Persick.Bus
+
+Lem_Persick.Bus.tga
+Persick.Bus
+.........................
+
+########################## Linienziele ##########################
+
+[addterminus]
+099
+SB51Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+SMRTG MAN\SMRTG_LEMSB5101.png
+.........................
+
+[addterminus]
+100
+SB51Schatenburg
+SCHATENBURG
+
+Schatenburg
+Schatenburg
+Schatenburg
+Schatenburg
+Schatenburg
+SMRTG MAN\SMRTG_LEMSB5102.png
+.........................
+
+[addterminus]
+101
+SB51Grünschildken
+GRUENSCHILDKEN
+
+Grünschildken Bf.
+Grünschildken Bf.
+Grünschildken Bf.
+Grünschildken Bf.
+Grünschildken
+SMRTG MAN\SMRTG_LEMSB5103.png
+.........................
+
+[addterminus]
+102
+SB52Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+SMRTG MAN\SMRTG_LEMSB5201.png
+.........................
+
+[addterminus]
+103
+SB52Königsrath
+KOENIGSRATH
+
+Königsrath Bf.
+Königsrath Bf.
+Königsrath, Bf.
+Königsrath, Bf.
+Königsrath, Bf.
+SMRTG MAN\SMRTG_LEMSB5202.png
+.........................
+
+[addterminus]
+104
+SB52KönigsrathFlughafen
+KOENIGSRATH
+Königsrath
+Flughafen
+Königsrath Flgh.
+Königsrath, Flgh.
+Königsrath, Flgh.
+Königsrath, Flgh.
+SMRTG MAN\SMRTG_LEMSB5202.png
+.........................
+
+[addterminus]
+105
+100P1
+LEMMENTAL P 1
+  P+R Shuttle
+  Parkplatz 1
+P+R Shuttle
+Lemmental, P 1
+Lemmental, P 1
+Lemmental, P 1
+SMRTG MAN\SMRTG_LEM10011.png
+.........................
+
+[addterminus]
+1105
+100P1
+LEMMENTAL P 1
+  P+R Shuttle
+  Parkplatz 1
+P+R Shuttle
+Lemmental, P 1
+Lemmental, P 1
+Lemmental, P 1
+SMRTG MAN\SMRTG_LEM10012.png
+.........................
+
+[addterminus]
+106
+100Theater
+LEMMENTAL BONNER G. THEATER
+  P+R Shuttle
+Bonner G./ Theater
+P+R Shuttle
+Bonner G./ Theater
+Bonner G./ Theater
+Bonner G./ Theater
+SMRTG MAN\SMRTG_LEM10021.png
+.........................
+
+[addterminus]
+1106
+100Theater
+LEMMENTAL BONNER G. THEATER
+  P+R Shuttle
+Bonner G./ Theater
+P+R Shuttle
+Bonner G./ Theater
+Bonner G./ Theater
+Bonner G./ Theater
+SMRTG MAN\SMRTG_LEM10022.png
+.........................
+
+[addterminus]
+107
+450ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+ Lemmental ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+SMRTG MAN\SMRTG_LEM45011.png
+.........................
+
+[addterminus]
+1107
+450ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+ Lemmental ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+SMRTG MAN\SMRTG_LEM45012.png
+.........................
+
+
+[addterminus]
+108
+450Adlersbruch
+Adlersbruch
+
+  Adlersbruch
+  Adlersbruch
+Adlersbruch
+Adlersbruch
+Adlersbruch
+SMRTG MAN\SMRTG_LEM45021.png
+.........................
+
+[addterminus]
+109
+450Oberesch
+OBERESCH
+
+  Oberesch Bf.
+  Oberesch Bf.
+Oberesch
+Oberesch
+Oberesch
+SMRTG MAN\SMRTG_LEM45031.png
+.........................
+
+[addterminus]
+110
+450Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+SMRTG MAN\SMRTG_LEM45041.png
+.........................
+
+[addterminus]
+111
+451Trehnbach
+TB. ALTE SIEDL.
+   Trehnbach
+ Alte Siedlung
+   Trehnbach
+Trehnbach, Alte Siedlung
+Trehnbach, Alte Siedlung
+Trehnbach, Alte Siedlung
+SMRTG MAN\SMRTG_LEM45101.png
+.........................
+
+[addterminus]
+1111
+451Trehnbach
+TB. ALTE SIEDL.
+   Trehnbach
+ Alte Siedlung
+   Trehnbach
+Trehnbach, Alte Siedlung
+Trehnbach, Alte Siedlung
+Trehnbach, Alte Siedlung
+SMRTG MAN\SMRTG_LEM45102.png
+.........................
+
+[addterminus]
+112
+451ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+ Lemmental ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+SMRTG MAN\SMRTG_LEM45111.png
+.........................
+
+[addterminus]
+1112
+451ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+ Lemmental ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+SMRTG MAN\SMRTG_LEM45112.png
+.........................
+
+[addterminus]
+113
+451Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+114
+452Birkenforst
+LEMMENTAL BIRKENFORST
+LE.-Birkenforst
+ü. Voiskamp
+LE.-Birkenforst ü. Vk.
+Lemmental, Birkenforst
+Lemmental, Birkenforst
+Lemmental, Birkenforst
+SMRTG MAN\SMRTG_LEM45211.png
+.........................
+
+[addterminus]
+1114
+452Birkenforst
+LEMMENTAL BIRKENFORST
+LE.-Birkenforst
+ü. Voiskamp
+LE.-Birkenforst ü. Vk.
+Lemmental, Birkenforst
+Lemmental, Birkenforst
+Lemmental, Birkenforst
+SMRTG MAN\SMRTG_LEM45212.png
+.........................
+
+[addterminus]
+115
+452BirkenforstKB
+LEMMENTAL BIRKENFORST
+LE.-Birkenforst
+ü. Kreisberg
+LE.-Birkenforst ü. Kb.
+Lemmental, Birkenforst
+Lemmental, Birkenforst
+Lemmental, Birkenforst
+SMRTG MAN\SMRTG_LEM45221.png
+.........................
+
+[addterminus]
+1115
+452BirkenforstKB
+LEMMENTAL BIRKENFORST
+LE.-Birkenforst
+ü. Kreisberg
+LE.-Birkenforst ü. Kb.
+Lemmental, Birkenforst
+Lemmental, Birkenforst
+Lemmental, Birkenforst
+SMRTG MAN\SMRTG_LEM45222.png
+.........................
+
+[addterminus]
+116
+452Hochstrund
+HOCHSTRUND NAUENWEG
+Hochstrund
+ü. Voiskamp
+Hochstrund ü. Vk.
+Hochstrund, Nauenweg
+Hochstrund, Nauenweg
+Hochstrund, Nauenweg
+SMRTG MAN\SMRTG_LEM45231.png
+.........................
+
+[addterminus]
+1116
+452Hochstrund
+HOCHSTRUND NAUENWEG
+Hochstrund
+ü. Voiskamp
+Hochstrund ü. Vk.
+Hochstrund, Nauenweg
+Hochstrund, Nauenweg
+Hochstrund, Nauenweg
+SMRTG MAN\SMRTG_LEM45232.png
+.........................
+
+[addterminus]
+117
+452HochstrundKB
+HOCHSTRUND NAUENWEG
+Hochstrund
+ü. Kreisberg
+Hochstrund ü. Kb.
+Lem_HochstrundNauenwegüKb.tga
+Hochstrund, Nauenweg
+.........................
+
+[addterminus]
+118
+452Klein-Steinburg
+KLEIN-STEINB.
+
+Klein-Steinburg
+Klein-Steinburg
+Lem_Klein-Steinburg.tga
+Klein-Steinburg
+.........................
+
+[addterminus]
+119
+453Heiligenstock
+HEILIGENSTOCK
+  Rundverkehr
+ Heiligenstock   
+Rundverk. Heiligenst.
+Lem_Heiligenstock.tga
+Heiligenstock
+.........................
+
+[addterminus]
+120
+453Hauptbahnhof
+LEMMENTAL HBF
+  Rundverkehr
+ Lemmental Hbf.
+Rundverk. LE. Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+121
+454Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+SMRTG MAN\SMRTG_LEM45411.png
+.........................
+
+[addterminus]
+122
+454Ketzheide
+KETZHEIDE
+  
+   Ketzheide    
+   Ketzheide
+Ketzheide
+Ketzheide
+Ketzheide
+SMRTG MAN\SMRTG_LEM45421.png
+.........................
+
+[addterminus]
+123
+455ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+ Lemmental ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+SMRTG MAN\SMRTG_LEM45511.png
+.........................
+
+[addterminus]
+1123
+455ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+ Lemmental ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+SMRTG MAN\SMRTG_LEM45512.png
+.........................
+
+[addterminus]
+124
+455Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+Lemmental, Hbf.
+SMRTG MAN\SMRTG_LEM45521.png
+.........................
+
+[addterminus]
+125
+455Hoheneck
+HOHENECK
+
+Hoheneck
+Hoheneck
+Hoheneck
+Hoheneck
+Hoheneck
+SMRTG MAN\SMRTG_LEM45531.png
+.........................
+
+[addterminus]
+126
+455Bergerfürth
+BERGERFUERTH
+
+Bergerfürth
+Bergerfürth
+Lem_Bergerfürth.tga
+Bergerfürth
+.........................
+
+[addterminus]
+127
+455Ebensberg
+EBENSBERG
+
+Ebensberg
+Ebensberg
+Lem_Ebensberg.tga
+Ebensberg
+.........................
+
+[addterminus]
+128
+456ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+ Lemmental ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+SMRTG MAN\SMRTG_LEM456011.png
+.........................
+
+[addterminus]
+1128
+456ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+ Lemmental ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+Lemmental, ZOB
+SMRTG MAN\SMRTG_LEM456012.png
+.........................
+
+[addterminus]
+129
+456Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+129
+456Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+130
+456Frankenberg
+FRANKENBERG
+Frankenberg
+Gärtnerei
+Frankenberg
+Frankenberg
+Frankenberg
+Frankenberg
+SMRTG MAN\SMRTG_LEM456031.png
+.........................
+
+[addterminus]
+1130
+456Frankenberg
+FRANKENBERG
+Frankenberg
+Gärtnerei
+Frankenberg
+Frankenberg
+Frankenberg
+Frankenberg
+SMRTG MAN\SMRTG_LEM456032.png
+.........................
+
+[addterminus]
+131
+456Neu-Weiberg
+NEU-WEIBERG
+
+Neu-Weiberg
+Neu-Weiberg
+Lem_Neu-Weiberg.tga
+Neu-Weiberg
+.........................
+
+
+[addterminus]
+132
+457Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+133
+457BahnhofOst
+LEMMENTAL BF.-OST
+
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lem_LemmentalBfOst.tga
+Lemmental, Bf. Ost
+.........................
+
+[addterminus]
+134
+457Birkenforst
+LEMMENTAL BIRKENFORST
+Lemmental
+Birkenforst
+Lemmental Birkenforst
+Lem_LemmentalBirkenforst.tga
+Lemmental, Birkenforst
+.........................
+
+[addterminus]
+135
+458Klein-Klefe
+KLEIN-KLEFE
+
+Klein-Klefe
+Klein-Klefe
+Klein-Klefe
+Klein-Klefe
+Klein-Klefe
+SMRTG MAN\SMRTG_LEM45811.png
+.........................
+
+[addterminus]
+136
+458Frankenberg
+FRANKENBERG
+Frankenberg
+Gärtnerei
+Frankenberg
+Frankenberg
+Frankenberg
+Frankenberg
+SMRTG MAN\SMRTG_LEM45821.png
+.........................
+
+[addterminus]
+1136
+458Frankenberg
+FRANKENBERG
+Frankenberg
+Gärtnerei
+Frankenberg
+Frankenberg
+Frankenberg
+Frankenberg
+SMRTG MAN\SMRTG_LEM45822.png
+.........................
+
+[addterminus]
+137
+458BahnhofOst
+LEMMENTAL BF.-OST
+
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lemmental, Bf. Ost
+SMRTG MAN\SMRTG_LEM45831.png
+.........................
+
+[addterminus]
+1137
+458BahnhofOst
+LEMMENTAL BF.-OST
+
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lemmental, Bf. Ost
+SMRTG MAN\SMRTG_LEM45832.png
+.........................
+
+[addterminus]
+138
+459Grünhöfchen
+GRUENHOEFCHEN
+
+Grünhöfchen
+Grünhöfchen
+Grünhöfchen
+Grünhöfchen
+Grünhöfchen
+SMRTG MAN\SMRTG_LEM459011.png
+.........................
+
+[addterminus]
+139
+459ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+Lemmental ZOB
+Lemmental ZOB
+Lemmental ZOB
+Lemmental ZOB
+SMRTG MAN\SMRTG_LEM459021.png
+.........................
+
+[addterminus]
+1139
+459ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+Lemmental ZOB
+Lemmental ZOB
+Lemmental ZOB
+Lemmental ZOB
+SMRTG MAN\SMRTG_LEM459022.png
+.........................
+
+
+[addterminus]
+140
+NE40BahnhofWest
+LEMMENTAL BF.-WEST
+
+Lemmental Bf.-West
+Lemmental Bf.-West
+Lem_LemmentalBfWest.tga
+Lemmental, Bf. West
+.........................
+
+[addterminus]
+141
+NE40BahnhofOst
+LEMMENTAL BF.-OST
+
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lem_LemmentalBfOst.tga
+Lemmental, Bf. Ost
+.........................
+
+[addterminus]
+142
+N41Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+143
+N41Königsrath
+KOENIGSRATH
+
+Königsrath Bf.
+Königsrath Bf.
+Lem_Königsrath.tga
+Königsrath, Bf.
+.........................
+
+[addterminus]
+144
+N41KönigsrathFlughafen
+KOENIGSRATH
+Königsrath
+Flughafen
+Königsrath Flgh.
+Lem_KönigsrathFlughafen.tga
+Königsrath, Flgh.
+.........................
+
+[addterminus]
+145
+N42Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+146
+N42BahnhofOst
+LEMMENTAL BF.-OST
+
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lem_LemmentalBfOst.tga
+Lemmental, Bf. Ost
+.........................
+
+[addterminus]
+147
+N43Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+148
+N43ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+Lemmental ZOB
+Lem_LemmentalZOB.tga
+Lemmental, ZOB
+.........................
+
+[addterminus]
+149
+N44ZOB
+LEMMENTAL ZOB
+   Lemmental
+ ZOB/ Altstadt
+Lemmental ZOB
+Lem_LemmentalZOB.tga
+Lemmental, ZOB
+.........................
+
+[addterminus]
+150
+N44Birkenforst
+LEMMENTAL BIRKENFORST
+Lemmental
+Birkenforst
+Lemmental Birkenforst
+Lem_LemmentalBirkenforst.tga
+Lemmental, Birkenforst
+.........................
+
+[addterminus]
+151
+N45Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+152
+N45Stümp
+LEMMENTAL STUEMP
+  
+ Lemmental Stümp
+ Lemmental Stümp
+Lem_LemmentalStümp.tga
+Lemmental, Stümp
+.........................
+
+[addterminus]
+153
+N46Hauptbahnhof
+LEMMENTAL HBF
+  
+ Lemmental Hbf.
+ Lemmental Hbf.
+Lem_LemmentalHbf.tga
+Lemmental, Hbf.
+.........................
+
+[addterminus]
+154
+N46Schatenburg
+SCHATENBURG
+
+Schatenburg
+Schatenburg
+Lem_Schatenburg.tga
+Schatenburg
+.........................
+
+[addterminus]
+155
+N46Grünschildken
+GRUENSCHILDKEN
+
+Grünschildken Bf.
+Grünschildken Bf.
+Lem_Grünschildken.tga
+Grünschildken
+.........................
+
+
+########################## KI-Linienziele ##########################
+
+[addterminus]
+500
+551Oberesch
+OBERESCH
+
+  OBERESCH Bf.
+  OBERESCH BF.
+Lem_Oberesch.tga
+Oberesch
+.........................
+
+[addterminus]
+501
+551Derpel
+DERPEL RITTERM.
+    DERPEL
+  RITTERMARKT
+DE. RITTERMARKT
+Lem_DerpelRittermarkt.tga
+Derpel Rittermarkt
+.........................
+
+[addterminus]
+502
+554Hurden
+HURDEN
+
+     HURDEN
+     HURDEN
+Lem_Hurden.tga
+Hurden
+.........................
+
+[addterminus]
+503
+554Derpel
+DERPEL ZENTRUM
+    DERPEL      
+   ZENTRUM
+  DE. ZENTRUM
+Lem_DerpelZentrum.tga
+Derpel Zentrum
+.........................
+
+[addterminus]
+504
+461BahnhofOst
+LEMMENTAL BF.-OST
+
+Lemmental Bf.-Ost
+Lemmental Bf.-Ost
+Lem_LemmentalBfOst.tga
+Lemmental, Bf. Ost
+.........................
+
+[addterminus]
+505
+461Stümkamp
+STUEMKAMP
+
+Stümkamp
+Stümkamp
+Lem_Stümkamp.tga
+Stümkamp
+.........................
+
+[addterminus]
+506
+661BahnhofWest
+LEMMENTAL BF.-WEST
+
+Lemmental Bf.-West
+Lemmental Bf.-West
+Lem_LemmentalBfWest.tga
+Lemmental, Bf. West
+.........................
+
+[addterminus]
+507
+661KulthainBusbf.
+KULTHAIN BUSBF.
+
+Kulthain Busbf.
+Kulthain Busbf.
+Lem_KulthainBusbf.tga
+Kulthain, Busbf.
+.........................
+
+[addterminus]
+508
+675BahnhofWest
+LEMMENTAL BF.-WEST
+
+Lemmental Bf.-West
+Lemmental Bf.-West
+Lem_LemmentalBfWest.tga
+Lemmental, Bf. West
+.........................
+
+[addterminus]
+509
+675Schlehof
+SCHLEHOF
+
+Schlehof
+Schlehof
+Lem_Schlehof.tga
+Schlehof
+.........................
+
+[addterminus]
+510
+N78BahnhofWest
+LEMMENTAL BF.-WEST
+
+Lemmental Bf.-West
+Lemmental Bf.-West
+Lem_LemmentalBfWest.tga
+Lemmental, Bf. West
+.........................
+
+[addterminus]
+511
+N78Remlingen
+REMLINGEN
+
+Remlingen
+Remlingen
+Lem_Remlingen.tga
+Remlingen
+.........................
+
+[addterminus]
+512
+150Königsrath
+KOENIGSRATH
+
+Königsrath Bf.
+Königsrath Bf.
+Lem_Königsrath.tga
+Königsrath, Bf.
+.........................
+
+[addterminus]
+513
+150Eifgenhöhe
+EIFGENHOEHE
+
+Eifgenhöhe
+Eifgenhöhe
+Lem_Eifgenhöhe.tga
+Eifgenhöhe
+.........................
+
+[addterminus]
+514
+151Königsrath
+KOENIGSRATH
+
+Königsrath Bf.
+Königsrath Bf.
+Lem_Königsrath.tga
+Königsrath, Bf.
+.........................
+
+[addterminus]
+515
+151Halzenburg
+HALZENBURG
+
+Halzenburg
+Halzenburg
+Lem_Halzenburg.tga
+Halzenburg
+.........................
+
+[addterminus]
+516
+152Königsrath
+KOENIGSRATH
+Königsrath Bf.
+Rundverkehr
+Königsrath Bf.
+Lem_Königsrath.tga
+Königsrath, Bf.
+.........................
+
+[addterminus]
+517
+152Neubalken
+NEUBALKEN
+Neubalken
+Rundverkehr
+Neubalken
+Lem_Neubalken.tga
+Neubalken
+.........................
+
+[addterminus]
+518
+155Königsrath
+KOENIGSRATH
+
+Königsrath Bf.
+Königsrath Bf.
+Lem_Königsrath.tga
+Königsrath, Bf.
+.........................
+
+[addterminus]
+519
+155Grünschildken
+GRUENSCHILDKEN
+
+Grünschildken Bf.
+Grünschildken Bf.
+Lem_Grünschildken.tga
+Grünschildken
+.........................
+
+[addterminus]
+520
+156Königsrath
+KOENIGSRATH
+
+Königsrath Bf.
+Königsrath Bf.
+Lem_Königsrath.tga
+Königsrath, Bf.
+.........................
+
+[addterminus]
+521
+156Osming
+OSMING
+
+Osming
+Osming
+Lem_Osming.tga
+Osming
+.........................
+
+[addterminus]
+522
+N50Königsrath
+KOENIGSRATH
+
+Königsrath Bf.
+Königsrath Bf.
+Lem_Königsrath.tga
+Königsrath, Bf.
+.........................
+
+[addterminus]
+523
+N50Halzenburg
+HALZENBURG
+
+Halzenburg
+Halzenburg
+Lem_Halzenburg.tga
+Halzenburg
+.........................
+
+[addterminus]
+524
+N51Königsrath
+KOENIGSRATH
+
+Königsrath Bf.
+Königsrath Bf.
+Lem_Königsrath.tga
+Königsrath, Bf.
+.........................
+
+[addterminus]
+525
+N51Grünschildken
+GRUENSCHILDKEN
+
+Grünschildken Bf.
+Grünschildken Bf.
+Lem_Grünschildken.tga
+Grünschildken
+.........................
+
+[addterminus]
+526
+198Oberbräuch
+OBERBRAEUCH
+
+Oberbräuch
+Oberbräuch
+Lem_Oberbräuch.tga
+Oberbräuch
+.........................
+
+[addterminus]
+527
+198Grünschildken
+GRUENSCHILDKEN
+
+Grünschildken Bf.
+Grünschildken Bf.
+Lem_Grünschildken.tga
+Grünschildken
+.........................
+
+[addterminus]
+528
+196Oberbräuch
+OBERBRAEUCH
+
+Oberbräuch
+Oberbräuch
+Lem_Oberbräuch.tga
+Oberbräuch
+.........................
+
+[addterminus]
+529
+196SchatenburgBahnhof
+SCHATENBURG BF.
+
+Schatenburg Bf.
+Schatenburg Bf.
+Lem_SchatenburgBf..tga
+Schatenburg Bf.
+.........................
+
+[addterminus]
+530
+200KönigsrathFlughafen
+KOENIGSRATH
+Königsrath
+Flughafen
+Königsrath Flgh.
+Lem_KönigsrathFlughafen.tga
+Königsrath, Flgh.
+.........................
+
+[addterminus]
+531
+200Königsrath
+KOENIGSRATH
+
+Königsrath Bf.
+Königsrath Bf.
+Lem_Königsrath.tga
+Königsrath, Bf.
+.........................
+
+[addterminus]
+532
+559Derpel
+DERPEL ZENTRUM
+    DERPEL      
+   ZENTRUM
+  DE. ZENTRUM
+Lem_DerpelZentrum.tga
+Derpel Zentrum
+.........................
+
+[addterminus]
+533
+281216
+MOBI
+MOBI
+
+MOBIMAN
+MOBIMAN
+
+MOBIMAN
+SMRTG MAN\MOBI.png
+.........................
+
+[addterminus]
+534
+SGB
+SGB
+SGB
+
+SG<3BUS
+SG<3BUS
+
+SG<3BUS
+SMRTG MAN\SGB01.png
+.........................
+
+[addterminus]
+1534
+SGB
+SGB
+SGB
+
+SG<3BUS
+SG<3BUS
+
+SG<3BUS
+SMRTG MAN\SGB02.png
+.........................
+
+
+######################################
+ BUS STOPS
+######################################
+
+[addbusstop]
+SB51Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+SB51BresnerPl.
+BRESNER PL.
+Lemmental
+Bresner Pl.
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+SB51Lindenhof
+LINDENHOF
+Lemmental
+Lindenhof
+LE. Lindenhof
+.........................
+
+[addbusstop]
+SB51BergerfürthGrützhöhe
+BERGERFUERTH GRUETZHOEHE
+Bergerfürth
+Grützhöhe
+Bgf. Grützhöhe
+.........................
+
+[addbusstop]
+SB51BergerfürthMitte
+BERGERFUERTH MITTE
+Bergerfürth
+Mitte
+Bgf. Mitte
+.........................
+
+[addbusstop]
+SB51BergerfürthLorkenbach
+BERGERFUERTH LORKENBACH
+Bergerfürth
+Lorkenbach
+Bgf. Lorkenbach
+.........................
+
+[addbusstop]
+SB51GsdkTalsperreMebusfeld
+GSDK. TALSPERRE MEBUSFELD
+Grünschildken
+Talsperre Mebusfeld
+Gsdk. Talsperre Mebusfeld
+.........................
+
+[addbusstop]
+SB51GsdkBallsiepen
+GSDK. BALLSIEPEN
+Grünschildken
+Ballsiepen
+Gsdk. Ballsiepen
+.........................
+
+[addbusstop]
+SB51Sellblick
+SELLBLICK
+Sellblick
+
+Sellblick
+.........................
+
+[addbusstop]
+SB51ImUmmersfeld
+IM UMMERSFELD
+Im Ummersfeld
+
+Im Ummersfeld
+.........................
+
+[addbusstop]
+SB51GsdkBahnhof
+GSDK. BAHNHOF
+Grünschildken
+Bahnhof
+Gsdk. Bahnhof
+.........................
+
+[addbusstop]
+SB51Tulpenwarth
+TULPENWARTH
+Tulpenwarth
+
+Tulpenwarth
+.........................
+
+[addbusstop]
+SB51Altensürth
+ALTENSUERTH
+Altensürth
+
+Altensürth
+.........................
+
+[addbusstop]
+SB51Junkersbaum
+JUNKERSBAUM
+Junkersbaum
+
+Junkersbaum
+.........................
+
+[addbusstop]
+SB51Neustrassen
+NEUSTRASSEN
+Neustrassen
+
+Neustrassen
+.........................
+
+[addbusstop]
+SB51Schatenburg
+SCHATENBURG
+Schatenburg
+
+Schatenburg
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+SB52Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+SB52BresnerPl.
+BRESNER PL.
+Lemmental
+Bresner Pl.
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+SB52Wildsfuß
+WILDSFUSS
+Lemmental
+Wildsfuß
+LE. Wildsfuß
+.........................
+
+[addbusstop]
+SB52BergerfürthGrützhöhe
+BERGERFUERTH GRUETZHOEHE
+Bergerfürth
+Grützhöhe
+Bgf. Grützhöhe
+.........................
+
+[addbusstop]
+SB52BergerfürthStallbrücken
+BERGERFUERTH STALLBRUECKEN
+Bergerfürth
+Stallbrücken
+Bgf. Stallbrücken
+.........................
+
+[addbusstop]
+SB52MittelbrechKotten
+MITTELBRECH KOTTEN
+Mittelbrech
+Kotten
+Mittelbrech Kotten
+.........................
+
+[addbusstop]
+SB52MittelbrechHausLinde
+MITTELBRECH HAUS LINDE
+Mittelbrech
+Haus Linde
+Mittelbrech Haus Linde
+.........................
+
+[addbusstop]
+SB52AnderEiche
+AN DER EICHE
+An der Eiche
+
+An der Eiche
+.........................
+
+[addbusstop]
+SB52KönigsrathAmBlumeneck
+KOENIGSRATH AM BLUMENECK
+Königsrath
+Am Blumeneck
+Königsrath Am Blumeneck
+.........................
+
+[addbusstop]
+SB52KönigsrathSteegerBurg
+KOENIGSRATH STEEGER BURG
+Königsrath
+Steeger Burg
+Königsrath Steeger Burg
+.........................
+
+[addbusstop]
+SB52KönigsrathSteegerBurg
+KOENIGSRATH STEEGER BURG
+Königsrath
+Steeger Burg
+Königsrath Steeger Burg
+.........................
+
+[addbusstop]
+SB52KönigsrathFlughafenLuftfracht
+KOENIGSRATH FLGH. LUFTFRACHT
+Königsrath
+Flgh. Luftfracht
+Königsrath Flgh. Luftfracht
+.........................
+
+[addbusstop]
+SB52KönigsrathFlughafenLuftfracht_KRF
+KOENIGSRATH FLGH. LUFTFRACHT
+Königsrath
+Flgh. Luftfracht
+Königsrath Flgh. Luftfracht
+.........................
+
+[addbusstop]
+SB52KönigsrathFlughafen
+KOENIGSRATH FLGH.
+Königsrath
+Flgh.
+Königsrath Flgh.
+.........................
+
+[addbusstop]
+SB52KönigsrathFlughafenVerwaltung
+KOENIGSRATH FLGH. VERWALTUNG
+Königsrath
+Flgh. Verwaltung
+Königsrath Flgh. Verwaltung
+.........................
+
+[addbusstop]
+SB52KönigsrathRathaus
+KOENIGSRATH RATHAUS
+Königsrath
+Rathaus
+Königsrath Rathaus
+.........................
+
+[addbusstop]
+SB52KönigsrathBahnhof
+KOENIGSRATH BAHNHOF
+Königsrath
+Bahnhof
+Königsrath Bahnhof
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+100P1Pause
+BETRIEBSFAHRT
+Betriebsfahrt
+
+Betriebsfahrt
+.........................
+
+[addbusstop]
+100P1
+P1
+Lemmental
+P1
+LE. P1
+.........................
+
+[addbusstop]
+100P2
+P2
+Lemmental
+P2
+LE. P2
+.........................
+
+[addbusstop]
+100BresnerPl.
+BRESNER PL.
+Lemmental
+Bresner Pl.
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+100P3
+P3
+Lemmental
+P3
+LE. P3
+.........................
+
+[addbusstop]
+100Leibnizplatz
+LEIBNIZPLATZ
+Lemmental
+Leibnizplatz
+LE. Leibnizplatz
+.........................
+
+[addbusstop]
+100HohenmarktRathaus
+HOHENMAKRT RATHAUS
+Lemmental
+Hohenmarkt, Rathaus
+LE. Hohenmarkt Rathaus
+.........................
+
+[addbusstop]
+100Markt
+MARKT
+Lemmental
+Markt
+LE. Markt
+.........................
+
+[addbusstop]
+100BonnerG.Theater
+BONNER G. THEATER
+Lemmental
+Bonner G. Theater
+LE. Bonner G. Theater
+.........................
+
+[addbusstop]
+100BonnerG.TheaterPause
+BETRIEBSFAHRT
+Betriebsfahrt
+
+Betriebsfahrt
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+450ZOB
+ZOB
+Lemmental
+ZOB
+LE. ZOB
+.........................
+
+[addbusstop]
+450Odiansweg
+ODIANSWEG
+Lemmental
+Odiansweg
+LE. Odiansweg
+.........................
+
+[addbusstop]
+450Vaconenberg
+VACONENBERG
+Lemmental
+Vaconenberg
+LE. Vaconenberg
+.........................
+
+[addbusstop]
+450Ulrich-Weber-Gasse
+ULR.-W.-GASSE
+Lemmental
+Ulrich-Weber-Gasse
+LE. Ulrich-Weber-Gasse
+.........................
+
+[addbusstop]
+450AltesRathaus
+ALTES RATHAUS
+Lemmental
+Altes Rathaus
+LE. Altes Rathaus
+.........................
+
+[addbusstop]
+450Bahnhofstr
+BAHNHOFSTR.
+Lemmental
+Bahnhofstr.
+LE. Bahnhofstr.
+.........................
+
+[addbusstop]
+450Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+450BresnerPl.
+BRESNERPL.
+Lemmental
+Bresner Platz
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+450Gartenweg
+GARTENWEG
+Lemmental
+Gartenweg
+LE. Gartenweg
+.........................
+
+[addbusstop]
+450AbzweigHohenberg
+ABZWEIG HOHENBERG
+Abzweig Hohenberg
+
+Abzweig Hohenberg
+.........................
+
+[addbusstop]
+450HochstrundFeldweg
+HOCHSTR. FELDWEG
+Hochstrund
+Feldweg
+Hochstrund Feldweg
+.........................
+
+[addbusstop]
+450HochstrundKirche
+HOCHSTR. KIRCHE
+Hochstrund
+Kirche
+Hochstrund Kirche
+.........................
+
+[addbusstop]
+450Wederfeld
+WEDERFELD
+Wederfeld
+
+Wederfeld
+.........................
+
+[addbusstop]
+450AmHühlenfels-Wanderparkplatz
+AM HÜHLENFELS WANDERPARKPL.
+Am Hühlenfels, Wanderparkpl.
+
+Am Hühlenfels, Wanderparkpl.
+.........................
+
+[addbusstop]
+450Gerathshof
+GERATHSHOF
+Gerathshof
+
+Gerathshof
+.........................
+
+[addbusstop]
+450ObereschWiesenweg
+OBERESCH WIESENWEG
+Oberesch
+Wiesenweg
+Oberesch Wiesenweg
+.........................
+
+[addbusstop]
+450ObereschBahnhof
+OBERESCH BF.
+Oberesch
+Bahnhof
+Oberesch Bahnhof
+.........................
+
+[addbusstop]
+450ObereschAmRotbaumKirche
+OBERESCH AM ROTBAUM KIRCHE
+Oberesch
+Am Rotbaum Kirche
+Oberesch AmRotbaum Kirche
+.........................
+
+[addbusstop]
+450FrohnheimMühle
+FROHNHEIM MÜHLE
+Frohnheim
+Mühle
+Frohnheim Mühle
+.........................
+
+[addbusstop]
+450AdlersbruchTierpark
+ADLERBRUCH TIERPARK
+Adlersbruch
+Tierpark
+Adlersbruch Tierpark
+.........................
+
+[addbusstop]
+450Adlersbruch
+ADLERBRUCH
+Adlersbruch
+
+Adlersbruch
+.........................
+
+[addbusstop]
+450AdlersbruchPause
+ADLERBRUCH
+Adlersbruch
+
+Adlersbruch
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+451ZOB
+ZOB
+Lemmental
+ZOB
+LE. ZOB
+.........................
+
+[addbusstop]
+451Odiansweg
+ODIANSWEG
+Lemmental
+Odiansweg
+LE. Odiansweg
+.........................
+
+[addbusstop]
+451Kreiskrankenhaus
+KREISKRANKENHAUS
+Lemmental
+Kreiskrankenhaus
+LE. Kreiskrankenhaus
+.........................
+
+[addbusstop]
+451Ulrich-Weber-Gasse
+ULR.-W.-GASSE
+Lemmental
+Ulrich-Weber-Gasse
+LE. Ulrich-Weber-Gasse
+.........................
+
+[addbusstop]
+451AltesRathaus
+ALTES RATHAUS
+Lemmental
+Altes Rathaus
+LE. Altes Rathaus
+.........................
+
+[addbusstop]
+451Bahnhofstr
+BAHNHOFSTR.
+Lemmental
+Bahnhofstr.
+LE. Bahnhofstr.
+.........................
+
+[addbusstop]
+451Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+451Leibnizplatz
+LEIBNIZPLATZ
+Lemmental
+Leibnizplatz
+LE. Leibnizplatz
+.........................
+
+[addbusstop]
+451GäricherSee
+GAERICHER SEE
+Lemmental
+Gäricher See
+LE. Gäricher See
+.........................
+
+[addbusstop]
+451Oberheid
+OBERHEID
+Oberheid
+
+Oberheid
+.........................
+
+[addbusstop]
+451Gerunderweg
+OH. GERUNDERWEG
+Oberheid
+Gerunderweg
+OH. Gerunderweg
+.........................
+
+[addbusstop]
+451Unterheid
+UNTERHEID
+Unterheid
+
+Unterheid
+.........................
+
+[addbusstop]
+451Kirche
+UH. KIRCHE
+Unterheid
+Kirche
+UH. Kirche
+.........................
+
+[addbusstop]
+451Wenuelz
+UH. WENUELZ
+Unterheid
+Wenülz
+UH. Wenuelz
+.........................
+
+[addbusstop]
+451Gueterbahnhof
+UH. GUETERBHF.
+Unterheid
+Güterbahnhof
+UH. Gueterbahnhof
+.........................
+
+[addbusstop]
+451Altes Stahlwerk
+UH. A. STAHLWERK
+Unterheid
+Altes Stahlwerk
+UH. Alt. Stahlwerk
+.........................
+
+[addbusstop]
+451Happenfeld
+HAPPENFELD
+Happenfeld
+
+Happenfeld
+.........................
+
+[addbusstop]
+451Weppen
+WEPPEN
+Weppen
+
+Weppen
+.........................
+
+[addbusstop]
+451Dorfplatz
+WEPPEN DORFPL.
+Weppen
+Dorfplatz
+Weppen Dorfplatz
+.........................
+
+[addbusstop]
+451Gaststaette
+A. GASTSTAETTE
+Aldenersee
+Gaststätte
+A. Gaststaette
+.........................
+
+[addbusstop]
+451Am Wasserwerk
+A. AM WASSERWK.
+Aldenersee
+Am Wasserwerk
+A. Am Wasserwerk
+.........................
+
+[addbusstop]
+451Neuengasse
+TB. NEUENGASSE
+Trehnbach
+Neuengasse
+TB. Neuengasse
+.........................
+
+[addbusstop]
+451Trehnbach
+TB. ALTE SIEDL.
+Trehnbach
+Alte Siedlung
+TB. Alte Siedlung
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+452Klein-SteinburgAlt-Walle
+KLEIN-STEINBURG ALT-WALLE
+Klein-Steinburg
+Alt-Walle
+Klein-Steinburg Alt-Walle
+.........................
+
+[addbusstop]
+452Klein-SteinburgMargaretenhöhe
+KLEIN-STEINBURG MARGARETENHOEHE
+Klein-Steinburg
+Margaretenhöhe
+Klein-Steinburg Margaretenhöhe
+.........................
+
+[addbusstop]
+452Klein-SteinburgSommerteich
+KLEIN-STEINBURG SOMMERTEICH
+Klein-Steinburg
+Sommerteich
+Klein-Steinburg Sommerteich
+.........................
+
+[addbusstop]
+452Klein-SteinburgMarienhof-Bf.
+KLEIN-STEINBURG MARIENHOF BF.
+Klein-Steinburg
+Marienhof/ Bf.
+Klein-Steinburg Marienhof/ Bf.
+.........................
+
+[addbusstop]
+452BielbockAltenfeld
+BIELBOCK ALTENFELD
+Bielbock
+Altenfeld
+Bielbock Altenfeld
+.........................
+
+[addbusstop]
+452Kleinfelde
+KLEINFELDE
+Kleinfelde
+
+Kleinfelde
+.........................
+
+[addbusstop]
+452HochstrundNauenwegPause
+BETRIEBSFAHRT
+Betriebsfahrt
+
+Betriebsfahrt
+.........................
+
+[addbusstop]
+452HochstrundNauenweg
+HOCHSTR. NAUENWEG
+Hochstrund
+Nauenweg
+Hochstrund Nauenweg
+.........................
+
+[addbusstop]
+452HochstrundAmHügel
+HOCHSTR. AM HUEGEL
+Hochstrund
+Am Hügel
+Hochstrund Am Hügel
+.........................
+
+[addbusstop]
+452HochstrundFeldweg
+HOCHSTR. FELDWEG
+Hochstrund
+Feldweg
+Hochstrund Feldweg
+.........................
+
+[addbusstop]
+452AbzweigHohenberg
+ABZWEIG HOHENBERG
+Abzweig Hohenberg
+
+Abzweig Hohenberg
+.........................
+
+[addbusstop]
+452BresnerPl.
+BRESNER PL.
+Lemmental
+Bresner Pl.
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+452Leibnizplatz
+LEIBNIZPLATZ
+Lemmental
+Leibnizplatz
+LE. Leibnizplatz
+.........................
+
+[addbusstop]
+452Höffe
+HOEFFE
+Lemmental
+Höffe
+LE. Höffe
+.........................
+
+[addbusstop]
+452BonnerG.Zächergasse
+BONNER G. ZAECHERGASSE
+Lemmental
+Bonner G. Zächergasse
+LE. Bonner G. Zächergasse
+.........................
+
+[addbusstop]
+452BonnerG.Zächergasse_ü_Kb
+BONNER G. ZAECHERGASSE
+Lemmental
+Bonner G. Zächergasse
+LE. Bonner G. Zächergasse
+.........................
+
+[addbusstop]
+452BonnerG.Zächergasse_ü_Vk
+BONNER G. ZAECHERGASSE
+Lemmental
+Bonner G. Zächergasse
+LE. Bonner G. Zächergasse
+.........................
+
+[addbusstop]
+452HohenmarktRathaus
+HOHENMAKRT RATHAUS
+Lemmental
+Hohenmarkt, Rathaus
+LE. Hohenmarkt Rathaus
+.........................
+
+[addbusstop]
+452VoiskKirche
+VOISK. KIRCHE
+Voiskamp
+Kirche
+Voiskamp Kirche
+.........................
+
+[addbusstop]
+452KreisbRosenweg
+KB. ROSENWEG
+Kreisberg
+Rosenweg
+Kreisberg Rosenweg
+.........................
+
+[addbusstop]
+452KreisbAnderZimthütte
+KB. AN DER ZIMTHÜTTE
+Kreisberg
+An der Zimthütte
+Kreisberg An der Zimthütte
+.........................
+
+[addbusstop]
+452VoiskMarienmorgen
+VOISK. MARIENMORGEN
+Voiskamp
+Marienmorgen
+Voiskamp Marienmorgen
+.........................
+
+[addbusstop]
+452VoiskFranz-Puhl-Str.
+VOISK. FRANZ-PUHL-STR.
+Voiskamp
+Franz-Puhl-Str.
+Voiskamp Franz-Puhl-Str.
+.........................
+
+[addbusstop]
+452VoiskVierbuchen
+VOISK. VIERBUCHEN
+Voiskamp
+Vierbuchen
+Voiskamp Vierbuchen
+.........................
+
+[addbusstop]
+452BonnerG.Post
+BONNER G. POST
+Lemmental
+Bonner G. Post
+LE. Bonner G. Post
+.........................
+
+[addbusstop]
+452BonnerG.Post_ü_Vk
+BONNER G. POST
+Lemmental
+Bonner G. Post
+LE. Bonner G. Post
+.........................
+
+[addbusstop]
+452BonnerG.Post_ü_Kb
+BONNER G. POST
+Lemmental
+Bonner G. Post
+LE. Bonner G. Post
+.........................
+
+[addbusstop]
+452Markt
+MARKT
+Lemmental
+Markt
+LE. Markt
+.........................
+
+[addbusstop]
+452BonnerG.Theater
+BONNER G. THEATER
+Lemmental
+Bonner G. Theater
+LE. Bonner G. Theater
+.........................
+
+[addbusstop]
+452AltbornerWeg
+ALTBORNER WEG
+Lemmental
+Altborner Weg
+LE. Altborner Weg
+.........................
+
+[addbusstop]
+452Birkenforst
+BIRKENFORST
+Lemmental
+Birkenforst
+LE. Birkenforst
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+453Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+453BresnerPl.1
+BRESNER PL.
+Lemmental
+Bresner Pl.
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+453BresnerPl.
+BRESNER PL.
+Lemmental
+Bresner Pl.
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+453Leibnizplatz
+LEIBNIZPLATZ
+Lemmental
+Leibnizplatz
+LE. Leibnizplatz
+.........................
+
+[addbusstop]
+453Höffe
+HOEFFE
+Lemmental
+Höffe
+LE. Höffe
+.........................
+
+[addbusstop]
+453HeiligenstockVilshoven
+HEILIGENST. VILSHOVEN
+Heiligenstock
+Vilshoven
+Heiligenstock Vilshoven
+.........................
+
+[addbusstop]
+453HeiligenstockBirken
+HEILIGENST. BIRKEN
+Heiligenstock
+Birken
+Heiligenstock Birken
+.........................
+
+[addbusstop]
+453GäricherSee
+GAERICHER SEE
+Lemmental
+Gäricher See
+LE. Gäricher See
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+454Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+454Bahnhofstr
+BAHNHOFSTR.
+Lemmental
+Bahnhofstr.
+LE. Bahnhofstr.
+.........................
+
+[addbusstop]
+454AltesRathaus
+ALTES RATHAUS
+Lemmental
+Altes Rathaus
+LE. Altes Rathaus
+.........................
+
+[addbusstop]
+454Ulrich-Weber-Gasse
+ULR.-W.-GASSE
+Lemmental
+Ulrich-Weber-Gasse
+LE. Ulrich-Weber-Gasse
+.........................
+
+[addbusstop]
+454Vaconenberg
+VACONENBERG
+Lemmental
+Vaconenberg
+LE. Vaconenberg
+.........................
+
+[addbusstop]
+454Erlenholz
+ERLENHOLZ
+Lemmental
+Erlenholz
+LE. Erlenholz
+.........................
+
+[addbusstop]
+454Kiefstede
+KIEFSTEDE
+Kiefstede
+
+Kiefstede
+.........................
+
+[addbusstop]
+454KiefstedeOrtlingshöhe
+KIEFSTEDE ORTLINGSHOEHE
+Kiefstede
+Ortlingshöhe
+Kiefstede Ortlingshöhe
+.........................
+
+[addbusstop]
+454Ketzheide
+KETZHEIDE
+Ketzheide
+
+Ketzheide
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+455ZOB
+ZOB
+Lemmental
+ZOB
+LE. ZOB
+.........................
+
+[addbusstop]
+455Odiansweg
+ODIANSWEG
+Lemmental
+Odiansweg
+LE. Odiansweg
+.........................
+
+[addbusstop]
+455Kreiskrankenhaus
+KREISKRANKENHAUS
+Lemmental
+Kreiskrankenhaus
+LE. Kreiskrankenhaus
+.........................
+
+[addbusstop]
+455Ulrich-Weber-Gasse
+ULR.-W.-GASSE
+Lemmental
+Ulrich-Weber-Gasse
+LE. Ulrich-Weber-Gasse
+.........................
+
+[addbusstop]
+455AltesRathaus
+ALTES RATHAUS
+Lemmental
+Altes Rathaus
+LE. Altes Rathaus
+.........................
+
+[addbusstop]
+455Bahnhofstr
+BAHNHOFSTR.
+Lemmental
+Bahnhofstr.
+LE. Bahnhofstr.
+.........................
+
+[addbusstop]
+455Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+455BresnerPl.
+BRESNERPL.
+Lemmental
+Bresner Platz
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+455Wildsfuß
+WILDSFUSS
+Lemmental
+Wildsfuß
+LE. Wildsfuß
+.........................
+
+[addbusstop]
+455Lindenhof
+LINDENHOF
+Lemmental
+Lindenhof
+LE. Lindenhof
+.........................
+
+[addbusstop]
+455BergerfürthGrützhöhe
+BERGERFUERTH GRUETZHOEHE
+Bergerfürth
+Grützhöhe
+Bgf. Grützhöhe
+.........................
+
+[addbusstop]
+455BergerfürthMitte
+BERGERFUERTH MITTE
+Bergerfürth
+Mitte
+Bgf. Mitte
+.........................
+
+[addbusstop]
+455BergerfürthEulenhof
+BERGERFUERTH EULENHOF
+Bergerfürth
+Eulenhof
+Bgf. Eulenhof
+.........................
+
+[addbusstop]
+455BergerfürthHeiden
+BERGERFUERTH HEIDEN
+Bergerfürth
+Heiden
+Bgf. Heiden
+.........................
+
+[addbusstop]
+455BergerfürthLorkenbach
+BERGERFUERTH LORKENBACH
+Bergerfürth
+Lorkenbach
+Bgf. Lorkenbach
+.........................
+
+[addbusstop]
+455GsdkTalsperreMebusfeld
+GSDK. TALSPERRE MEBUSFELD
+Grünschildken
+Talsperre Mebusfeld
+Gsdk. Talsperre Mebusfeld
+.........................
+
+[addbusstop]
+455GsdkBallsiepen
+GSDK. BALLSIEPEN
+Grünschildken
+Ballsiepen
+Gsdk. Ballsiepen
+.........................
+
+[addbusstop]
+455GsdkBahnhof
+GSDK. BAHNHOF
+Grünschildken
+Bahnhof
+Gsdk. Bahnhof
+.........................
+
+[addbusstop]
+455Oberbüschen
+OBERBUESCHEN
+Oberbüschen
+
+Oberbüschen
+.........................
+
+[addbusstop]
+455Gravenberge
+GRAVENBERGE
+Gravenberge
+
+Gravenberge
+.........................
+
+[addbusstop]
+455Ösingkofen
+OESINGKOFEN
+Ösingkofen
+
+Ösingkofen
+.........................
+
+[addbusstop]
+455EbensbergKirche
+EBENSBERG KIRCHE
+Ebensberg
+Kirche
+Ebensberg Kirche
+.........................
+
+[addbusstop]
+455EbensbergLiliengrün
+EBENSBERG LILIENGRUEN
+Ebensberg
+Liliengrün
+Ebensberg Liliengrün
+.........................
+
+[addbusstop]
+455EichenförstMitte
+EICHENFOERST MITTE
+Eichenförst
+Mitte
+Eichenförst Mitte
+.........................
+
+[addbusstop]
+455EichenförstAlteBurg
+EICHENFOERST ALTE BURG
+Eichenförst
+Alte Burg
+Eichenförst Alte Burg
+.........................
+
+[addbusstop]
+455HoheneckAltenstein
+HOHENECK ALTENSTEIN
+Hoheneck
+Altenstein
+Hoheneck Altenstein
+.........................
+
+[addbusstop]
+455HoheneckLinde
+HOHENECK LINDE
+Hoheneck
+Linde
+Hoheneck Linde
+.........................
+
+[addbusstop]
+455Hoheneck
+HOHENECK
+Hoheneck
+
+Hoheneck
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+456ZOB
+ZOB
+Lemmental
+ZOB
+LE. ZOB
+.........................
+
+[addbusstop]
+456Odiansweg
+ODIANSWEG
+Lemmental
+Odiansweg
+LE. Odiansweg
+.........................
+
+[addbusstop]
+456Kreiskrankenhaus
+KREISKRANKENHAUS
+Lemmental
+Kreiskrankenhaus
+LE. Kreiskrankenhaus
+.........................
+
+[addbusstop]
+456Ulrich-Weber-Gasse
+ULR.-W.-GASSE
+Lemmental
+Ulrich-Weber-Gasse
+LE. Ulrich-Weber-Gasse
+.........................
+
+[addbusstop]
+456AltesRathaus
+ALTES RATHAUS
+Lemmental
+Altes Rathaus
+LE. Altes Rathaus
+.........................
+
+[addbusstop]
+456Bahnhofstr
+BAHNHOFSTR.
+Lemmental
+Bahnhofstr.
+LE. Bahnhofstr.
+.........................
+
+[addbusstop]
+456Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+456Leibnizplatz
+LEIBNIZPLATZ
+Lemmental
+Leibnizplatz
+LE. Leibnizplatz
+.........................
+
+[addbusstop]
+456Höffe
+HOEFFE
+Lemmental
+Höffe
+LE. Höffe
+.........................
+
+[addbusstop]
+456BonnerG.Zächergasse
+BONNER G. ZAECHERGASSE
+Lemmental
+Bonner G. Zächergasse
+LE. Bonner G. Zächergasse
+.........................
+
+[addbusstop]
+456HohenmarktRathaus
+HOHENMAKRT RATHAUS
+Lemmental
+Hohenmarkt, Rathaus
+LE. Hohenmarkt Rathaus
+.........................
+
+[addbusstop]
+456Georgsgasse
+GEORGSGASSE
+Lemmental
+Georgsgasse
+LE. Georgsgasse
+.........................
+
+[addbusstop]
+456Bf.West
+BAHNHOF WEST
+Lemmental
+Bahnhof-West
+LE. Bahnhof West
+.........................
+
+[addbusstop]
+456WalkenfelderRing
+WALKENFELDER RING
+Lemmental
+Walkenfelder Ring
+LE. Walkenfelder Ring
+.........................
+
+[addbusstop]
+456Ev.Krankenhaus
+EV. KRANKENHAUS
+Lemmental
+Ev. Krankenhaus
+LE. Ev. Krankenhaus
+.........................
+
+[addbusstop]
+456KultgenSiedlung
+KULTGEN SIEDLUNG
+Kultgen
+Siedlung
+Kultgen Siedlung
+.........................
+
+[addbusstop]
+456KultgenAltenwohnheim
+ALTENWOHNHEIM
+Kultgen
+Altenwohnheim
+Kultgen Altenwohnheim
+.........................
+
+[addbusstop]
+456HalfenbergSchule
+HALFENBERG SCHULE
+Lemmental
+Halfenberg/ Schule
+LE. Halfenberg Schule
+.........................
+
+[addbusstop]
+456GI-MüngersthalNeuwerk
+GI-MUENGERSTAHL NEUWERK
+GI-Müngersthal
+Neuwerk
+LE. GI-Müngersthal Neuwerk
+.........................
+
+[addbusstop]
+456GI-MüngersthalSchwaketenstr.
+GI-MUENGERSTAHL SCHWAKETENSTR.
+GI-Müngersthal
+Schwaketenstraße
+LE. GI-Müngersthal Schwaketenstr.
+.........................
+
+[addbusstop]
+456GI-MüngersthalZinkgasse
+GI-MUENGERSTAHL ZINKGASSE
+GI-Müngersthal
+Zinkgasse
+LE. GI-Müngersthal Zinkgasse
+.........................
+
+[addbusstop]
+456GI-MüngersthalStadtrand
+GI-MUENGERSTAHL STADTRAND
+GI-Müngersthal
+Stadtrand
+LE. GI-Müngersthal Stadtrand
+.........................
+
+[addbusstop]
+456Westerbrück
+WESTERBRÜCK
+Westerbrück
+
+Westerbrück
+.........................
+
+[addbusstop]
+456Hufe
+HUFE
+Hufe
+
+Hufe
+.........................
+
+[addbusstop]
+456Frankenberg
+FRANKENBERG
+Frankenberg
+
+Frankenberg
+.........................
+
+[addbusstop]
+456FrankenbergGärtnerei
+FRANKENBERG GAERTNEREI
+Frankenberg
+Gärtnerei
+Frankenberg Gärtnerei
+.........................
+
+[addbusstop]
+456Neufrankenberg
+NEUFRANKENBERG
+Neufrankenberg
+
+Neufrankenberg
+.........................
+
+[addbusstop]
+456DormbachAbzweig
+DORMBACH ABZWEIG
+Dormbach Abzweig
+
+Dormbach Abzweig
+.........................
+
+[addbusstop]
+456Hohnscheid
+HOHNSCHEID
+Hohnscheid
+
+Hohnscheid
+.........................
+
+[addbusstop]
+456Neu-WeibergSteinhof
+NEU-WEIBERG STEINHOF
+Neu-Weiberg
+Steinhof
+Neu-Weiberg Steinhof
+.........................
+
+[addbusstop]
+456Neu-WeibergSpitze
+NEU-WEIBERG SPITZE
+Neu-Weiberg
+Spitze
+Neu-Weiberg Spitze
+.........................
+
+[addbusstop]
+456Neu-WeibergSellofen
+NEU-WEIBERG SELLOFEN
+Neu-Weiberg
+Sellofen
+Neu-Weiberg Sellofen
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+457Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+457Leibnizplatz
+LEIBNIZPLATZ
+Lemmental
+Leibnizplatz
+LE. Leibnizplatz
+.........................
+
+[addbusstop]
+457Höffe
+HOEFFE
+Lemmental
+Höffe
+LE. Höffe
+.........................
+
+[addbusstop]
+457BonnerG.Zächergasse
+BONNER G. ZAECHERGASSE
+Lemmental
+Bonner G. Zächergasse
+LE. Bonner G. Zächergasse
+.........................
+
+[addbusstop]
+457HohenmarktRathaus
+HOHENMAKRT RATHAUS
+Lemmental
+Hohenmarkt, Rathaus
+LE. Hohenmarkt Rathaus
+.........................
+
+[addbusstop]
+457VoiskKirche
+VOISK. KIRCHE
+Voiskamp
+Kirche
+Voiskamp Kirche
+.........................
+
+[addbusstop]
+457VoiskMarienmorgen
+VOISK. MARIENMORGEN
+Voiskamp
+Marienmorgen
+Voiskamp Marienmorgen
+.........................
+
+[addbusstop]
+457VoiskFranz-Puhl-Str.
+VOISK. FRANZ-PUHL-STR.
+Voiskamp
+Franz-Puhl-Str.
+Voiskamp Franz-Puhl-Str.
+.........................
+
+[addbusstop]
+457VoiskVierbuchen
+VOISK. VIERBUCHEN
+Voiskamp
+Vierbuchen
+Voiskamp Vierbuchen
+.........................
+
+[addbusstop]
+457BonnerG.Post
+BONNER G. POST
+Lemmental
+Bonner G. Post
+LE. Bonner G. Post
+.........................
+
+[addbusstop]
+457Markt
+MARKT
+Lemmental
+Markt
+LE. Markt
+.........................
+
+[addbusstop]
+457BonnerG.Theater
+BONNER G. THEATER
+Lemmental
+Bonner G. Theater
+LE. Bonner G. Theater
+.........................
+
+[addbusstop]
+457Stadthaus
+STADTHAUS
+Lemmental
+Stadthaus
+LE. Stadthaus
+.........................
+
+[addbusstop]
+457Technologiezentrum
+TECHNOLOGIEZENTR.
+Lemmental
+Technologiezentr.
+LE. Technologiezentrum
+.........................
+
+[addbusstop]
+457Birkenforst
+BIRKENFORST
+Lemmental
+Birkenforst
+LE. Birkenforst
+.........................
+
+[addbusstop]
+457AltbornerWeg
+ALTBORNER WEG
+Lemmental
+Altborner Weg
+LE. Altborner Weg
+.........................
+
+[addbusstop]
+457BonnerG.ZooFlora
+BONNER G. ZOO FLORA
+Lemmental
+Bonner G. Zoo Flora
+LE. Bonner G. Zoo Flora
+.........................
+
+[addbusstop]
+457BonnerG.Polizeipr.
+BONNER G. POLIZEIPR.
+Lemmental
+Bonner G. Polizeipr.
+LE. Bonner G. Polizeipr.
+.........................
+
+[addbusstop]
+457AltenbornStadtpark
+ALTENBORN STADTPARK
+Altenborn
+Stadtpark
+Altenborn Stadtpark
+.........................
+
+[addbusstop]
+457Bf.Ost
+BAHNHOF OST
+Lemmental
+Bahnhof-Ost
+LE. Bahnhof Ost
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+458Bf.Ost
+BAHNHOF OST
+Lemmental
+Bahnhof-Ost
+LE. Bahnhof Ost
+.........................
+
+[addbusstop]
+458AltenbornStadtpark
+ALTENBORN STADTPARK
+Altenborn
+Stadtpark
+Altenborn Stadtpark
+.........................
+
+[addbusstop]
+458BonnerG.Polizeipr.
+BONNER G. POLIZEIPR.
+Lemmental
+Bonner G. Polizeipr.
+LE. Bonner G. Polizeipr.
+.........................
+
+[addbusstop]
+458BonnerG.ZooFlora
+BONNER G. ZOO FLORA
+Lemmental
+Bonner G. Zoo Flora
+LE. Bonner G. Zoo Flora
+.........................
+
+[addbusstop]
+458BonnerG.Theater
+BONNER G. THEATER
+Lemmental
+Bonner G. Theater
+LE. Bonner G. Theater
+.........................
+
+[addbusstop]
+458Markt
+MARKT
+Lemmental
+Markt
+LE. Markt
+.........................
+
+[addbusstop]
+458BonnerG.Post
+BONNER G. POST
+Lemmental
+Bonner G. Post
+LE. Bonner G. Post
+.........................
+
+[addbusstop]
+458VoiskVierbuchen
+VOISK. VIERBUCHEN
+Voiskamp
+Vierbuchen
+Voiskamp Vierbuchen
+.........................
+
+[addbusstop]
+458VoiskFranz-Puhl-Str.
+VOISK. FRANZ-PUHL-STR.
+Voiskamp
+Franz-Puhl-Str.
+Voiskamp Franz-Puhl-Str.
+.........................
+
+[addbusstop]
+458VoiskSchule
+VOISK. SCHULE
+Voiskamp
+Schule
+Voiskamp Schule
+.........................
+
+[addbusstop]
+458Stümp
+STUEMP
+Lemmental
+Stümp
+LE. Stümp
+.........................
+
+[addbusstop]
+458Rothheide
+ROTHHEIDE
+Lemmental
+Rothheide
+LE. Rothheide
+.........................
+
+[addbusstop]
+458Südringwarte
+SUEDRINGWARTE
+Lemmental
+Südringwarte
+LE. Südringwarte
+.........................
+
+[addbusstop]
+458Obermühle
+OBERMUEHLE
+Obermühle
+
+Obermühle
+.........................
+
+[addbusstop]
+458Orthe
+ORTHE
+Orthe
+
+Orthe
+.........................
+
+[addbusstop]
+458FrankenbergKreuzung
+FRANKENBERG KREUZUNG
+Frankenberg
+Kreuzung
+Frankenberg Kreuzung
+.........................
+
+[addbusstop]
+458FrankenbergKreuzung_nach_FG
+FRANKENBERG KREUZUNG
+Frankenberg
+Kreuzung
+Frankenberg Kreuzung
+.........................
+
+[addbusstop]
+458FrankenbergGärtnerei
+FRANKENBERG GAERTNEREI
+Frankenberg
+Gärtnerei
+Frankenberg Gärtnerei
+.........................
+
+[addbusstop]
+458FrankenbergHülsen
+FRANKENBERG HUELSEN
+Frankenberg
+Hülsen
+Frankenberg Hülsen
+.........................
+
+[addbusstop]
+458SchlossFrankenberg
+SCHLOSS FRANKENBERG
+Schloss
+Frankenberg
+Schloss Frankenberg
+.........................
+
+[addbusstop]
+458Rathhalze
+RATHHALZE
+Rathhalze
+
+Rathhalze
+.........................
+
+[addbusstop]
+458ScharzeParkplatz
+SCHARZE PARKPLATZ
+Scharze Parkplatz
+
+Scharze Parkplatz
+.........................
+
+[addbusstop]
+458Fahlhaus
+FAHLHAUS
+Fahlhaus
+
+Fahlhaus
+.........................
+
+[addbusstop]
+458AmGoetzberg
+Am GOETZBERG
+Am Goetzberg
+
+Am Goetzberg
+.........................
+
+[addbusstop]
+458Fürdhof
+FUERDHOF
+Fürdhof
+
+Fürdhof
+.........................
+
+[addbusstop]
+458Kalksrast
+KALKSRAST
+Kalksrast
+
+Kalksrast
+.........................
+
+[addbusstop]
+458Klein-Klefe
+KLEIN-KLEFE
+Klein-Klefe
+
+Klein-Klefe
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+459ZOB
+ZOB
+Lemmental
+ZOB
+LE. ZOB
+.........................
+
+[addbusstop]
+459KadeuferBrücke
+KADEUFER BRUECKE
+Lemmental
+Kadeufer/ Brücke
+LE. Kadeufer/ Brücke
+.........................
+
+[addbusstop]
+459Engelsfuhr
+ENGELSFUHR
+Lemmental
+Engelsfuhr
+LE. Engelsfuhr
+.........................
+
+[addbusstop]
+459Bf.Ost
+BAHNHOF OST
+Lemmental
+Bahnhof-Ost
+LE. Bahnhof Ost
+.........................
+
+[addbusstop]
+459AltenbornStadtpark
+ALTENBORN STADTPARK
+Altenborn
+Stadtpark
+Altenborn Stadtpark
+.........................
+
+[addbusstop]
+459BonnerG.Polizeipr.
+BONNER G. POLIZEIPR.
+Lemmental
+Bonner G. Polizeipr.
+LE. Bonner G. Polizeipr.
+.........................
+
+[addbusstop]
+459BonnerG.ZooFlora
+BONNER G. ZOO FLORA
+Lemmental
+Bonner G. Zoo Flora
+LE. Bonner G. Zoo Flora
+.........................
+
+[addbusstop]
+459AltbornerWeg
+ALTBORNER WEG
+Lemmental
+Altborner Weg
+LE. Altborner Weg
+.........................
+
+[addbusstop]
+459Heidsiefen
+HEIDSIEFEN
+Heidsiefen
+
+Heidsiefen
+.........................
+
+[addbusstop]
+459Durenholl
+DURENHOLL
+Durenholl
+
+Durenholl
+.........................
+
+[addbusstop]
+459BretzholzAlterBahnhof
+BRETZHOLZ ALTER BAHNHOF
+Bretzholz
+Alter Bahnhof
+Bretzholz Alter Bahnhof
+.........................
+
+[addbusstop]
+459Grünhöfchen
+GRUENHOEFCHEN
+Grünhöfchen
+
+Grünhöfchen
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+NE40Bf.Ost
+BAHNHOF OST
+Lemmental
+Bahnhof-Ost
+LE. Bahnhof Ost
+.........................
+
+[addbusstop]
+NE40BonnerG.ZooFlora
+BONNER G. ZOO FLORA
+Lemmental
+Bonner G. Zoo Flora
+LE. Bonner G. Zoo Flora
+.........................
+
+[addbusstop]
+NE40Technologiezentrum
+TECHNOLOGIEZENTR.
+Lemmental
+Technologiezentr.
+LE. Technologiezentrum
+.........................
+
+[addbusstop]
+NE40BonnerG.Theater
+BONNER G. THEATER
+Lemmental
+Bonner G. Theater
+LE. Bonner G. Theater
+.........................
+
+[addbusstop]
+NE40Markt
+MARKT
+Lemmental
+Markt
+LE. Markt
+.........................
+
+[addbusstop]
+NE40BonnerG.Post
+BONNER G. POST
+Lemmental
+Bonner G. Post
+LE. Bonner G. Post
+.........................
+
+[addbusstop]
+NE40VoiskMarienmorgen
+VOISK. MARIENMORGEN
+Voiskamp
+Marienmorgen
+Voiskamp Marienmorgen
+.........................
+
+[addbusstop]
+NE40HohenmarktRathaus
+HOHENMAKRT RATHAUS
+Lemmental
+Hohenmarkt, Rathaus
+LE. Hohenmarkt Rathaus
+.........................
+
+[addbusstop]
+NE40Bf.West
+BAHNHOF WEST
+Lemmental
+Bahnhof-West
+LE. Bahnhof West
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+N41Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+N41BresnerPl.
+BRESNER PL.
+Lemmental
+Bresner Pl.
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+N41Wildsfuß
+WILDSFUSS
+Lemmental
+Wildsfuß
+LE. Wildsfuß
+.........................
+
+[addbusstop]
+N41Gartenweg
+GARTENWEG
+Lemmental
+Gartenweg
+LE. Gartenweg
+.........................
+
+[addbusstop]
+N41BergerfürthGrützhöhe
+BERGERFUERTH GRUETZHOEHE
+Bergerfürth
+Grützhöhe
+Bgf. Grützhöhe
+.........................
+
+[addbusstop]
+N41BergerfürthStallbrücken
+BERGERFUERTH STALLBRUECKEN
+Bergerfürth
+Stallbrücken
+Bgf. Stallbrücken
+.........................
+
+[addbusstop]
+N41MittelbrechKotten
+MITTELBRECH KOTTEN
+Mittelbrech
+Kotten
+Mittelbrech Kotten
+.........................
+
+[addbusstop]
+N41MittelbrechHausLinde
+MITTELBRECH HAUS LINDE
+Mittelbrech
+Haus Linde
+Mittelbrech Haus Linde
+.........................
+
+[addbusstop]
+N41AnderEiche
+AN DER EICHE
+An der Eiche
+
+An der Eiche
+.........................
+
+[addbusstop]
+N41KönigsrathAmBlumeneck
+KOENIGSRATH AM BLUMENECK
+Königsrath
+Am Blumeneck
+Königsrath Am Blumeneck
+.........................
+
+[addbusstop]
+N41KönigsrathSteegerBurg
+KOENIGSRATH STEEGER BURG
+Königsrath
+Steeger Burg
+Königsrath Steeger Burg
+.........................
+
+[addbusstop]
+N41KönigsrathFlughafenLuftfracht
+KOENIGSRATH FLGH. LUFTFRACHT
+Königsrath
+Flgh. Luftfracht
+Königsrath Flgh. Luftfracht
+.........................
+
+[addbusstop]
+N41KönigsrathFlughafenLuftfracht_KRF
+KOENIGSRATH FLGH. LUFTFRACHT
+Königsrath
+Flgh. Luftfracht
+Königsrath Flgh. Luftfracht
+.........................
+
+[addbusstop]
+N41KönigsrathFlughafen
+KOENIGSRATH FLGH.
+Königsrath
+Flgh.
+Königsrath Flgh.
+.........................
+
+[addbusstop]
+N41KönigsrathFlughafenVerwaltung
+KOENIGSRATH FLGH. VERWALTUNG
+Königsrath
+Flgh. Verwaltung
+Königsrath Flgh. Verwaltung
+.........................
+
+[addbusstop]
+N41KönigsrathRathaus
+KOENIGSRATH RATHAUS
+Königsrath
+Rathaus
+Königsrath Rathaus
+.........................
+
+[addbusstop]
+N41KönigsrathBahnhof
+KOENIGSRATH BAHNHOF
+Königsrath
+Bahnhof
+Königsrath Bahnhof
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+N42Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+N42Leibnizplatz
+LEIBNIZPLATZ
+Lemmental
+Leibnizplatz
+LE. Leibnizplatz
+.........................
+
+[addbusstop]
+N42Höffe
+HOEFFE
+Lemmental
+Höffe
+LE. Höffe
+.........................
+
+[addbusstop]
+N42BonnerG.Zächergasse
+BONNER G. ZAECHERGASSE
+Lemmental
+Bonner G. Zächergasse
+LE. Bonner G. Zächergasse
+.........................
+
+[addbusstop]
+N42HohenmarktRathaus
+HOHENMAKRT RATHAUS
+Lemmental
+Hohenmarkt, Rathaus
+LE. Hohenmarkt Rathaus
+.........................
+
+[addbusstop]
+N42VoiskKirche
+VOISK. KIRCHE
+Voiskamp
+Kirche
+Voiskamp Kirche
+.........................
+
+[addbusstop]
+N42KreisbRosenweg
+KB. ROSENWEG
+Kreisberg
+Rosenweg
+Kreisberg Rosenweg
+.........................
+
+[addbusstop]
+N42KreisbAnderZimthütte
+KB. AN DER ZIMTHÜTTE
+Kreisberg
+An der Zimthütte
+Kreisberg An der Zimthütte
+.........................
+
+[addbusstop]
+N42VoiskFranz-Puhl-Str.
+VOISK. FRANZ-PUHL-STR.
+Voiskamp
+Franz-Puhl-Str.
+Voiskamp Franz-Puhl-Str.
+.........................
+
+[addbusstop]
+N42VoiskVierbuchen
+VOISK. VIERBUCHEN
+Voiskamp
+Vierbuchen
+Voiskamp Vierbuchen
+.........................
+
+[addbusstop]
+N42BonnerG.Post
+BONNER G. POST
+Lemmental
+Bonner G. Post
+LE. Bonner G. Post
+.........................
+
+[addbusstop]
+N42Markt
+MARKT
+Lemmental
+Markt
+LE. Markt
+.........................
+
+[addbusstop]
+N42BonnerG.Theater
+BONNER G. THEATER
+Lemmental
+Bonner G. Theater
+LE. Bonner G. Theater
+.........................
+
+[addbusstop]
+N42BonnerG.ZooFlora
+BONNER G. ZOO FLORA
+Lemmental
+Bonner G. Zoo Flora
+LE. Bonner G. Zoo Flora
+.........................
+
+[addbusstop]
+N42BonnerG.Polizeipr.
+BONNER G. POLIZEIPR.
+Lemmental
+Bonner G. Polizeipr.
+LE. Bonner G. Polizeipr.
+.........................
+
+[addbusstop]
+N42AltenbornStadtpark
+ALTENBORN STADTPARK
+Altenborn
+Stadtpark
+Altenborn Stadtpark
+.........................
+
+[addbusstop]
+N42Bf.Ost
+BAHNHOF OST
+Lemmental
+Bahnhof-Ost
+LE. Bahnhof Ost
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+N43ZOB
+ZOB
+Lemmental
+ZOB
+LE. ZOB
+.........................
+
+[addbusstop]
+N43Odiansweg
+ODIANSWEG
+Lemmental
+Odiansweg
+LE. Odiansweg
+.........................
+
+[addbusstop]
+N43Kreiskrankenhaus
+KREISKRANKENHAUS
+Lemmental
+Kreiskrankenhaus
+LE. Kreiskrankenhaus
+.........................
+
+[addbusstop]
+N43Ulrich-Weber-Gasse
+ULR.-W.-GASSE
+Lemmental
+Ulrich-Weber-Gasse
+LE. Ulrich-Weber-Gasse
+.........................
+
+[addbusstop]
+N43AltesRathaus
+ALTES RATHAUS
+Lemmental
+Altes Rathaus
+LE. Altes Rathaus
+.........................
+
+[addbusstop]
+N43Bahnhofstr
+BAHNHOFSTR.
+Lemmental
+Bahnhofstr.
+LE. Bahnhofstr.
+.........................
+
+[addbusstop]
+N43Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+N44ZOB
+ZOB
+Lemmental
+ZOB
+LE. ZOB
+.........................
+
+[addbusstop]
+N44KadeuferBrücke
+KADEUFER BRUECKE
+Lemmental
+Kadeufer/ Brücke
+LE. Kafeuder/ Brücke
+.........................
+
+[addbusstop]
+N44Engelsfuhr
+ENGELSFUHR
+Lemmental
+Engelsfuhr
+LE. Engelsfuhr
+.........................
+
+[addbusstop]
+N44Bf.Ost
+BAHNHOF OST
+Lemmental
+Bahnhof-Ost
+LE. Bahnhof Ost
+.........................
+
+[addbusstop]
+N44AltenbornStadtpark
+ALTENBORN STADTPARK
+Altenborn
+Stadtpark
+Altenborn Stadtpark
+.........................
+
+[addbusstop]
+N44BonnerG.Polizeipr.
+BONNER G. POLIZEIPR.
+Lemmental
+Bonner G. Polizeipr.
+LE. Bonner G. Polizeipr.
+.........................
+
+[addbusstop]
+N44BonnerG.ZooFlora
+BONNER G. ZOO FLORA
+Lemmental
+Bonner G. Zoo Flora
+LE. Bonner G. Zoo Flora
+.........................
+
+[addbusstop]
+N44AltbornerWeg
+ALTBORNER WEG
+Lemmental
+Altborner Weg
+LE. Altborner Weg
+.........................
+
+[addbusstop]
+N44Birkenforst
+BIRKENFORST
+Lemmental
+Birkenforst
+LE. Birkenforst
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+N45Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+N45BresnerPl.
+BRESNER PL.
+Lemmental
+Bresner Pl.
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+N45Leibnizplatz
+LEIBNIZPLATZ
+Lemmental
+Leibnizplatz
+LE. Leibnizplatz
+.........................
+
+[addbusstop]
+N45Höffe
+HOEFFE
+Lemmental
+Höffe
+LE. Höffe
+.........................
+
+[addbusstop]
+N45HeiligenstockVilshoven
+HEILIGENST. VILSHOVEN
+Heiligenstock
+Vilshoven
+Heiligenstock Vilshoven
+.........................
+
+[addbusstop]
+N45HeiligenstockBirken
+HEILIGENST. BIRKEN
+Heiligenstock
+Birken
+Heiligenstock Birken
+.........................
+
+[addbusstop]
+N45GäricherSee
+GAERICHER SEE
+Lemmental
+Gäricher See
+LE. Gäricher See
+.........................
+
+[addbusstop]
+N45BonnerG.Zächergasse
+BONNER G. ZAECHERGASSE
+Lemmental
+Bonner G. Zächergasse
+LE. Bonner G. Zächergasse
+.........................
+
+[addbusstop]
+N45HohenmarktRathaus
+HOHENMAKRT RATHAUS
+Lemmental
+Hohenmarkt, Rathaus
+LE. Hohenmarkt Rathaus
+.........................
+
+[addbusstop]
+N45Georgsgasse
+GEORGSGASSE
+Lemmental
+Georgsgasse
+LE. Georgsgasse
+.........................
+
+[addbusstop]
+N45Bf.West
+BAHNHOF WEST
+Lemmental
+Bahnhof-West
+LE. Bahnhof West
+.........................
+
+[addbusstop]
+N45WalkenfelderRing
+WALKENFELDER RING
+Lemmental
+Walkenfelder Ring
+LE. Walkenfelder Ring
+.........................
+
+[addbusstop]
+N45Ev.Krankenhaus
+EV. KRANKENHAUS
+Lemmental
+Ev. Krankenhaus
+LE. Ev. Krankenhaus
+.........................
+
+[addbusstop]
+N45KultgenSiedlung
+KULTGEN SIEDLUNG
+Kultgen
+Siedlung
+Kultgen Siedlung
+.........................
+
+[addbusstop]
+N45KultgenAltenwohnheim
+ALTENWOHNHEIM
+Kultgen
+Altenwohnheim
+Kultgen Altenwohnheim
+.........................
+
+[addbusstop]
+N45GI-MüngersthalNeuwerk
+GI-MUENGERSTAHL NEUWERK
+GI-Müngersthal
+Neuwerk
+LE. GI-Müngersthal Neuwerk
+.........................
+
+[addbusstop]
+N45GI-MüngersthalSchwaketenstr.
+GI-MUENGERSTAHL SCHWAKETENSTR.
+GI-Müngersthal
+Schwaketenstraße
+LE. GI-Müngersthal Schwaketenstr.
+.........................
+
+[addbusstop]
+N45GI-MüngersthalZinkgasse
+GI-MUENGERSTAHL ZINKGASSE
+GI-Müngersthal
+Zinkgasse
+LE. GI-Müngersthal Zinkgasse
+.........................
+
+[addbusstop]
+N45GI-MüngersthalStadtrand
+GI-MUENGERSTAHL STADTRAND
+GI-Müngersthal
+Stadtrand
+LE. GI-Müngersthal Stadtrand
+.........................
+
+[addbusstop]
+N45Westerbrück
+WESTERBRÜCK
+Westerbrück
+
+Westerbrück
+.........................
+
+[addbusstop]
+N45Hufe
+HUFE
+Hufe
+
+Hufe
+.........................
+
+[addbusstop]
+N45FrankenbergKreuzung
+FRANKENBERG KREUZUNG
+Frankenberg
+Kreuzung
+Frankenberg Kreuzung
+..........................
+
+[addbusstop]
+N45Orthe
+ORTHE
+Orthe
+
+Orthe
+.........................
+
+[addbusstop]
+N45Obermühle
+OBERMUEHLE
+Obermühle
+
+Obermühle
+.........................
+
+[addbusstop]
+N45Südringwarte
+SUEDRINGWARTE
+Lemmental
+Südringwarte
+LE. Südringwarte
+.........................
+
+[addbusstop]
+N45Rothheide
+ROTHHEIDE
+Lemmental
+Rothheide
+LE. Rothheide
+.........................
+
+[addbusstop]
+N45Nadelsbrück
+NADELSBRUECK
+Lemmental
+Nadelsbrück
+LE. Nadelsbrück
+.........................
+
+[addbusstop]
+N45Stümp
+STUEMP
+Lemmental
+Stümp
+LE. Stümp
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+N46Hauptbahnhof
+HAUPTBAHNHOF
+Lemmental
+Hauptbahnhof
+LE. Hauptbahnhof
+.........................
+
+[addbusstop]
+N46BresnerPl.
+BRESNER PL.
+Lemmental
+Bresner Pl.
+LE. Bresner Pl.
+.........................
+
+[addbusstop]
+N46Lindenhof
+LINDENHOF
+Lemmental
+Lindenhof
+LE. Lindenhof
+.........................
+
+[addbusstop]
+N46BergerfürthGrützhöhe
+BERGERFUERTH GRUETZHOEHE
+Bergerfürth
+Grützhöhe
+Bgf. Grützhöhe
+.........................
+
+[addbusstop]
+N46BergerfürthMitte
+BERGERFUERTH MITTE
+Bergerfürth
+Mitte
+Bgf. Mitte
+.........................
+
+[addbusstop]
+N46BergerfürthLorkenbach
+BERGERFUERTH LORKENBACH
+Bergerfürth
+Lorkenbach
+Bgf. Lorkenbach
+.........................
+
+[addbusstop]
+N46GsdkTalsperreMebusfeld
+GSDK. TALSPERRE MEBUSFELD
+Grünschildken
+Talsperre Mebusfeld
+Gsdk. Talsperre Mebusfeld
+.........................
+
+[addbusstop]
+N46GsdkBallsiepen
+GSDK. BALLSIEPEN
+Grünschildken
+Ballsiepen
+Gsdk. Ballsiepen
+.........................
+
+[addbusstop]
+N46Sellblick
+SELLBLICK
+Sellblick
+
+Sellblick
+.........................
+
+[addbusstop]
+N46ImUmmersfeld
+IM UMMERSFELD
+Im Ummersfeld
+
+Im Ummersfeld
+.........................
+
+[addbusstop]
+N46GsdkBahnhof
+GSDK. BAHNHOF
+Grünschildken
+Bahnhof
+Gsdk. Bahnhof
+.........................
+
+[addbusstop]
+N46Tulpenwarth
+TULPENWARTH
+Tulpenwarth
+
+Tulpenwarth
+.........................
+
+[addbusstop]
+N46Altensürth
+ALTENSUERTH
+Altensürth
+
+Altensürth
+.........................
+
+[addbusstop]
+N46Junkersbaum
+JUNKERSBAUM
+Junkersbaum
+
+Junkersbaum
+.........................
+
+[addbusstop]
+N46Neustrassen
+NEUSTRASSEN
+Neustrassen
+
+Neustrassen
+.........................
+
+[addbusstop]
+N46Schatenburg
+SCHATENBURG
+Schatenburg
+
+Schatenburg
+.........................
+
+
+--------------------------------------------------
+
+
+[addbusstop]
+SightSeeingLeibnizplatz
+SIGHTSEEINGLEIBNIZPLATZ
+SightSeeingLeibnizplatz
+
+SightSeeingLeibnizplatz
+.........................
+
+[addbusstop]
+SightSeeingRathausHohenmarkt
+SIGHTSEEINGRATHAUSHOHENMARKT
+SightSeeingRathausHohenmarkt
+
+SightSeeingRathausHohenmarkt
+.........................
+
+[addbusstop]
+SightSeeingMarkt
+SIGHTSEEINGMARKT
+SightSeeingMarkt
+
+SightSeeingMarkt
+.........................
+
+[addbusstop]
+SightSeeingBonnerG.Theater
+SIGHTSEEINGBONNERG.THEATER
+SightSeeingBonnerG.Theater
+
+SightSeeingBonnerG.Theater
+.........................
+
+[addbusstop]
+SightSeeingBonnerG.ZooFlora
+SIGHTSEEINGBONNERG.ZOOFLORA
+SightSeeingBonnerG.ZooFlora
+
+SightSeeingBonnerG.ZooFlora
+.........................
+
+[addbusstop]
+SightSeeingBf.Ost
+SIGHTSEEINGBF.OST
+SightSeeingBf.Ost
+
+SightSeeingBf.Ost
+.........................
+
+[addbusstop]
+SightSeeingKadeuferBrücke
+SIGHTSEEINGKADEUFERBRUECKE
+SightSeeingKadeuferBrücke
+
+SightSeeingKadeuferBrücke
+.........................
+
+[addbusstop]
+SightSeeingUlrich-Weber-Gasse
+SIGHTSEEINGULRICH-WEBER-GASSE
+SightSeeingUlrich-Weber-Gasse
+
+SightSeeingUlrich-Weber-Gasse
+.........................
+
+[addbusstop]
+SightSeeingAltesRathaus
+SIGHTSEEINGALTESRATHAUS
+SightSeeingAltesRathaus
+
+SightSeeingAltesRathaus
+.........................
+
+
+######################################
+ TRIPS / ROUTES
+######################################
+
+
+Line 450, Route 01: 450ZOB  >>  450Adlersbruch
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45001
+450ZOB  >>  450ADLERSBRUCH
+108
+450
+
+[infosystem_busstop_list]
+21
+450ZOB
+450Odiansweg
+450Vaconenberg
+450Ulrich-Weber-Gasse
+450AltesRathaus
+450Bahnhofstr
+450Hauptbahnhof
+450BresnerPl.
+450Gartenweg
+450AbzweigHohenberg
+450HochstrundFeldweg
+450HochstrundKirche
+450Wederfeld
+450AmHühlenfels-Wanderparkplatz
+450Gerathshof
+450ObereschBahnhof
+450ObereschAmRotbaumKirche
+450FrohnheimMühle
+450AdlersbruchTierpark
+450Adlersbruch
+450AdlersbruchPause
+
+Line 450, Route 02: 450Adlersbruch  >>  450ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45002
+450ADLERSBRUCH  >>  450ZOB
+107
+450
+
+[infosystem_busstop_list]
+20
+450Adlersbruch
+450AdlersbruchTierpark
+450FrohnheimMühle
+450ObereschAmRotbaumKirche
+450ObereschBahnhof
+450Gerathshof
+450AmHühlenfels-Wanderparkplatz
+450Wederfeld
+450HochstrundKirche
+450HochstrundFeldweg
+450AbzweigHohenberg
+450Gartenweg
+450BresnerPl.
+450Hauptbahnhof
+450Bahnhofstr
+450AltesRathaus
+450Ulrich-Weber-Gasse
+450Vaconenberg
+450Odiansweg
+450ZOB
+
+Line 450, Route 03: 450ZOB  >>  450Oberesch
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45003
+450ZOB  >>  450OBERESCH
+109
+450
+
+[infosystem_busstop_list]
+17
+450ZOB
+450Odiansweg
+450Vaconenberg
+450Ulrich-Weber-Gasse
+450AltesRathaus
+450Bahnhofstr
+450Hauptbahnhof
+450BresnerPl.
+450Gartenweg
+450AbzweigHohenberg
+450HochstrundFeldweg
+450HochstrundKirche
+450Wederfeld
+450AmHühlenfels-Wanderparkplatz
+450Gerathshof
+450ObereschWiesenweg
+450ObereschBahnhof
+
+Line 450, Route 04: 450Oberesch  >>  450ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45004
+450OBERESCH  >>  450ZOB
+107
+450
+
+[infosystem_busstop_list]
+16
+450ObereschBahnhof
+450Gerathshof
+450AmHühlenfels-Wanderparkplatz
+450Wederfeld
+450HochstrundKirche
+450HochstrundFeldweg
+450AbzweigHohenberg
+450Gartenweg
+450BresnerPl.
+450Hauptbahnhof
+450Bahnhofstr
+450AltesRathaus
+450Ulrich-Weber-Gasse
+450Vaconenberg
+450Odiansweg
+450ZOB
+
+Line 450, Route 05: 450Hauptbahnhof  >>  450Adlersbruch
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45005
+450HAUPTBAHNHOF  >>  450ADLERSBRUCH
+108
+450
+
+[infosystem_busstop_list]
+15
+450Hauptbahnhof
+450BresnerPl.
+450Gartenweg
+450AbzweigHohenberg
+450HochstrundFeldweg
+450HochstrundKirche
+450Wederfeld
+450AmHühlenfels-Wanderparkplatz
+450Gerathshof
+450ObereschBahnhof
+450ObereschAmRotbaum/Kirche
+450FrohnheimMühle
+450AdlersbruchTierpark
+450Adlersbruch
+450AdlersbruchPause
+
+Line 450, Route 06: 450ZOB  >>  450Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45006
+450ZOB  >>  450HAUPTBAHNHOF
+110
+450
+
+[infosystem_busstop_list]
+7
+450ZOB
+450Odiansweg
+450Vaconenberg
+450Ulrich-Weber-Gasse
+450AltesRathaus
+450Bahnhofstr
+450Hauptbahnhof
+
+Line 450, Route 07: 450Hauptbahnhof  >>  450ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45007
+450HAUPTBAHNHOF  >>  450ZOB
+107
+450
+
+[infosystem_busstop_list]
+7
+450Hauptbahnhof
+450Bahnhofstr
+450AltesRathaus
+450Ulrich-Weber-Gasse
+450Vaconenberg
+450Odiansweg
+450ZOB
+
+Line 450, Route 08: 450Oberesch  >>  450Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45004
+450OBERESCH  >>  450HAUPTBAHNHOF
+110
+450
+
+[infosystem_busstop_list]
+10
+450ObereschBahnhof
+450Gerathshof
+450AmHühlenfels-Wanderparkplatz
+450Wederfeld
+450HochstrundKirche
+450HochstrundFeldweg
+450AbzweigHohenberg
+450Gartenweg
+450BresnerPl.
+450Hauptbahnhof
+
+Line 450, Route 09: 450Hauptbahnhof  >>  450Oberesch
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45005
+450HAUPTBAHNHOF  >>  450OBERESCH
+109
+450
+
+[infosystem_busstop_list]
+10
+450Hauptbahnhof
+450BresnerPl.
+450Gartenweg
+450AbzweigHohenberg
+450HochstrundFeldweg
+450HochstrundKirche
+450Wederfeld
+450AmHühlenfels-Wanderparkplatz
+450Gerathshof
+450ObereschBahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 451, Route 01: 451ZOB  >>  451Trehnbach
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45101
+451ZOB  >>  451TREHNBACH
+111
+451
+
+[infosystem_busstop_list]
+23
+451ZOB
+451Odiansweg
+451Kreiskrankenhaus
+451Ulrich-Weber-Gasse
+451AltesRathaus
+451Bahnhofstr
+451Hauptbahnhof
+451Leibnizplatz
+451GäricherSee
+451Oberheid
+451Gerunderweg
+451Unterheid
+451Kirche
+451Wenuelz
+451Gueterbahnhof
+451Altes Stahlwerk
+451Happenfeld
+451Weppen
+451Dorfplatz
+451Gaststaette
+451Am Wasserwerk
+451Neuengasse
+451Trehnbach
+
+
+Line 451, Route 02: 451Trehnbach  >>  451ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45102
+451TREHNBACH  >>  451ZOB
+112
+451
+
+[infosystem_busstop_list]
+23
+451Trehnbach
+451Neuengasse
+451Am Wasserwerk
+451Gaststaette
+451Dorfplatz
+451Weppen
+451Happenfeld
+451Altes Stahlwerk
+451Gueterbahnhof
+451Wenuelz
+451Kirche
+451Unterheid
+451Gerunderweg
+451Oberheid
+451GäricherSee
+451Leibnizplatz
+451Hauptbahnhof
+451Bahnhofstr
+451AltesRathaus
+451Ulrich-Weber-Gasse
+451Kreiskrankenhaus
+451Odiansweg
+451ZOB
+
+
+Line 451, Route 03: 451ZOB  >>  451Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45103
+451ZOB  >>  451HAUPTBAHNHOF
+113
+451
+
+[infosystem_busstop_list]
+7
+451ZOB
+451Odiansweg
+451Kreiskrankenhaus
+451Ulrich-Weber-Gasse
+451AltesRathaus
+451Bahnhofstr
+451Hauptbahnhof
+
+
+Line 451, Route 04: 451Hauptbahnhof  >>  451ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45104
+451HAUPTBAHNHOF  >>  451ZOB
+112
+451
+
+[infosystem_busstop_list]
+7
+451Hauptbahnhof
+451Bahnhofstr
+451AltesRathaus
+451Ulrich-Weber-Gasse
+451Kreiskrankenhaus
+451Odiansweg
+451ZOB
+
+Line 451, Route 05: 451Hauptbahnhof  >>  451Trehnbach
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45105
+451HAUPTBAHNHOF  >>  451TREHNBACH
+113
+451
+
+[infosystem_busstop_list]
+17
+451Hauptbahnhof
+451Leibnizplatz
+451GäricherSee
+451Oberheid
+451Gerunderweg
+451Unterheid
+451Kirche
+451Wenuelz
+451Gueterbahnhof
+451Altes Stahlwerk
+451Happenfeld
+451Weppen
+451Dorfplatz
+451Gaststaette
+451Am Wasserwerk
+451Neuengasse
+451Trehnbach
+
+Line 451, Route 06: 451Trehnbach  >>  451Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45102
+451TREHNBACH  >>  451HAUPTBAHNHOF
+112
+451
+
+[infosystem_busstop_list]
+17
+451Trehnbach
+451Neuengasse
+451Am Wasserwerk
+451Gaststaette
+451Dorfplatz
+451Weppen
+451Happenfeld
+451Altes Stahlwerk
+451Gueterbahnhof
+451Wenuelz
+451Kirche
+451Unterheid
+451Gerunderweg
+451Oberheid
+451GäricherSee
+451Leibnizplatz
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 452, Route 01: 452Hochstrund  >>  452BirkenforstKB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45201
+452HOCHSTRUND  >>  452BIRKENFORSTKB
+115
+452
+
+[infosystem_busstop_list]
+18
+452HochstrundNauenweg
+452HochstrundAmHügel
+452HochstrundFeldweg
+452AbzweigHohenberg
+452BresnerPl.
+452Leibnizplatz
+452Höffe
+452BonnerG.Zächergasse_ü_Kb
+452HohenmarktRathaus
+452VoiskKirche
+452KreisbRosenweg
+452KreisbAnderZimthütte
+452VoiskVierbuchen
+452BonnerG.Post
+452Markt
+452BonnerG.Theater
+452AltbornerWeg
+452Birkenforst
+
+Line 452, Route 02: 452Birkenforst  >>  452HochstrundKB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45202
+452BIRKENFORST  >>  452HOCHSTRUNDKB
+117
+452
+
+[infosystem_busstop_list]
+19
+452Birkenforst
+452AltbornerWeg
+452BonnerG.Theater
+452Markt
+452BonnerG.Post_ü_Kb
+452VoiskVierbuchen
+452KreisbAnderZimthütte
+452KreisbRosenweg
+452VoiskKirche
+452HohenmarktRathaus
+452BonnerG.Zächergasse
+452Höffe
+452Leibnizplatz
+452BresnerPl.
+452AbzweigHohenberg
+452HochstrundFeldweg
+452HochstrundAmHügel
+452HochstrundNauenwegPause
+452HochstrundNauenweg
+
+Line 452, Route 03: 452Hochstrund  >>  452Birkenforst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45203
+452HOCHSTRUND  >>  452BIRKENFORST
+114
+452
+
+[infosystem_busstop_list]
+18
+452HochstrundNauenweg
+452HochstrundAmHügel
+452HochstrundFeldweg
+452AbzweigHohenberg
+452BresnerPl.
+452Leibnizplatz
+452Höffe
+452BonnerG.Zächergasse_ü_Vk
+452HohenmarktRathaus
+452VoiskKirche
+452VoiskMarienmorgen
+452VoiskFranz-Puhl-Str.
+452VoiskVierbuchen
+452BonnerG.Post
+452Markt
+452BonnerG.Theater
+452AltbornerWeg
+452Birkenforst
+
+Line 452, Route 04: 452Birkenforst  >>  452Hochstrund
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45204
+452BIRKENFORST  >>  452HOCHSTRUND
+116
+452
+
+[infosystem_busstop_list]
+19
+452Birkenforst
+452AltbornerWeg
+452BonnerG.Theater
+452Markt
+452BonnerG.Post_ü_Vk
+452VoiskVierbuchen
+452VoiskFranz-Puhl-Str.
+452VoiskMarienmorgen
+452VoiskKirche
+452HohenmarktRathaus
+452BonnerG.Zächergasse
+452Höffe
+452Leibnizplatz
+452BresnerPl.
+452AbzweigHohenberg
+452HochstrundFeldweg
+452HochstrundAmHügel
+452HochstrundNauenwegPause
+452HochstrundNauenweg
+
+Line 452, Route 05: 452Birkenforst  >>  452Klein-Steinburg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45205
+452BIRKENFORST  >>  452KLEIN-STEINBURG
+118
+452
+
+[infosystem_busstop_list]
+23
+452Birkenforst
+452AltbornerWeg
+452BonnerG.Theater
+452Markt
+452BonnerG.Post_ü_Vk
+452VoiskVierbuchen
+452KreisbAnderZimthütte
+452KreisbRosenweg
+452VoiskKirche
+452HohenmarktRathaus
+452BonnerG.Zächergasse
+452Höffe
+452Leibnizplatz
+452BresnerPl.
+452AbzweigHohenberg
+452HochstrundFeldweg
+452HochstrundAmHügel
+452Kleinfelde
+452BielbockAltenfeld
+452Klein-SteinburgMarienhof-Bf.
+452Klein-SteinburgSommerteich
+452Klein-SteinburgMargaretenhöhe
+452Klein-SteinburgAlt-Walle
+
+Line 452, Route 06: 452Klein-Steinburg  >>  452Birkenforst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45206
+452KLEIN-STEINBURG  >>  452BIRKENFORST
+115
+452
+
+[infosystem_busstop_list]
+22
+452Klein-SteinburgAlt-Walle
+452Klein-SteinburgSommerteich
+452Klein-SteinburgMarienhof-Bf.
+452BielbockAltenfeld
+452Kleinfelde
+452HochstrundAmHügel
+452HochstrundFeldweg
+452AbzweigHohenberg
+452BresnerPl.
+452Leibnizplatz
+452Höffe
+452BonnerG.Zächergasse_ü_Kb
+452HohenmarktRathaus
+452VoiskKirche
+452KreisbRosenweg
+452KreisbAnderZimthütte
+452VoiskVierbuchen
+452BonnerG.Post
+452Markt
+452BonnerG.Theater
+452AltbornerWeg
+452Birkenforst
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 453, Route 01: 453Hauptbahnhof  >>  453Heiligenstock
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45301
+453HAUPTBAHNHOF  >>  453HEILIGENSTOCK
+119
+453
+
+[infosystem_busstop_list]
+10
+453Hauptbahnhof
+453BresnerPl.
+453Leibnizplatz
+453Höffe
+453HeiligenstockVilshoven
+453HeiligenstockBirken
+453GäricherSee
+453Leibnizplatz
+453BresnerPl.1
+453Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 454, Route 01: 454Hauptbahnhof  >>  454Ketzheide
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45401
+454HAUPTBAHNHOF  >>  454KETZHEIDE
+122
+454
+
+[infosystem_busstop_list]
+9
+453Hauptbahnhof
+454Bahnhofstr
+454AltesRathaus
+454Ulrich-Weber-Gasse
+454Vaconenberg
+454Erlenholz
+454Kiefstede
+454KiefstedeOrtlingshöhe
+454Ketzheide
+
+Line 454, Route 02: 454Ketzheide  >>  454Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45402
+454KETZHEIDE  >>  454HAUPTBAHNHOF
+121
+454
+
+[infosystem_busstop_list]
+9
+454Ketzheide
+454KiefstedeOrtlingshöhe
+454Kiefstede
+454Erlenholz
+454Vaconenberg
+454Ulrich-Weber-Gasse
+454AltesRathaus
+454Bahnhofstr
+454Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 455, Route 01: 455ZOB  >>  455Hoheneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45501
+455ZOB  >>  455HOHENECK
+125
+455
+
+[infosystem_busstop_list]
+26
+455ZOB
+455Odiansweg
+455Kreiskrankenhaus
+455Ulrich-Weber-Gasse
+455AltesRathaus
+455Bahnhofstr
+455Hauptbahnhof
+455BresnerPl.
+455Wildsfuß
+455Lindenhof
+455BergerfürthGrützhöhe
+455BergerfürthMitte
+455BergerfürthLorkenbach
+455GsdkTalsperreMebusfeld
+455GsdkBallsiepen
+455GsdkBahnhof
+455Oberbüschen
+455Gravenberge
+455Ösingkofen
+455EbensbergKirche
+455EbensbergLiliengrün
+455EichenförstMitte
+455EichenförstAlteBurg
+455HoheneckAltenstein
+455HoheneckLinde
+455Hoheneck
+
+Line 455, Route 02: 455Hoheneck  >>  455ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45502
+455HOHENECK  >>  455ZOB
+123
+455
+
+[infosystem_busstop_list]
+23
+455Hoheneck
+455EichenförstAlteBurg
+455EichenförstMitte
+455EbensbergLiliengrün
+455EbensbergKirche
+455Ösingkofen
+455Gravenberge
+455Oberbüschen
+455GsdkBahnhof
+455GsdkBallsiepen
+455GsdkTalsperreMebusfeld
+455BergerfürthMitte
+455BergerfürthGrützhöhe
+455Lindenhof
+455Wildsfuß
+455BresnerPl.
+455Hauptbahnhof
+455Bahnhofstr
+455AltesRathaus
+455Ulrich-Weber-Gasse
+455Kreiskrankenhaus
+455Odiansweg
+455ZOB
+
+Line 455, Route 03: 455Hauptbahnhof  >>  455Hoheneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45503
+455HAUPTBAHNHOF  >>  455HOHENECK
+125
+455
+
+[infosystem_busstop_list]
+20
+455Hauptbahnhof
+455BresnerPl.
+455Wildsfuß
+455Lindenhof
+455BergerfürthGrützhöhe
+455BergerfürthMitte
+455BergerfürthLorkenbach
+455GsdkTalsperreMebusfeld
+455GsdkBallsiepen
+455GsdkBahnhof
+455Oberbüschen
+455Gravenberge
+455Ösingkofen
+455EbensbergKirche
+455EbensbergLiliengrün
+455EichenförstMitte
+455EichenförstAlteBurg
+455HoheneckAltenstein
+455HoheneckLinde
+455Hoheneck
+
+Line 455, Route 04: 455Hoheneck  >>  455Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45504
+455HOHENECK  >>  455HAUPTBAHNHOF
+124
+455
+
+[infosystem_busstop_list]
+17
+455Hoheneck
+455EichenförstAlteBurg
+455EichenförstMitte
+455EbensbergLiliengrün
+455EbensbergKirche
+455Ösingkofen
+455Gravenberge
+455Oberbüschen
+455GsdkBahnhof
+455GsdkBallsiepen
+455GsdkTalsperreMebusfeld
+455BergerfürthMitte
+455BergerfürthGrützhöhe
+455Lindenhof
+455Wildsfuß
+455BresnerPl.
+455Hauptbahnhof
+
+Line 455, Route 05: 455Hauptbahnhof  >>  455ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45505
+455HAUPTBAHNHOF  >>  455ZOB
+123
+455
+
+[infosystem_busstop_list]
+7
+455Hauptbahnhof
+455Bahnhofstr
+455AltesRathaus
+455Ulrich-Weber-Gasse
+455Kreiskrankenhaus
+455Odiansweg
+455ZOB
+
+Line 455, Route 06: 455ZOB  >>  455Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45506
+455ZOB  >>  455HAUPTBAHNHOF
+124
+455
+
+[infosystem_busstop_list]
+7
+455ZOB
+455Odiansweg
+455Kreiskrankenhaus
+455Ulrich-Weber-Gasse
+455AltesRathaus
+455Bahnhofstr
+455Hauptbahnhof
+
+Line 455, Route 07: 455ZOB  >>  455Bergerfürth
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45507
+455ZOB  >>  455BERGERFÜRTH
+126
+455
+
+[infosystem_busstop_list]
+13
+455ZOB
+455Odiansweg
+455Kreiskrankenhaus
+455Ulrich-Weber-Gasse
+455AltesRathaus
+455Bahnhofstr
+455Hauptbahnhof
+455BresnerPl.
+455Wildsfuß
+455Lindenhof
+455BergerfürthGrützhöhe
+455BergerfürthEulenhof
+455BergerfürthHeiden
+
+Line 455, Route 08: 455Bergerfürth  >>  455ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45508
+455BERGERFÜRTH  >>  455ZOB
+123
+455
+
+[infosystem_busstop_list]
+13
+455BergerfürthHeiden
+455BergerfürthMitte
+455BergerfürthGrützhöhe
+455Lindenhof
+455Wildsfuß
+455BresnerPl.
+455Hauptbahnhof
+455Bahnhofstr
+455AltesRathaus
+455Ulrich-Weber-Gasse
+455Kreiskrankenhaus
+455Odiansweg
+455ZOB
+
+Line 455, Route 09: 455ZOB  >>  455Ebensberg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45509
+455ZOB  >>  455EBENSBERG
+127
+455
+
+[infosystem_busstop_list]
+21
+455ZOB
+455Odiansweg
+455Kreiskrankenhaus
+455Ulrich-Weber-Gasse
+455AltesRathaus
+455Bahnhofstr
+455Hauptbahnhof
+455BresnerPl.
+455Wildsfuß
+455Lindenhof
+455BergerfürthGrützhöhe
+455BergerfürthMitte
+455BergerfürthLorkenbach
+455GsdkTalsperreMebusfeld
+455GsdkBallsiepen
+455GsdkBahnhof
+455Oberbüschen
+455Gravenberge
+455Ösingkofen
+455EbensbergKirche
+455EbensbergLiliengrün
+
+Line 455, Route 10: 455Ebensberg  >>  455ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45510
+455EBENSBERG  >>  455ZOB
+123
+455
+
+[infosystem_busstop_list]
+20
+455EbensbergLiliengrün
+455EbensbergKirche
+455Ösingkofen
+455Gravenberge
+455Oberbüschen
+455GsdkBahnhof
+455GsdkBallsiepen
+455GsdkTalsperreMebusfeld
+455BergerfürthMitte
+455BergerfürthGrützhöhe
+455Lindenhof
+455Wildsfuß
+455BresnerPl.
+455Hauptbahnhof
+455Bahnhofstr
+455AltesRathaus
+455Ulrich-Weber-Gasse
+455Kreiskrankenhaus
+455Odiansweg
+455ZOB
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 456, Route 01: 456ZOB  >>  456Neu-Weiberg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45601
+456ZOB  >>  456NEU-WEIBERG
+131
+456
+
+[infosystem_busstop_list]
+31
+456ZOB
+456Odiansweg
+456Kreiskrankenhaus
+456Ulrich-Weber-Gasse
+456AltesRathaus
+456Bahnhofstr
+456Hauptbahnhof
+456Leibnizplatz
+456Höffe
+456BonnerG.Zächergasse
+456HohenmarktRathaus
+456Georgsgasse
+456Bf.West
+456WalkenfelderRing
+456Ev.Krankenhaus
+456KultgenSiedlung
+456KultgenAltenwohnheim
+456GI-MüngersthalNeuwerk
+456GI-MüngersthalSchwaketenstr.
+456GI-MüngersthalZinkgasse
+456GI-MüngersthalStadtrand
+456Westerbrück
+456Hufe
+456Frankenberg
+456FrankenbergGärtnerei
+456Neufrankenberg
+456DormbachAbzweig
+456Hohnscheid
+456Neu-WeibergSteinhof
+456Neu-WeibergSpitze
+456Neu-WeibergSellofen
+
+Line 456, Route 02: 456Neu-Weiberg  >>  456ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45602
+456NEU-WEIBERG  >>  456ZOB
+128
+456
+
+[infosystem_busstop_list]
+31
+456Neu-WeibergSellofen
+456Neu-WeibergSpitze
+456Neu-WeibergSteinhof
+456Hohnscheid
+456DormbachAbzweig
+456Neufrankenberg
+456FrankenbergGärtnerei
+456Frankenberg
+456Hufe
+456Westerbrück
+456GI-MüngersthalStadtrand
+456GI-MüngersthalZinkgasse
+456GI-MüngersthalSchwaketenstr.
+456GI-MüngersthalNeuwerk
+456KultgenAltenwohnheim
+456KultgenSiedlung
+456Ev.Krankenhaus
+456WalkenfelderRing
+456Bf.West
+456Georgsgasse
+456HohenmarktRathaus
+456BonnerG.Zächergasse
+456Höffe
+456Leibnizplatz
+456Hauptbahnhof
+456Bahnhofstr
+456AltesRathaus
+456Ulrich-Weber-Gasse
+456Kreiskrankenhaus
+456Odiansweg
+456ZOB
+
+Line 456, Route 03: 456Hauptbahnhof  >>  456Neu-Weiberg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45603
+456HAUPTBAHNHOF  >>  456NEU-WEIBERG
+131
+456
+
+[infosystem_busstop_list]
+25
+456Hauptbahnhof
+456Leibnizplatz
+456Höffe
+456BonnerG.Zächergasse
+456HohenmarktRathaus
+456Georgsgasse
+456Bf.West
+456WalkenfelderRing
+456Ev.Krankenhaus
+456KultgenSiedlung
+456KultgenAltenwohnheim
+456GI-MüngersthalNeuwerk
+456GI-MüngersthalSchwaketenstr.
+456GI-MüngersthalZinkgasse
+456GI-MüngersthalStadtrand
+456Westerbrück
+456Hufe
+456Frankenberg
+456FrankenbergGärtnerei
+456Neufrankenberg
+456DormbachAbzweig
+456Hohnscheid
+456Neu-WeibergSteinhof
+456Neu-WeibergSpitze
+456Neu-WeibergSellofen
+
+Line 456, Route 04: 456Neu-Weiberg  >>  456Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45604
+456NEU-WEIBERG  >>  456Hauptbahnhof
+129
+456
+
+[infosystem_busstop_list]
+25
+456Neu-WeibergSellofen
+456Neu-WeibergSpitze
+456Neu-WeibergSteinhof
+456Hohnscheid
+456DormbachAbzweig
+456Neufrankenberg
+456FrankenbergGärtnerei
+456Frankenberg
+456Hufe
+456Westerbrück
+456GI-MüngersthalStadtrand
+456GI-MüngersthalZinkgasse
+456GI-MüngersthalSchwaketenstr.
+456GI-MüngersthalNeuwerk
+456KultgenAltenwohnheim
+456KultgenSiedlung
+456Ev.Krankenhaus
+456WalkenfelderRing
+456Bf.West
+456Georgsgasse
+456HohenmarktRathaus
+456BonnerG.Zächergasse
+456Höffe
+456Leibnizplatz
+456Hauptbahnhof
+
+Line 456, Route 05: 456ZOB  >>  456Frankenberg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45605
+456ZOB  >>  456FRANKENBERG
+130
+456
+
+[infosystem_busstop_list]
+25
+456ZOB
+456Odiansweg
+456Kreiskrankenhaus
+456Ulrich-Weber-Gasse
+456AltesRathaus
+456Bahnhofstr
+456Hauptbahnhof
+456Leibnizplatz
+456Höffe
+456BonnerG.Zächergasse
+456HohenmarktRathaus
+456Georgsgasse
+456Bf.West
+456WalkenfelderRing
+456Ev.Krankenhaus
+456KultgenSiedlung
+456KultgenAltenwohnheim
+456GI-MüngersthalNeuwerk
+456GI-MüngersthalSchwaketenstr.
+456GI-MüngersthalZinkgasse
+456GI-MüngersthalStadtrand
+456Westerbrück
+456Hufe
+456Frankenberg
+456FrankenbergGärtnerei
+
+Line 456, Route 06: 456Frankenberg  >>  456ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45606
+456FRANKENBERG  >>  456ZOB
+128
+456
+
+[infosystem_busstop_list]
+25
+456FrankenbergGärtnerei
+456Frankenberg
+456Hufe
+456Westerbrück
+456GI-MüngersthalStadtrand
+456GI-MüngersthalZinkgasse
+456GI-MüngersthalSchwaketenstr.
+456GI-MüngersthalNeuwerk
+456KultgenAltenwohnheim
+456KultgenSiedlung
+456Ev.Krankenhaus
+456WalkenfelderRing
+456Bf.West
+456Georgsgasse
+456HohenmarktRathaus
+456BonnerG.Zächergasse
+456Höffe
+456Leibnizplatz
+456Hauptbahnhof
+456Bahnhofstr
+456AltesRathaus
+456Ulrich-Weber-Gasse
+456Kreiskrankenhaus
+456Odiansweg
+456ZOB
+
+Line 456, Route 07: 456ZOB  >>  456Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45607
+456ZOB  >>  456HAUPTBAHNHOF
+129
+456
+
+[infosystem_busstop_list]
+7
+456ZOB
+456Odiansweg
+456Kreiskrankenhaus
+456Ulrich-Weber-Gasse
+456AltesRathaus
+456Bahnhofstr
+456Hauptbahnhof
+
+
+Line 456, Route 08: 456Hauptbahnhof  >>  456ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45608
+456HAUPTBAHNHOF  >>  456ZOB
+128
+456
+
+[infosystem_busstop_list]
+7
+456Hauptbahnhof
+456Bahnhofstr
+456AltesRathaus
+456Ulrich-Weber-Gasse
+456Kreiskrankenhaus
+456Odiansweg
+456ZOB
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 457, Route 01: 457Hauptbahnhof  >>  457BahnhofOst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45701
+457HAUPTBAHNHOF  >>  457BAHNHOFOST
+133
+457
+
+[infosystem_busstop_list]
+19
+457Hauptbahnhof
+457Leibnizplatz
+457Höffe
+457BonnerG.Zächergasse
+457HohenmarktRathaus
+457VoiskKirche
+457VoiskMarienmorgen
+457VoiskFranz-Puhl-Str.
+457VoiskVierbuchen
+457BonnerG.Post
+457Markt
+457BonnerG.Theater
+457Stadthaus
+457Technologiezentrum
+457AltbornerWeg
+457BonnerG.ZooFlora
+457BonnerG.Polizeipr.
+457AltenbornStadtpark
+457Bf.Ost
+
+Line 457, Route 02: 457BahnhofOst  >>  457Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45702
+457BAHNHOFOST  >>  457HAUPTBAHNHOF
+132
+457
+
+[infosystem_busstop_list]
+19
+457Bf.Ost
+457AltenbornStadtpark
+457BonnerG.Polizeipr.
+457BonnerG.ZooFlora
+457AltbornerWeg
+457Technologiezentrum
+457Stadthaus
+457BonnerG.Theater
+457Markt
+457BonnerG.Post
+457VoiskVierbuchen
+457VoiskFranz-Puhl-Str.
+457VoiskMarienmorgen
+457VoiskKirche
+457HohenmarktRathaus
+457BonnerG.Zächergasse
+457Höffe
+457Leibnizplatz
+457Hauptbahnhof
+
+Line 457, Route 03: 457Hauptahnhof  >>  457Birkenforst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45703
+457HAUPTBAHNHOF  >>  457BIRKENFORST
+134
+457
+
+[infosystem_busstop_list]
+15
+457Hauptbahnhof
+457Leibnizplatz
+457Höffe
+457BonnerG.Zächergasse
+457HohenmarktRathaus
+457VoiskKirche
+457VoiskMarienmorgen
+457VoiskFranz-Puhl-Str.
+457VoiskVierbuchen
+457BonnerG.Post
+457Markt
+457BonnerG.Theater
+457Stadthaus
+457Technologiezentrum
+457Birkenforst
+
+Line 457, Route 04: 457Birkenforst  >>  457Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45704
+457BIRKENFORST  >>  457HAUPTBAHNHOF
+132
+457
+
+[infosystem_busstop_list]
+15
+457Birkenforst
+457Technologiezentrum
+457Stadthaus
+457BonnerG.Theater
+457Markt
+457BonnerG.Post
+457VoiskVierbuchen
+457VoiskFranz-Puhl-Str.
+457VoiskMarienmorgen
+457VoiskKirche
+457HohenmarktRathaus
+457BonnerG.Zächergasse
+457Höffe
+457Leibnizplatz
+457Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 458, Route 01: 458BahnhofOst  >>  458Klein-Klefe
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45801
+458BAHNHOFOST  >>  458KLEIN-KLEFE
+135
+458
+
+[infosystem_busstop_list]
+24
+458Bf.Ost
+458AltenbornStadtpark
+458BonnerG.Polizeipr.
+458BonnerG.ZooFlora
+458BonnerG.Theater
+458Markt
+458BonnerG.Post
+458VoiskVierbuchen
+458VoiskFranz-Puhl-Str.
+458VoiskSchule
+458Stümp
+458Rothheide
+458Obermühle
+458Orthe
+458FrankenbergKreuzung
+458FrankenbergHülsen
+458SchlossFrankenberg
+458Rathhalze
+458ScharzeParkplatz
+458Fahlhaus
+458AmGoetzberg
+458Fürdhof
+458Kalksrast
+458Klein-Klefe
+
+Line 458, Route 02: 458Klein-Klefe  >>  458BahnhofOst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45802
+458KLEIN-KLEFE  >>  458BAHNHOFOST
+137
+458
+
+[infosystem_busstop_list]
+26
+458Klein-Klefe
+458Kalksrast
+458Fürdhof
+458AmGoetzberg
+458Fahlhaus
+458ScharzeParkplatz
+458Rathhalze
+458SchlossFrankenberg
+458FrankenbergHülsen
+458FrankenbergKreuzung
+458Orthe
+458Obermühle
+458Südringwarte
+458Stümp
+458VoiskSchule
+458VoiskFranz-Puhl-Str.
+458VoiskVierbuchen
+458BonnerG.Post
+458Markt
+458BonnerG.Theater
+458BonnerG.ZooFlora
+458BonnerG.Polizeipr.
+458AltenbornStadtpark
+458Bf.Ost
+
+Line 458, Route 03: 458BahnhofOst  >>  458Frankenberg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45803
+458BAHNHOFOST  >>  458FRANKENBERG
+136
+458
+
+[infosystem_busstop_list]
+16
+458Bf.Ost
+458AltenbornStadtpark
+458BonnerG.Polizeipr.
+458BonnerG.ZooFlora
+458BonnerG.Theater
+458Markt
+458BonnerG.Post
+458VoiskVierbuchen
+458VoiskFranz-Puhl-Str.
+458VoiskSchule
+458Stümp
+458Rothheide
+458Obermühle
+458Orthe
+458FrankenbergKreuzung_nach_FG
+458FrankenbergGärtnerei
+
+Line 458, Route 04: 458Frankenberg  >>  458BahnhofOst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45804
+458FRANKENBERG  >>  458BAHNHOFOST
+137
+458
+
+[infosystem_busstop_list]
+16
+458FrankenbergGärtnerei
+458FrankenbergKreuzung
+458Orthe
+458Obermühle
+458Südringwarte
+458Stümp
+458VoiskSchule
+458VoiskFranz-Puhl-Str.
+458VoiskVierbuchen
+458BonnerG.Post
+458Markt
+458BonnerG.Theater
+458BonnerG.ZooFlora
+458BonnerG.Polizeipr.
+458AltenbornStadtpark
+458Bf.Ost
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 459, Route 01: 459ZOB  >>  459Grünhöfchen
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45901
+459ZOB  >>  459GRÜNHÖFCHEN
+138
+459
+
+[infosystem_busstop_list]
+12
+459ZOB
+459KadeuferBrücke
+459Engelsfuhr
+459Bf.Ost
+459AltenbornStadtpark
+459BonnerG.Polizeipr.
+459BonnerG.ZooFlora
+459AltbornerWeg
+459Heidsiefen
+459Durenholl
+459BretzholzAlterBahnhof
+459Grünhöfchen
+
+Line 459, Route 02: 459Grünhöfchen  >>  459ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+45902
+459GRÜNHÖFCHEN  >>  459ZOB
+139
+459
+
+[infosystem_busstop_list]
+12
+459Grünhöfchen
+459BretzholzAlterBahnhof
+459Durenholl
+459Heidsiefen
+459AltbornerWeg
+459BonnerG.ZooFlora
+459BonnerG.Polizeipr.
+459AltenbornStadtpark
+459Bf.Ost
+459Engelsfuhr
+459KadeuferBrücke
+459ZOB
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 100, Route 01: 100Theater  >>  100P1
+----------------------------------------------------------------------
+
+[infosystem_trip]
+10001
+100THEATER  >>  100P1
+105
+100
+
+[infosystem_busstop_list]
+9
+100BonnerG.Theater
+100Markt
+100HohenmarktRathaus
+100Leibnizplatz
+100P3
+100BresnerPl.
+100P2
+100P1
+100P1Pause
+
+Line 100, Route 02: 100P1  >>  100Theater
+----------------------------------------------------------------------
+
+[infosystem_trip]
+10002
+100P1  >>  100THEATER
+106
+100
+
+[infosystem_busstop_list]
+9
+100P1
+100P2
+100BresnerPl.
+100P3
+100Leibnizplatz
+100HohenmarktRathaus
+100Markt
+100BonnerG.Theater
+100BonnerG.TheaterPause
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line SB51, Route 01: SB51Hauptbahnhof  >>  SB51Schatenburg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05101
+SB51HAUPTBAHNHOF  >>  SB51SCHATENBURG
+100
+SB51
+
+[infosystem_busstop_list]
+13
+SB51Hauptbahnhof
+SB51BresnerPl.
+SB51Lindenhof
+SB51BergerfürthGrützhöhe
+SB51BergerfürthMitte
+SB51BergerfürthLorkenbach
+SB51GsdkTalsperreMebusfeld
+SB51GsdkBallsiepen
+SB51GsdkBahnhof
+SB51Tulpenwarth
+SB51Altensürth
+SB51Neustrassen
+SB51Schatenburg
+
+Line SB51, Route 02: SB51Schatenburg  >>  SB51Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05102
+SB51SCHATENBURG  >>  SB51HAUPTBAHNHOF
+099
+SB51
+
+[infosystem_busstop_list]
+14
+SB51Schatenburg
+SB51Neustrassen
+SB51Junkersbaum
+SB51Altensürth
+SB51Tulpenwarth
+SB51GsdkBahnhof
+SB51Sellblick
+SB51GsdkBallsiepen
+SB51GsdkTalsperreMebusfeld
+SB51BergerfürthMitte
+SB51BergerfürthGrützhöhe
+SB51Lindenhof
+SB51BresnerPl.
+SB51Hauptbahnhof
+
+Line SB51, Route 03: SB51Hauptbahnhof  >>  SB51Grünschildken
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05103
+SB51HAUPTBAHNHOF  >>  SB51GRÜNSCHILDKEN
+101
+SB51
+
+[infosystem_busstop_list]
+10
+SB51Hauptbahnhof
+SB51BresnerPl.
+SB51Lindenhof
+SB51BergerfürthGrützhöhe
+SB51BergerfürthMitte
+SB51BergerfürthLorkenbach
+SB51GsdkTalsperreMebusfeld
+SB51GsdkBallsiepen
+SB51ImUmmersfeld
+SB51GsdkBahnhof
+
+Line SB51, Route 04: SB51Grünschildken  >>  SB51Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05104
+SB51GRÜNSCHILDKEN  >>  SB51HAUPTBAHNHOF
+099
+SB51
+
+[infosystem_busstop_list]
+9
+SB51GsdkBahnhof
+SB51Sellblick
+SB51GsdkBallsiepen
+SB51GsdkTalsperreMebusfeld
+SB51BergerfürthMitte
+SB51BergerfürthGrützhöhe
+SB51Lindenhof
+SB51BresnerPl.
+SB51Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line SB52, Route 01: SB52Hauptbahnhof  >>  SB52Königsrath
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05201
+SB52HAUPTBAHNHOF  >>  SB52KÖNIGSRATH
+103
+SB52
+
+[infosystem_busstop_list]
+12
+SB52Hauptbahnhof
+SB52BresnerPl.
+SB52Wildsfuß
+SB52BergerfürthGrützhöhe
+SB52BergerfürthStallbrücken
+SB52MittelbrechKotten
+SB52MittelbrechHausLinde
+SB52KönigsrathAmBlumeneck
+SB52KönigsrathSteegerBurg
+SB52KönigsrathFlughafenLuftfracht
+SB52KönigsrathRathaus
+SB52KönigsrathBahnhof
+
+Line SB52, Route 02: SB52Königsrath >>  SB52Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05202
+SB52KÖNIGSRATH  >>  SB52HAUPTBAHNHOF
+102
+SB52
+
+[infosystem_busstop_list]
+12
+SB52KönigsrathBahnhof
+SB52KönigsrathRathaus
+SB52KönigsrathSteegerBurg
+SB52KönigsrathAmBlumeneck
+SB52AnderEiche
+SB52MittelbrechHausLinde
+SB52MittelbrechKotten
+SB52BergerfürthStallbrücken
+SB52BergerfürthGrützhöhe
+SB52Wildsfuß
+SB52BresnerPl.
+SB52Hauptbahnhof
+
+Line SB52, Route 03: SB52Hauptbahnhof  >>  SB52KönigsrathFlughafen
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05203
+SB52HAUPTBAHNHOF  >>  SB52KÖNIGSRATHFLUGHAFEN
+104
+SB52
+
+[infosystem_busstop_list]
+11
+SB52Hauptbahnhof
+SB52BresnerPl.
+SB52Wildsfuß
+SB52BergerfürthGrützhöhe
+SB52BergerfürthStallbrücken
+SB52MittelbrechKotten
+SB52MittelbrechHausLinde
+SB52KönigsrathAmBlumeneck
+SB52KönigsrathSteegerBurg
+SB52KönigsrathFlughafenLuftfracht_KRF
+SB52KönigsrathFlughafen
+
+Line SB52, Route 04: SB52KönigsrathFlughafen >>  SB52Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05204
+SB52KÖNIGSRATHFLUGHAFEN  >>  SB52HAUPTBAHNHOF
+102
+SB52
+
+[infosystem_busstop_list]
+12
+SB52KönigsrathFlughafen
+SB52KönigsrathFlughafenVerwaltung
+SB52KönigsrathSteegerBurg
+SB52KönigsrathAmBlumeneck
+SB52AnderEiche
+SB52MittelbrechHausLinde
+SB52MittelbrechKotten
+SB52BergerfürthStallbrücken
+SB52BergerfürthGrützhöhe
+SB52Wildsfuß
+SB52BresnerPl.
+SB52Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line NE40, Route 01: NE40BahnhofOst  >>  NE40BahnhofWest
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94001
+NE40BAHNHOFOST  >>  NE40BAHNHOFWEST
+140
+NE40
+
+[infosystem_busstop_list]
+8
+NE40Bf.Ost
+NE40BonnerG.ZooFlora
+NE40Technologiezentrum
+NE40BonnerG.Theater
+NE40Markt
+NE40BonnerG.Post
+NE40VoiskMarienmorgen
+NE40Bf.West
+
+Line NE40, Route 02: NE40BahnhofWest >>  NE40BahnhofOst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94002
+NE40BAHNHOFWEST >>  NE40BAHNHOFOST
+141
+NE40
+
+[infosystem_busstop_list]
+9
+NE40Bf.West
+NE40HohenmarktRathaus
+NE40VoiskMarienmorgen
+NE40BonnerG.Post
+NE40Markt
+NE40BonnerG.Theater
+NE40Technologiezentrum
+NE40BonnerG.ZooFlora
+NE40Bf.Ost
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line N41, Route 01: N41Hauptbahnhof  >>  N41Königsrath
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94101
+N41HAUPTBAHNHOF  >>  N41KÖNIGSRATH
+143
+N41
+
+[infosystem_busstop_list]
+13
+N41Hauptbahnhof
+N41BresnerPl.
+N41Wildsfuß
+N41Gartenweg
+N41BergerfürthGrützhöhe
+N41BergerfürthStallbrücken
+N41MittelbrechKotten
+N41MittelbrechHausLinde
+N41KönigsrathAmBlumeneck
+N41KönigsrathSteegerBurg
+N41KönigsrathFlughafenLuftfracht
+N41KönigsrathRathaus
+N41KönigsrathBahnhof
+
+Line N41, Route 02: N41Königsrath >>  N41Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94102
+N41KÖNIGSRATH  >>  N41HAUPTBAHNHOF
+142
+N41
+
+[infosystem_busstop_list]
+13
+N41KönigsrathBahnhof
+N41KönigsrathRathaus
+N41KönigsrathSteegerBurg
+N41KönigsrathAmBlumeneck
+N41AnderEiche
+N41MittelbrechHausLinde
+N41MittelbrechKotten
+N41BergerfürthStallbrücken
+N41BergerfürthGrützhöhe
+N41Gartenweg
+N41Wildsfuß
+N41BresnerPl.
+N41Hauptbahnhof
+
+Line N41, Route 03: N41Hauptbahnhof  >>  N41KönigsrathFlughafen
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94103
+N41HAUPTBAHNHOF  >>  N41KÖNIGSRATHFLUGHAFEN
+144
+N41
+
+[infosystem_busstop_list]
+12
+N41Hauptbahnhof
+N41BresnerPl.
+N41Wildsfuß
+N41Gartenweg
+N41BergerfürthGrützhöhe
+N41BergerfürthStallbrücken
+N41MittelbrechKotten
+N41MittelbrechHausLinde
+N41KönigsrathAmBlumeneck
+N41KönigsrathSteegerBurg
+N41KönigsrathFlughafenLuftfracht_KRF
+N41KönigsrathFlughafen
+
+Line N41, Route 04: N41KönigsrathFlughafen >>  N41Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94104
+N41KÖNIGSRATHFLUGHAFEN  >>  N41HAUPTBAHNHOF
+142
+N41
+
+[infosystem_busstop_list]
+13
+N41KönigsrathFlughafen
+N41KönigsrathFlughafenVerwaltung
+N41KönigsrathSteegerBurg
+N41KönigsrathAmBlumeneck
+N41AnderEiche
+N41MittelbrechHausLinde
+N41MittelbrechKotten
+N41BergerfürthStallbrücken
+N41BergerfürthGrützhöhe
+N41Gartenweg
+N41Wildsfuß
+N41BresnerPl.
+N41Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line N42, Route 01: N42Hauptbahnhof  >>  N42BahnhofOst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94201
+N42HAUPTBAHNHOF  >>  N42BAHNHOFOST
+146
+N42
+
+[infosystem_busstop_list]
+17
+N42Hauptbahnhof
+N42Leibnizplatz
+N42Höffe
+N42BonnerG.Zächergasse
+N42HohenmarktRathaus
+N42VoiskKirche
+N42KreisbRosenweg
+N42KreisbAnderZimthütte
+N42VoiskFranz-Puhl-Str.
+N42VoiskVierbuchen
+N42BonnerG.Post
+N42Markt
+N42BonnerG.Theater
+N42BonnerG.ZooFlora
+N42BonnerG.Polizeipr.
+N42AltenbornStadtpark
+N42Bf.Ost
+
+Line N42, Route 02: N42BahnhofOst  >>  N42Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94202
+N42BAHNHOFOST  >>  N42HAUPTBAHNHOF
+145
+N42
+
+[infosystem_busstop_list]
+17
+N42Bf.Ost
+N42AltenbornStadtpark
+N42BonnerG.Polizeipr.
+N42BonnerG.ZooFlora
+N42BonnerG.Theater
+N42Markt
+N42BonnerG.Post
+N42VoiskVierbuchen
+N42VoiskFranz-Puhl-Str.
+N42KreisbAnderZimthütte
+N42KreisbRosenweg
+N42VoiskKirche
+N42HohenmarktRathaus
+N42BonnerG.Zächergasse
+N42Höffe
+N42Leibnizplatz
+N42Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line N43, Route 01: N43Hauptbahnhof  >>  N43ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94301
+N43HAUPTBAHNHOF  >>  N43ZOB
+148
+N43
+
+[infosystem_busstop_list]
+7
+N43Hauptbahnhof
+N43Bahnhofstr
+N43AltesRathaus
+N43Ulrich-Weber-Gasse
+N43Kreiskrankenhaus
+N43Odiansweg
+N43ZOB
+
+Line N43, Route 02: N43ZOB >>  N43Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94302
+N43ZOB  >>  N43HAUPTBAHNHOF
+147
+N43
+
+[infosystem_busstop_list]
+7
+N43ZOB
+N43Odiansweg
+N43Kreiskrankenhaus
+N43Ulrich-Weber-Gasse
+N43AltesRathaus
+N43Bahnhofstr
+N43Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line N44, Route 01: N44ZOB  >>  N44Birkenforst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94401
+N44ZOB  >>  N44BIRKENFORST
+150
+N44
+
+[infosystem_busstop_list]
+9
+N44ZOB
+N44KadeuferBrücke
+N44Engelsfuhr
+N44Bf.Ost
+N44AltenbornStadtpark
+N44BonnerG.Polizeipr.
+N44BonnerG.ZooFlora
+N44AltbornerWeg
+N44Birkenforst
+
+Line N44, Route 02: N44Birkenforst >>  N44ZOB
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94402
+N44BIRKENFORST  >>  N44ZOB
+149
+N44
+
+[infosystem_busstop_list]
+9
+N44Birkenforst
+N44AltbornerWeg
+N44BonnerG.ZooFlora
+N44BonnerG.Polizeipr.
+N44AltenbornStadtpark
+N44Bf.Ost
+N44Engelsfuhr
+N44KadeuferBrücke
+N44ZOB
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line N45, Route 01: N45Hauptbahnhof  >>  N45Stümp
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94501
+N45HAUPTBAHNHOF  >>  N45STÜMP
+152
+N45
+
+[infosystem_busstop_list]
+23
+N45Hauptbahnhof
+N45Leibnizplatz
+N45Höffe
+N45BonnerG.Zächergasse
+N45HohenmarktRathaus
+N45Georgsgasse
+N45Bf.West
+N45WalkenfelderRing
+N45Ev.Krankenhaus
+N45KultgenSiedlung
+N45KultgenAltenwohnheim
+N45GI-MüngersthalNeuwerk
+N45GI-MüngersthalSchwaketenstr.
+N45GI-MüngersthalZinkgasse
+N45GI-MüngersthalStadtrand
+N45Westerbrück
+N45Hufe
+N45FrankenbergKreuzung
+N45Orthe
+N45Obermühle
+N45Südringwarte
+N45Nadelsbrück
+N45Stümp
+
+Line N45, Route 02: N45Stümp >>  N45Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94502
+N45STÜMP  >>  N45HAUPTBAHNHOF
+151
+N45
+
+[infosystem_busstop_list]
+25
+N45Stümp
+N45Rothheide
+N45Obermühle
+N45Orthe
+N45FrankenbergKreuzung
+N45Hufe
+N45Westerbrück
+N45GI-MüngersthalStadtrand
+N45GI-MüngersthalZinkgasse
+N45GI-MüngersthalSchwaketenstr.
+N45GI-MüngersthalNeuwerk
+N45KultgenAltenwohnheim
+N45KultgenSiedlung
+N45Ev.Krankenhaus
+N45WalkenfelderRing
+N45Bf.West
+N45Georgsgasse
+N45HohenmarktRathaus
+N45BonnerG.Zächergasse
+N45HeiligenstockVilshoven
+N45HeiligenstockBirken
+N45GäricherSee
+N45Leibnizplatz
+N45BresnerPl.
+N45Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line N46, Route 01: N46Hauptbahnhof  >>  N46Schatenburg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94601
+N46HAUPTBAHNHOF  >>  N46SCHATENBURG
+154
+N46
+
+[infosystem_busstop_list]
+13
+N46Hauptbahnhof
+N46BresnerPl.
+N46Lindenhof
+N46BergerfürthGrützhöhe
+N46BergerfürthMitte
+N46BergerfürthLorkenbach
+N46GsdkTalsperreMebusfeld
+N46GsdkBallsiepen
+N46GsdkBahnhof
+N46Tulpenwarth
+N46Altensürth
+N46Neustrassen
+N46Schatenburg
+
+Line N46, Route 02: N46Schatenburg  >>  N46Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94602
+N46SCHATENBURG  >>  N46HAUPTBAHNHOF
+153
+N46
+
+[infosystem_busstop_list]
+14
+N46Schatenburg
+N46Neustrassen
+N46Junkersbaum
+N46Altensürth
+N46Tulpenwarth
+N46GsdkBahnhof
+N46Sellblick
+N46GsdkBallsiepen
+N46GsdkTalsperreMebusfeld
+N46BergerfürthMitte
+N46BergerfürthGrützhöhe
+N46Lindenhof
+N46BresnerPl.
+N46Hauptbahnhof
+
+Line N46, Route 03: N46Hauptbahnhof  >>  N46Grünschildken
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94603
+N46HAUPTBAHNHOF  >>  N46GRÜNSCHILDKEN
+155
+N46
+
+[infosystem_busstop_list]
+10
+N46Hauptbahnhof
+N46BresnerPl.
+N46Lindenhof
+N46BergerfürthGrützhöhe
+N46BergerfürthMitte
+N46BergerfürthLorkenbach
+N46GsdkTalsperreMebusfeld
+N46GsdkBallsiepen
+N46ImUmmersfeld
+N46GsdkBahnhof
+
+Line N46, Route 04: N46Grünschildken  >>  N46Hauptbahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94604
+N46GRÜNSCHILDKEN  >>  N46HAUPTBAHNHOF
+153
+N46
+
+[infosystem_busstop_list]
+9
+N46GsdkBahnhof
+N46Sellblick
+N46GsdkBallsiepen
+N46GsdkTalsperreMebusfeld
+N46BergerfürthMitte
+N46BergerfürthGrützhöhe
+N46Lindenhof
+N46BresnerPl.
+N46Hauptbahnhof
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Line 0, Route 01: Sightseeing  >>  Sightseeing
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00000
+SIGHTSEEING  >>  SIGHTSEEING
+005
+
+
+[infosystem_busstop_list]
+9
+SightSeeingLeibnizplatz
+SightSeeingRathausHohenmarkt
+SightSeeingMarkt
+SightSeeingBonnerG.Theater
+SightSeeingBonnerG.ZooFlora
+SightSeeingBf.Ost
+SightSeeingKadeuferBrücke
+SightSeeingUlrich-Weber-Gasse
+SightSeeingAltesRathaus

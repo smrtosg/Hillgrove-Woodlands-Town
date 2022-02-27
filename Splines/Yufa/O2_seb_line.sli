@@ -1,0 +1,42 @@
+File created by Yufa
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-0.060
+0.060
+0.110
+0.110
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+O2_seb_line.tga
+
+[matl_alpha]
+1
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Grass strip:
+
+[profile]
+0
+
+[profilepnt]
+0.000
+0.105
+1.000
+0.335
+
+[profilepnt]
+0.250
+0.105
+0.000
+0.335

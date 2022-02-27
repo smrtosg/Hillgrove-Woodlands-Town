@@ -1,0 +1,84 @@
+'##############
+'Collision Script
+'##############
+
+'Controls all functions dealing with collisions
+
+'(c) 09.08.2009 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- elec
+'- engine
+'- antrieb
+
+
+'Revision History:
+'- Marcel Kuhnt		09.06.2009	File created, added electricity, engine & gearbox failure
+
+'------------------------------------------------------------------------------------------
+
+{macro:Collision_Malfunction_Reset}
+	0
+	(S.L.collision_energy)
+
+	(S.L.elec_failure_general)
+
+	(S.L.collision_energy_eng)
+	(S.L.engine_failure_general)
+	(S.L.antrieb_failure_general)
+
+	(M.L.Collision_Init)
+{end}
+
+'------------------------------------------------------------------------------------------
+
+{macro:Collision_Init}
+	(C.L.collision_energy_elec_threshold_max) (C.L.collision_energy_elec_threshold_min) -
+	random (C.L.collision_energy_elec_threshold_min) + (S.L.collision_energy_elec_threshold)
+
+	(C.L.collision_energy_eng_threshold_max) (C.L.collision_energy_eng_threshold_min) -
+	random (C.L.collision_energy_eng_threshold_min) + (S.L.collision_energy_eng_threshold)
+{end}
+
+'------------------------------------------------------------------------------------------
+
+{macro:Collision_Trigger}
+
+'-------------------------------
+'General Failure:
+
+	(L.L.collision_energy) (L.S.coll_energy) + (S.L.collision_energy)
+
+' - Elect.:
+	(L.L.collision_energy_elec_threshold) >
+	{if}
+		1 (S.L.elec_failure_general)
+	{endif}
+
+'-------------------------------
+'Engine Failure:
+
+'	only if collision point is below z=1.1m and behind y=-4.7m!
+
+	(L.S.coll_pos_y) -4.70 <
+	(L.S.coll_pos_z) 1.10 < &&
+	{if}
+		(L.L.collision_energy_eng) (L.S.coll_energy) + (S.L.collision_energy_eng)
+		(L.L.collision_energy_eng_threshold) s0
+
+		0.6 * >
+		{if}
+			1 (S.L.antrieb_failure_general)
+		{endif}
+
+		l0 >
+		{if}
+			1 (S.L.engine_failure_general)
+		{endif}
+	{endif}
+
+{end}
+

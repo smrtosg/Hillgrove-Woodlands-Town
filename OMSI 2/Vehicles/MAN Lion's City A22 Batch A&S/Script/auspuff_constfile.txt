@@ -1,0 +1,7 @@
+[const]
+auspuff_max_vel
+10
+
+[const]
+auspuff_max_alpha
+0.2

@@ -1,0 +1,46 @@
+'##############
+'Force Feedback
+'##############
+
+'Force Feedback Effects
+
+'Verursacht das typische Scheppern im SD bei Leerlauf im Force-Feedback-Lenkrad
+
+'(c) 18.08.2013 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- engine
+
+'Revision History:
+'- Marcel Kuhnt		25.04.2008	File created
+'- Marcel Kuhnt		10.08.2009	Revision History Added
+'- Marcel Kuhnt		10.06.2012	Bug raus, wodurch Schaltwagen Bereichsfehler verursachen
+'- Marcel Kuhnt		18.08.2013	Vibrationen durch Klappern hinzugefügt
+
+'------------------------------------------------------------------------------------------
+
+
+
+{macro:FF_frame}
+
+	(L.L.klappern_vol) s0 0.1 >
+	{if}
+		8 (S.L.FF_Vib_Period)
+		l0 0.5 * (S.L.FF_Vib_Amp)
+	{else}
+		(L.L.engine_n) s0 (F.L.FF_vibampl_n)
+		(L.L.Throttle) (F.L.FF_vibampl_Throttle) * 0.1 * (S.L.FF_Vib_Amp)
+
+		l0 abs 1 >
+		{if}
+			60 l0 abs / (S.L.FF_Vib_Period)
+		{else}
+			1 (S.L.FF_Vib_Period)
+		{endif}
+	{endif}
+
+
+{end}

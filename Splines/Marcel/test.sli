@@ -1,0 +1,205 @@
+============================
+Test-Gleis, Typ 001, 1435mm
+============================
+
+
+[length]
+10
+
+Halbbreite des Bereiches, welcher in Kurven überhöht wird:
+
+[halfcantwidth]
+2
+
+Dann wird das Höhenprofil in der Querrichtung definiert. Hierzu wird jeweils Start- und Endpunkt
+(von links aus gesehen) und dann die Höhe überm lokalen Koordinatensystem angegeben, jeweils vom ersten
+und zweiten Punkt:
+
+
+[heightprofile]
+-2
+-1.2
+0
+0.145
+
+[heightprofile]
+-1.2
+1.2
+0.145
+0.145
+
+[heightprofile]
+1.2
+2
+0.145
+0
+
+
+
+Zunächst werden die Texturen geladen (dies kann aber auch nach oder zwischen den folgenden Befehlen kommen, einzig
+die Reihenfolge entscheidet über die Nummer, 0-basiert)
+
+[texture]
+rail_01.bmp
+
+
+[scaleTexByLength]
+
+
+Nun wird das (grafische) Profil definiert. Jeder zu extrudierende Spline kann mehrere Splinepunkte (mindestens 2)
+enthalten, die Normalen werden automatisch definiert. Die U-Koordinate der Textur muss in x-Richtung zeigen,
+die V-Koordinate wird anhand einer Art Steigung definiert: 0.2 (1/m) bedeutet bspw., dass nach 5m die V-Koordinate 1 beträgt.
+
+Der [profile]-Befehl gibt an, dass ein neues Profil erstellt wird, welches auch gleich die entsprechende Textur zugewiesen bekommt.
+
+
+Folgender Befehl schließlich definiert einen Profilpunkt. Zunächst x (quer, rechts positiv) und z (hoch),
+dann U und die Steigung von V. V beginnt stets mit 0.
+
+Achtung: damit Normalenvektor und Polysichtbarkeit stimmt, muss die Reihenfolge von links nach rechts laufen (damit die Oberseite sichtbar ist).
+
+
+Bettung:
+
+
+[profile]
+0
+
+[profilepnt]
+-2
+0
+0
+1
+
+[profilepnt]
+-1.2
+0.145
+0.1875
+1
+
+[profilepnt]
+0.763
+0.145
+0.8515625
+1
+
+[profile]
+0
+
+[profilepnt]
+0.763
+0.145
+0.3281
+1
+
+[profilepnt]
+1.2
+0.145
+0.1875
+1
+
+[profilepnt]
+2
+0
+0
+1
+
+Schiene 1:
+
+[profile]
+0
+
+[profilepnt]
+-0.825
+0.15
+0.875
+1
+
+[profilepnt]
+-0.78
+0.3
+0.96875
+1
+
+[profilepnt]
+-0.75
+0.3
+0.984375
+1
+
+[profilepnt]
+-0.72
+0.3
+0.96875
+1
+
+[profilepnt]
+-0.675
+0.15
+0.875
+1
+
+[profile]
+0
+
+[profilepnt]
+0.675
+0.15
+0.875
+1
+
+[profilepnt]
+0.72
+0.3
+0.96875
+1
+
+[profilepnt]
+0.75
+0.3
+0.984375
+1
+
+[profilepnt]
+0.78
+0.3
+0.96875
+1
+
+[profilepnt]
+0.825
+0.15
+0.875
+1
+
+
+
+
+
+#################################################
+
+Zuletzt sollen noch Pfade definiert werden - sie werden gebraucht, damit später AI-Verkehr oder schienengebundene Fahrzeuge auf der Straße fahren können:
+
+	[path]
+	{type}		Typ:
+			0:	AI-Straßenverkehr
+			1:	AI-Menschen
+			2:	Schiene (AI oder User)
+	{offsetX}	Abstand von der Mittellinie - rechts = positiv
+	{offsetZ}	Höhe über "Nullinie" der Spline - aufwärts = positiv
+	{width}		Breite (Straßenverkehr und Menschen kann so ein Ausweichen gestattet werden)
+	{reverse}	Befahr-/-gehbarkeit:
+			0:	Nur vorwärts
+			1:	Nur rückwärts
+			2:	beide Richtungen
+
+
+
+Eisenbahnspur:
+
+[path]
+2
+0
+0.3
+0
+2

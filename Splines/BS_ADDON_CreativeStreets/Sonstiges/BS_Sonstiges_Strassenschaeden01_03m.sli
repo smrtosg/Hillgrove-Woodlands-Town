@@ -1,0 +1,39 @@
+BS_Sonstiges_Bordstein_L.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+0
+3
+0.2
+0.2
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+BS_Sonstiges_Strassenschaeden1.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Bordstein ###
+
+[profile]
+0
+
+[profilepnt]
+0
+0.11
+0.005
+0.3
+
+[profilepnt]
+3
+0.11
+0.995
+0.3

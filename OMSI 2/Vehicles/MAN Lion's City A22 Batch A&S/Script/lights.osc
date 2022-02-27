@@ -1,0 +1,489 @@
+'##############
+'LightScript
+'##############
+
+'Simulates lighting system
+
+'(c) 11.05.2009 Rüdiger Hülsmann
+'(c) 02.01.2011 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 1.0
+
+'Needs:
+'- Cockpit (Batterietrennschalter)
+'- Door (Haltestellenbremse für Bremslicht)
+
+'Revision History:
+'- Rüdiger Hülsmann	11.05.2009	Bremslichter an Bremsdruck gekoppelt
+'- Marcel Kuhnt		10.06.2009	Schlüsselschalter-Logik für Stand- und Abbl.-licht verändert, Fernlicht hinzugefügt
+'- Marcel Kuhnt		10.08.2009	Added Revision History
+'- Marcel Kuhnt & RÜH	22.10.2009	Removed Light Switch Sound (added to cockpit)
+'- Rüdiger Hülsmann	28.10.2009	Added changeover variable for lower level and front right interior light (fixed light overlay problem)
+'- Rüdiger Hülsmann	18.07.2010	Light switch adapted to new ignition key algorithm
+'- Marcel Kuhnt		21.09.2010	Changed interpretation of AI_Light, light flasher
+'- RÜdiger Hülsmann	15.11.2010	AI-warning lights
+'- Rüdiger Hülsmann	21.11.2010	Interiour and warning lights independent from busbar_main, blinker fix (situation reload)
+'- Rüdiger Hülsmann	27.11.2010	Warning lights bug removed
+'- Rüdiger Hülsmann	08.12.2010	Light bug "untenohnevornerechts" removed
+'- Marcel Kuhnt		28.12.2010	Extracted AI lighting in separated macro (for using with AI script)
+'- Marcel Kuhnt		02.01.2011	Corrected AI warn blinker deactivation
+'- Rüdiger Hülsmann	02.01.2011	Driver light fixed
+'- Rüdiger Hülsmann	05.01.2011	Fog lamp
+'- Rüdiger Hülsmann	07.01.2011	highbeam switch sound
+'- Rüdiger Hülsmann	18.01.2011	Blinker switch on sound added
+
+'------------------------------------------------------------------------------------------
+
+{trigger:kw_fernlicht_toggle}
+	(L.L.lights_sw_fern) ! (S.L.lights_sw_fern)
+	(T.L.ev_wischerhebel)
+{end}
+
+{trigger:kw_fernlicht_toggle_off}
+	(L.L.cp_schluessel_rot)
+
+'Wenn Schlüsselposition Aus oder Standlicht dann Abbl-Licht, dann Fernlicht wieder ausschalten (Lichthupe)
+	0.8 <
+	{if}
+		0 (S.L.lights_sw_fern)
+		(T.L.ev_wischerhebel)
+	{endif}
+{end}
+
+{trigger:kw_scheinwerfer_toggle}
+	(L.L.cp_schluessel_rot)
+
+'Wenn Schlüsselposition Aus oder Standlicht dann Abbl-Licht
+	0.8 <
+	{if}
+		1 (S.L.cp_schluessel_rot)
+'Wenn Schlüsselposition Abbl.-Licht dann Aus
+	{else}
+		0 (S.L.cp_schluessel_rot)
+	{endif}
+
+	(T.L.ev_schluessel_dreh)
+{end}
+
+{trigger:kw_standlicht_toggle}
+
+	(L.L.cp_schluessel_rot)
+
+'Wenn Schlüsselposition Aus oder Abbl-Licht dann Standlicht
+	s0 0.8 > l0 0.2 < ||
+	{if}
+		0.5 (S.L.cp_schluessel_rot)
+'Wenn Schlüsselposition Standlicht dann Aus
+	{else}
+		0 (S.L.cp_schluessel_rot)
+	{endif}
+
+	(T.L.ev_schluessel_dreh)
+{end}
+
+{trigger:blinker_off}
+	(L.L.lights_sw_blinker) 0 >
+	{if}
+			(T.L.ev_lights_blinker_swoff)
+			0 (S.L.lights_sw_blinker) 
+	{endif}
+{end}
+
+{trigger:blinker_left_move}
+	(L.L.lights_sw_blinker)
+	0 =
+	{if}
+		1 (S.L.lights_sw_blinker)
+		(T.L.ev_lights_blinker_swon)
+		(M.L.lights_startblinkgeber)
+	{else}
+		(T.L.ev_lights_blinker_swoff)
+		0 (S.L.lights_sw_blinker) 
+	{endif}
+{end}
+
+
+{trigger:blinker_right_move}
+	(L.L.lights_sw_blinker)
+	0 =
+	{if}
+		2 (S.L.lights_sw_blinker)
+		(T.L.ev_lights_blinker_swon)
+		(M.L.lights_startblinkgeber)
+	{else}
+		(T.L.ev_lights_blinker_swoff)
+		0 (S.L.lights_sw_blinker)  
+	{endif}
+{end}
+
+{trigger:blinker_left_set}
+	(L.L.lights_sw_blinker) 1 = !
+	{if}
+		(T.L.ev_lights_blinker_swon)
+	{endif}
+	1 (S.L.lights_sw_blinker)
+	(M.L.lights_startblinkgeber)
+{end}
+
+{trigger:blinker_right_set}
+	(L.L.lights_sw_blinker) 2 = !
+	{if}
+		(T.L.ev_lights_blinker_swon)
+	{endif}
+	2 (S.L.lights_sw_blinker)
+	(M.L.lights_startblinkgeber)
+{end}
+
+{trigger:blinker_warn_toggle}
+	(L.L.lights_sw_warnblinker) ! (S.L.lights_sw_warnblinker) 
+	{if}
+		(M.L.lights_startblinkgeber)
+	{endif}
+
+	-1 (S.L.cp_taster_warnblinker)
+
+	(T.L.ev_VDV_toggle_on)
+
+		
+{end}
+
+{trigger:blinker_warn_toggle_off}
+	(L.L.lights_sw_warnblinker) 
+	{if}
+		0 (S.L.cp_taster_warnblinker)
+	{else}
+		0.6 (S.L.cp_taster_warnblinker)
+	{endif}
+	(T.L.ev_VDV_toggle_off)
+
+{end}
+
+{macro:lights_frame}
+
+
+	(M.L.lights_AI)
+
+	(M.L.lights_runblinkgeber)
+
+
+	(L.L.brake) 0.1 > (L.L.bremse_halte) || (L.L.elec_busbar_main) sqr *
+		(S.L.lights_brems)
+
+	(L.L.antrieb_getr_gangwahl) 0 = (L.L.elec_busbar_main) sqr *
+		(S.L.lights_rueckfahr)
+
+	(L.L.lights_sw_blinker) 1 = (L.L.elec_busbar_main) && (L.L.lights_sw_warnblinker) || (L.L.lights_blinkgeber) && (L.L.elec_busbar_avail) sqr *
+		(S.L.lights_blinker_l)
+
+	(L.L.lights_sw_blinker) 2 = (L.L.elec_busbar_main) && (L.L.lights_sw_warnblinker) || (L.L.lights_blinkgeber) && (L.L.elec_busbar_avail) sqr *
+		(S.L.lights_blinker_r)
+
+'MCQ: AI-Blinkererkennung:
+	(L.L.AI) !
+	{if}
+		(L.L.lights_sw_blinker) 1 = (L.L.elec_busbar_main) sqr * (L.L.lights_sw_warnblinker) (L.L.elec_busbar_avail) sqr * max
+			(S.L.AI_Blinker_L)
+
+		(L.L.lights_sw_blinker) 2 = (L.L.elec_busbar_main) sqr * (L.L.lights_sw_warnblinker) (L.L.elec_busbar_avail) sqr * max
+			(S.L.AI_Blinker_R)
+
+		(L.L.lights_fern)
+		{if}
+			2
+		{else}
+			(L.L.lights_abbl)
+			{if}
+				1
+			{else}
+				(L.L.lights_stand)
+				{if}
+					0.5
+				{else}
+					0
+				{endif}
+			{endif}
+		{endif}
+		(S.L.AI_Light)
+
+		(L.L.lights_beleuchtung_oberdeck) (L.L.lights_beleuchtung_unterdeck) && (S.L.AI_Interiorlight)
+
+	{endif}
+
+'Automatische Blinkerabschaltung:
+
+	(L.L.Axle_Steering_0_L) (C.L.lights_blinkautom_minLenk) > (L.L.lights_sw_blinker) 2 = &&
+	{if}
+		1 (S.L.lights_blinkautom_r_armed)
+	{else}
+		(L.L.lights_blinkautom_r_armed)
+		{if}
+			(T.L.ev_lights_blinker_swoff)
+			0
+				(S.L.lights_sw_blinker) (S.L.lights_blinkgeber)
+				(S.L.lights_blinkautom_r_armed)
+		{endif}
+	{endif}
+
+	(L.L.Axle_Steering_0_L) /-/ (C.L.lights_blinkautom_minLenk) > (L.L.lights_sw_blinker) 1 = &&
+	{if}
+		1 (S.L.lights_blinkautom_l_armed)
+	{else}
+		(L.L.lights_blinkautom_l_armed)
+		{if}
+			(T.L.ev_lights_blinker_swoff)
+			0
+				(S.L.lights_sw_blinker) (S.L.lights_blinkgeber)
+				(S.L.lights_blinkautom_l_armed)
+		{endif}
+	{endif}
+
+
+
+
+'	Beleuchtungsfunktionen 
+
+	(L.L.elec_busbar_avail)
+	{if}
+
+
+'Lichterzustand in Abhängigkeit vom Schlüsselschalter und Batterierelais setzen:
+
+
+		(L.L.cp_taster_nebelschluss_target) (L.L.elec_busbar_main) sqr * (S.L.lights_nebelschluss)
+
+		(L.L.cp_schluessel_rot) 0.2 > 
+		{if}
+	
+			(L.L.elec_busbar_main) sqr
+			(S.L.lights_stand)
+			(S.L.lights_rueck)
+
+			(L.L.cp_schluessel_rot) 0.8 <
+			{if}
+			 	-1 (S.L.Spot_Select)
+				0
+				(S.L.lights_abbl) (S.L.lights_nebel) (S.L.lights_nebelschluss)
+			{else}
+				(L.L.cp_schluessel_rot) 1.6 <
+				{if}
+					(L.L.engine_n) 300 >
+					{if}
+						(L.L.elec_busbar_main) sqr
+						(S.L.lights_abbl)
+						0 (S.L.lights_nebel) (S.L.lights_nebelschluss)
+			 			1 (S.L.Spot_Select)
+					{else}
+			 			-1 (S.L.Spot_Select)
+						0
+						(S.L.lights_abbl) (S.L.lights_nebel) (S.L.lights_nebelschluss)
+					{endif}
+				{else}
+					(L.L.elec_busbar_main) sqr (S.L.lights_abbl) (S.L.lights_nebel) 
+					(S.L.lights_nebelschluss)
+			 		2 (S.L.Spot_Select)
+				{endif}
+			{endif}				
+		{else}
+			0
+			(S.L.lights_stand)
+			(S.L.lights_rueck)
+			(S.L.lights_abbl)
+			(S.L.lights_nebelschluss)
+			(S.L.lights_nebel)
+		 	-1 (S.L.Spot_Select)
+		{endif}
+
+'		Fernlicht
+		(L.L.lights_sw_fern)
+		{if}
+			(L.L.elec_busbar_main) sqr
+			(S.L.lights_fern)
+
+			(L.L.cp_schluessel_rot) 0.8 >
+			{if}
+				(L.L.elec_busbar_main) sqr (S.L.lights_abbl)
+			{else}
+				0 (S.L.lights_abbl)
+			{endif}
+			0 (S.L.Spot_Select)
+		{else}
+			0 (S.L.lights_fern)
+		{endif}
+
+
+
+		
+	{else}
+		-1 (S.L.Spot_Select)
+		0 (S.L.lights_stand) (S.L.lights_abbl) (S.L.lights_rueck) (S.L.lights_nebelschluss) (S.L.lights_fern) (S.L.lights_nebel) 
+	{endif}
+
+
+	(L.L.elec_busbar_avail)
+	{if}
+'		Beleuchtung Oberdeck
+		(L.L.engine_n) 300 >
+		{if}
+			(L.L.cp_licht_oberdeck_sw) (S.L.lights_beleuchtung_oberdeck)
+			(L.L.cp_licht_unterdeck_sw) (S.L.lights_beleuchtung_unterdeck)
+		{else}
+			(L.L.cp_licht_oberdeck_sw)
+			(L.L.cp_licht_unterdeck_sw) &&
+			{if}
+				1 (S.L.lights_beleuchtung_oberdeck)
+				0 (S.L.lights_beleuchtung_unterdeck)
+			{endif}
+			(L.L.cp_licht_oberdeck_sw) !
+			(L.L.cp_licht_unterdeck_sw) &&
+			{if}
+				0 (S.L.lights_beleuchtung_oberdeck)
+				1 (S.L.lights_beleuchtung_unterdeck)
+			{endif}
+			(L.L.cp_licht_oberdeck_sw)
+			(L.L.cp_licht_unterdeck_sw) ! &&
+			{if}
+				1 (S.L.lights_beleuchtung_oberdeck)
+				0 (S.L.lights_beleuchtung_unterdeck)
+			{endif}
+			(L.L.cp_licht_oberdeck_sw) !
+			(L.L.cp_licht_unterdeck_sw) ! &&
+			{if}
+				0 (S.L.lights_beleuchtung_oberdeck)
+				0 (S.L.lights_beleuchtung_unterdeck)
+			{endif}
+		{endif}
+
+
+'		Beleuchtung unten rechts
+'		(L.L.cp_licht_untenrechts_sw) (S.L.lights_beleuchtung_untenrechts)
+
+'		Wechselschaltung Beleuchtung Unterdeck OHNE unten rechts:
+'		(L.L.lights_beleuchtung_untenrechts) ! (L.L.lights_beleuchtung_unterdeck) && (S.L.lights_beleuchtung_unterdeck_ohnevornerechts) 
+
+'		Fahrerlicht
+		(L.L.cp_fahrerlicht_sw) (L.L.cp_schluessel_rot) 0.2 > (L.L.door_0) 0 > (L.L.door_1) 0 > || && ||
+		(L.L.elec_busbar_main) &&
+		{if}	
+			1 (S.L.lights_fahrerlicht)
+		{else}
+			0 (S.L.lights_fahrerlicht)
+		{endif}
+	{else}
+		0 (S.L.lights_fahrerlicht) (S.L.lights_beleuchtung_oberdeck)
+		(S.L.lights_beleuchtung_unterdeck) (S.L.lights_beleuchtung_untenrechts) (S.L.lights_beleuchtung_unterdeck_ohnevornerechts)
+	{endif}
+
+
+
+{end}
+
+
+
+{macro:lights_AI}
+'AI-Einfluss auf Beleuchtung:
+	(L.L.AI)
+	{if}
+		(L.L.AI_Blinker_L) (L.L.AI_Engine) 0.5 > &&
+		{if}
+			1 (S.L.lights_sw_blinker)
+			(M.L.lights_startblinkgeber)
+		{else} 
+			(L.L.AI_Blinker_R) (L.L.AI_Engine) 0.5 > && 
+			{if}
+				2 (S.L.lights_sw_blinker)
+				(M.L.lights_startblinkgeber)
+			{else}
+				0 (S.L.lights_sw_blinker)
+			{endif}
+
+		{endif}
+		
+		(L.L.AI_Blinker_R) (L.L.AI_Blinker_L) &&
+		{if}
+			1 (S.L.lights_sw_warnblinker)
+			(M.L.lights_startblinkgeber)
+		{else}
+			0 (S.L.lights_sw_warnblinker)
+		{endif}
+
+
+'	{endif}
+
+		(L.L.AI_Light) 
+		{if}
+			(L.L.AI_Engine) 0.5 >
+			{if}
+				(L.L.AI_Light) 0.75 >
+				{if}
+					1
+				{else}
+					0.5
+				{endif}
+				(S.L.cp_schluessel_rot)
+
+				(L.L.AI_Light) 1.5 > (S.L.lights_sw_fern)
+			{else}
+				0.5 (S.L.cp_schluessel_rot)
+			{endif}
+		{else}
+			0 (S.L.cp_schluessel_rot) (S.L.lights_sw_fern)
+		{endif}
+
+		(L.L.AI_Interiorlight) (S.L.cp_licht_unterdeck_sw) (S.L.cp_licht_oberdeck_sw)
+	{endif}
+{end}
+
+
+
+{macro:lights_init}
+	-1 (S.L.Spot_Select)
+{end}
+
+{macro:lights_startblinkgeber}
+
+	(L.L.elec_busbar_main) (L.L.elec_busbar_avail) (L.L.lights_sw_warnblinker) && || 
+	(L.L.lights_blinker_running) ! &&
+	{if}
+		(T.L.ev_lights_blinker_on)
+		(C.L.lights_blinkertime_firston) (S.L.lights_blinkgeber_timegap) 
+		1 (S.L.lights_blinkgeber) (S.L.lights_blinker_running)
+		0 (S.L.lights_blinker_runtime)
+	{endif}
+{end}
+
+{macro:lights_runblinkgeber}
+	(L.L.elec_busbar_main) (L.L.lights_sw_blinker) &&
+	(L.L.elec_busbar_avail) (L.L.lights_sw_warnblinker) && ||
+	{if}
+
+		(L.S.Timegap) (L.L.lights_blinker_runtime) + (S.L.lights_blinker_runtime)
+
+		(L.L.lights_blinker_runtime) (L.L.lights_blinkgeber_timegap) > (L.L.lights_sw_blinker) (L.L.lights_sw_warnblinker) || && 
+		{if}
+			(L.L.lights_blinkgeber) ! (S.L.lights_blinkgeber)
+			{if}
+				(T.L.ev_lights_blinker_on)
+				(C.L.lights_blinkertime_on)
+			{else}
+				(T.L.ev_lights_blinker_off)
+				(C.L.lights_blinkertime_off)
+			{endif}
+			(S.L.lights_blinkgeber_timegap)
+			0 (S.L.lights_blinker_runtime)
+		{endif}
+
+		(L.L.lights_sw_warnblinker)
+		{if}
+			(L.L.lights_blinkgeber) (S.L.lights_warnblinkgeber)
+		{else}
+			0 (S.L.lights_warnblinkgeber)
+		{endif}
+	{else}
+		0 (S.L.lights_blinkgeber) (S.L.lights_warnblinkgeber) (S.L.lights_blinker_runtime) (S.L.lights_blinker_running)
+	{endif}
+
+
+
+	
+{end}

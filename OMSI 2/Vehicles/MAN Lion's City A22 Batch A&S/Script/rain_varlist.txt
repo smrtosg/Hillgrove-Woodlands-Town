@@ -1,0 +1,7 @@
+Rain_Window_Norm_Wetness
+Rain_Window_Wiped_Wetness
+Rain_Window_Front_Wetness
+Rain_Wiper_Pos
+Rain_Wiper_Pos_Prev
+Rain_Window_Mirror
+Rain_Window_door1

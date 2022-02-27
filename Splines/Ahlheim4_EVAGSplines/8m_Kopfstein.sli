@@ -1,0 +1,53 @@
+- - - - - - - - - -
+Höhenprofil
+- - - - - - - - - -
+
+[heightprofile]
+-4
+4
+0.100
+0.100
+
+- - - - - - - - - -
+Texturen
+- - - - - - - - - -
+
+[texture]
+str_kopfgr01.bmp
+
+- - - - - - - - - -
+Zuweisung
+- - - - - - - - - -
+
+[profile]
+0
+
+[profilepnt]
+-4
+0.100
+0.995
+0.200
+
+[profilepnt]
+4
+0.100
+0.005
+0.200
+
+- - - - - - - - - -
+Verkehrspfade
+- - - - - - - - - -
+
+[path]
+0
+-2.000
+0.100
+1.000
+1
+
+[path]
+0
+2.000
+0.100
+1.000
+0

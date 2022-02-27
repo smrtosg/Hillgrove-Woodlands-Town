@@ -1,0 +1,39 @@
+BS_Strassenbahn_Schienen01_OE.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-0.05
+0.05
+0.105
+0.105
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+Splines\BS_ADDON_CreativeStreets\Gehwege\texture\BS_Gehweg_Allgemein1.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Schienen ###
+
+[profile]
+0
+
+[profilepnt]
+-0.15
+0.105
+0.736328125
+0.4
+
+[profilepnt]
+0.15
+0.105
+0.4609375
+0.4

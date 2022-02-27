@@ -1,0 +1,17 @@
+elec_V_battery
+elec_I_battery
+elec_V_generator
+elec_busbar_main_sw
+elec_busbar_main
+elec_busbar_avail
+elec_failure_general
+elec_battery_load
+elec_battery_T
+elec_battery_Ri
+elec_battery_Q_curr
+elec_battery_age
+elec_ladekontrolle
+elec_busbar_Rinv_summe
+cp_key_rot
+cp_key_rot_mode
+cp_kluch_rot_mode

@@ -1,0 +1,271 @@
+'##############
+'Wiper Script
+'##############
+
+'Controls Wiper
+
+'(c) 20.03.2009 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- rain
+'- dirt
+
+'Revision History:
+'- Marcel Kuhnt		20.03.2009	Last Change		
+'- Marcel Kuhnt		13.06.2009	Added Switch-Vars	
+'- Marcel Kuhnt		13.06.2009	Added Wiper/Washer Function
+'- Marcel Kuhnt		21.06.2009	Added AI-Activation
+'- Rüdiger Hülsmann	14.05.2010	Added wiperpos_2xspeed for sinusdial movement during half a period
+
+'--------------------------------------------------------------
+
+{macro:wiper_init}
+	0 (S.L.wiperrun)
+{end}
+
+{trigger:cp_mirror_heater_toggle}
+
+(L.L.cp_mirror_heater_sw) ! (S.L.cp_mirror_heater_sw)
+(L.L.cp_mirror_heater_sw)
+{if}
+	(T.L.ev_VDV_on)
+{else}
+	(T.L.ev_VDV_off)
+{endif}	
+
+{end}
+
+{macro:kippschaltersound}
+ l1
+ {if}
+  (T.L.ev_kippschalter_ein)
+ {else}
+  (T.L.ev_kippschalter_aus)
+ {endif} 
+{end}
+
+{macro:wiper_frame}
+(M.L.wiper_left_frame)
+(M.L.wiper_right_frame)
+'-------------------------------------------
+'AI-Einfluss auf den Scheibenwischer:
+'Nur wenn Motor an sein soll:
+	(L.L.AI) (L.L.AI_Engine) 1 = &&
+	{if}
+'Wenn der Intervallwischer nicht ausreicht, dann Dauermodus:
+		(C.L.wiper_intervall) (L.L.PrecipRate) * (C.L.rain_wiper_eff) >
+		{if}
+			0 (S.L.wiper_intervall_sw)
+			1 (S.L.wiper_einaus_sw)
+		{else}
+'Sonst (falls es regnet) den Intervallmodus:
+		(L.L.PrecipRate) 0 >
+		{if}
+			1 (S.L.wiper_intervall_sw)
+			0 (S.L.wiper_einaus_sw)
+		{else}
+			0 (S.L.wiper_intervall_sw)
+			0 (S.L.wiper_einaus_sw)
+		{endif}
+		{endif}
+	{endif}
+
+	(L.L.elec_busbar_main)
+	{if}	
+		(L.L.wiperrunning) 1 =
+		{if}
+			(L.L.wiperrun) (L.S.Timegap) (L.L.wiper_speed) * + (S.L.wiperrun)
+		{endif}
+	
+		(L.L.wiperrun) 2 pi * >
+		{if}
+			(L.L.wiper_einaus_sw) (L.L.wiper_wascher_sw) || (S.L.wiperrunning)
+			0 (S.L.wiperrun) (S.L.wiperrunning)
+		{endif}
+	
+	
+		(L.L.wiperrunning) ! (L.L.wiper_einaus_sw) (L.L.wiper_wascher_sw) || &&
+		{if}
+			1 (S.L.wiperrunning)
+			(T.L.wiper_start)
+			(L.L.Rain_Window_Wiped_Wetness) 0 =
+			{if}
+				(T.L.wiper_start_dry)
+			{endif}
+		{endif}
+
+		(L.L.wiper_wascher_sw)
+		{if}
+			(L.L.wiper_wash) !
+			{if}
+				(T.L.wiper_wash_start)
+			{endif}
+			1 (S.L.wiper_wash)
+			(L.L.wiper_wash_texpos) 3 (L.S.Timegap) * - (S.L.wiper_wash_texpos)
+		{else}
+			0 (S.L.wiper_wash)
+		{endif}
+
+'		Wischer Intervall
+		(L.L.wiper_intervall_sw) (L.L.wiper_intervall_on) ! && (L.L.wiper_intervall_time) (C.L.wiper_intervall) > ||
+		{if}
+		(L.L.wiperrunning) !
+		{if}
+			(T.L.wiper_start)
+			(L.L.Rain_Window_Wiped_Wetness) 0 =
+			{if}
+				(T.L.wiper_start_dry)
+			{endif}
+		{endif}
+		1 (S.L.wiper_intervall_on) (S.L.wiperrunning)
+		(L.S.GetTime) (S.L.wiper_intervall_starttime)
+
+
+	{endif}
+
+	{else}
+		0 (S.L.wiperrunning)
+	{endif}
+
+
+	(L.L.wiperrun) 1.5 pi * + sin 1 + 2 / (S.L.wiperpos) (S.L.Rain_Wiper_Pos) (S.L.Dirt_Wiper_Pos) 
+
+	(L.L.wiperrun) 2 * 1.5 pi * + sin 1 + 2 / (S.L.wiperpos_2xspeed)
+
+'	Wischer schnell
+
+	(L.L.wiper_schnell_sw) (L.L.wiper_einaus_sw) &&
+	{if}
+		3.5 (S.L.wiper_speed)
+	{else}
+		2.5 (S.L.wiper_speed)
+	{endif}
+
+
+
+
+	
+	(L.L.wiper_intervall_sw) !
+	{if}
+		0 (S.L.wiper_intervall_on)
+	{endif}
+
+	(L.L.wiper_intervall_on)
+	{if}
+		(L.S.getTime) (L.L.wiper_intervall_starttime) - (S.L.wiper_intervall_time)
+	{else}
+		0 (S.L.wiper_intervall_time)
+	{endif}
+	
+'     Heater function (window of mirror)
+  
+  (L.L.cp_mirror_heater_sw) (L.L.elec_busbar_main) && (S.L.cp_mirror_heater_indicator) 
+  
+ (L.L.cp_mirror_heater_sw)
+ (L.L.elec_busbar_main) 0 > &&
+  {if}
+
+(L.L.Rain_Window_Mirror) (L.S.Timegap) 0.4 * - 0 max (S.L.Rain_Window_Mirror)
+  {endif}
+
+  
+
+
+
+
+
+
+'Wiper function (wetness remove):	
+
+	(L.L.Rain_Window_Wiped_Wetness)	
+'   Calc Diff.:
+	(L.L.Rain_Wiper_Pos) (L.L.Rain_wiper_Pos_Prev) - abs
+'   Multiply with wiper effectivity
+	(C.L.rain_wiper_eff) *
+'   Subtract and set
+	 -
+	0 max
+	(S.L.Rain_Window_Wiped_Wetness)
+
+	(L.L.Rain_Wiper_Pos) (S.L.Rain_Wiper_Pos_Prev)
+
+
+'Wiper function (dirt remove):	
+
+	(L.L.Rain_Window_Wiped_Wetness) (L.L.wiper_wascher_sw) (L.L.wiperrunning) && ||
+	{if}
+	
+		(L.L.Dirt_Wiped)	
+'  	Calc Diff.:
+		(L.L.Dirt_Wiper_Pos) (L.L.Dirt_wiper_Pos_Prev) - abs
+'   	Multiply with wiper effectivity
+		(C.L.Dirt_wiper_eff) *
+'  	Subtract and set
+		 -
+		0 max
+		(S.L.Dirt_Wiped)
+	
+		(L.L.Dirt_Wiper_Pos) (S.L.Dirt_Wiper_Pos_Prev)
+	{endif}
+
+
+'Washer wetness
+
+	(L.L.wiper_wash)
+	{if}
+		(L.S.Timegap) 0.5 * s0
+
+		(L.L.Rain_Window_Front_Wetness) l0
+		+ 1 min 0 max
+		(S.L.Rain_Window_Front_Wetness)
+	
+		(L.S.Timegap) s0
+
+		(L.L.Rain_Window_Wiped_Wetness) l0
+		+ 1 min 0 max
+		(S.L.Rain_Window_Wiped_Wetness)
+	{endif}
+	
+{end}
+
+{macro:wiper_left_frame}
+ (L.L.wiperpos) (F.L.wiperpos_left_pos) (S.L.wiperpos_left)
+{end}
+
+{macro:wiper_right_frame}
+ (L.L.wiperpos) (F.L.wiperpos_right_pos) (S.L.wiperpos_right)
+ 
+(L.L.PrecipRate) 0 <
+{if}
+	0.05 s0
+{else}
+	(L.L.PrecipRate) 0 >
+	{if}
+		(L.L.PrecipRate) s0
+ 	{endif}
+{endif}
+ 
+
+
+
+(L.L.window_textcoordY) l0 (L.S.Timegap) * - 1 * (S.L.window_textcoordY)
+ 
+ (L.L.door_0) 0.6 >
+ {if}
+ (L.L.Rain_Window_door0) (L.S.Timegap) 0.5 * - 0 max (S.L.Rain_Window_door0)
+ {endif}
+ 
+ (L.L.door_1) 0.6 >
+ {if}
+ (L.L.Rain_Window_door1) (L.S.Timegap) 0.5 * - 0 max (S.L.Rain_Window_door1)
+ {endif}
+ 
+ (L.L.cp_fahrerfenster_pos) 0.2 >
+ {if}
+ (L.L.Rain_Window_fahrf) (L.S.Timegap) (L.L.cp_fahrerfenster_pos) * - 0 max (S.L.Rain_Window_fahrf)
+ {endif}
+ 
+{end}

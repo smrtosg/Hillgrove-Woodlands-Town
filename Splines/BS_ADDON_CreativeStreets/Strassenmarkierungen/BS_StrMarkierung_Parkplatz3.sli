@@ -1,0 +1,62 @@
+BS_StrMarkierung_Parkplatz3.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-2.5
+2.5
+0.1
+0.1
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+BS_StrMarkierung_white_parking.tga
+
+[matl_alpha]
+1
+
+[texture]
+str_k_gehweg.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Markierung ###
+
+[profile]
+0
+
+[profilepnt]
+-2.5
+0.105
+0.005
+0.2
+
+[profilepnt]
+2.5
+0.105
+0.995
+0.2
+
+### Untergrund ###
+
+[profile]
+1
+
+[profilepnt]
+-2.5
+0.103
+0.005
+0.3
+
+[profilepnt]
+2.5
+0.103
+0.995
+0.3

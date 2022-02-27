@@ -1,0 +1,32 @@
+BS_Sonstiges_Bordstein_M.sli
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+BS_Gullideckel1.png
+
+[matl_alpha]
+1
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+
+
+[profile]
+0
+
+[profilepnt]
+-0.5
+0.105
+0.005
+0.99
+
+[profilepnt]
+0.5
+0.105
+0.995
+0.99

@@ -1,0 +1,41 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-2.500
+2.500
+0.100
+0.100
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+NNP_Gehweg011.bmp
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Fahrbahn
+
+[profile]
+0
+
+[profilepnt]
+-2.500
+0.100
+0.005
+0.200
+
+[profilepnt]
+2.500
+0.100
+0.995
+0.200
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +

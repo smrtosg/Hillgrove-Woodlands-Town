@@ -1,0 +1,15 @@
+[const]
+collision_energy_elec_threshold_min
+100
+
+[const]
+collision_energy_elec_threshold_max
+1000
+
+[const]
+collision_energy_eng_threshold_min
+20
+
+[const]
+collision_energy_eng_threshold_max
+100

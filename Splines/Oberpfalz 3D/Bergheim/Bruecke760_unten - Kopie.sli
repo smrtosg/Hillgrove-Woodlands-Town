@@ -1,0 +1,56 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-3.800
+3.800
+0.100
+0.100
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+..\..\..\O3D_SimpleCrossingSplines\Texture\Beton1.dds
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Fahrbahn
+
+[profile]
+0
+
+[profilepnt]
+5.000
+0.100
+0.200
+0.200
+
+[profilepnt]
+0.000
+0.100
+0.995
+0.200
+
+[profile]
+0
+
+[profilepnt]
+0.000
+0.100
+0.005
+0.200
+
+[profilepnt]
+-5.000
+0.100
+0.800
+0.200
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +

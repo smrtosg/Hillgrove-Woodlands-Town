@@ -1,0 +1,40 @@
+File created with StreetCreator v1.000
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-5.000
+5.000
+0.100
+0.100
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+str_betonplatten.bmp
+
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Grass strip:
+
+[profile]
+0
+
+[profilepnt]
+-5.0
+0.1
+0.001
+0.100
+
+[profilepnt]
+5.0
+0.1
+0.999
+0.100

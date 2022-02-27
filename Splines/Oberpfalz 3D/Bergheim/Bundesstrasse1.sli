@@ -1,0 +1,98 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-6.500
+6.500
+0.100
+0.100
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+str_asphdrk_2A.dds
+
+[texture]
+str_asphdrk_1A.dds
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Linker Standstreifen
+
+[profile]
+1
+
+[profilepnt]
+-6.500
+0.100
+0.625
+0.200
+
+[profilepnt]
+-4.000
+0.100
+0.005
+0.200
+
+'Fahrbahn
+
+[profile]
+0
+
+[profilepnt]
+-4.000
+0.100
+0.995
+0.200
+
+[profilepnt]
+0.000
+0.100
+0.005
+0.200
+
+[profilepnt]
+4.000
+0.100
+0.995
+0.200
+
+'Rechter Standstreifen
+
+[profile]
+1
+
+[profilepnt]
+4.000
+0.100
+0.005
+0.200
+
+[profilepnt]
+6.500
+0.100
+0.625
+0.200
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +
+
+[path]
+0
+-2
+0.1
+1
+1
+
+[path]
+0
+2
+0.1
+1
+0

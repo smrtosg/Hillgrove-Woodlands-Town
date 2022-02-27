@@ -1,0 +1,76 @@
+=== Created with Simple Spline Editor ===
+=== Author: Michael ===
+
+=== Height profiles ===
+== <Unnamed profile> ==
+== Breite: 8 Meter ==
+[heightprofile]
+-4
+4
+0.1
+0.1
+
+=== Textures ===
+== 0 ==
+[texture]
+str_asphdrk.bmp
+[matl]
+str_asphdrk.bmp
+0
+[matl_alpha]
+2
+
+== 1 ==
+[texture]
+asphalt_1_alt.bmp
+[matl]
+asphalt_1_alt.bmp
+0
+[matl_alpha]
+2
+
+== 2 ==
+[texture]
+vkl_hof.bmp
+[matl]
+vkl_hof.bmp
+0
+[matl_alpha]
+2
+
+=== Textur wrappings ===
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+-4
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+0
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+0
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+4
+0.1
+0.995
+0.2
+== END ==
+
+=== Pathes ===

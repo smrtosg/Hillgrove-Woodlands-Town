@@ -1,0 +1,39 @@
+BS_StrMarkierung_Weiss_S.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-0.06
+0.06
+0.1
+0.1
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+Splines\BS_ADDON_CreativeStreets\Gehwege\texture\BS_Gehweg_Allgemein1.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Markierung ###
+
+[profile]
+0
+
+[profilepnt]
+-0.06
+0.105
+0.736328125
+0.4
+
+[profilepnt]
+0.06
+0.105
+0.79
+0.4

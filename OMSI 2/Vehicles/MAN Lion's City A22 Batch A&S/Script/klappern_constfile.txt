@@ -1,0 +1,3 @@
+[const]
+klappern_faktor
+1.0

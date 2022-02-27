@@ -1,0 +1,426 @@
+#####COMMENT#####								
+								
+Hofdatei (universell) für die Map Krummenaab by Tarik K.							
+Viel Spaß beim Fahren								
+								
+#####END COMMENT#####								
+								
+###global options								
+								
+[name]								
+Krummenaab						
+								
+[servicetrip]								
+Betriebsfahrt							
+								
+[global_strings]
+3
+Krummenaab
+Krummenaab
+Krummenaab								
+								
+stringcount_terminus								
+22								
+								
+stringcount_busstop								
+4								
+	Zahl	Zielname	IBIS 1	Matrix Oben	Matrix unten	Seiten_Matrix	Rollband	Ibis 2	Steckschild	Krüger-Bitmap	Front-Annax	Heck-Annax	Ibis-Route (Ikarus)	Busfanat Oben	Busfanat Unten	LAWO Vorne oben	LAWO vorne unten	LAWO Seite oben	LAWO Seite unten	Ibis Wien	ÜL Oben	ÜL Unten	NL 2x3 Innen	NL 2x3 Innen II
+[addterminus_list]																								
+{ALLEX}	0	Leerfeld	LEERFELD				Leerfeld.tga	Leerfeld																
+{ALLEX}	1	Betriebsfahrt	BETRIEBSFAHRT	Betriebsfahrt		Betriebsfahrt		Betriebsfahrt			Betriebsfahrt			Betriebsfahrt		Betriebsfahrt		Betriebsfahrt*I	Nicht einsteigen	Betriebsfahrt	Betriebsfahrt			
+{ALLEX}	2	DB Oberbayernbus	OBERBAYERNBUS	Deutsche Bahn	Oberbayernbus	DB Oberbayernbus		DB Oberbayernbus			OBERBAYERNBUS	DB		Deutsche Bahn	Oberbayernbus	Deutsche Bahn	Oberbayernbus	Oberbayernbus		Oberbayernbus	Deutsche Bahn	Oberbayernbus		
+{ALLEX}	3	Pause	PAUSE	Pause		Pause		Pause			Pause			Pause		Pause		Pause*I	Nicht einsteigen	Pause	Pause			
+	4	Flossenbürg Bhf.	FLOSSENBÜRG BHF	Flossenbürg	Bahnhof	Flossenbürg Bhf.		Flossenbürg Bahnhof			Flossenbuerg Bf.	6295		Flossenbürg	Bahnhof	Flossenbürg	Bahnhof	Flossenbürg Bhf.*I	ü. Baumgarten	Flossenbürg Bhf.	Flossenbürg	Bahnhof	ü. Baumgarten	Wöllershof – Rothenbürg – Schlesen
+	10004	Flossenbürg Bhf.	FLOSSENBÜRG BHF	Flossenbürg	Nadrazi	Flossenbürg Bhf.		Flossenbürg Bahnhof			Flossenbuerg Bf.	6295		Flossenbürg	Nadrazi	Flossenbürg	Nadrazi	Flossenbürg Bhf.*I	ü. Baumgarten	Flossenbürg Bhf.	Flossenbürg	Nadrazi	ü. Baumgarten	Wöllershof – Rothenbürg – Schlesen
+	11004	Flossenbürg Bhf.	FLOSSENBÜRG BHF	Flossenbürg Bhf.	Flossenb. Nadrazi	Flossenbürg Bhf.		Flossenbürg Bahnhof			Flossenbuerg Bf.	6295		Flossenbürg Bhf.	Flossenb. Nadrazi*I	Flossenbürg Bhf.	Flossenb. Nadrazi*I	Flossenbürg Bhf.*I	ü. Baumgarten	Flossenbürg Bhf.	Flossenbürg Bhf.	Flossenb. Nadrazi	ü. Baumgarten	Wöllershof – Rothenbürg – Schlesen
+	20004	Flossenbürg Bhf.	FLOSSENBÜRG BHF	Flossenbürg*B	Bahnhof	Flossenbürg Bhf.		Flossenbürg Bahnhof			Flossenbuerg Bf.	6295		Flossenbürg	Bahnhof	Flossenbürg	Bahnhof	Flossenbürg Bhf.*I	ü. Baumgarten	Flossenbürg Bhf.	Flossenbürg Bhf.		ü. Baumgarten	Wöllershof – Rothenbürg – Schlesen
+	21004	Flossenbürg Bhf.	FLOSSENBÜRG BHF	Flossenbürg*B	Nádraží	Flossenbürg Bhf.		Flossenbürg Bahnhof			Flossenbuerg Bf.	6295		Flossenbürg	Nadrazi	Flossenbürg	Nadrazi	Flossenbürg Bhf.*I	ü. Baumgarten	Flossenbürg Bhf.	Flossenbürg	Nadrazi	ü. Baumgarten	Wöllershof – Rothenbürg – Schlesen
+	22004	Flossenbürg Bhf.	FLOSSENBÜRG BHF	Flossenbürg Bhf.*B	Flossenb. Nádraží*B*I	Flossenbürg Bhf.		Flossenbürg Bahnhof			Flossenbuerg Bf.	6295		Flossenbürg Bhf.	Flossenb. Nadrazi*I	Flossenbürg Bhf.	Flossenb. Nadrazi*I	Flossenbürg Bhf.*I	ü. Baumgarten	Flossenbürg Bhf.	Flossenbürg Bhf.	Flossenb. Nadrazi	ü. Baumgarten	Wöllershof – Rothenbürg – Schlesen
+	5	Eger Bahnhof	EGER BAHNHOF	Eger	Bahnhof	Eger Bahnhof		Eger Bahnhof			Eger Bahnhof	6295		Eger	Bahnhof	Eger	Bahnhof	Eger Bahnhof*I	ü. Baumgarten	Eger Bahnhof	Eger	Bahnhof	ü. Baumgarten	Schlesen – Rothenbürg – Wöllershof
+	10005	Eger Bahnhof	EGER BAHNHOF	Cheb Nadrazi		Eger Bahnhof		Eger Bahnhof			Eger Bahnhof	6295		Cheb	Nadrazi	Cheb	Nadrazi	Eger Bahnhof*I	ü. Baumgarten	Eger Bahnhof	Cheb Nadrazi		ü. Baumgarten	Schlesen – Rothenbürg – Wöllershof
+	11005	Eger Bahnhof	EGER BAHNHOF	Eger Bahnhof	Cheb Nadrazi	Eger Bahnhof		Eger Bahnhof			Eger Bahnhof	6295		Eger Bahnhof	Cheb Nadrazi*I	Eger Bahnhof	Cheb Nadrazi*I	Eger Bahnhof*I	ü. Baumgarten	Eger Bahnhof	Eger Bahnhof	Cheb Nadrazi	ü. Baumgarten	Schlesen – Rothenbürg – Wöllershof
+	20005	Eger Bahnhof	EGER BAHNHOF	Eger*B	Bahnhof	Eger, Bahnhof		Eger Bahnhof	Eger Bhf.		Eger Bahnhof	6295		Eger	Bahnhof	Eger	Bahnhof	Eger Bahnhof*I	ü. Baumgarten	Eger Bahnhof	Eger	Bahnhof	ü. Baumgarten	Schlesen – Rothenbürg – Wöllershof
+	21005	Eger Bahnhof	EGER BAHNHOF	Cheb*B	Nádraží	Cheb Nadrazi		Eger Bahnhof	Eger Bhf.		Eger Bahnhof	6295		Cheb	Nadrazi	Cheb	Nadrazi	Eger Bahnhof*I	ü. Baumgarten	Eger Bahnhof	Cheb	Nadrazi	ü. Baumgarten	Schlesen – Rothenbürg – Wöllershof
+	22005	Eger Bahnhof	EGER BAHNHOF	Eger, Bhf.*B	Cheb, Nádraží*B*I	Nádraží	Cheb Nadrazi	Eger Bahnhof	Eger Bhf.		Eger Bahnhof	6295		Eger Bahnhof	Cheb Nadrazi*I	Eger Bahnhof	Cheb Nadrazi*I	Eger Bahnhof*I	ü. Baumgarten	Eger Bahnhof	Eger Bahnhof	Cheb Nadrazi	ü. Baumgarten	Schlesen – Rothenbürg – Wöllershof
+	6	Shuttle Flossenbürg KZ	FLOSSENBUERG KZ	Flossenbürg	KZ-Gedenkstätte	Flossenbürg	Flossenbürg	Flossenbürg KZ			Flossenbuerg KZ	S31		Flossenbürg*I	KZ-Gedenkstätte	Flossenbürg*I	KZ-Gedenkstätte	Flossenbürg KZ*I	ü. Baumgarten	Flossenbürg KZ	Flossenbürg	KZ-Gedenkstätte	ü. Baumgarten	Shuttlebus nach Flossenbürg KZ
+	10006	Shuttle Flossenbürg KZ	FLOSSENBUERG KZ	Shuttle	Flossenbürg	Flossenbürg	Flossenbürg	Flossenbürg KZ			Shuttle	S31		Shuttle*I	Flossenbürg	Shuttle*I	Flossenbürg	Flossenbürg KZ*I	ü. Baumgarten	Flossenbürg KZ	Shuttle	Flossenbürg	ü. Baumgarten	Shuttlebus nach Flossenbürg KZ
+	20006	Shuttle Flossenbürg KZ	FLOSSENBUERG KZ	Flossenbürg*B*I	KZ-Gedenkstätte	Flossenbürg	Flossenbürg	Flossenbürg KZ			Flossenbuerg KZ	S31		Flossenbürg*I	KZ-Gedenkstätte	Flossenbürg*I	KZ-Gedenkstätte	Flossenbürg KZ*I	ü. Baumgarten	Flossenbürg KZ	Flossenbürg	KZ-Gedenkstätte	ü. Baumgarten	Shuttlebus nach Flossenbürg KZ
+	21006	Shuttle Flossenbürg KZ	FLOSSENBUERG KZ	Shuttle*B*I	Flossenbürg	Flossenbürg	Flossenbürg	Flossenbürg KZ			Shuttle	S31		Shuttle*I	Flossenbürg	Shuttle*I	Flossenbürg	Flossenbürg KZ*I	ü. Baumgarten	Flossenbürg KZ	Shuttle	Flossenbürg	ü. Baumgarten	Shuttlebus nach Flossenbürg KZ
+	7	Shuttle Krummenaab	HAUPTBAHNHOF	Krummenaab	Hauptbahnhof	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Krummenaab Hbf.	S31		Krummenaab*I	Hauptbahnhof	Krummenaab*I	Hauptbahnhof	Krummenaab Hbf.*I	ü. Baumgarten	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	ü. Baumgarten	Shuttlebus nach Krummenaab Hbf
+	10007	Shuttle Krummenaab	HAUPTBAHNHOF	Shuttle	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Shuttle	S31		Shuttle*I	Krummenaab Hbf.	Shuttle*I	Krummenaab Hbf.	Krummenaab Hbf.*I	ü. Baumgarten	Krummenaab Hbf.	Shuttle	Krummenaab Hbf.	ü. Baumgarten	Shuttlebus nach Krummenaab Hbf
+	20007	Shuttle Krummenaab	HAUPTBAHNHOF	Krummenaab*B*I	Hauptbahnhof	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Krummenaab Hbf.	S31		Krummenaab*I	Hauptbahnhof	Krummenaab*I	Hauptbahnhof	Krummenaab Hbf.*I	ü. Baumgarten	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	ü. Baumgarten	Shuttlebus nach Krummenaab Hbf
+	21007	Shuttle Krummenaab	HAUPTBAHNHOF	Shuttle*B*I	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Shuttle	S31		Shuttle*I	Krummenaab Hbf.	Shuttle*I	Krummenaab Hbf.	Krummenaab Hbf.*I	ü. Baumgarten	Krummenaab Hbf.	Shuttle	Krummenaab Hbf.	ü. Baumgarten	Shuttlebus nach Krummenaab Hbf
+	8	City Brandweiher	BRANDWEIHER	Brandweiher	ü. Polizeidirektion	Brandweiher	Brandweiher	Brandweiher			Brandweiher	C42		Brandweiher*I	ü. Polizeidirektion	Brandweiher*I	ü. Polizeidirektion	Brandweier*I	ü. Polizeidirektion	Brandweier	Brandweiher	ü. Polizeidirekt.	ü. Polizeidirektion	Freyung – JVA – Friedrich-Ebert-Str.
+	10008	City Brandweiher	BRANDWEIHER	City	Brandweiher	Brandweiher	Brandweiher	Brandweiher			City	C42		City*I	Brandweiher	City*I	Brandweiher	Brandweier*I	ü. Polizeidirektion	Brandweier	City	Brandweiher	ü. Polizeidirektion	Freyung – JVA – Friedrich-Ebert-Str.
+	20008	City Brandweiher	BRANDWEIHER	Brandweiher*B*I	ü. Polizeidirektion	Brandweiher	Brandweiher	Brandweiher			Brandweiher	C42		Brandweiher*I	ü. Polizeidirektion	Brandweiher*I	ü. Polizeidirektion	Brandweier*I	ü. Polizeidirektion	Brandweier	Brandweiher	ü. Polizeidirekt.	ü. Polizeidirektion	Freyung – JVA – Friedrich-Ebert-Str.
+	21008	City Brandweiher	BRANDWEIHER	City*B*I	Brandweiher	Brandweiher	Brandweiher	Brandweiher			City	C42		City*I	Brandweiher	City*I	Brandweiher	Brandweier*I	ü. Polizeidirektion	Brandweier	City	Brandweiher	ü. Polizeidirektion	Freyung – JVA – Friedrich-Ebert-Str.
+	9	City Krummenaab	HAUPTBAHNHOF	Krummenaab	Hauptbahnhof	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Krummenaab Hbf.	C42		Krummenaab*I	Hauptbahnhof	Krummenaab*I	Hauptbahnhof	Krummenaab Hbf.*I	ü. Polizeidirektion	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	ü. Polizeidirektion	Friedrich-Ebert-Str. - JVA – Freyung
+	10009	City Krummenaab	HAUPTBAHNHOF	City	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			City	C42		City*I	Krummenaab Hbf.	City*I	Krummenaab Hbf.	Krummenaab Hbf.*I	ü. Polizeidirektion	Krummenaab Hbf.	City	Krummenaab Hbf.	ü. Polizeidirektion	Friedrich-Ebert-Str. - JVA – Freyung
+	20009	City Krummenaab	HAUPTBAHNHOF	Krummenaab*B*I	Hauptbahnhof	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Krummenaab Hbf.	C42		Krummenaab*I	Hauptbahnhof	Krummenaab*I	Hauptbahnhof	Krummenaab Hbf.*I	ü. Polizeidirektion	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	ü. Polizeidirektion	Friedrich-Ebert-Str. - JVA – Freyung
+	21009	City Krummenaab	HAUPTBAHNHOF	City*B*I	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			City	C42		City*I	Krummenaab Hbf.	City*I	Krummenaab Hbf.	Krummenaab Hbf.*I	ü. Polizeidirektion	Krummenaab Hbf.	City	Krummenaab Hbf.	ü. Polizeidirektion	Friedrich-Ebert-Str. - JVA – Freyung
+	10	City Hammerweg	HAUPTBAHNHOF	Krummenaab	Hammerweg	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Hammerweg	C42		Krummenaab*I	Hammerweg	Krummenaab*I	Hammerweg	Krummenaab Hbf.*I	ü. Hauptbahnhof	Krummenaab Hbf.	Krummenaab	Hammerweg	ü. Hauptbahnhof	Friedrich-Ebert-Str. - JVA – Freyung
+	10010	City Hammerweg	HAUPTBAHNHOF	City	Hammerweg	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			City	C42		City*I	Hammerweg	City*I	Hammerweg	Krummenaab Hbf.*I	ü. Hauptbahnhof	Krummenaab Hbf.	City	Hammerweg	ü. Hauptbahnhof	Friedrich-Ebert-Str. - JVA – Freyung
+	20010	City Hammerweg	HAUPTBAHNHOF	Krummenaab*B*I	Hammerweg	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Hammerweg	C42		Krummenaab*I	Hammerweg	Krummenaab*I	Hammerweg	Krummenaab Hbf.*I	ü. Hauptbahnhof	Krummenaab Hbf.	Krummenaab	Hammerweg	ü. Hauptbahnhof	Friedrich-Ebert-Str. - JVA – Freyung
+	21010	City Hammerweg	HAUPTBAHNHOF	City*B*I	Hammerweg	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			City	C42		City*I	Hammerweg	City*I	Hammerweg	Krummenaab Hbf.*I	ü. Hauptbahnhof	Krummenaab Hbf.	City	Hammerweg	ü. Hauptbahnhof	Friedrich-Ebert-Str. - JVA – Freyung
+	11	Intercity Krummenaab	HAUPTBAHNHOF	Krummenaab	Hauptbahnhof	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Krummenaab Hbf.	I51		Krummenaab*I	Hauptbahnhof	Krummenaab*I	Hauptbahnhof	Krummenaab Hbf.*I	ü. Wildenau	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	ü. Wildenau	Püchersreuth – Schönficht – Freyung
+	10011	Intercity Krummenaab	HAUPTBAHNHOF	Intercity	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Intercity	I51		Intercity*I	Krummenaab Hbf.	Intercity*I	Krummenaab Hbf.	Krummenaab Hbf.*I	ü. Wildenau	Krummenaab Hbf.	Intercity	Krummenaab Hbf.	ü. Wildenau	Püchersreuth – Schönficht – Freyung
+	20011	Intercity Krummenaab	HAUPTBAHNHOF	Krummenaab*B*I	Hauptbahnhof	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Krummenaab Hbf.	I51		Krummenaab*I	Hauptbahnhof	Krummenaab*I	Hauptbahnhof	Krummenaab Hbf.*I	ü. Wildenau	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	ü. Wildenau	Püchersreuth – Schönficht – Freyung
+	21011	Intercity Krummenaab	HAUPTBAHNHOF	Intercity*B*I	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Intercity	I51		Intercity*I	Krummenaab Hbf.	Intercity*I	Krummenaab Hbf.	Krummenaab Hbf.*I	ü. Wildenau	Krummenaab Hbf.	Intercity	Krummenaab Hbf.	ü. Wildenau	Püchersreuth - Schönficht – Freyung
+	12	Intercity Ilsenbach	ILSENBACH	Ilsenbach	ü. Schönficht Bhf.	Ilsenbach		Ilsenbach			Ilsenbach	I51		Ilsenbach*I	ü. Schönficht Bhf.	Ilsenbach*I	ü. Schönficht Bhf.	Ilsenbach*I	ü. Wildenau	Ilsenbach	Ilsenbach	ü. Schönficht Bhf.	ü. Schönficht Bahnhof	Freyung – Wildenau – Püchersreuth
+	10012	Intercity Ilsenbach	ILSENBACH	Intercity	Ilsenbach	Ilsenbach		Ilsenbach			Intercity	I51		Intercity*I	Ilsenbach	Intercity*I	Ilsenbach	Ilsenbach*I	ü. Wildenau	Ilsenbach	Intercity	Ilsenbach	ü. Schönficht Bahnhof	Freyung – Wildenau – Püchersreuth
+	20012	Intercity Ilsenbach	ILSENBACH	Ilsenbach*B*I	ü. Schönficht Bhf.	Ilsenbach		Ilsenbach			Ilsenbach	I51		Ilsenbach*I	ü. Schönficht Bhf.	Ilsenbach*I	ü. Schönficht Bhf.	Ilsenbach*I	ü. Wildenau	Ilsenbach	Ilsenbach	ü. Schönficht Bhf.	ü. Schönficht Bahnhof	Freyung – Wildenau – Püchersreuth
+	21012	Intercity Ilsenbach	ILSENBACH	Intercity*B*I	Ilsenbach	Ilsenbach		Ilsenbach			Intercity	I51		Intercity*I	Ilsenbach	Intercity*I	Ilsenbach	Ilsenbach*I	ü. Wildenau	Ilsenbach	Intercity	Ilsenbach	ü. Schönficht Bahnhof	Freyung – Wildenau – Püchersreuth
+	13	Intercity Krummenaab 	HAUPTBAHNHOF	Krummenaab Hbf.	über Brandweiher	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Krummenaab Hbf.	I51		Krummenaab Hbf.*I	über Brandweiher	Krummenaab Hbf.*I	über Brandweiher	Krummenaab Hbf.*I	ü. Brandweiher	Krummenaab Hbf.	Krummenaab Hbf.	ü. Brandweiher	ü. Brandweiher	Püchersreuth – Schönficht – Freyung
+	10013	Intercity Krummenaab 	HAUPTBAHNHOF	Intercity	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Intercity	I51		Intercity*I	Krummenaab Hbf.	Intercity*I	Krummenaab Hbf.	Krummenaab Hbf.*I	ü. Brandweiher	Krummenaab Hbf.	Intercity	Krummenaab Hbf.	ü. Brandweiher	Püchersreuth – Schönficht – Freyung
+	20013	Intercity Krummenaab 	HAUPTBAHNHOF	Krummenaab Hbf.*B*I	über Brandweiher	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Krummenaab Hbf.	I51		Krummenaab Hbf.*I	über Brandweiher	Krummenaab Hbf.*I	über Brandweiher	Krummenaab Hbf.*I	ü. Brandweiher	Krummenaab Hbf.	Krummenaab Hbf.	ü. Brandweiher	ü. Brandweiher	Püchersreuth – Schönficht – Freyung
+	21013	Intercity Krummenaab 	HAUPTBAHNHOF	Intercity*B*I	Krummenaab Hbf.	Krummenaab	Hauptbahnhof	Krummenaab Hbf.			Intercity	I51		Intercity*I	Krummenaab Hbf.	Intercity*I	Krummenaab Hbf.	Krummenaab Hbf.*I	ü. Brandweiher	Krummenaab Hbf.	Intercity	Krummenaab Hbf.	ü. Brandweiher	Püchersreuth - Schönficht – Freyung
+	14	Intercity Ilsenbach 	ILSENBACH	Ilsenbach	über Brandweiher	Ilsenbach		Ilsenbach			Ilsenbach	I51		Ilsenbach*I	über Brandweiher	Ilsenbach*I	über Brandweiher	Ilsenbach*I	ü. Brandweiher	Ilsenbach	Ilsenbach	über Brandweiher	ü. Brandweiher	Freyung – Wildenau – Püchersreuth
+	10014	Intercity Ilsenbach 	ILSENBACH	Intercity	Ilsenbach	Ilsenbach		Ilsenbach			Intercity	I51		Intercity*I	Ilsenbach	Intercity*I	Ilsenbach	Ilsenbach*I	ü. Brandweiher	Ilsenbach	Intercity	Ilsenbach	ü. Brandweiher	Freyung – Wildenau – Püchersreuth
+	20014	Intercity Ilsenbach 	ILSENBACH	Ilsenbach*B*I	über Brandweiher	Ilsenbach		Ilsenbach			Ilsenbach	I51		Ilsenbach*I	über Brandweiher	Ilsenbach*I	über Brandweiher	Ilsenbach*I	ü. Brandweiher	Ilsenbach	Ilsenbach	über Brandweiher	ü. Brandweiher	Freyung – Wildenau – Püchersreuth
+	21014	Intercity Ilsenbach 	ILSENBACH	Intercity*B*I	Ilsenbach	Ilsenbach		Ilsenbach			Intercity	I51		Intercity*I	Ilsenbach	Intercity*I	Ilsenbach	Ilsenbach*I	ü. Brandweiher	Ilsenbach	Intercity	Ilsenbach	ü. Brandweiher	Freyung – Wildenau – Püchersreuth
+	15	City Tierheim	TIERHEIM	Tierheim	ü. Hauptbahnhof	Tierheim		Tierheim			Tierheim	C41		Tierheim*I	ü. Hauptbahnhof	Tierheim*I	ü. Hauptbahnhof	Tierheim*I	ü. Hauptbahnhof	Tierheim	Tierheim	ü. Hauptbahnhof	ü. Hauptbahnhof	
+	10015	City Tierheim	TIERHEIM	City	Tierheim	Tierheim		Tierheim			City	C41		City*I	Tierheim	City*I	Tierheim	Tierheim*I	ü. Hauptbahnhof	Tierheim	City	Tierheim	ü. Hauptbahnhof	
+	20015	City Tierheim	TIERHEIM	Tierheim*B*I	ü. Hauptbahnhof	Tierheim		Tierheim			Tierheim	C41		Tierheim*I	ü. Hauptbahnhof	Tierheim*I	ü. Hauptbahnhof	Tierheim*I	ü. Hauptbahnhof	Tierheim	Tierheim	ü. Hauptbahnhof	ü. Hauptbahnhof	
+	21015	City Tierheim	TIERHEIM	City*B*I	Tierheim	Tierheim		Tierheim			City	C41		City*I	Tierheim	City*I	Tierheim	Tierheim*I	ü. Hauptbahnhof	Tierheim	City	Tierheim	ü. Hauptbahnhof	
+	16	City Stadtgarten	STADTGARTEN	Krummenaab	Stadtgarten	Krummenaab		Stadtgarten			Stadtgarten	C41		Krummenaab*I	Stadtgarten	Krummenaab*I	Stadtgarten	Stadtgarten*I	ü. Hauptbahnhof	Stadtgarten	Krummenaab	Stadtgarten	ü. Hauptbahnhof	
+	10016	City Stadtgarten	STADTGARTEN	City	Stadtgarten	Krummenaab		Stadtgarten			City	C41		City*I	Stadtgarten	City*I	Stadtgarten	Stadtgarten*I	ü. Hauptbahnhof	Stadtgarten	City	Stadtgarten	ü. Hauptbahnhof	
+	20016	City Stadtgarten	STADTGARTEN	Krummenaab*B*I	Stadtgarten	Krummenaab		Stadtgarten			Stadtgarten	C41		Krummenaab*I	Stadtgarten	Krummenaab*I	Stadtgarten	Stadtgarten*I	ü. Hauptbahnhof	Stadtgarten	Krummenaab	Stadtgarten	ü. Hauptbahnhof	
+	21016	City Stadtgarten	STADTGARTEN	City*B*I	Stadtgarten	Krummenaab		Stadtgarten			City	C41		City*I	Stadtgarten	City*I	Stadtgarten	Stadtgarten*I	ü. Hauptbahnhof	Stadtgarten	City	Stadtgarten	ü. Hauptbahnhof	
+[end]								
+								
+								
+								
+Ident	IBIS	Display 1	Display 2	IBIS2				
+[addbusstop_list]								
+Flossenbürg Bhf.	FLOSSENBÜRG BHF	Flossenbürg Bhf.	Flossenb. Nadrazi	Flossenbürg Bhf.
+Flossenbürg Viadukt	FLOSSENB. VIAD.	Flossenbürg Viadukt		Flossenbürg Viadukt
+Flossenbürg KZ	FLOSSENBÜRG KZ	Flossenbürg KZ		Flossenbürg KZ
+Schlesen	SCHLESEN	Schlesen		Schlesen
+Oberbrück	OBERBRÜCK	Oberbrück		Oberbrück
+Rothenbürg	ROTHENBÜRG	Rothenbürg		Rothenbürg
+Haid	HAID	Haid		Haid
+Baumgarten	BAUMGARTEN	Baumgarten		Baumgarten
+Wurz	WURZ	Wurz		Wurz
+Wöllershof	WÖLLERHOF	Wöllershof		Wöllershof
+Eger, Vrbenskeho	VRBENSKEHO	Eger, Vrbenskeho	Cheb, Vrbenskeho	Eger, Vrbenskeho
+Eger, Na Visluni	NA VISLUNI	Eger, Na Visluni	Cheb, Na Visluni	Eger, Na Visluni
+Eger, Dorfmitte	DORFMITTE	Eger, Dorfmitte	Cheb, Centrum Obce	Eger, Dorfmitte
+Eger, Bahnhof	EGER BAHNHOF	Eger, Bahnhof	Cheb, Nadrazi	Eger, Bahnhof
+Shuttle Krummenaab	KRUMMENAAB HBF	Krummenaab Hbf.		Krummenaab Hbf.
+Shuttle Baumgarten	BAUMGARTEN	Baumgarten	Hotel Igel	Baumgarten
+Shuttle Flossenbürg	FLOSSENBÜRG KZ	Flossenbürg	KZ-Gedenkstätte	Flossenbürg KZ
+City Krummenaab	KRUMMENAAB HBF	Krummenaab Hbf.		Krummenaab Hbf.
+City Eisenbahnsiedlung	EISENBAHNSIEDL.	Eisenbahnsiedlung		Eisenbahnsiedlung
+City Weinpromenade	WEINPROMENADE	Weinpromenade		Weinpromenade
+City Freyung	FREYUNG	Freyung		Freyung
+City Abzweig Mooslohe	ABZWEIG MOOSLOHE	Abzweig Mooslohe		Abzweig Mooslohe
+City Polizeipräsidium	POLIZEIPRÄSIDIUM	Polizeipräsidium		Polizeipräsidium
+City Justizvollzugsanstalt	JVA KRUMMENAAB	JVA Krummenaab		JVA Krummenaab
+City Von-der-Tann-Str.	VON-DER-TANN-STR.	Von-der-Tann-Str.		Von-der-Tann-Str.
+City Hohe Garten	HOHE GARTEN	Hohe Garten		Hohe Garten
+City Friedrich-Ebert-Str.	FRIEDRICH-EBERT	Friedrich-Ebert-	Straße	Friedrich-Ebert-Str.
+City Brandweiher	BRANDWEIHER	Brandweiher		Brandweiher
+Intercity Krummenaab	KRUMMENAAB HBF	Krummenaab Hbf.		Krummenaab Hbf.
+Intercity Eisenbahnsiedlung	EISENBAHNSIEDL.	Eisenbahnsiedlung		Eisenbahnsiedlung
+Intercity Weinpromenade	WEINPROMENADE	Weinpromenade		Weinpromenade
+Intercity Freyung	FREYUNG	Freyung		Freyung
+Intercity Abzweig Mooslohe	ABZWEIG MOOSLOHE	Abzweig Mooslohe		Abzweig Mooslohe
+Intercity Friedrich-Ebert-Str.	FRIEDRICH-EBERT	Friedrich-Ebert-	Straße	Friedrich-Ebert-Str.
+Intercity Brandweiher	BRANDWEIHER	Brandweiher		Brandweiher
+Intercity Leichau	LEICHAU	Leichau		Leichau
+Intercity Schönficht Bhf.	SCHÖNFICHT BHF.	Schönficht Bahnhof		Schönficht Bahnhof
+Intercity Schönficht Kirche	SCHÖNFICHT KIRCHE	Schönficht Kirche		Schönficht Kirche
+Intercity Wildenau	WILDENAU	Wildenau		Wildenau
+Intercity Zanklhut	ZANKLHUT	Zanklhut		Zanklhut
+Intercity Höhenweg	HÖHENWEG	Püchersreuth/	Höhenweg	Püchersr./Höhenweg
+Intercity Ilsenweg	ILSENWEG	Püchersreuth/	Ilsenweg	Püchersr./Ilsenweg
+Intercity Ilsenbach	ILSENBACH	Ilsenbach		Ilsenbach
+[end]								
+								
+								
+6295
+[infosystem_trip]								
+629501
+Flossenbürg Bhf.-Cheb, Bahnhof								
+5								
+6295								
+								
+................								
+								
+[infosystem_busstop_list]								
+14								
+Flossenbürg Bhf.
+Flossenbürg Viadukt
+Flossenbürg KZ
+Schlesen
+Oberbrück
+Rothenbürg
+Haid
+Baumgarten
+Wurz
+Wöllershof
+Eger, Vrbenskeho
+Eger, Na Visluni
+Eger, Dorfmitte
+Eger, Bahnhof
+
+6295
+[infosystem_trip]								
+629502
+Cheb, Bahnhof-Flossenbürg Bhf.								
+4								
+6295								
+								
+................								
+								
+[infosystem_busstop_list]								
+14
+Eger, Bahnhof
+Eger, Dorfmitte
+Eger, Na Visluni
+Eger, Vrbenskeho
+Wöllershof
+Wurz
+Baumgarten
+Haid
+Rothenbürg
+Oberbrück
+Schlesen
+Flossenbürg KZ
+Flossenbürg Viadukt
+Flossenbürg Bhf.
+
+6295
+[infosystem_trip]								
+29501
+Flossenbürg Bhf.-Cheb, Bahnhof								
+5								
+6295								
+								
+................								
+								
+[infosystem_busstop_list]								
+14								
+Flossenbürg Bhf.
+Flossenbürg Viadukt
+Flossenbürg KZ
+Schlesen
+Oberbrück
+Rothenbürg
+Haid
+Baumgarten
+Wurz
+Wöllershof
+Eger, Vrbenskeho
+Eger, Na Visluni
+Eger, Dorfmitte
+Eger, Bahnhof
+
+6295
+[infosystem_trip]								
+29502
+Cheb, Bahnhof-Flossenbürg Bhf.								
+4								
+6295								
+								
+................								
+								
+[infosystem_busstop_list]								
+14
+Eger, Bahnhof
+Eger, Dorfmitte
+Eger, Na Visluni
+Eger, Vrbenskeho
+Wöllershof
+Wurz
+Baumgarten
+Haid
+Rothenbürg
+Oberbrück
+Schlesen
+Flossenbürg KZ
+Flossenbürg Viadukt
+Flossenbürg Bhf.
+
+S31
+[infosystem_trip]
+3101
+Krummenaab-Flossenbürg
+6
+S31
+
+................
+
+[infosystem_busstop_list]
+3
+Shuttle Krummenaab
+Shuttle Baumgarten
+Shuttle Flossenbürg
+
+
+S31
+[infosystem_trip]
+3102
+Flossenbürg-Krummenaab
+7
+S31
+
+................
+
+[infosystem_busstop_list]
+3
+Shuttle Flossenbürg
+Shuttle Baumgarten
+Shuttle Krummenaab
+
+C42
+[infosystem_trip]
+4201
+Krummenaab-Brandweiher
+8
+C42
+
+................
+
+[infosystem_busstop_list]
+11
+City Krummenaab
+City Eisenbahnsiedlung
+City Weinpromenade
+City Freyung
+City Abzweig Mooslohe
+City Polizeipräsidium
+City Justizvollzugsanstalt
+City Von-der-Tann-Str.
+City Hohe Garten
+City Friedrich-Ebert-Str.
+City Brandweiher
+
+
+C42
+[infosystem_trip]
+4202
+Brandweiher-Krummenaab
+9
+C42
+
+................
+
+[infosystem_busstop_list]
+11
+City Brandweiher
+City Friedrich-Ebert-Str.
+City Hohe Garten
+City Von-der-Tann-Str.
+City Justizvollzugsanstalt
+City Polizeipräsidium
+City Abzweig Mooslohe
+City Freyung
+City Weinpromenade
+City Eisenbahnsiedlung
+City Krummenaab
+
+I51
+[infosystem_trip]
+5101
+Krummenaab-Ilsenbach
+12
+I51
+
+................
+
+[infosystem_busstop_list]
+13
+Intercity Krummenaab
+Intercity Eisenbahnsiedlung
+Intercity Weinpromenade
+Intercity Freyung
+Intercity Abzweig Mooslohe
+Intercity Leichau
+Intercity Schönficht Bhf.
+Intercity Schönficht Kirche
+Intercity Wildenau
+Intercity Zanklhut
+Intercity Höhenweg
+Intercity Ilsenweg
+Intercity Ilsenbach
+
+I51
+[infosystem_trip]
+5102
+Ilsenbach-Krummenaab
+11
+I51
+
+................
+
+[infosystem_busstop_list]
+13
+Intercity Ilsenbach
+Intercity Ilsenweg
+Intercity Höhenweg
+Intercity Zanklhut
+Intercity Wildenau
+Intercity Schönficht Kirche
+Intercity Schönficht Bhf.
+Intercity Leichau
+Intercity Abzweig Mooslohe
+Intercity Freyung
+Intercity Weinpromenade
+Intercity Eisenbahnsiedlung
+Intercity Krummenaab
+
+I51
+[infosystem_trip]
+5103
+Krummenaab-Brandw.-Ilsenbach
+14
+I51
+
+................
+
+[infosystem_busstop_list]
+15
+Intercity Krummenaab
+Intercity Eisenbahnsiedlung
+Intercity Weinpromenade
+Intercity Freyung
+Intercity Abzweig Mooslohe
+Intercity Friedrich-Ebert-Str.
+Intercity Brandweiher
+Intercity Leichau
+Intercity Schönficht Bhf.
+Intercity Schönficht Kirche
+Intercity Wildenau
+Intercity Zanklhut
+Intercity Höhenweg
+Intercity Ilsenweg
+Intercity Ilsenbach
+
+
+I51
+[infosystem_trip]
+5104
+Ilsenbach-Brandw.-Krummenaab
+13
+I51
+
+................
+
+[infosystem_busstop_list]
+15
+Intercity Ilsenbach
+Intercity Ilsenweg
+Intercity Höhenweg
+Intercity Zanklhut
+Intercity Wildenau
+Intercity Schönficht Kirche
+Intercity Schönficht Bhf.
+Intercity Leichau
+Intercity Friedrich-Ebert-Str.
+Intercity Brandweiher
+Intercity Abzweig Mooslohe
+Intercity Freyung
+Intercity Weinpromenade
+Intercity Eisenbahnsiedlung
+Intercity Krummenaab

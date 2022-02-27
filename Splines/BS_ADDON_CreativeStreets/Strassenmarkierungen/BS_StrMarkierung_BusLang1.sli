@@ -1,0 +1,42 @@
+BS_StrMarkierung_BusLang1.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-1.5
+1.5
+0.1
+0.1
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+BS_StrMarkierung_bus3.tga
+
+[matl_alpha]
+1
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Bus-Markierung ###
+
+[profile]
+0
+
+[profilepnt]
+-1.5
+0.105
+0.005
+0.1
+
+[profilepnt]
+1.5
+0.105
+0.995
+0.1

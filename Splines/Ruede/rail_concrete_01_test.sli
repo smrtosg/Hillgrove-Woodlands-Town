@@ -1,0 +1,330 @@
+============================
+Betonschwellengleis, Typ 01, 1435mm
+============================
+
+
+[length]
+10
+
+Halbbreite des Bereiches, welcher in Kurven überhöht wird:
+
+[halfcantwidth]
+2
+
+Dann wird das Höhenprofil in der Querrichtung definiert. Hierzu wird jeweils Start- und Endpunkt
+(von links aus gesehen) und dann die Höhe überm lokalen Koordinatensystem angegeben, jeweils vom ersten
+und zweiten Punkt:
+
+
+[heightprofile]
+-2.1
+-1.2
+0
+0.3
+
+[heightprofile]
+-1.5
+1.5
+0.3
+0.3
+
+[heightprofile]
+1.5
+2
+0.3
+0
+
+
+
+Zunächst werden die Texturen geladen (dies kann aber auch nach oder zwischen den folgenden Befehlen kommen, einzig
+die Reihenfolge entscheidet über die Nummer, 0-basiert)
+
+[texture]
+Gleis_Betonschwellen.bmp
+
+
+Nun wird das (grafische) Profil definiert. Jeder zu extrudierende Spline kann mehrere Splinepunkte (mindestens 2)
+enthalten, die Normalen werden automatisch definiert. Die U-Koordinate der Textur muss in x-Richtung zeigen,
+die V-Koordinate wird anhand einer Art Steigung definiert: 0.2 (1/m) bedeutet bspw., dass nach 5m die V-Koordinate 1 beträgt.
+
+Der [profile]-Befehl gibt an, dass ein neues Profil erstellt wird, welches auch gleich die entsprechende Textur zugewiesen bekommt.
+
+
+Folgender Befehl schließlich definiert einen Profilpunkt. Zunächst x (quer, rechts positiv) und z (hoch),
+dann U und die Steigung von V. V beginnt stets mit 0.
+
+Achtung: damit Normalenvektor und Polysichtbarkeit stimmt, muss die Reihenfolge von links nach rechts laufen (damit die Oberseite sichtbar ist).
+
+
+Bettung:
+
+
+[profile]
+0
+
+[profilepnt]
+-2.1
+0
+0.148
+0.167
+
+[profilepnt]
+-1.5
+0.29
+0.282
+0.167
+
+[profilepnt]
+-0.815
+0.3
+0.383
+0.167
+
+
+[profilepnt]
+0.815
+0.3
+0.617
+0.167
+
+[profilepnt]
+1.5
+0.29
+0.718
+0.167
+
+[profilepnt]
+2.1
+0.0
+0.852
+0.167
+
+
+
+
+
+
+Schiene 1:
+
+[profile]
+0
+
+[profilepnt]
+-0.815
+0.3
+0
+0.167
+
+
+[profilepnt]
+-0.762
+0.314
+0
+0.167
+
+
+[profilepnt]
+-0.762
+0.398
+0
+0.167
+
+[profilepnt]
+-0.788
+0.412
+0
+0.167
+
+[profilepnt]
+-0.788
+0.445
+0
+0.167
+
+[profilepnt]
+-0.788
+0.445
+0.385
+0.167
+
+[profilepnt]
+-0.779
+0.454
+0.386
+0.167
+
+
+[profilepnt]
+-0.727
+0.454
+0.395
+0.167
+
+[profilepnt]
+-0.718
+0.445
+0.396
+0.167
+
+[profilepnt]
+-0.718
+0.445
+0
+0.167
+
+[profilepnt]
+-0.718
+0.412
+0
+0.167
+
+[profilepnt]
+-0.744
+0.398
+0
+0.167
+
+[profilepnt]
+-0.744
+0.314
+0
+0.167
+
+[profilepnt]
+-0.690
+0.3
+0
+0.167
+
+
+
+Schiene 2:
+
+[profile]
+0
+
+[profilepnt]
+0.690
+0.3
+0
+0.167
+
+
+[profilepnt]
+0.744
+0.314
+0
+0.167
+
+[profilepnt]
+0.744
+0.398
+0
+0.167
+
+[profilepnt]
+0.718
+0.412
+0
+0.167
+
+[profilepnt]
+0.718
+0.445
+0
+0.167
+
+[profilepnt]
+0.718
+0.445
+0.396
+0.167
+
+[profilepnt]
+0.727
+0.454
+0.395
+0.167
+
+[profilepnt]
+0.779
+0.454
+0.386
+0.167
+
+[profilepnt]
+0.788
+0.445
+0.385
+0.167
+
+[profilepnt]
+0.788
+0.445
+0
+0.167
+
+[profilepnt]
+0.788
+0.412
+0
+0.167
+
+[profilepnt]
+0.762
+0.398
+0
+0.167
+
+[profilepnt]
+0.762
+0.314
+0
+0.167
+
+[profilepnt]
+0.815
+0.3
+0
+0.167
+
+
+
+#################################################
+
+Zuletzt sollen noch Pfade definiert werden - sie werden gebraucht, damit später AI-Verkehr oder schienengebundene Fahrzeuge auf der Straße fahren können:
+
+	[path]
+	{type}		Typ:
+			0:	AI-Straßenverkehr
+			1:	AI-Menschen
+			2:	Schiene (AI oder User)
+	{offsetX}	Abstand von der Mittellinie - rechts = positiv
+	{offsetZ}	Höhe über "Nullinie" der Spline - aufwärts = positiv
+	{width}		Breite (Straßenverkehr und Menschen kann so ein Ausweichen gestattet werden)
+	{reverse}	Befahr-/-gehbarkeit:
+			0:	Nur vorwärts
+			1:	Nur rückwärts
+			2:	beide Richtungen
+
+
+
+	[rail_enh]
+	Länge Einzelschiene = 40	// Länge der Einzelschienen.
+        GLEISLAGE_STOESSE = false;      // Gleis verfügt über unsaubere Schienenstöße
+        GLEISLAGE_WELLENLAENGE = 50;    //m, Referenzwellenlänge, nur grob, da die Wellenlänge ebenfalls variiert
+        GLEISLAGE_AMP = 0.03;           //m, max. Amplitude
+        GLEISLAGE_POT = 7;              //Fehler wird hoch n genommen, damit große Fehler seltener auftreten
+        GLEISLAGE_WELLENLAENGE_Z = 50; //m
+        GLEISLAGE_AMP_Z = 0.01;         //m, max. vert. Amplitude
+        GLEISLAGE_POT_Z = 7;           //Fehler wird hoch n genommen, damit große Fehler seltener auftreten
+
+
+Eisenbahnspur:
+
+[path]
+2
+0
+0.445
+0
+2

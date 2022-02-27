@@ -1,0 +1,364 @@
+'##############
+'Ticketprinter-Script
+'##############
+
+'Simulates ticket printer
+
+'(c) 12.01.2010 Rüdiger Hülsmann
+'(c) 22.06.2011 Markus Rabe
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+'Revision History:
+'- Rüdiger Hülsmann	12.01.2011	File created
+'- Rüdiger Hülsmann	15.01.2011	Functions added
+'- Markus Rabe		22.06.2011	Anzeige von Uhrzeit und Haltestelle
+
+
+
+'----------------------
+'	Trigger
+'----------------------
+
+
+{trigger:ticketprinter_button_ticket_0}
+	(L.L.elec_busbar_main)
+	{if}
+		0 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_ticket_0) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_0)
+	
+{end}
+
+{trigger:ticketprinter_button_ticket_0_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_0)
+{end}		
+			
+{trigger:ticketprinter_button_ticket_1}
+	(L.L.elec_busbar_main)
+	{if}
+		1 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_ticket_1) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_1)
+{end}
+
+{trigger:ticketprinter_button_ticket_1_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_1)
+{end}
+	
+
+{trigger:ticketprinter_button_ticket_2}
+	(L.L.elec_busbar_main)
+	{if}
+		2 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_ticket_2) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_2)
+{end}
+
+{trigger:ticketprinter_button_ticket_2_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_2)
+{end}	
+
+
+{trigger:ticketprinter_button_ticket_3}
+	(L.L.elec_busbar_main)
+	{if}
+		3 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_ticket_3) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_3)
+{end}
+
+{trigger:ticketprinter_button_ticket_3_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_3)
+{end}
+
+
+{trigger:ticketprinter_button_ticket_4}
+	(L.L.elec_busbar_main)
+	{if}
+		4 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_ticket_4) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_ticket_4)
+{end}
+
+{trigger:ticketprinter_button_ticket_4_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_ticket_4)
+{end}
+
+{trigger:ticketprinter_button_dummy_0}
+	(L.L.elec_busbar_main)
+	{if}
+		5 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_dummy_0) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_0)
+{end}
+
+{trigger:ticketprinter_button_dummy_0_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_0)
+{end}
+
+
+{trigger:ticketprinter_button_dummy_1}
+	(L.L.elec_busbar_main)
+	{if}
+		6 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_dummy_1) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_1)
+{end}
+
+{trigger:ticketprinter_button_dummy_1_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_1)
+{end}
+
+
+{trigger:ticketprinter_button_dummy_2}
+	(L.L.elec_busbar_main)
+	{if}
+		7 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_dummy_2) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_2)
+{end}
+
+{trigger:ticketprinter_button_dummy_2_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_2)
+{end}
+
+
+{trigger:ticketprinter_button_dummy_3}
+	(L.L.elec_busbar_main)
+	{if}
+		8 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_dummy_3) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_3)
+{end}
+
+{trigger:ticketprinter_button_dummy_3_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_3)
+{end}
+
+
+{trigger:ticketprinter_button_dummy_4}
+	(L.L.elec_busbar_main)
+	{if}
+		9 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_dummy_4) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_dummy_4)
+{end}
+
+{trigger:ticketprinter_button_dummy_4_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_dummy_4)
+{end}
+
+
+{trigger:ticketprinter_button_enter}
+	(L.L.elec_busbar_main) 
+	(L.L.ticketprinter_ticket_preselection) -1 > &&
+	(L.L.ticketprinter_druckt) ! &&
+	(L.L.ticketprinter_ticket_pos) 0 = &&
+	{if}
+		(L.L.ticketprinter_ticket_preselection) (S.L.ticketprinter_ticket_selection)
+		1 (S.L.ticketprinter_druckt)
+		-1 (S.L.ticketprinter_ticket_preselection)
+		(T.L.ev_printer_printing)
+	{endif}
+	(L.L.ticketprinter_button_enter) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_enter)
+{end}
+
+{trigger:ticketprinter_button_enter_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_enter)
+{end}
+
+{trigger:ticketprinter_button_cancel}
+	(L.L.elec_busbar_main)
+	{if}
+		-1 (S.L.ticketprinter_ticket_preselection)
+	{endif}
+	(L.L.ticketprinter_button_cancel) !
+	{if}
+		(T.L.ev_printer_button_on)
+	{endif}
+	1 (S.L.ticketprinter_button_cancel)
+{end}
+
+{trigger:ticketprinter_button_cancel_off}
+	(T.L.ev_printer_button_off)
+	0 (S.L.ticketprinter_button_cancel)
+{end}
+
+{trigger:ticketprinter_getticket}
+	0 (S.L.ticketprinter_ticket_pos)
+	-1 (S.L.ticketprinter_ticket_selection) (S.L.GivenTicket)
+	(T.L.ev_ticketsale_giveticket)
+{end}
+
+'----------------------
+'	Init
+'----------------------
+
+{macro:ticketprinter_init}
+	-1 (S.L.ticketprinter_ticket_preselection) (S.L.ticketprinter_ticket_selection)
+	"" (S.$.ticketprinter_display)
+{end}
+
+
+'----------------------
+'	Frame
+'----------------------
+
+{macro:ticketprinter_frame}
+
+'Anzeige des Fahrscheins aufm Display
+
+(L.L.elec_busbar_main)
+{if}
+	(L.L.ticketprinter_druckt)
+	{if}
+		"Druckt..." 22 $SetLengthL
+	{else}
+		(L.L.ticketprinter_ticket_preselection) 0 >=
+		(L.L.ticketprinter_ticket_preselection) 4 <= &&
+		{if}	
+			(L.L.ticketprinter_ticket_preselection) (M.V.GetTicketName) " :" $+
+			(L.L.ticketprinter_ticket_preselection) (M.V.GetTicketValue) s0
+
+'			Mark:
+			l0 " 2" $IntToStrEnh $+ "." $+
+
+'			Pfennige:	
+			l0 100 * 100 % 0.1 + "02" $IntToStrEnh $+
+			
+		{else}
+			(L.L.ticketprinter_ticket_preselection) 0 <
+			{if}
+				(L.S.Time) 3600 / s0 trunc s1 "02" $IntToStrEnh ":" $+
+				l0 l1 - 60 * trunc "02" $IntToStrEnh $+
+				" " $+
+				(L.L.IBIS_Route) 0 = !
+				{if}
+					(L.$.Haltestelle) $+
+				{endif}
+			{else}
+'				Hier hardcodiert die restlichen unverkäuflichen Fahrscheine
+				(L.L.ticketprinter_ticket_preselection) 5 =
+				{if}
+					"KuDamm-Ticket  : 1.00"
+				{else}
+					(L.L.ticketprinter_ticket_preselection) 6 =
+					{if}
+						"Tageskarte Erm : 5.00"
+					{else}
+						(L.L.ticketprinter_ticket_preselection) 7 =
+						{if}
+							"Komb-Tageskarte:15.00"
+						{else}
+							(L.L.ticketprinter_ticket_preselection) 8 =
+							{if}
+								"Tageskarte Fam :10.00"
+							{else}
+								(L.L.ticketprinter_ticket_preselection) 9 =
+								{if}
+									"Komb-Tagesk Erm: 7.00"
+								{endif}
+							{endif}
+						{endif}
+					{endif}
+				{endif}
+			{endif}
+		{endif}
+	{endif}
+	22 $SetLengthL
+{else}
+	"" 22 $SetLengthL
+{endif}
+
+(S.$.ticketprinter_display)
+
+
+'Ausgeben des Fahrscheins
+
+(L.L.ticketprinter_druckt)
+{if}
+	(L.L.ticketprinter_ticket_pos) (L.S.Timegap) 1 * + (S.L.ticketprinter_ticket_pos)
+	1 >
+	{if}
+		1 (S.L.ticketprinter_ticket_pos)
+		0 (S.L.ticketprinter_druckt)
+		(L.L.ticketprinter_ticket_selection) (S.L.GivenTicket)
+	{endif}
+{endif}
+
+(L.L.ticketprinter_ticket_visible)
+(L.L.ticketprinter_druckt) ! &&
+(L.L.GivenTicket) 0 < &&
+{if}
+	0 (S.L.ticketprinter_ticket_pos)
+	-1 (S.L.ticketprinter_ticket_selection) 
+	(T.L.ev_ticketsale_giveticket)
+{endif}
+
+(L.L.ticketprinter_druckt) (L.L.GivenTicket) 0 >= || (S.L.ticketprinter_ticket_visible)
+
+
+{end}
+
+

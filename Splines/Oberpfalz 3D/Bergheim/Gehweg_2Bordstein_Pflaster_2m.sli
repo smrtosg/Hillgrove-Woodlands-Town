@@ -1,0 +1,115 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-1.000
+1.000
+0.250
+0.250
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+str_side2.dds
+
+[texture]
+gw_citaro2.dds
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Linker Bordstein
+
+[profile]
+0
+
+[profilepnt]
+-1.000
+0.000
+0.995
+0.200
+
+[profilepnt]
+-1.000
+0.250
+0.953
+0.200
+
+[profile]
+0
+
+[profilepnt]
+-1.000
+0.250
+0.953
+0.200
+
+[profilepnt]
+-0.850
+0.250
+0.900
+0.200
+
+'Grasstreifen
+
+[profile]
+1
+
+[profilepnt]
+-0.850
+0.250
+0.005
+0.200
+
+[profilepnt]
+0.850
+0.250
+0.400
+0.200
+
+'Rechter Bordstein
+
+[profile]
+0
+
+[profilepnt]
+0.850
+0.250
+0.900
+0.200
+
+[profilepnt]
+1.000
+0.250
+0.953
+0.200
+
+[profile]
+0
+
+[profilepnt]
+1.000
+0.250
+0.953
+0.200
+
+[profilepnt]
+1.000
+0.000
+0.995
+0.200
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +
+
+[path]
+1
+0
+0.25
+1
+2

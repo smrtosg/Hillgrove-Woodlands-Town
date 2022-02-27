@@ -1,0 +1,32 @@
+BS_Sonstiges_BackdropDüne.sli
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+BS_DüneBD.png
+
+[matl_alpha]
+1
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Düne ###
+
+[profile]
+0
+
+[profilepnt]
+0
+0
+0.005
+0.05
+
+[profilepnt]
+0
+3
+0.995
+0.05

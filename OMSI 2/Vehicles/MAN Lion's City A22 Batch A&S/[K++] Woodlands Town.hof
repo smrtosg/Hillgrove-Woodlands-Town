@@ -1,0 +1,658 @@
+Diese Datei wurde mit der HOF Suite von Rumpelhans geschrieben.
+This file was written with HOF Suite by Rumpelhans.
+
+*****************************************
+* H O F   F i l e   p r o p e r t i e s *
+*****************************************
+
+[HOF_SUITE_DIRECTORIES]
+Bollore_Bluebus
+BRT_C2-Solo
+Citaro Facelift RH_D
+Citaro Facelift RH_PB
+Citybus 628c 628g LF by Kajosoft
+HB76_MAN_LionsCity
+HB76_MAN_LionsCity FL
+HB76_MAN_LionsCity FL B2
+HC_Volvo7900H
+HH_EBus2019
+HH_EBus2019 B2
+HH_Stadtbus2017
+MAN Lion's City A22 - FL
+MAN Lion's City A22 Batch 1-2
+MAN Lion's City A22 Batch 3
+MAN Lion's City A22 Batch A&S
+MAN Lion's City Hybrid
+MAN_DL05 SG FL E6 B1
+MAN_DL05 SG FL E6 B2
+MB_O530G_Facelift_Hybrid
+MB_O530_Facelift_SG
+MB_O530_Facelift_SMB
+NEOMAN_Overhaul
+Scania Aktiebolag Citywide
+VDL_Citea_LLE_Release_2
+Solaris Urbino PL SG
+Solaris Urbino PL SMRT
+MB_O530_Facelift
+[HOF_SUITE_DIRECTORIES_END]
+
+[name]
+Woodlands Town [K++]
+
+[servicetrip]
+Blank
+
+[global_strings]
+6
+WoodlandsTown
+
+WoodlandsTown
+
+
+
+
+stringcount_terminus
+26
+
+stringcount_busstop
+9
+
+*****************
+* T e r m i n i *
+*****************
+
+[addterminus_list]
+{ALLEX}	0	Blank								WDL\Blank.png
+{ALLEX}	1	OFF SERVICE	  OFF SERVICE	OFF SERVICE		  OFF SERVICE		    OFF SERVICE		WDL\OS.png
+{ALLEX}	2	EDS Ver	EDS VER	LAWO 281215		  EDS 281215		  EDS Ver 281215
+{ALLEX}	4	Training Bus	  TRAINING BUS	TRAINING BUS		  TRAINING BUS		    Training Bus		WDL\TRG.png
+{ALLEX}	6	SMRT BUSES	  SMRT BUSES	SMRT BUSES		  SMRT BUSES		    SMRT BUSES		WDL\SMRTG.png
+	10	Woodlands Industrial Depot	WDL IND DEPOT	WOODLANDS	  DEPOT	WDL IND DEPOT		  WDL IND DEPOT
+	11	Hillview Depot	HILLVIEW DEPOT	HILLVIEW	DEPOT	HILLVIEW DEPOT		  HILLVIEW DEPOT
+	100	IKEA Shuttle 100	IKEA SHUTTLE	IKEA SHUTTLE	HILLVIEW ESTATE	HILLVIEW ESTATE		    Edgeview Int		WDL\IKHV.png
+	902	Woodlands Int 902	  902 WDL INT	  WOODLANDS	  INT / MRT	WDL INT VIA IND		WDL VIA WDL IND EST
+	1902	Woodlands Int 902	  902 WDL INT	WOODLANDS INT via	WDL IND  ESTATE	WDL INT VIA IND		WDL VIA WDL IND EST
+	911	Woodlands Int 911	WDL INT         	  WOODLANDS	  INT / MRT	WDL INT         		WDL INT             		WDL\91101.png
+	1911	Woodlands Int 911	WDL INT         	WOODLANDS INT via	WOODLANDS AVE 3	WDL INT         		WDL INT             		WDL\91102.png
+	2911	Woodlands Int 911	WDL INT         	WOODLANDS INT via	WOODLANDS LOOP	WDL INT         		WDL INT             		WDL\91103.png
+	3911	Woodlands Int 911	WDL INT         	WOODLANDS INT via	WOODLANDS AVE 4,5,7	WDL INT         		WDL INT             		WDL\91104.png
+	4911	Woodlands Int 911	WDL INT         	WOODLANDS INT via	WOODLANDS ST 81	WDL INT         		WDL INT             		WDL\91105.png
+	5911	Woodlands Int 911	WDL INT         	WOODLANDS INT via	WOODLANDS ST 81	WDL INT         		WDL INT             		WDL\MES.png
+	922	Woodlands Int 911T	WDL INT         	ENDS AT         	WDL INT         	WDL INT         		WDL INT             		WDL\91111.png
+	1922	Woodlands Int 911T	WDL INT         	ENDS AT         	WDL INT         	WDL INT         		WDL INT             		WDL\MES.png
+	859	Woodlands Int 858	WOODLANDS INT   	   WOODLANDS    	  INTERCHANGE   	WOODLANDS INT   		WOODLANDS INT       		WDL\85811.png
+	1859	Woodlands Int 858	WOODLANDS INT   	WDL INT via     	AIRPORT BLVD	WOODLANDS INT   		WOODLANDS INT       		WDL\85812.png
+	2859	Woodlands Int 858	WOODLANDS INT   	WDL INT via     	CTE             	WOODLANDS INT   		WOODLANDS INT       		WDL\85813.png
+	3859	Woodlands Int 858	WOODLANDS INT   	WDL INT via     	WOODLANDS AVE 7 	WOODLANDS INT   		WOODLANDS INT       		WDL\85814.png
+	4859	Woodlands Int 858	WOODLANDS INT   	WDL INT via     	WOODLANDS AVE 5 	WOODLANDS INT   		WOODLANDS INT       		WDL\85815.png
+	5859	Woodlands Int 858	WOODLANDS INT   	WDL INT via     	WOODLANDS AVE 5 	WOODLANDS INT   		WOODLANDS INT       		WDL\MES.png
+	858	Intl Airport Ter 858	INTL AIRPORT    	INTERNATIONAL	  AIRPORT	INTL AIRPORT    		INTL AIRPORT        		WDL\85801.png
+	1858	Intl Airport Ter 858	INTL AIRPORT    	INTL AIRPORT via	WOODLANDS AVE 5 	INTL AIRPORT    		INTL AIRPORT        		WDL\85802.png
+	2858	Intl Airport Ter 858	INTL AIRPORT    	INTL AIRPORT via	WOODLANDS AVE 7	INTL AIRPORT    		INTL AIRPORT        		WDL\85803.png
+	3858	Intl Airport Ter 858	INTL AIRPORT    	INTL AIRPORT via	CTE	INTL AIRPORT    		INTL AIRPORT        		WDL\85804.png
+	4858	Intl Airport Ter 858	INTL AIRPORT    	INTL AIRPORT via	AIRPORT BLVD	INTL AIRPORT    		INTL AIRPORT        		WDL\85805.png
+	5858	Intl Airport Ter 858	INTL AIRPORT    	INTL AIRPORT via	AIRPORT BLVD	INTL AIRPORT    		INTL AIRPORT        		WDL\MES.png
+	882	Edgeview Estate 882	EDGEVIEW ESTATE	EDGEVIEW	ESTATE	EDGEVIEW ESTATE		EDGEVIEW ESTATE     		WDL\88201.png
+	1882	Edgeview Estate 882	EDGEVIEW ESTATE	EDGEVIEW EST via	EDGEVIEW LINK	EDGEVIEW ESTATE		EDGEVIEW ESTATE     		WDL\88202.png
+	2882	Edgeview Estate 882	EDGEVIEW ESTATE	EDGEVIEW EST via	AIRPORT BLVD	EDGEVIEW ESTATE		EDGEVIEW ESTATE     		WDL\88203.png
+	3882	Edgeview Estate 882	EDGEVIEW ESTATE	EDGEVIEW EST via	CTE	EDGEVIEW ESTATE		EDGEVIEW ESTATE     		WDL\88204.png
+	4882	Edgeview Estate 882	EDGEVIEW ESTATE	EDGEVIEW EST via	EDGEVIEW SOUTH RD	EDGEVIEW ESTATE		EDGEVIEW ESTATE     		WDL\88205.png
+	5882	Edgeview Estate 882	EDGEVIEW ESTATE	EDGEVIEW EST via	EDGEVIEW SOUTH RD	EDGEVIEW ESTATE		EDGEVIEW ESTATE     		WDL\MES.png
+	401	Edgeview Int 401	   PARKS 401		PARKS		  EDGEVIEW INT	    Edgeview Int    		WDL\40101.png
+	1401	Edgeview Int 401	   PARKS 401	EDGEVIEW INT via	MT FABER CP	  EDGEVIEW INT		    Edgeview Int		WDL\40102.png
+	2401	Edgeview Int 401	   PARKS 401	EDGEVIEW INT via	MT FABER FIELD	  EDGEVIEW INT		    Edgeview Int		WDL\40103.png
+	3401	Edgeview Int 401	   PARKS 401	EDGEVIEW INT via	MOUNT FABER	  EDGEVIEW INT		    Edgeview Int		WDL\40104.png
+	4401	Edgeview Int 401	   PARKS 401	EDGEVIEW INT via	MT. FABER INFO CTR.	  EDGEVIEW INT		    Edgeview Int		WDL\40105.png
+	5401	Edgeview Int 401	   PARKS 401	EDGEVIEW INT via	MT. FABER INFO CTR.	  EDGEVIEW INT		    Edgeview Int		WDL\MES.png
+	965	Admiralty Int 965	ADMIRALTY INT	ADMIRALTY	INT / MRT			Admiralty Int		WDL CITY\965011.png
+	1965	Admiralty Int 965	ADMIRALTY INT	ADMIRALTY INT via	WOODLANDS AVE 7		Admiralty Int			WDL CITY\965012.png
+	2965	Admiralty Int 965	ADMIRALTY INT	ADMIRALTY INT via	EDGEVIEW SOUTH RD			Admiralty Int		WDL CITY\965013.png
+	3965	Admiralty Int 965	ADMIRALTY INT	ADMIRALTY INT via	EDGEVIEW CRESCENT			Admiralty Int		WDL CITY\965014.png
+	4965	Admiralty Int 965	ADMIRALTY INT	ADMIRALTY INT via	UPP HILLVIEW AVE			Admiralty Int		WDL CITY\965015.png
+	5965	Admiralty Int 965	ADMIRALTY INT	ADMIRALTY INT via	ADMIRALTY SQ			Admiralty Int		WDL CITY\965016.png
+	6965	Admiralty Int 965	ADMIRALTY INT	ADMIRALTY INT via	ADMIRALTY RD			Admiralty Int		WDL CITY\965017.png
+	966	Woodlands Int 965	WDL INT	WOODLANDS	INT / MRT			Woodlands Int		WDL CITY\965021.png
+	1966	Woodlands Int 965	WDL INT	WOODLANDS INT via	ADMIRALTY SQ			Woodlands Int		WDL CITY\965022.png
+	2966	Woodlands Int 965	WDL INT	WOODLANDS INT via	ADMIRALTY RD			Woodlands Int		WDL CITY\965023.png
+	3966	Woodlands Int 965	WDL INT	WOODLANDS INT via	UPP HILLVIEW AVE			Woodlands Int		WDL CITY\965024.png
+	4966	Woodlands Int 965	WOODLANDS INT via	EDGEVIEW CRESCENT			Woodlands Int			WDL CITY\965025.png
+	5966	Woodlands Int 965	WDL INT	WOODLANDS INT via	EDGEVIEW STH RD			  Edgeview Estate		WDL CITY\965026.png
+	6966	Woodlands Int 965	WDL INT	WOODLANDS INT via	WOODLANDS AVE 5			  Edgeview Estate		WDL CITY\965027.png
+	901	Admiralty Int 901	ADMIRALTY INT   	ADMIRALTY	INT / MRT			Admiralty Int		WDL\90101.png
+	1901	Admiralty Int 901	ADMIRALTY INT   	ADMIRALTY INT VIA	ADMIRALTY SQ			Admiralty Int		WDL\90102.png
+	2901	Admiralty Int 901	ADMIRALTY INT   	ADMIRALTY INT VIA	ADMIRALTY RD			Admiralty Int		WDL\90103.png
+	3901	Admiralty Int 901	ADMIRALTY INT   	ADMIRALTY INT VIA	RIVERVALE DR			Admiralty Int		WDL\90104.png
+	4901	Admiralty Int 901	ADMIRALTY INT   	ADMIRALTY INT VIA	RIVERVALE DR			Admiralty Int		WDL\MES.png
+	903	Admiralty Int 903	ADMIRALTY INT   	ADMIRALTY	INT / MRT			Admiralty Int		WDL\90301.png
+	1903	Admiralty Int 903	ADMIRALTY INT   	ADMIRALTY INT VIA	ADMIRALTY RD    			Admiralty Int		WDL\90302.png
+	2903	Admiralty Int 903	ADMIRALTY INT   	ADMIRALTY INT VIA	RIVERVALE ESTATE			Admiralty Int		WDL\90303.png
+	3903	Admiralty Int 903	ADMIRALTY INT   	ADMIRALTY INT VIA	LAKEWOOD CIRCLE 			Admiralty Int		WDL\90304.png
+	4903	Admiralty Int 903	ADMIRALTY INT   	ADMIRALTY INT VIA	LAKEWOOD CIRCLE 			Admiralty Int		WDL\MES.png
+	1850	Woodlands Int 850	850  AIRPT WDL	INTERNATIONAL	AIRPORT	 AIRPT VIA WDL		Airport via WDL INT
+	850	Woodlands Int 850	850  AIRPT WDL	WOODLANDS	INTERCHANGE	 AIRPT VIA WDL		Airport via WDL INT
+	904	Riverside Estate 904	904 RVS EST	WDL INT via	RIVERSIDE EST	RVS EST		RVS EST
+	883	Balmoral Int 883	BALMORAL INT 883	BALMORAL        	INTERCHANGE     			Balmoral Interchange		WDL\88301.png
+	1883	Balmoral Int 883	BALMORAL INT 883	BALMORAL INT via	BALMORAL LOOP			Balmoral Interchange		WDL\88302.png
+	2883	Balmoral Int 883	BALMORAL INT 883	BALMORAL INT via	BALMORAL AVE 4			Balmoral Interchange		WDL\88303.png
+	3883	Balmoral Int 883	BALMORAL INT 883	BALMORAL INT via	BALMORAL AVE 5			Balmoral Interchange		WDL\88304.png
+	4883	Balmoral Int 883	BALMORAL INT 883	BALMORAL INT via	BALMORAL AVE 5			Balmoral Interchange		WDL\MES.png
+	885	Balmoral Int 885	BALMORAL INT 885	BALMORAL	INTERCHANGE	  BALMORAL INT		  Balmoral Int 885		WDL CITY\885011.png
+	1885	Balmoral Int 885	BALMORAL INT 885	BALMORAL INT via	EDGEVIEW CRES	  BALMORAL INT		  Balmoral Int 885		WDL CITY\885012.png
+	2885	Balmoral Int 885	BALMORAL INT 885	BALMORAL INT via	EDGEVIEW SOUTH RD	  BALMORAL INT		  Balmoral Int 885		WDL CITY\885013.png
+	3885	Balmoral Int 885	BALMORAL INT 885	BALMORAL INT via	CTE	  BALMORAL INT		  Balmoral Int 885		WDL CITY\885014.png
+	4885	Balmoral Int 885	BALMORAL INT 885	BALMORAL INT via	AIRPT BLVD	  BALMORAL INT		  Balmoral Int 885		WDL CITY\885015.png
+	5885	Balmoral Int 885	BALMORAL INT 885	BALMORAL INT via	LAKEFIELD AVE 2	  BALMORAL INT		  Balmoral Int 885		WDL CITY\885016.png
+	6885	Balmoral Int 885	BALMORAL INT 885	BALMORAL INT via	BALMORAL RD	  BALMORAL INT		  Balmoral Int 885		WDL CITY\885017.png
+	7885	Balmoral Int 885	BALMORAL INT 885	BALMORAL INT via	BALMORAL AVE 4	  BALMORAL INT		  Balmoral Int 885		WDL CITY\885018.png
+	8885	Balmoral Int 885	BALMORAL INT 885	BALMORAL INT via	BALMORAL LOOP	  BALMORAL INT		  Balmoral Int 885		WDL CITY\885019.png
+	986	Edgeview Int 885	EDGEVIEW INT 885	EDGEVIEW	INTERCHANGE	EDGEVIEW INT		  Edgeview Int 885		WDL CITY\885021.png
+	1986	Edgeview Int 885	EDGEVIEW INT 885	EDGEVIEW INT via	BALMORAL LOOP	EDGEVIEW INT		  Edgeview Int 885		WDL CITY\885022.png
+	2986	Edgeview Int 885	EDGEVIEW INT 885	EDGEVIEW INT via	BALMORAL AVE 4	EDGEVIEW INT		  Edgeview Int 885		WDL CITY\885023.png
+	3986	Edgeview Int 885	EDGEVIEW INT 885	EDGEVIEW INT via	BALMORAL RD	EDGEVIEW INT		  Edgeview Int 885		WDL CITY\885024.png
+	4986	Edgeview Int 885	EDGEVIEW INT 885	EDGEVIEW INT via	LAKEFIELD AVE 2	EDGEVIEW INT		  Edgeview Int 885		WDL CITY\885025.png
+	5986	Balmoral Int 885	BALMORAL INT 885	EDGEVIEW INT via	AIRPT BLVD	EDGEVIEW INT		  Edgeview Int 885		WDL CITY\885026.png
+	6986	Edgeview Int 885	EDGEVIEW INT 885	EDGEVIEW INT via	CTE	EDGEVIEW INT		  Edgeview Int 885		WDL CITY\885027.png
+	7986	Edgeview Int 885	EDGEVIEW INT 885	EDGEVIEW INT via	EDGEVIEW SOUTH RD	EDGEVIEW INT		  Edgeview Int 885		WDL CITY\885028.png
+	8986	Edgeview Int 885	EDGEVIEW INT 885	EDGEVIEW INT via	EDGEVIEW CRES	EDGEVIEW INT		  Edgeview Int 885		WDL CITY\885029.png
+	889	Adm-Egv(Loop) 889	ADMIRALTY INT   	ADMIRALTY INT vi	INT / MRT       			Admiralty Int       		WDL\88901.png
+	1889	Adm-Egv(Loop) 889	ADMIRALTY INT   	ADMIRALTY INT vi	HILLGROVE ESTATE			Admiralty Int       		WDL\88902.png
+	2889	Adm-Egv(Loop) 889	ADMIRALTY INT   	ADMIRALTY INT vi	      TPE       			Admiralty Int       		WDL\88903.png
+	3889	Adm-Egv(Loop) 889	ADMIRALTY INT   	ADMIRALTY INT vi	  AIRPORT BLVD  			Admiralty Int       		WDL\88904.png
+	4889	Adm-Egv(Loop) 889	ADMIRALTY INT   	ADMIRALTY INT vi	  EDGEVIEW WAY  			Admiralty Int       		WDL\88905.png
+	5889	Adm-Egv(Loop) 889	ADMIRALTY INT   	ADMIRALTY INT vi	 EDGEVIEW OVAL  			Admiralty Int       		WDL\88906.png
+	6889	Adm-Egv(Loop) 889	ADMIRALTY INT   	ADMIRALTY INT vi	 EDGEVIEW OVAL  			Admiralty Int       		WDL\MES.png
+[end]
+
+*******************
+* B u s s t o p s *
+*******************
+
+[addbusstop_list]
+Admiralty Int	ADMIRALTY INT	Admiralty Int		Admiralty Int
+Blk 241	BLK 241	BLK 241		BLK 241
+Blk 248A	BLK 248A	BLK 248A		BLK 248A
+Blk 253	BLK 253	BLK 253		BLK 253
+Opp Rivervale Pri Sch	OPP RIVERVALE PR	OPP RV PRI SCH		OPP RV PRI SCH
+Blk 156A CP	BLK 156A CP	BLK 156A CP		BLK 156A CP
+Opp Blk 178A	OPP BLK 178A    	OPP BLK 178A		OPP BLK 178A
+Blk 153	BLK 153         	BLK 153		BLK 153
+Rivervale Pri Sch	RIVERVALE PRI SC	RV PRI SCH		RV PRI SCH
+Blk 297A	BLK 297A	BLK 297A		BLK 297A
+Blk 259C	BLK 259C        	BLK 259C		BLK 259C
+LP 30	LP 30           	LP 30		LP 30
+Opp Rivervale Terraces	OPP RIVERVALE TE	OPP RV TERR		OPP RV TERR
+Opp Blk 153	OPP BLK 153     	OPP BLK 153		OPP BLK 153
+Rivervale Condominium	RIVERVALE CONDO 	RIVERVALE CONDO		RIVERVALE CONDO
+Lakewood Apartments	LAKEWOOD APARTME	LAKEWOOD APT		LAKEWOOD APT
+Opp Blk 670	OPP BLK 670     	OPP BLK 670		OPP BLK 670
+Blk 590	BLK 590         	BLK 590		BLK 590
+Bef Lakewood Ridges	BEF LAKEWOOD RID	BEF LAKEWOOD RID		BEF LAKEWOOD RID
+Opp KMart Carpark	OPP KMART CARPAR	OPP KMART CARPARK		OPP KMART CARPARK
+Opp Lakewood Secondary School	OPP LAKEWOOD SEC	OPP LAKEWOOD SEC SCH		OPP LAKEWOOD SEC
+Blk 620	BLK 620         	BLK 620		BLK 620
+Lakewood Villa	LAKEWOOD VILLA  	LAKEWOOD VILLA		LAKEWOOD VILLA
+Opp Rivervale Condominium	OPP RIVERVALE CO	OPP RV CONDO		OPP RV CONDO
+Rivervale Terraces	RIVERVALE TERRAC	RIVERVALE TERRACES		RIVERVALE TERRACES
+LP 29	LP 29           	LP 29		LP 29
+Bef Admiralty Rd	BEF ADMIRALTY RD	BEF ADMIRALTY RD		BEF ADMIRALTY RD
+Opp Blk 790	OPP BLK 790     	OPP BLK 790		OPP BLK 790
+Hillgrove Walmart	HILLGROVE W'MART	HILLGROVE W'MART		HILLGROVE W'MART
+Opp Hillgrove Residences	OPP H'GROVE RES 	OPP H'GROVE RES		OPP H'GROVE RES
+Hillgrove Sports Complex	H'GROVE S.CMPL  	H'GROVE S. CMPLX		H'GROVE S. CMPLX
+LP 31	LP 31           	LP 31		LP 31
+Opp Blk 241	OPP BLK 241     	OPP BLK 241		OPP BLK 241
+Lakeview Axis	LAKEVIEW AXIS   	LAKEVIEW AXIS		LAKEVIEW AXIS
+Opp Blk 350C	OPP BLK 350C    	OPP BLK 350C		OPP BLK 350C
+T1 Arrival and Departure Halls	T1 ARR DEP HALLS	T1 ARR AND DEP HALLS		T1 ARR DEP HALLS
+889 International Airport	INTL AIRPT 889  	INTL AIRPT 889		INTL AIRPT 889
+After Edgeview Flyover	AFT EGV FLYOVER 	AFT EGV FLYOVER		AFT EGV FLYOVER
+LP 24	LP 24           	LP 24		LP 24
+22 Edgeview Plains	22 EGV PLAINS   	22 EDGEVIEW PLAINS		22 EGV PLAINS
+13 Edgeview Plains	13 EGV PLAINS   	13 EDGEVIEW PLAINS		13 EGV PLAINS
+Opp Edgeview Stadium	OPP EGV STADIUM 	OPP EGV STADIUM		OPP EGV STADIUM
+Blk 520D	BLK 520D        	BLK 520D		BLK 520D
+23 Edgeview Plains	23EGV PLAINS    	23 EDGEVIEW PLAINS		23EGV PLAINS
+LP 25	LP 25           	LP 25		LP 25
+Before Edgeview Flyover	BEF EGV FLYOVER 	BEF EGV FLYOVER		BEF EGV FLYOVER
+International Airport MRT	INTL AIRPT MRT  	INTL AIRPT MRT		INTL AIRPT MRT
+International Airport Coach Terminal	INTL AIRPT C.T  	INTL AIRPT C.T		INTL AIRPT C.T
+Blk 350C	BLK 350C        	BLK 350C		BLK 350C
+Opp Lakeview Axis	OPP LKV AXIS    	OPP LKV AXIS		OPP LKV AXIS
+LP 32	LP 32           	LP 32		LP 32
+Opp Hillgrove Sports Complex	OPP HG S.CMPL   	OPP HG S.CMPL		OPP HG S.CMPL
+Hillgrove Residences	H'GROVE RESIDENC	H'GROVE RESIDENCES		H'GROVE RESIDENC
+Aft Hillgrove Walmart CP	AFT HG W'MART CP	AFT HG W'MART CP		AFT HG W'MART CP
+Blk 790	BLK 790         	BLK 790		BLK 790
+Aft Admiralty Rd	AFT ADMIRALTY RD	AFT ADMIRALTY RD		AFT ADMIRALTY RD
+Edgeview Ter	EDGEVIEW TER    	EDGEVIEW TER		EDGEVIEW TER
+15 Edgeview Plains	15 EGV PLAINS   	15 EDGEVIEW PLAINS		15 EGV PLAINS
+SkyField Catering	SKYFIELD CATER  	SKYFIELD CATERING		SKYFIELD CATERING
+Kensington Jet	KENSINGTON JET  	KENSINGTON JET		KENSINGTON JET
+Fairfield Medical Centre	FAIRFIELD MED CT	FAIRFIELD MED CTR		FAIRFIELD MED CTR
+T1 Carpark	T1 CARPARK      	T1 CARPARK		T1 CARPARK
+882 International Airport	INTL AIRPT 882  	INTL AIRPT 882		INTL AIRPT 882
+Sington Warehouse	SINGTON W'HOUSE 	SINGTON W'HOUSE		SINGTON W'HOUSE
+Worldwide Postal Services	WORLDWIDE P.S   	WORLDWIDE P.S		WORLDWIDE P.S
+Airport Maintenance Office	AIRPORT M.O     	AIRPORT M.O		AIRPORT M.O
+Opp Blk 530C	OPP BLK 530C    	OPP BLK 530C		OPP BLK 530C
+Mount Faber Carpark	MT FABER CARPARK	MT FABER CARPARK		MT FABER CARPARK
+Mount Faber BBQ Pit B25	M.F BBQ PIT B25 	M.F BBQ PIT B25		M.F BBQ PIT B25
+Mount Faber LP35a	MT FABER LP35A  	MT FABER LP35A		MT FABER LP35A
+Mount Faber Field	MT FABER FIELD  	MT FABER FIELD		MT FABER FIELD
+Mount Faber 401	MT FABER 401    	MT FABER 401		MT FABER 401
+Opp Mount Faber Field	OPP M.F FIELD   	OPP M.F FIELD		OPP M.F FIELD
+Mount Faber LP35b	MT FABER LP35B  	MT FABER LP35B		MT FABER LP35B
+Mount Faber BBQ Pit A25	M.F BBQ PIT A25 	M.F BBQ PIT A25		M.F BBQ PIT A25
+Mount Faber Information Centre	M.F INFO CTR    	M.F INFO CTR		M.F INFO CTR
+Woodlands Int	WOODLANDS INT   	WOODLANDS INT		WOODLANDS INT
+Opp Blk 585 CP	OPP BLK 585 CP  	OPP BLK 585 CP		OPP BLK 585 CP
+Bef WDL Esso Station	BEF WDL ESSO STN	BEF WDL ESSO STN		BEF WDL ESSO STN
+Yee Hua Building	YEE HUA BUILDING	YEE HUA BUILDING		YEE HUA BUILDING
+EastBank Shopping Centre	EASTBANK S.C    	EASTBANK S.C		EASTBANK S.C
+International Airport	INTL AIRPORT    	INTL AIRPORT		INTL AIRPORT
+Opp Lakefield Reservoir	OPP L'FIELD RES 	OPP L'FIELD RES		OPP L'FIELD RES
+Opp WDL Esso Station	OPP WDL ESSO STN	OPP WDL ESSO STN		OPP WDL ESSO STN
+Blk 585 CP	BLK 585 CP      	BLK 585 CP		BLK 585 CP
+Balmoral Int	BALMORAL INT    	BALMORAL INT		BALMORAL INT
+Aft Balmoral Int	AFT BALMORAL INT	AFT BALMORAL INT		AFT BALMORAL INT
+Blk 429A CP	BLK 429A CP     	BLK 429A CP		BLK 429A CP
+Blk 442	BLK 442         	BLK 442		BLK 442
+Opp Concord Pri Sch	OPP CONCORD P.S 	OPP CONCORD PRI SCH		OPP CONCORD PRI SCH
+Blk 483	BLK 483         	BLK 483		BLK 483
+Opp Blk 489A	OPP BLK 489A    	OPP BLK 489A		OPP BLK 489A
+Blk 802B	BLK 802B        	BLK 802B		BLK 802B
+Blk 803	BLK 803         	BLK 803		BLK 803
+Blk 489A	BLK 489A        	BLK 489A		BLK 489A
+Opp Blk 486	OPP BLK 486     	OPP BLK 486		OPP BLK 486
+Concord Pri Sch	CONCORD PRI SCH 	CONCORD PRI SCH		CONCORD PRI SCH
+Blk 426	BLK 426         	BLK 426		BLK 426
+Bet Blks 416 and 417	BET BLKS 416 417	BET BLKS 416 AND 417		BET BLKS 416 417
+Blk 806	BLK 806         	BLK 806		BLK 806
+Blk 875	BLK 875         	BLK 875		BLK 875
+Blk 5A	BLK 5A          	BLK 5A		BLK 5A
+Blk 9D	BLK 9D          	BLK 9D		BLK 9D
+Walmart Woodlands North	WALMART WDL NTH 	WALMART WDL NTH		WALMART WDL NTH
+Blk 15A	BLK 15A         	BLK 15A		BLK 15A
+Delicious Barbeque	DELICIOUS BBQ   	DELICIOUS BBQ		DELICIOUS BBQ
+Woodlands Elementary School	WDL ELEMEN SCH  	WDL ELEMEN SCH		WDL ELEMEN SCH
+Opp Woodlands Stadium	OPP WDL STADIUM 	OPP WDL STADIUM		OPP WDL STADIUM
+Blk 190D	BLK 190D        	BLK 190D		BLK 190D
+Blk 191	BLK 191         	BLK 191		BLK 191
+Blk 195 CP	BLK 195 CP      	BLK 195 CP		BLK 195 CP
+Woodlands Car Dealers	WDL CAR DEALERS 	WDL CAR DEALERS		WDL CAR DEALERS
+Opp Straits University	OPP STRAITS UNI 	OPP STRAITS UNI		OPP STRAITS UNI
+[end]
+
+***************
+* R o u t e s *
+***************
+
+[infosystem_trip]
+010
+#####  >>  #####
+0
+0
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+011
+#####  >>  #####
+0
+0
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+10001
+HILLVIEW IKEA  >>  HILLVIEW IKEA
+100
+100
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+90101
+ADMIRALTY INT 901  >>  ADMIRALTY INT 901
+901
+901
+
+[infosystem_busstop_list]
+14
+Admiralty Int
+Admiralty Int
+Blk 241
+Blk 248A
+Blk 253
+Opp Rivervale Pri Sch
+Blk 156A CP
+Opp Blk 178A
+Blk 153
+Rivervale Pri Sch
+Blk 297A
+Blk 259C
+Admiralty Int
+Admiralty Int
+
+[infosystem_trip]
+90301
+ADMIRALTY INT 903  >>  ADMIRALTY INT 903
+903
+903
+
+[infosystem_busstop_list]
+22
+Admiralty Int
+Admiralty Int
+LP 30
+Opp Rivervale Terraces
+Opp Rivervale Pri Sch
+Opp Blk 153
+Rivervale Condominium
+Lakewood Apartments
+Opp Blk 670
+Blk 590
+Bef Lakewood Ridges
+Opp KMart Carpark
+Opp Lakewood Secondary School
+Blk 620
+Lakewood Villa
+Opp Rivervale Condominium
+Blk 153
+Rivervale Pri Sch
+Rivervale Terraces
+LP 29
+Admiralty Int
+Admiralty Int
+
+[infosystem_trip]
+40101
+EDGEVIEW TER >> EDGEVIEW TER
+401
+401
+
+[infosystem_busstop_list]
+14
+Edgeview Ter
+Edgeview Ter
+Opp Blk 530C
+Mount Faber Carpark
+Mount Faber BBQ Pit B25
+Mount Faber LP35a
+Mount Faber Field
+Mount Faber 401
+Opp Mount Faber Field
+Mount Faber LP35b
+Mount Faber BBQ Pit A25
+Mount Faber Information Centre
+Edgeview Ter
+Edgeview Ter
+
+[infosystem_trip]
+85001
+#####  >>  #####
+850
+850
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+85801
+WDL INT  >>  INTL AIRPT
+858
+858
+
+[infosystem_busstop_list]
+11
+Woodlands Int
+Woodlands Int
+Opp Blk 585 CP
+Bef WDL Esso Station
+Yee Hua Building
+EastBank Shopping Centre
+SkyField Catering
+Kensington Jet
+Fairfield Medical Centre
+International Airport
+International Airport
+
+[infosystem_trip]
+85802
+INTL AIRPT >>  WDL INT
+859
+858
+
+[infosystem_busstop_list]
+10
+International Airport
+International Airport
+Sington Warehouse
+Worldwide Postal Services
+Airport Maintenance Office
+Opp Lakefield Reservoir
+Opp WDL Esso Station
+Blk 585 CP
+Woodlands Int
+Woodlands Int
+
+[infosystem_trip]
+88201
+EDGEVIEW TER >> EDGEVIEW TER
+882
+882
+
+[infosystem_busstop_list]
+20
+Edgeview Ter
+Edgeview Ter
+15 Edgeview Plains
+23 Edgeview Plains
+LP 25
+Before Edgeview Flyover
+SkyField Catering
+Kensington Jet
+Fairfield Medical Centre
+International Airport MRT
+T1 Carpark
+882 International Airport
+Sington Warehouse
+Worldwide Postal Services
+Airport Maintenance Office
+After Edgeview Flyover
+LP 24
+22 Edgeview Plains
+Edgeview Ter
+Edgeview Ter
+
+[infosystem_trip]
+88203
+#####  >>  #####
+883
+882
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+88301
+BALMORAL INT >>  BALMORAL INT
+883
+883
+
+[infosystem_busstop_list]
+17
+Balmoral Int
+Balmoral Int
+Aft Balmoral Int
+Blk 429A CP
+Blk 442
+Opp Concord Pri Sch
+Blk 483
+Opp Blk 489A
+Blk 802B
+Blk 803
+Blk 489A
+Opp Blk 486
+Concord Pri Sch
+Blk 426
+Bet Blks 416 and 417
+Balmoral Int
+Balmoral Int
+
+[infosystem_trip]
+90201
+#####  >>  #####
+902
+902
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+90203
+#####  >>  #####
+903
+902
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+91101
+WDL INT  >>  INTL AIRPT
+911
+911
+
+[infosystem_busstop_list]
+23
+Woodlands Int
+Woodlands Int
+Opp Blk 585 CP
+Bef WDL Esso Station
+Blk 806
+Blk 875
+Blk 5A
+Blk 9D
+Walmart Woodlands North
+Blk 15A
+Blk 585 CP
+Woodlands Int
+Woodlands Int
+Delicious Barbeque
+Woodlands Elementary School
+Opp Woodlands Stadium
+Blk 190D
+Blk 191
+Blk 195 CP
+Woodlands Car Dealers
+Opp Straits University
+Woodlands Int
+Woodlands Int
+
+[infosystem_trip]
+91102
+WDL INT  >>  INTL AIRPT
+922
+911
+
+[infosystem_busstop_list]
+12
+Woodlands Int
+Opp Blk 585 CP
+Bef WDL Esso Station
+Blk 806
+Blk 875
+Blk 5A
+Blk 9D
+Walmart Woodlands North
+Blk 15A
+Blk 585 CP
+Woodlands Int
+Woodlands Int
+
+[infosystem_trip]
+96501
+#####  >>  #####
+966
+965
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+96502
+#####  >>  #####
+965
+965
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+88501
+#####  >>  #####
+885
+885
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+88502
+#####  >>  #####
+986
+885
+
+[infosystem_busstop_list]
+0
+
+[infosystem_trip]
+88901
+ADMIRALTY INT  >>  ADMIRALTY INT
+889
+889
+
+[infosystem_busstop_list]
+37
+Admiralty Int
+Admiralty Int
+Bef Admiralty Rd
+Opp Blk 790
+Hillgrove Walmart
+Opp Hillgrove Residences
+Hillgrove Sports Complex
+LP 31
+Blk 259C
+Opp Blk 241
+Lakeview Axis
+Opp Blk 350C
+T1 Arrival and Departure Halls
+889 International Airport
+After Edgeview Flyover
+LP 24
+22 Edgeview Plains
+13 Edgeview Plains
+Opp Edgeview Stadium
+Blk 520D
+23 Edgeview Plains
+LP 25
+Before Edgeview Flyover
+International Airport MRT
+International Airport Coach Terminal
+Blk 350C
+Opp Lakeview Axis
+Blk 241
+Blk 248A
+LP 32
+Opp Hillgrove Sports Complex
+Hillgrove Residences
+Aft Hillgrove Walmart CP
+Blk 790
+Aft Admiralty Rd
+Admiralty Int
+Admiralty Int
+

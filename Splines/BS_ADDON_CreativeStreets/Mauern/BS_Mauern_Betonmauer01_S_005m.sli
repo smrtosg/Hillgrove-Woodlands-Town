@@ -1,0 +1,73 @@
+BS_Mauern_Mauer01_M_005m.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-0.1
+0.1
+0.5
+0.5
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+str_betonplatten.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Mauer ###
+
+[profile]
+0
+
+[profilepnt]
+-0.1
+0
+0.5
+0.5
+
+[profilepnt]
+-0.1
+0.5
+0.995
+0.5
+
+### Mauer ###
+
+[profile]
+0
+
+[profilepnt]
+-0.1
+0.5
+0.5
+0.3
+
+[profilepnt]
+0.1
+0.5
+0.995
+0.3
+
+### Mauer ###
+
+[profile]
+0
+
+[profilepnt]
+0.1
+0.5
+0.5
+0.5
+
+[profilepnt]
+0.1
+0
+0.995
+0.5

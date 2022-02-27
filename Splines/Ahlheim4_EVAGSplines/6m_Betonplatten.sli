@@ -1,0 +1,53 @@
+- - - - - - - - - -
+Höhenprofil
+- - - - - - - - - -
+
+[heightprofile]
+-3.000
+3.000
+0.100
+0.100
+
+- - - - - - - - - -
+Texturen
+- - - - - - - - - -
+
+[texture]
+str_betonplatten.bmp
+
+- - - - - - - - - -
+Zuweisung
+- - - - - - - - - -
+
+[profile]
+0
+
+[profilepnt]
+-3.000
+0.100
+0.995
+0.200
+
+[profilepnt]
+3.000
+0.100
+0.005
+0.200
+
+- - - - - - - - - -
+Verkehrspfade
+- - - - - - - - - -
+
+[path]
+0
+-1.500
+0.100
+1.000
+1
+
+[path]
+0
+1.500
+0.100
+1.000
+0

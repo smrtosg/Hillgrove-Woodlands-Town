@@ -1,0 +1,130 @@
+'########################################
+'#                                      #
+'#              MAIN SCRIPT             #
+'#                                      #
+'#    MAN Standarddoppeldecker SD200    #
+'#                                      #
+'#             Bauart SD85              #
+'#                                      #
+'########################################
+
+'(c) 10.08.2009 Marcel Kuhnt, Rüdiger Hülsmann
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+
+'Revision History:
+'- Marcel Kuhnt		10.08.2009	Added Revision History
+'- Marcel Kuhnt		30.11.2010	Bugfix: press [D] in AI mode if motor running but neutral
+
+'------------------------------------------------------------------------------------------
+
+
+'######################
+'	Hauptteil
+'######################
+
+{init}
+	1 (S.L.Daueranimation)
+	(M.L.engine_Init)
+	(M.L.Antrieb_Init)
+	(M.L.Elec_Init)
+	(M.L.Door_Init)
+	(M.L.wiper_init)
+	(M.L.lights_init)
+	(M.L.bremse_init)
+	(M.L.cockpit_init)
+	(M.L.heizung_init)
+	(M.L.Matrix_init)
+	(M.L.IBIS_init)
+	(M.L.Collision_Init)
+	(M.L.ticketprinter_init)
+	(M.L.VDV_init)
+		
+{end}
+
+{frame}
+	(M.L.Engine_Frame)
+	(M.L.Antrieb_Frame)
+	(M.L.Elec_Frame)
+	(M.L.Door_frame)
+	(M.L.cockpit_frame)
+	(M.L.lights_frame)
+	(M.L.wiper_frame)
+	(M.L.Auspuff_Frame)
+	(M.L.bremse_frame)
+	(M.L.klappern_frame)
+	(M.L.FF_frame)
+	(M.L.rain_frame)
+	(M.L.dirt_frame)
+	(M.L.sound_volume_frame)
+	(M.L.heizung_frame)
+	(M.L.IBIS_frame)
+	(M.L.Matrix_frame)
+	(M.L.wimpel_frame)
+	(M.L.cashdesk_frame)
+	(M.L.ticketprinter_frame)
+	(M.L.VDV_Frame)
+
+
+'AI:
+
+	(L.L.AI_Engine) 0.5 >
+	(L.L.engine_on) 0.5 <
+	(L.L.antrieb_getr_gangvorwahl) 4 = ! ||
+	&&
+	{if}
+		0 (S.L.bremse_feststell_sw) (S.L.bremse_feststell)
+		1 (S.L.engine_injection_on)
+		400 (S.L.engine_n)
+		4 (S.L.antrieb_getr_gangvorwahl)
+		1 (S.L.engine_on)
+	{endif}
+
+	(L.L.AI_Engine) -0.5 <
+	(L.L.engine_on) 0.5 >
+	&&
+	{if}
+		0 (S.L.engine_on)
+		0 (S.L.engine_injection_on)
+		1 (S.L.bremse_feststell_sw) (S.L.bremse_feststell)
+	{endif}
+
+
+
+
+{end}
+
+'----------------------------------
+'Crash:
+
+{trigger:collision}
+	(M.L.Collision_Trigger)
+{end}
+
+
+'----------------------------------
+'malfunction reset:
+
+
+{trigger:malfunction_reset}
+	1.0 (S.L.elec_V_battery)
+	(M.L.Collision_Malfunction_Reset)
+	(C.L.Fehlertoleranz) (L.L.wearlifespan) * random (S.L.EBS_Error_dist)
+	(C.L.Fehlertoleranz) (L.L.wearlifespan) * random (S.L.Retarder_Error_dist)
+	(C.L.Fehlertoleranz) (L.L.wearlifespan) * random (S.L.Gear_Error_dist)
+	(C.L.Fehlertoleranz) (L.L.wearlifespan) * random (S.L.ECAS_Error_dist)
+	(C.L.Fehlertoleranz) (L.L.wearlifespan) * random (S.L.EDC_Error_dist)
+	(C.L.Fehlertoleranz) (L.L.wearlifespan) * random (S.L.Battery_Error_dist)
+	(C.L.Tuerfehlertoleranz) (L.L.wearlifespan) * random (S.L.Door_Error_Count)
+	60 (S.L.engine_temperature)
+{end}
+
+
+
+
+
+
+
+

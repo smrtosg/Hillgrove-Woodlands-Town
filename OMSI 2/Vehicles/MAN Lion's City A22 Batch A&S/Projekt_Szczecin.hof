@@ -1,0 +1,2242 @@
+#####TEMPLATE FILE#####
+SD200_SD202_Template.xml
+
+#####COMMENT#####
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####ENDCOMMENT#####
+
+
+>>> Created: 2/11/2014, 11:34:34
+
+>>> This file was created with HOF Creator 1.1. Thank you for usage!
+>>> www.jan-kiesewalter.de
+
+
+[name]
+Projekt Szczecin V
+
+[servicetrip]
+Empty
+
+
+stringcount_terminus
+8
+
+stringcount_busstop
+4
+
+
+
+######################################
+ TERMINI
+######################################
+
+[addterminus_allexit]
+0
+Blank
+
+
+
+
+
+
+
+PJS\SMRTG_BLANK.png
+.........................
+
+
+[addterminus_allexit]
+4
+Training Bus
+  TRAINING BUS
+TRAINING BUS
+
+  TRAINING BUS
+
+    Training Bus
+
+PJS\TRG.png
+.........................
+
+[addterminus_allexit]
+5
+SMRTG BUSES
+  SMRTG BUSES
+SMRTG BUSES
+
+  SMRTG BUSES
+
+    SMRTG BUSES
+
+PJS\SMRTB.png
+.........................
+
+[addterminus_allexit]
+6
+FESTIVE
+  FESTIVE
+FESTIVE
+
+  FESTIVE
+
+    FESTIVE
+
+PJS\FES.png
+.........................
+
+[addterminus]
+571
+Kollataja 57
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja
+
+
+PJS\57011.png
+.........................
+
+[addterminus]
+572
+Warszewo 57
+WARSZEWO
+WARSZEWO
+WARSZEWO
+WARSZEWO
+Warszewo
+
+
+PJS\57021.png
+.........................
+
+[addterminus]
+573
+Kollataja 522
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja
+
+
+PJS\522011.png
+.........................
+
+[addterminus]
+574
+Warszewo 522
+WARSZEWO
+WARSZEWO
+WARSZEWO
+WARSZEWO
+Warszewo
+
+
+PJS\522021.png
+.........................
+
+[addterminus]
+575
+Kollataja 522 (2)
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja
+
+
+PJS\522011.png
+.........................
+
+[addterminus]
+576
+Kormoranow 522 (2)
+KORMORANOW
+KORMORANOW
+KORMORANOW
+KORMORANOW
+Kormoranow7
+
+
+PJS\522031.png
+.........................
+
+[addterminus]
+821
+Kollataja 82
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja8
+
+
+PJS\82011.png
+.........................
+
+[addterminus]
+822
+Krucza Dom Kombatanta 82
+KRUCZA DOM KOMB.
+KRUCZADOM KOMBATANTA
+KRUCZA DOM KOMB.
+KRUCZA DOM KOMB.
+Krucza Dom Kombatanta9
+
+
+PJS\82021.png
+.........................
+
+[addterminus]
+591
+Plac Rodla 59
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+Plac Rodla10
+
+
+PJS\59011.png
+.........................
+
+[addterminus]
+592
+Wiszeslawa 59
+WISZESLAWA
+WISZESLAWA
+WISZESLAWA
+WISZESLAWA
+Wiszeslawa11
+
+
+PJS\59021.png
+.........................
+
+[addterminus]
+681
+Plac Rodla 68
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+Plac Rodla12
+
+
+PJS\...png
+.........................
+
+[addterminus]
+682
+Kormoranow 68
+KORMORANOW
+KORMORANOW
+KORMORANOW
+KORMORANOW
+Kormoranow13
+
+
+PJS\...png
+.........................
+
+[addterminus]
+631
+Kollataja 63
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja14
+
+
+PJS\...png
+.........................
+
+[addterminus]
+632
+Skolwin 63
+SKOLWIN
+SKOLWIN
+SKOLWIN
+SKOLWIN
+Skolwin15
+
+
+PJS\...png
+.........................
+
+[addterminus]
+633
+Kollataja 63 (2)
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja16
+
+
+PJS\...png
+.........................
+
+[addterminus]
+581
+Stocznia Szczecinska 58
+STOCZNIA SZCZEC.
+STOCZNIASZCZECINSKA
+STOCZNIA SZCZEC.
+STOCZNIA SZCZEC.
+Stocznia Szczecinska17
+
+
+PJS\...png
+.........................
+
+[addterminus]
+582
+Goclaw 58
+GOCLAW
+GOCLAW
+GOCLAW
+GOCLAW
+Goclaw18
+
+
+PJS\...png
+.........................
+
+[addterminus]
+511
+Kollataja 51
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja19
+
+
+PJS\...png
+.........................
+
+[addterminus]
+512
+Glebokie 51
+GLEBOKIE
+GLEBOKIE
+GLEBOKIE
+GLEBOKIE
+Glebokie20
+
+
+PJS\...png
+.........................
+
+[addterminus]
+513
+Kollataja 51 (2)
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja21
+
+
+PJS\...png
+.........................
+
+[addterminus]
+514
+Osow 51 (2)
+OSOW
+OSOW
+OSOW
+OSOW
+Osow22
+
+
+PJS\...png
+.........................
+
+[addterminus]
+781
+Kollataja 78
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja23
+
+
+PJS\...png
+.........................
+
+[addterminus]
+782
+Os. Arkonskie 78
+OS. ARKONSKIE
+OS. ARKONSKIE
+OS. ARKONSKIE
+OS. ARKONSKIE
+Os. Arkonskie24
+
+
+PJS\...png
+.........................
+
+[addterminus]
+691
+Kollataja 69
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja25
+
+
+PJS\...png
+.........................
+
+[addterminus]
+692
+Rugianska 69
+RUGIANSKA
+RUGIANSKA
+RUGIANSKA
+RUGIANSKA
+Rugianska26
+
+
+PJS\...png
+.........................
+
+[addterminus]
+693
+Kollataja 69 (2)
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja27
+
+
+PJS\...png
+.........................
+
+[addterminus]
+694
+Ludowa 69 (2)
+LUDOWA
+LUDOWA
+LUDOWA
+LUDOWA
+Ludowa28
+
+
+PJS\...png
+.........................
+
+[addterminus]
+871
+Kollataja 87
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+Kollataja29
+
+
+PJS\...png
+.........................
+
+[addterminus]
+872
+Podborz 87
+PODBORZ
+PODBORZ
+PODBORZ
+PODBORZ
+Podborz30
+
+
+PJS\...png
+.........................
+
+[addterminus]
+873
+Kollataja 87 (2)
+KOLLATAJA
+KOLLATAJA
+KOLLATAJA
+KOLLATA
+Kollataja31
+
+
+PJS\...png
+.........................
+
+[addterminus]
+874
+Warszewo 87 (2)
+WARSZEWO
+WARSZEWO
+WARSZEWO
+WARSZEWO
+Warszewo32
+
+
+PJS\...png
+.........................
+
+[addterminus]
+531
+Pomorzany Dobrzynska 53
+POMORZANY DOBRZYNSKA
+POMORZANY DOBRZYNSKA
+POMORZANY DOBRZ.
+POMORZANY DOBRZYNSKA
+Pomorzany Dobrzynska33
+
+
+PJS\...png
+.........................
+
+[addterminus]
+532
+Stocznia Szczecinska 53
+STOCZNIA SZCZEC.
+STOCZNIA SZCZECINSKA
+STOCZNIA SZCZEC.
+STOCZNIA SZCZECINSKA
+Stocznia Szczecinska34
+
+
+PJS\...png
+.........................
+
+[addterminus]
+533
+Ludowa 53
+LUDOWA
+LUDOWA
+LUDOWA
+LUDOWA
+Ludowa35
+
+
+PJS\...png
+.........................
+
+[addterminus]
+534
+Klonowica Zajezdnia 53
+KLONOWICA ZAJEZDNIA
+KLONOWICA ZAJEZDNIA
+KLONOWICA ZAJ.
+KLONOWICA ZAJEZDNIA
+Klonowica Zajezdnia36
+
+
+PJS\...png
+.........................
+
+[addterminus]
+601
+Cukrowa 60
+CUKROWA
+CUKROWA
+CUKROWA
+CUKROWA
+Cukrowa37
+
+
+PJS\...png
+.........................
+
+[addterminus]
+602
+Stocznia Szczecinska 60
+STOCZNIA SZCZEC.
+STOCZNIA SZCZECINSKA
+STOCZNIA SZCZEC.
+STOCZNIA SZCZECINSKA
+Stocznia Szczecinska38
+
+
+PJS\...png
+.........................
+
+[addterminus]
+603
+Klonowica Zajezdnia 60
+KLONOWICA ZAJEZDNIA
+KLONOWICA ZAJEZDNIA
+KLONOWICA ZAJ.
+KLONOWICA ZAJEZDNIA
+Klonowica Zajezdnia39
+
+
+PJS\...png
+.........................
+
+[addterminus]
+671
+Karola Miarki 67
+KAROLA MIARKI
+KAROLA MIARKI
+KAROLA MIARKI
+KAROLA MIARKI
+Karola Miarki40
+
+
+PJS\...png
+.........................
+
+[addterminus]
+672
+Stocznia Szczecinska 67
+STOCZNIA SZCZEC.
+STOCZNIA SZCZECIN
+SKASTOCZNIA SZCZEC.
+STOCZNIA SZCZECIN
+Stocznia Szczecinska41
+
+
+PJS\...png
+.........................
+
+[addterminus]
+673
+Ludowa 67
+LUDOWA
+LUDOWA
+LUDOWA
+LUDOWA
+Ludowa42
+
+
+PJS\...png
+.........................
+
+[addterminus]
+701
+Urzad Miasta 70
+URZAD MIASTA
+URZAD MIASTA
+URZAD MIASTA
+Sz_70_Urzad.tga
+Urzad Miasta43
+
+
+PJS\...png
+.........................
+
+[addterminus]
+702
+Dworzec Glowny 70
+DWORZEC GLOWNY
+DWORZEC GLOWNY
+DWORZEC GLOWNY
+DWORZEC GLOWNY
+Dworzec Glowny44
+
+
+PJS\...png
+.........................
+
+[addterminus]
+703
+Elektrownia Pomorzany 70
+ELEKT. POMORZANY
+ELEKTROW NIAPOMORZANY
+ELEKT. POMORZANY
+ELEKTROW NIAPOMORZANY
+Elektrownia Pomorzany45
+
+
+PJS\...png
+.........................
+
+[addterminus]
+704
+Kamieniec 70
+KAMIENIEC
+KAMIENIECPRZEZ MOCZYLY
+KAMIENIEC
+KAMIENIECPRZEZ MOCZYLY
+Kamieniec46
+
+
+PJS\...png
+.........................
+
+[addterminus]
+705
+Kamieniec 70 (2)
+KAMIENIEC
+KAMIENIECPRZEZ ROSOWEK
+KAMIENIEC
+KAMIENIECPRZEZ ROSOWEK
+Kamieniec47
+
+
+PJS\...png
+.........................
+
+
+[addterminus]
+011
+Plac Rodla 101
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+Plac Rodla48
+
+
+PJS\...png
+.........................
+
+[addterminus]
+012
+Police Jasienica 101
+POLICE JASIENICA
+POLICEJASIENICA
+POLICE JASIENICA
+POLICE JASIENICA
+Police Jasienica49
+
+
+PJS\...png
+.........................
+
+[addterminus]
+013
+Plac Rodla 101 (2)
+PLAC RODLA
+PLAC RODLA
+P. ZAKLADY CHEM.
+PLAC RODLA
+Plac Rodla50
+
+
+PJS\...png
+.........................
+
+[addterminus]
+014
+Police Jasienica 101 (2)
+POLICE JASIENICA
+POLICE JASIENICA
+P. ZAKLADY CHEM.
+POLICE JASIENICA
+Police Jasienica
+
+
+51PJS\...png
+.........................
+
+[addterminus]
+021
+Goclaw 102
+GOCLAW
+GOCLAW
+GOCLAW
+GOCLAW
+Goclaw52
+
+
+PJS\...png
+.........................
+
+[addterminus]
+022
+Police Tanowska Szkola 102
+POLICE T. SZKOLA
+POLICE TANOWSKA SZKOLA
+POLICE T. SZKOLA
+POLICE TANOWSKA SZKOLA
+Police Tanowska Szkola53
+
+
+PJS\...png
+.........................
+
+[addterminus]
+023
+Goclaw 102 (2)
+GOCLAW
+GOCLAW
+GOCLAW
+GOCLAW
+Goclaw54
+
+
+PJS\...png
+.........................
+
+[addterminus]
+024
+Police Zajezdnia 102
+POLICE ZAJEZDNIA
+POLICE ZAJEZDNIA
+POLICE ZAJEZDNIA
+POLICE ZAJEZDNIA
+Police Zajezdnia55
+
+
+PJS\...png
+.........................
+
+[addterminus]
+071
+Plac Rodla 107
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+Plac Rodla56
+
+
+PJS\...png
+.........................
+
+[addterminus]
+072
+Police Osiedle Chemik 107
+POLICE OS.CHEMIK
+POLICE OSIEDLE CHEMIK
+POLICE OS.CHEMIK
+POLICE OSIEDLE CHEMIK
+Police Osiedle Chemik57
+
+
+PJS\...png
+.........................
+
+[addterminus]
+311
+Studzienna
+ASTUDZIENN
+ASTUDZIENN
+ASTUDZIENN
+ASTUDZIENN
+Studzienna58
+
+
+PJS\...png
+.........................
+
+[addterminus]
+312
+Osiedle Bukowe
+OSIEDLE BUKOWE
+OSIEDLE BUKOWE
+OSIEDLE BUKOWE
+OSIEDLE BUKOWE
+Osiedle Bukowe59
+
+
+PJS\...png
+.........................
+
+[addterminus]
+411
+Osiedle Arkonskie B
+OSIEDLE ARKONSKIE
+OSIEDLE ARKONSKIE
+OS. ARKONSKIE
+OSIEDLE ARKONSKIE
+Osiedle Arkonskie60
+
+
+PJS\...png
+.........................
+
+
+[addterminus]
+412
+Osiedle Sloneczne B
+OSIEDLE SLONECZNE
+OSIEDLE SLONECZNE
+OS. SLONECZNE
+OSIEDLE SLONECZNE
+Osiedle Sloneczne61
+
+
+PJS\...png
+.........................
+
+[addterminus]
+501
+Plac Rodla C
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+Plac Rodla62
+
+
+PJS\...png
+.........................
+
+[addterminus]
+502
+Osiedle Kasztanowe C
+OS. KASZTANOWE
+OSIEDLE KASZTANOWE
+OS. KASZTANOWE
+OSIEDLE KASZTANOWE
+Osiedle Kasztanowe63
+
+
+PJS\...png
+.........................
+
+[addterminus]
+711
+Plac Rodla F
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+PLAC RODLA
+Plac Rodla64
+
+
+PJS\...png
+.........................
+
+[addterminus]
+712
+Police Osiedle Chemik F
+POLICE OS.CHEMIK
+POLICE OSIEDLE CHEMIK
+POLICE OS.CHEMIK
+POLICE OSIEDLE CHEMIK
+Police Osiedle Chemik65
+
+
+PJS\...png
+.........................
+[addterminus]
+901
+Pomorzany 6
+POMORZANY
+POMORZANY
+POMORZANY
+POMORZANY
+Pomorzany66
+
+
+PJS\...png
+.........................
+
+[addterminus]
+902
+Goclaw 6
+GOCLAW
+GOCLAW
+GOCLAW
+GOCLAW
+Goclaw67
+
+
+PJS\...png
+.........................
+[addterminus]
+903
+Potulicka 1
+POTULICKA
+POTULICKA
+POTULICKA
+POTULICKA
+Potulicka68
+
+
+PJS\...png
+.........................
+
+[addterminus]
+904
+Glebokie 1
+GLEBOKIE
+GLEBOKIE
+GLEBOKIE
+GLEBOKIE
+Glebokie69
+
+
+PJS\...png
+.........................
+
+[addterminus]
+905
+Dworzec Niebuszewo 2
+DW. NIEBUSZEWO
+DW. NIEBUSZEWO
+DW. NIEBUSZEWO
+DW. NIEBUSZEWO
+Dworzec Niebuszewo70
+
+
+PJS\...png
+.........................
+
+[addterminus]
+906
+Basen Gorniczy 2
+BASEN GORNICZY
+BASEN GORNICZY
+BASEN GORNICZY
+BASEN GORNICZY
+Basen Gorniczy71
+
+
+PJS\...png
+.........................
+
+[addterminus]
+907
+Las Arkonski 3
+LAS ARKONSKI
+LAS ARKONSKI
+LAS ARKONSKI
+LAS ARKONSKI
+Las Arkonski72
+
+
+PJS\...png
+.........................
+
+[addterminus]
+908
+Gumience 10
+GUMIENCE
+GUMIENCE
+GUMIENCE
+GUMIENCE
+Gumience73
+
+
+PJS\...png
+.........................
+
+
+[addterminus]
+909
+Ludowa 11
+LUDOWA
+LUDOWA
+LUDOWA
+LUDOWA
+Ludowa74
+
+
+PJS\...png
+.........................
+
+[addterminus]
+910
+Stocznia 
+Szczecinska 5
+STOCZNIA SZCZEC.
+STOCZNIA SZCZEC.
+STOCZNIA SZCZEC.
+STOCZNIA SZCZECINSKA
+Stocznia Szczecinska75
+
+
+PJS\...png
+.........................
+
+[addterminus]
+911
+Krzekowo 5
+KRZEKOWO
+KRZEKOWO
+KRZEKOWO
+KRZEKOWO
+Krzekowo76
+
+
+PJS\...png
+.........................
+
+[addterminus]
+912
+Pomorzany 11
+POMORZANY
+POMORZANY
+POMORZANY
+POMORZANY
+Pomorzany77
+
+
+PJS\...png
+.........................
+
+[addterminus]
+913
+Pomorzany 12
+POMORZANY
+POMORZANY
+POMORZANY
+POMORZANY
+Pomorzany78
+
+
+PJS\...png
+.........................
+
+[addterminus]
+914
+Pomorzany 3
+POMORZANY
+POMORZANY
+POMORZANY
+POMORZANY
+Pomorzany79
+
+
+PJS\...png
+.........................
+
+[addterminus]
+915
+Dworzec Niebuszewo 12
+DW. NIEBUSZEWO
+DW. NIEBUSZEWO
+DW. NIEBUSZEWO
+DW. NIEBUSZEWO
+Dworzec Niebuszewo80
+
+
+PJS\...png
+.........................
+
+[addterminus]
+916
+Potulicka 4
+POTULICKA
+POTULICKA
+POTULICKA
+POTULICKA
+Potulicka81
+
+
+PJS\...png
+.........................
+
+[addterminus]
+917
+Las Arkonski 10
+LAS ARKONSKI
+LAS ARKONSKI
+LAS ARKONSKI
+LAS ARKONSKI
+Las Arkonski82
+PJS\...png
+.........................
+
+[addterminus]
+918
+Pomorzany 4
+POMORZANY
+POMORZANY
+POMORZANY
+POMORZANY
+Pomorzany83
+
+
+PJS\...png
+.........................
+
+[addterminus]
+920
+Zajezdnia Pogodno 1
+ZAJ. POGODNO
+ZAJ. POGODNO
+ZAJ. POGODNO
+ZAJ. POGODNO
+Zajezdnia Pogodno84
+
+
+PJS\...png
+.........................
+
+[addterminus]
+921
+Zajezdnia Golecin 5
+ZAJ. GOLECIN
+ZAJ. GOLECIN
+ZAJ. GOLECIN
+ZAJ. GOLECIN
+Zajezdnia Golecin85
+
+
+PJS\...png
+.........................
+
+
+######################################
+ BUS STOPS
+######################################
+
+
+[addbusstop]
+Kollataja
+KOLLATAJA
+Kollataja
+Kollataja
+KOLLATAJA
+.........................
+
+[addbusstop]
+Niemcewicza
+NIEMCEWICZA
+Niemcewicza
+Niemcewicza
+NIEMCEWICZA
+.........................
+
+[addbusstop]
+Boguchwaly
+BOGUCHWALY
+Boguchwaly
+Boguchwaly
+BOGUCHWALY
+.........................
+
+[addbusstop]
+Cyryla i Metodego
+CYRYLA I METODEG
+Cyryla i Metodego
+Cyryla i Metodego
+CYRYLA I METODEGO
+.........................
+
+[addbusstop]
+1 Maja
+1 MAJA
+1 Maja
+1 Maja
+1 MAJA
+.........................
+
+[addbusstop]
+Wilcza Wiadukt
+WILCZA WIADUKT
+Wilcza Wiaduk
+tWilcza Wiadukt
+WILCZA WIADUKT
+.........................
+
+[addbusstop]
+Komuny Paryskiej
+KOMUNY PARYSKIEJ
+Komuny Paryskiej
+Komuny Paryskiej
+KOMUNY PARYSKIEJ
+.........................
+
+[addbusstop]
+Pasterska
+PASTERSKA
+Pasterska
+Pasterska
+PASTERSKA
+.........................
+
+[addbusstop]
+Bandurskiego
+BANDURSKIEGO
+Bandurskiego
+Bandurskiego
+BANDURSKIEGO
+.........................
+
+[addbusstop]
+Axentowicza
+AXENTOWICZA
+Axentowicza
+Axentowicza
+AXENTOWICZA
+.........................
+
+[addbusstop]
+Kresowa
+KRESOWA
+Kresowa
+Kresowa
+KRESOWA
+.........................
+
+[addbusstop]
+Kormoranow
+KORMORANOW
+Kormoranow
+Kormoranow
+KORMORANOW
+.........................
+
+[addbusstop]
+Kormoranow nz
+KORMORANOW NZ
+Kormoranow nz
+Kormoranow nz
+KORMORANOW NZ
+.........................
+
+[addbusstop]
+Rostocka
+ROSTOCKA
+Rostocka
+Rostocka
+ROSTOCKA
+.........................
+
+[addbusstop]
+Czeska
+CZESKA
+Czeska
+Czeska
+CZESKA
+.........................
+
+[addbusstop]
+Laczna nz
+LACZNA NZ
+Laczna nz
+Laczna nz
+LACZNA NZ
+.........................
+
+[addbusstop]
+Warszewo Kosciol
+WARSZEWO KOSCIOL
+Warszewo Kosciol
+Warszewo Kosciol
+WARSZEWO KOSCIOL
+.........................
+
+[addbusstop]
+Warszewo Szkola
+WARSZEWO SZKOLA
+Warszewo Szkola
+Warszewo Szkola
+WARSZEWO SZKOLA
+.........................
+
+[addbusstop]
+Szwedzka
+SZWEDZKA
+Szwedzka
+Szwedzka
+SZWEDZKA
+.........................
+
+[addbusstop]
+Warszewo
+WARSZEWO
+Warszewo
+Warszewo
+WARSZEWO
+.........................
+
+[addbusstop]
+Thugutta
+THUGUTTA
+Thugutta
+Thugutta
+THUGUTTA
+.........................
+
+[addbusstop]
+Krucza
+KRUCZA
+Krucza
+Krucza
+KRUCZA
+.........................
+
+[addbusstop]
+Krucza Dom Kombatanta
+KRUCZA DOM KOMB.
+Krucza Dom Kombatanta
+Krucza Dom Kombatanta
+KRUCZA DOM KOMB.
+.........................
+
+[addbusstop]
+Szczepowa nz
+SZCZEPOWA NZ
+Szczepowa nz
+Szczepowa nz
+SZCZEPOWA NZ
+.........................
+
+[addbusstop]
+Jana z Czarnolasu
+JANA Z CZARNOLAS
+Jana z Czarnolasu
+Jana z Czarnolasu
+JANA Z CZARNOLAS
+.........................
+
+[addbusstop]
+Plac Rodla
+PLAC RODLA
+Plac Rodla
+Plac Rodla
+PLAC RODLA
+.........................
+
+[addbusstop]
+Malczewskiego
+MALCZEWSKIEGO
+Malczewskiego
+Malczewskiego
+MALCZEWSKIEGO
+.........................
+
+[addbusstop]
+Matejki
+MATEJKI
+Matejki
+Matejki
+MATEJKI
+.........................
+
+[addbusstop]
+Sczanieckiej
+SCZANIECKIEJ
+Sczanieckiej
+Sczanieckiej
+SCZANIECKIEJ
+.........................
+
+[addbusstop]
+Hoza
+HOZA
+Hoza
+Hoza
+HOZA
+.........................
+
+[addbusstop]
+Ogrody Przyjazn nz
+OGR. PRZYJAZN NZ
+Ogrody Przyjazn nz
+Ogrody Przyjazn nz
+OGR. PRZYJAZN NZ
+.........................
+
+[addbusstop]
+Boguminska nz
+BOGUMINSKA NZ
+Boguminska nz
+Boguminska nz
+BOGUMINSKA NZ
+.........................
+
+[addbusstop]
+Pokoju
+POKOJU
+Pokoju
+Pokoju
+POKOJU
+.........................
+
+[addbusstop]
+Goclawska
+GOCLAWSKA
+Goclawska
+Goclawska
+GOCLAWSKA
+.........................
+
+[addbusstop]
+Golecino Szpital
+GOLECINO SZPITAL
+Golecino Szpital
+Golecino Szpital
+GOLECINO SZPITAL
+.........................
+
+[addbusstop]
+Swietojanska nz
+SWIETOJANSKA NZ
+Swietojanska nz
+Swietojanska nz
+SWIETOJANSKA NZ
+.........................
+
+[addbusstop]
+Paproci nz
+PAPROCI NZ
+Paproci nz
+Paproci nz
+PAPROCI NZ
+.........................
+
+[addbusstop]
+Wiszeslawa
+WISZESLAWA
+Wiszeslawa
+Wiszeslawa
+WISZESLAWA
+.........................
+
+[addbusstop]
+Nehringa Pomnik
+NEHRINGA POMNIK
+Nehringa Pomnik
+Nehringa Pomnik
+NEHRINGA POMNIK
+.........................
+
+[addbusstop]
+Kolonistow
+KOLONISTOW
+Kolonistow
+Kolonistow
+KOLONISTOW
+.........................
+
+[addbusstop]
+Zagorskiego
+ZAGORSKIEGO
+Zagorskiego
+Zagorskiego
+ZAGORSKIEGO
+.........................
+
+[addbusstop]
+Fabryka Domow
+FABRYKA DOMOW
+Fabryka Domow
+Fabryka Domow
+FABRYKA DOMOW
+.........................
+
+[addbusstop]
+Bajeczna
+BAJECZNA
+Bajeczna
+Bajeczna
+BAJECZNA
+.........................
+
+[addbusstop]
+Stolczyn Kosciol
+STOLCZYN KOSCIOL
+Stolczyn Kosciol
+Stolczyn Kosciol
+STOLCZYN KOSCIOL
+.........................
+
+[addbusstop]
+Koscielna ZBiLK nz
+KOSCIELNA ZBILK
+Koscielna ZBiLK nz
+Koscielna ZBiLK nz
+KOSCIELNA ZBILK
+.........................
+
+[addbusstop]
+Dabrowki
+DABROWKI
+Dabrowki
+Dabrowki
+DABROWKI
+.........................
+
+[addbusstop]
+Koscielna
+KOSCIELNA
+Koscielna
+Koscielna
+KOSCIELNA
+.........................
+
+[addbusstop]
+Nad Odra
+NAD ODRA
+Nad Odra
+Nad Odra
+NAD ODRA
+.........................
+
+[addbusstop]
+Goclaw
+GOCLAW
+Goclaw
+Goclaw
+GOCLAW
+.........................
+
+[addbusstop]
+Zamknieta
+ZAMKNIETA
+Zamknieta
+Zamknieta
+ZAMKNIETA
+.........................
+
+[addbusstop]
+Nad Odra 4
+NAD ODRA 4/HUTA
+Nad Odra 4
+Nad Odra 4
+NAD ODRA 4/HUTA
+.........................
+
+[addbusstop]
+Ceglowka
+CEGLOWKA
+Ceglowka
+Ceglowka
+CEGLOWKA
+.........................
+
+[addbusstop]
+Celulozowa
+CELULOZOWA
+Celulozowa
+Celulozowa
+CELULOZOWA
+.........................
+
+[addbusstop]
+Skolwin Dworzec
+SKOLWIN DWORZEC
+Skolwin Dworzec
+Skolwin Dworzec
+SKOLWIN DWORZEC
+.........................
+
+[addbusstop]
+Stolczynska
+STOLCZYNSKA
+Stolczynska
+Stolczynska
+STOLCZYNSKA
+.........................
+
+[addbusstop]
+Wodna
+WODNA
+Wodna
+Wodna
+WODNA
+.........................
+
+[addbusstop]
+Nowy Swiat
+NOWY SWIAT
+Nowy Swiat
+Nowy Swiat
+NOWY SWIAT
+.........................
+
+
+[addbusstop]
+Orlowska nz
+ORLOWSKA NZ
+Orlowska nz
+Orlowska nz
+ORLOWSKA NZ
+.........................
+
+
+[addbusstop]
+Artyleryjska
+ARTYLERYJSKA
+Artyleryjska
+Artyleryjska
+ARTYLERYJSKA
+.........................
+
+[addbusstop]
+Gornicza nz
+GORNICZA NZ
+Gornicza nz
+Gornicza nz
+GORNICZA NZ
+.........................
+
+[addbusstop]
+Kamienna
+KAMIENNA
+Kamienna
+Kamienna
+KAMIENNA
+.........................
+
+[addbusstop]
+Skolwin
+SKOLWIN
+Skolwin
+Skolwin
+SKOLWIN
+.........................
+
+[addbusstop]
+Plac Matki Teresy
+PL. MATKI TERESY
+Plac Matki Teresy
+Plac Matki Teresy
+PL. MATKI TERESY
+.........................
+
+[addbusstop]
+Emilii Plater
+EMILII PLATER
+Emilii Plater
+Emilii Plater
+EMILII PLATER
+.........................
+
+[addbusstop]
+Antosiewicza
+ANTOSIEWICZA
+Antosiewicza
+Antosiewicza
+ANTOSIEWICZA
+.........................
+
+[addbusstop]
+Stocznia Szczecinska
+ST. SZCZECINSKA
+Stocznia Szczecinska
+Stocznia Szczecinska
+ST. SZCZECINSKA
+.........................
+
+
+######################################
+ TRIPS / ROUTES
+######################################
+
+
+Line 057, Route 01: Warszewo >> Kollataja
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05701
+WARSZEWO >> KOLLATAJA
+571
+57
+
+[infosystem_busstop_list]
+19
+Warszewo
+Szwedzka
+Warszewo Szkola
+Warszewo Kosciol
+Laczna nz
+Czeska
+Rostocka
+Kormoranow nz
+Kresowa
+Axentowicza
+Bandurskiego
+Pasterska
+Komuny Paryskiej
+Wilcza Wiadukt
+1 Maja
+Cyryla i Metodego
+Boguchwaly
+Niemcewicza
+Kollataja
+
+
+Line 057, Route 02: Kollataja >> Warszewo
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05702
+KOLLATAJA >> WARSZEWO
+572
+57
+
+[infosystem_busstop_list]
+17
+Kollataja
+Niemcewicza
+Boguchwaly
+Cyryla i Metodego
+1 Maja
+Wilcza Wiadukt
+Pasterska
+Bandurskiego
+Axentowicza
+Kormoranow
+Rostocka
+Czeska
+Laczna nz
+Warszewo Kosciol
+Warszewo Szkola
+Szwedzka
+Warszewo
+
+
+Line 058, Route 01: Goclaw >> Stocznia Szczecinska
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05801
+GOCLAW >> STOCZNIA SZCZECINSKA
+581
+58
+
+[infosystem_busstop_list]
+23
+Goclaw
+Nad Odra
+Koscielna
+Dabrowki
+Koscielna ZBiLK nz
+Stolczyn Kosciol
+Bajeczna
+Fabryka Domow
+Zagorskiego
+Kolonistow
+Nehringa Pomnik
+Pokoju
+Boguminska nz
+Ogrody Przyjazn nz
+Hoza
+Jana z Czarnolasu
+Komuny Paryskiej
+Wilcza Wiadukt
+Sczanieckiej
+Plac Matki Teresy
+Emilii Plater
+Antosiewicza
+Stocznia Szczecinska
+
+
+Line 058, Route 02: Stocznia Szczecinska >> Goclaw
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05802
+STOCZNIA SZCZECINSKA >> GOCLAW
+582
+58
+
+[infosystem_busstop_list]
+22
+Stocznia Szczecinska
+Emilii Plater
+Plac Matki Teresy
+Sczanieckiej
+Wilcza Wiadukt
+Komuny Paryskiej
+Jana z Czarnolasu
+Hoza
+Ogrody Przyjazn nz
+Boguminska nz
+Pokoju
+Nehringa Pomnik
+Kolonistow
+Zagorskiego
+Fabryka Domow
+Bajeczna
+Stolczyn Kosciol
+Koscielna ZBiLK nz
+Dabrowki
+Koscielna
+Nad Odra
+Goclaw
+
+
+Line 059, Route 01: Wiszeslawa >> Plac Rodla
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05901
+WISZESLAWA >> PLAC RODLA
+591
+59
+
+[infosystem_busstop_list]
+14
+Wiszeslawa
+Paproci nz
+Swietojanska nz
+Golecino Szpital
+Goclawska
+Boguminska nz
+Ogrody Przyjazn nz
+Hoza
+Jana z Czarnolasu
+Komuny Paryskiej
+Wilcza Wiadukt
+Sczanieckiej
+Matejki
+Plac Rodla
+
+
+Line 059, Route 02: Plac Rodla >> Wiszeslawa
+----------------------------------------------------------------------
+
+[infosystem_trip]
+05902
+PLAC RODLA >> WISZESLAWA
+592
+59
+
+[infosystem_busstop_list]
+13
+Plac Rodla
+Matejki
+Sczanieckiej
+Wilcza Wiadukt
+Komuny Paryskiej
+Jana z Czarnolasu
+Hoza
+Ogrody Przyjazn nz
+Boguminska nz
+Goclawska
+Golecino Szpital
+Paproci nz
+Wiszeslawa
+
+
+Line 063, Route 01: Skolwin >>Kollataja
+----------------------------------------------------------------------
+
+[infosystem_trip]
+06301
+SKOLWIN >> KOLLATAJA
+631
+63
+
+[infosystem_busstop_list]
+33
+Skolwin
+Kamienna
+Gornicza nz
+Artyleryjska
+Orlowska nz
+Nowy Swiat
+Wodna
+Stolczynska
+Skolwin Dworzec
+Celulozowa
+Ceglowka
+Nad Odra 4
+Zamknieta
+Dabrowki
+Koscielna ZBiLK nz
+Stolczyn Kosciol
+Bajeczna
+Fabryka Domow
+Zagorskiego
+Kolonistow
+Nehringa Pomnik
+Pokoju
+Boguminska nz
+Ogrody Przyjazn nz
+Hoza
+Jana z Czarnolasu
+Komuny Paryskiej
+Wilcza Wiadukt
+1 Maja
+Cyryla i Metodego
+Boguchwaly
+Niemcewicza
+Kollataja
+
+
+Line 063, Route 02: Kollataja  >>  Skolwin
+----------------------------------------------------------------------
+
+[infosystem_trip]
+06302
+KOLLATAJA  >>  SKOLWIN
+632
+63
+
+[infosystem_busstop_list]
+33
+Kollataja
+Niemcewicza
+Boguchwaly
+Cyryla i Metodego
+1 Maja
+Wilcza Wiadukt
+Komuny Paryskiej
+Jana z Czarnolasu
+Hoza
+Ogrody Przyjazn nz
+Boguminska nz
+Pokoju
+Nehringa Pomnik
+Kolonistow
+Zagorskiego
+Fabryka Domow
+Bajeczna
+Stolczyn Kosciol
+Koscielna ZBiLK nz
+Dabrowki
+Zamknieta
+Nad Odra 4
+Ceglowka
+Celulozowa
+Skolwin Dworzec
+Stolczynska
+Wodna
+Nowy Swiat
+Orlowska nz
+Artyleryjska
+Gornicza nz
+Kamienna
+Skolwin
+
+
+Line 063, Route 03: Zagorskiego >> Kollataja
+----------------------------------------------------------------------
+
+[infosystem_trip]
+06303
+ZAGORSKIEGO >> KOLLATAJA
+631
+63
+
+[infosystem_busstop_list]
+15
+Zagorskiego
+Kolonistow
+Nehringa Pomnik
+Pokoju
+Boguminska nz
+Ogrody Przyjazn nz
+Hoza
+Jana z Czarnolasu
+Komuny Paryskiej
+Wilcza Wiadukt
+1 Maja
+Cyryla i Metodego
+Boguchwaly
+Niemcewicza
+Kollataja
+
+
+Line 068, Route 01: Kormoranow>>Plac Rodla
+----------------------------------------------------------------------
+
+[infosystem_trip]
+06801
+KORMORANOW>>PLAC RODLA
+681
+68
+
+[infosystem_busstop_list]
+10
+Kormoranow
+Kresowa
+Axentowicza
+Bandurskiego
+Pasterska
+Komuny Paryskiej
+Wilcza Wiadukt
+Sczanieckiej
+Matejki
+Plac Rodla
+
+
+Line 068, Route 02: Plac Rodla>>Kormoranow
+----------------------------------------------------------------------
+
+[infosystem_trip]
+06802
+PLAC RODLA>>KORMORANOW
+682
+68
+
+[infosystem_busstop_list]
+9
+Plac Rodla
+Malczewskiego
+Matejki
+Sczanieckiej
+Wilcza Wiadukt
+Pasterska
+Bandurskiego
+Axentowicza
+Kormoranow
+
+
+Line 082, Route 01: Krucza Dom Kombatanta  >>  Kollataja
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08201
+KRUCZA DOM KOMBATANTA  >>  KOLLATAJA
+821
+82
+
+[infosystem_busstop_list]
+10
+Krucza Dom Kombatanta
+Szczepowa nz
+Jana z Czarnolasu
+Komuny Paryskiej
+Wilcza Wiadukt
+1 Maja
+Cyryla i Metodego
+Boguchwaly
+Niemcewicza
+Kollataja
+
+
+Line 082, Route 02: Kollataja  >>  Krucza Dom Kombatanta
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08202
+KOLLATAJA  >>  KRUCZA DOM KOMBATANTA
+822
+82
+
+[infosystem_busstop_list]
+12
+Kollataja
+Niemcewicza
+Boguchwaly
+Cyryla i Metodego
+1 Maja
+Wilcza Wiadukt
+Pasterska
+Bandurskiego
+Axentowicza
+Thugutta
+Krucza
+Krucza Dom Kombatanta
+
+
+Line 522, Route 01: Warszewo  >>  Kollataja
+----------------------------------------------------------------------
+
+[infosystem_trip]
+52201
+WARSZEWO  >>  KOLLATAJA
+573
+522
+
+[infosystem_busstop_list]
+18
+Warszewo
+Szwedzka
+Warszewo Szkola
+Warszewo Kosciol
+Czeska
+Rostocka
+Kormoranow
+Kresowa
+Axentowicza
+Bandurskiego
+Pasterska
+Komuny Paryskiej
+Wilcza Wiadukt
+1 Maja
+Cyryla i Metodego
+Boguchwaly
+Niemcewicza
+Kollataja
+
+
+Line 522, Route 02: Kollataja  >>  Warszewo
+----------------------------------------------------------------------
+
+[infosystem_trip]
+52202
+KOLLATAJA  >>  WARSZEWO
+574
+522
+
+[infosystem_busstop_list]
+16
+Kollataja
+Niemcewicza
+Boguchwaly
+Cyryla i Metodego
+1 Maja
+Wilcza Wiadukt
+Pasterska
+Bandurskiego
+Axentowicza
+Kormoranow
+Rostocka
+Czeska
+Warszewo Kosciol
+Warszewo Szkola
+Szwedzka
+Warszewo
+
+
+Line 522, Route 03: Kormoranow>>Kollataja
+----------------------------------------------------------------------
+
+[infosystem_trip]
+52203
+KORMORANOW>>KOLLATAJA
+575
+522
+
+[infosystem_busstop_list]
+12
+Kormoranow
+Kresowa
+Axentowicza
+Bandurskiego
+Pasterska
+Komuny Paryskiej
+Wilcza Wiadukt
+1 Maja
+Cyryla i Metodego
+Boguchwaly
+Niemcewicza
+Kollataja
+
+
+Line 522, Route 04: Kollataja  >>  Kormoranow
+----------------------------------------------------------------------
+
+[infosystem_trip]
+52204
+KOLLATAJA  >>  KORMORANOW
+576
+522
+
+[infosystem_busstop_list]
+10
+Kollataja
+Niemcewicza
+Boguchwaly
+Cyryla i Metodego
+1 Maja
+Wilcza Wiadukt
+Pasterska
+Bandurskiego
+Axentowicza
+Kormoranow

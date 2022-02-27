@@ -1,0 +1,41 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-4.000
+4.000
+0.100
+0.100
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+st_citaro2.dds
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Fahrbahn
+
+[profile]
+0
+
+[profilepnt]
+-4.000
+0.100
+0.005
+0.250
+
+[profilepnt]
+4.000
+0.100
+1.995
+0.250
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +

@@ -1,0 +1,100 @@
+'##############
+'AI Script
+'##############
+
+'Controls some bus functions while bus is driven by AI
+
+'(c) 15.08.2009 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- engine
+'- antrieb
+'- bremse
+'- door
+'- lights
+'- wiper
+
+'Revision History:
+'- Marcel Kuhnt		15.08.2009	Created
+
+'--------------------------------------------------------------------------------------
+
+
+
+{macro:ai_frame}
+
+
+'Engine on:
+	(L.L.AI_Engine) 0.5 > (L.L.engine_on) 0.5 < &&
+	{if}
+		0 (S.L.bremse_feststell_sw) (S.L.bremse_feststell)
+		400 (S.L.engine_n)
+		4 (S.L.antrieb_getr_gangvorwahl)
+		1 (S.L.engine_on)
+	{endif}
+
+'----------------------------------
+'Engine off:
+	(L.L.AI_Engine) -0.5 < (L.L.engine_on) 0.5 > &&
+	{if}
+		0 (S.L.engine_on)
+		1 (S.L.bremse_feststell_sw) (S.L.bremse_feststell)
+	{endif}
+
+'----------------------------------
+
+'-----------------------------------
+'Beleuchtung:
+	(L.L.AI)
+	{if}
+		(L.L.AI_Blinker_L) (L.L.AI_Engine) 0.5 > &&
+		{if}
+			1 (S.L.lights_sw_blinker)
+		{else} (L.L.AI_Blinker_R) (L.L.AI_Engine) 0.5 > && {if}
+			2 (S.L.lights_sw_blinker)
+		{else}
+			0 (S.L.lights_sw_blinker)
+		{endif}
+		{endif}
+
+		(L.L.AI_Light) 
+		{if}
+			(L.L.AI_Engine) 0.5 >
+			{if}
+				1 (S.L.cp_schluessel_rot_limited) (S.L.cp_licht_unterdeck_sw) (S.L.cp_licht_oberdeck_sw)
+			{else}
+				0.5 (S.L.cp_schluessel_rot_limited)
+				0 (S.L.cp_licht_unterdeck_sw) (S.L.cp_licht_oberdeck_sw)
+			{endif}
+		{else}
+			0 (S.L.cp_schluessel_rot_limited) (S.L.cp_licht_unterdeck_sw) (S.L.cp_licht_oberdeck_sw)
+		{endif}
+	{endif}
+
+'-----------------------------------
+'Scheibenwischer:
+'Nur wenn Motor an sein soll:
+	(L.L.AI) (L.L.AI_Engine) 1 = &&
+	{if}
+'Wenn der Intervallwischer nicht ausreicht, dann Dauermodus:
+		(C.L.wiper_intervall) (L.L.PrecipRate) * (C.L.rain_wiper_eff) >
+		{if}
+			0 (S.L.wiper_intervall_sw)
+			1 (S.L.wiper_einaus_sw)
+		{else}
+'Sonst (falls es regnet) den Intervallmodus:
+		(L.L.PrecipRate) 0 >
+		{if}
+			1 (S.L.wiper_intervall_sw)
+			0 (S.L.wiper_einaus_sw)
+		{else}
+			0 (S.L.wiper_intervall_sw)
+			0 (S.L.wiper_einaus_sw)
+		{endif}
+		{endif}
+	{endif}
+
+{end}

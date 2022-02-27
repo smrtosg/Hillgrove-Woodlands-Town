@@ -1,0 +1,58 @@
+- - - - - - - - - -
+Höhenprofil
+- - - - - - - - - -
+
+[heightprofile]
+-2.750
+2.750
+0.100
+0.100
+
+- - - - - - - - - -
+Texturen
+- - - - - - - - - -
+
+[texture]
+DDR_Asphalt_variety3.bmp
+
+[patchwork_chain]
+5
+BACDCDCDCDCDAABBA
+3111113111113111
+1111111111100011
+- - - - - - - - - -
+Zuweisung
+- - - - - - - - - -
+
+[profile]
+0
+
+[profilepnt]
+-2.750
+0.100
+0.995
+0.200
+
+[profilepnt]
+2.750
+0.100
+0.005
+0.200
+
+- - - - - - - - - -
+Verkehrspfade
+- - - - - - - - - -
+
+[path]
+0
+-1.375
+0.100
+1.000
+1
+
+[path]
+0
+1.375
+0.100
+1.000
+0

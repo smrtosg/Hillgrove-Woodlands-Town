@@ -1,0 +1,40 @@
+BS_Sonstiges_Randstein.sli
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-0.05
+0.05
+0.105
+0.105
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+Splines\BS_ADDON_CreativeStreets\Gehwege\texture\BS_Gehweg_Allgemein1.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+
+### Randstein ###
+
+[profile]
+0
+
+[profilepnt]
+-0.05
+0.105
+0.265625
+0.9
+
+[profilepnt]
+0.05
+0.105
+0.4609375
+0.9

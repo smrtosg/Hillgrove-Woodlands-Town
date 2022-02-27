@@ -1,0 +1,58 @@
+=== Created with Simple Spline Editor ===
+=== Author: Anonymous ===
+
+=== Height profiles ===
+== Leitplanke ==
+== Breite: 0 Meter ==
+[heightprofile]
+0
+0
+0.45
+0.75
+
+=== Textures ===
+== 0 ==
+[texture]
+Leitplanke.bmp
+[matl]
+Leitplanke.bmp
+0
+[matl_alpha]
+2
+
+=== Textur wrappings ===
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0
+0.45
+0
+0.2
+== TO ==
+[profilepnt]
+0
+0.75
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0
+0.75
+0
+0.2
+== TO ==
+[profilepnt]
+0
+0.45
+1
+0.2
+== END ==
+
+=== Pathes ===

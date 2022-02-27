@@ -1,0 +1,215 @@
+'########################################
+'#                                      #
+'#            AI MAIN SCRIPT            #
+'#                                      #
+'#    MAN Standarddoppeldecker SD202    #
+'#                                      #
+'#             Bauart D86               #
+'#                                      #
+'########################################
+
+'(c) 12.12.2010 Rüdiger Hülsmann
+'(c) 28.01.2011 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 1.0
+
+
+'Revision History:
+'- Rüdiger Hülsmann	10.12.2010	File created
+'- Marcel Kuhnt		27.12.2010	Structure changed, added display and door frame
+'- Marcel Kuhnt		07.01.2011	Engine switch off
+'- Marcel Kuhnt		27.01.2011	Adapted for D86
+'- Marcel Kuhnt		28.01.2011	Set elec_busbar_avail true (interior lights)
+'- Rüdiger Hülsmann	01.02.2011	Brake pressure values predefined for takeover
+
+
+'------------------------------------------------------------------------------------------
+
+
+'######################
+'	Hauptteil
+'######################
+
+
+{frame_ai}
+
+
+(L.L.engine_n)
+(S.L.Debug_0)
+
+(L.L.AI_engine_n_soll)
+(S.L.Debug_1)
+
+(L.L.antrieb_getr_aktugang)
+(S.L.Debug_2)
+
+(L.L.M_Wheel)
+(S.L.Debug_3)
+
+(L.L.elec_busbar_main)
+(S.L.Debug_4)
+
+(L.L.elec_busbar_avail)
+(S.L.Debug_5)
+
+
+
+'Strom einschalten
+
+1 (S.L.elec_busbar_main)
+(S.L.elec_busbar_avail)
+
+'Bremsdrücke setzen
+900000 (S.L.bremse_p_tank01) (S.L.bremse_p_tank02) (S.L.bremse_p_tank03) (S.L.bremse_p_tank04) (S.L.bremse_p_leitung01) (S.L.bremse_p_leitung02)
+400000 (S.L.bremse_p_balg_0_R) (S.L.bremse_p_balg_0_L) (S.L.bremse_p_balg_1_R) (S.L.bremse_p_balg_1_L) 
+
+
+'########################################################################################
+'AI-Antrieb
+'########################################################################################
+
+
+'Einspritzpumpe vereinfacht an Gaspedalstellung koppeln:
+(L.L.Throttle) (S.L.engine_throttle_injection)
+
+'---------------------------------------------------
+'Antriebsmoment anhand der Übersetzung bestimmen:
+
+
+(L.L.engine_n) (F.L.engine_M_maxThrottle) (L.L.Throttle) * (L.L.AI_antrieb_acturatio) * (C.L.antrieb_i_achse) * s0
+
+
+
+'---------------------------------------------------
+'Reduktion bzw. Zuschlag je nach Gang
+(L.L.antrieb_getr_aktugang) 1 >
+{if}
+	l0 -300 1 (L.L.Throttle) - * (L.L.antrieb_retarder) -100 * + (L.L.AI_antrieb_acturatio) * (C.L.antrieb_i_achse) * + s0
+{else}
+	l0 70 1 (L.L.Throttle) - * (L.L.antrieb_retarder) -100 * + (L.L.AI_antrieb_acturatio) * (C.L.antrieb_i_achse) * + s0
+{endif}
+
+l0 (S.L.M_Wheel)
+
+'---------------------------------------------------
+'Einfach-Getriebe:
+
+(L.L.Wheel_RotationSpeed_1_R) (C.L.antrieb_i_achse) * (S.L.antrieb_n_kardanwelle) s0
+
+l0 600 >
+(L.L.antrieb_getr_aktugang) 1 = &&
+{if}
+	2 (S.L.antrieb_getr_aktugang)
+{endif}
+
+l0 1030 >
+(L.L.antrieb_getr_aktugang) 2 = &&
+{if}
+	3 (S.L.antrieb_getr_aktugang)
+{endif}
+
+
+l0 900 <
+(L.L.antrieb_getr_aktugang) 3 = &&
+{if}
+	2 (S.L.antrieb_getr_aktugang)
+{endif}
+
+l0 450 <
+(L.L.antrieb_getr_aktugang) 2 = &&
+{if}
+	1 (S.L.antrieb_getr_aktugang)
+{endif}
+
+'---------------------------------------------------
+'Retarder
+(L.L.Brake) 0 >
+{if}
+	(L.L.velocity) 15 >
+	{if}
+		1 (S.L.antrieb_retarder) (S.L.antrieb_wendesatz)
+	{else}
+		0 (S.L.antrieb_retarder) (S.L.antrieb_wendesatz)
+	{endif}
+{else}
+	0 (S.L.antrieb_retarder) (S.L.antrieb_wendesatz)
+{endif}
+
+'---------------------------------------------------
+'Motor-Solldrehzahl
+
+
+'Wenn der Motor aus sein soll, dann nimm 0 als Sollwert:
+
+(L.L.AI_Engine) -0.5 <
+{if}
+	0 (S.L.AI_engine_n_soll)
+
+'Sonst isser an:
+
+{else}
+	(L.L.antrieb_getr_aktugang) 3 =
+	{if}
+		l0 (S.L.AI_engine_n_soll)
+		1 (S.L.AI_antrieb_acturatio)
+	{else}
+		(L.L.antrieb_getr_aktugang) 2 =
+		{if}
+			l0 (C.L.antrieb_getr_ratio2) (S.L.AI_antrieb_acturatio) * 	(S.L.AI_engine_n_soll)
+		{else}
+			(L.L.velocity) (F.L.AI_wandler_leer) (L.L.velocity) 	(F.L.AI_wandler_last) (L.L.velocity) (F.L.AI_wandler_leer) - (L.L.Throttle) * + (S.L.AI_engine_n_soll)
+			2 (S.L.AI_antrieb_acturatio)
+		{endif}
+	{endif}
+{endif}
+
+(L.L.AI_engine_n_soll) s0
+(L.L.engine_n) s1
+1 s2
+3 s3
+(M.L.traegheit)	
+l1 (S.L.engine_n)
+
+
+'########################################################################################
+'AI-Bremse
+'########################################################################################
+
+(L.L.Brake) (C.L.max_bremskraft) * (S.L.Brakeforce)
+
+
+'########################################################################################
+'Matrix Display
+'########################################################################################
+
+(M.L.Matrix_frame)
+
+
+'########################################################################################
+'Türsteuerung
+'########################################################################################
+
+900000 (S.L.bremse_p_tank04)
+
+(M.L.Door_Frame)
+
+'########################################################################################
+'Lichtsteuerung
+'########################################################################################
+
+(M.L.lights_frame)
+
+(M.L.wimpel_frame)
+
+
+
+
+
+
+
+
+{end}
+
+
+

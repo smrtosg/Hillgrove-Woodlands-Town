@@ -1,0 +1,357 @@
+'##############
+'Cashdesk-Script
+'##############
+
+'Simulates mechanical cashdesk with ticket block and changer
+
+'(c) 22.10.2010 Rüdiger Hülsmann
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+'Revision History:
+'- Rüdiger Hülsmann	22.09.2010	File created	
+'- RÜdiger Hülsmann	08.12.2010	Added 5,- and 15,- buttons
+'- Rüdiger Hülsmann	15.01.2011	Fixed wrong 5,- sound			
+
+
+'Changer, lower row (single motion), Coins 0.05, 0.10, 0.50, 1.00, 2.00
+
+{trigger:cashdesk_changer_0_05}
+	1 (S.L.cashdesk_changer_sw_0_05)
+	0 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer_solo1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange_solo)
+		0 (S.L.cashdesk_changetimer_solo1)
+	{else}
+		(L.L.cashdesk_changetimer_solo2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange_solo2)
+			0 (S.L.cashdesk_changetimer_solo2)
+		{else}
+			(T.L.ev_ticketsale_givechange_solo3)
+			0 (S.L.cashdesk_changetimer_solo3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_0_05_off}
+	0 (S.L.cashdesk_changer_sw_0_05)
+{end}
+
+
+{trigger:cashdesk_changer_0_10}
+	1 (S.L.cashdesk_changer_sw_0_10)
+	1 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer_solo1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange_solo)
+		0 (S.L.cashdesk_changetimer_solo1)
+	{else}
+		(L.L.cashdesk_changetimer_solo2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange_solo2)
+			0 (S.L.cashdesk_changetimer_solo2)
+		{else}
+			(T.L.ev_ticketsale_givechange_solo3)
+			0 (S.L.cashdesk_changetimer_solo3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_0_10_off}
+	0 (S.L.cashdesk_changer_sw_0_10)
+{end}
+
+
+{trigger:cashdesk_changer_0_50}
+	1 (S.L.cashdesk_changer_sw_0_50)
+	2 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer_solo1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange_solo)
+		0 (S.L.cashdesk_changetimer_solo1)
+	{else}
+		(L.L.cashdesk_changetimer_solo2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange_solo2)
+			0 (S.L.cashdesk_changetimer_solo2)
+		{else}
+			(T.L.ev_ticketsale_givechange_solo3)
+			0 (S.L.cashdesk_changetimer_solo3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_0_50_off}
+	0 (S.L.cashdesk_changer_sw_0_50)
+{end}
+
+
+{trigger:cashdesk_changer_1_00}
+	1 (S.L.cashdesk_changer_sw_1_00)
+	3 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer_solo1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange_solo)
+		0 (S.L.cashdesk_changetimer_solo1)
+	{else}
+		(L.L.cashdesk_changetimer_solo2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange_solo2)
+			0 (S.L.cashdesk_changetimer_solo2)
+		{else}
+			(T.L.ev_ticketsale_givechange_solo3)
+			0 (S.L.cashdesk_changetimer_solo3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_1_00_off}
+	0 (S.L.cashdesk_changer_sw_1_00)
+{end}
+
+
+{trigger:cashdesk_changer_2_00}
+	1 (S.L.cashdesk_changer_sw_2_00)
+	4 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer_solo1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange_solo)
+		0 (S.L.cashdesk_changetimer_solo1)
+	{else}
+		(L.L.cashdesk_changetimer_solo2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange_solo2)
+			0 (S.L.cashdesk_changetimer_solo2)
+		{else}
+			(T.L.ev_ticketsale_givechange_solo3)
+			0 (S.L.cashdesk_changetimer_solo3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_2_00_off}
+	0 (S.L.cashdesk_changer_sw_2_00)
+{end}
+
+
+{trigger:cashdesk_changer_5_00}
+	1 (S.L.cashdesk_changer_sw_5_00)
+	5 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer_solo1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange_solo)
+		0 (S.L.cashdesk_changetimer_solo1)
+	{else}
+		(L.L.cashdesk_changetimer_solo2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange_solo2)
+			0 (S.L.cashdesk_changetimer_solo2)
+		{else}
+			(T.L.ev_ticketsale_givechange_solo3)
+			0 (S.L.cashdesk_changetimer_solo3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_5_00_off}
+	0 (S.L.cashdesk_changer_sw_5_00)
+{end}
+
+
+'Changer, upper row (double motion), Coins 3*0.05, 3*0.10, 3*0.50, 4*1.00, 4*2.00
+
+{trigger:cashdesk_changer_0_15}
+	1 (S.L.cashdesk_changer_sw_0_15) (S.L.cashdesk_changer_sw_0_05)
+	0 (M.V.GiveChangeCoin)
+	0 (M.V.GiveChangeCoin)
+	0 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange)
+		0 (S.L.cashdesk_changetimer1)
+	{else}
+		(L.L.cashdesk_changetimer2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange2)
+			0 (S.L.cashdesk_changetimer2)
+		{else}
+			(T.L.ev_ticketsale_givechange3)
+			0 (S.L.cashdesk_changetimer3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_0_15_off}
+	0 (S.L.cashdesk_changer_sw_0_15) (S.L.cashdesk_changer_sw_0_05)
+{end}
+
+
+{trigger:cashdesk_changer_0_30}
+	1 (S.L.cashdesk_changer_sw_0_30) (S.L.cashdesk_changer_sw_0_10)
+	1 (M.V.GiveChangeCoin)
+	1 (M.V.GiveChangeCoin)
+	1 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange)
+		0 (S.L.cashdesk_changetimer1)
+	{else}
+		(L.L.cashdesk_changetimer2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange2)
+			0 (S.L.cashdesk_changetimer2)
+		{else}
+			(T.L.ev_ticketsale_givechange3)
+			0 (S.L.cashdesk_changetimer3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_0_30_off}
+	0 (S.L.cashdesk_changer_sw_0_30) (S.L.cashdesk_changer_sw_0_10)
+{end}
+
+
+{trigger:cashdesk_changer_1_50}
+	1 (S.L.cashdesk_changer_sw_1_50) (S.L.cashdesk_changer_sw_0_50)
+	2 (M.V.GiveChangeCoin)
+	2 (M.V.GiveChangeCoin)
+	2 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange)
+		0 (S.L.cashdesk_changetimer1)
+	{else}
+		(L.L.cashdesk_changetimer2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange2)
+			0 (S.L.cashdesk_changetimer2)
+		{else}
+			(T.L.ev_ticketsale_givechange3)
+			0 (S.L.cashdesk_changetimer3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_1_50_off}
+	0 (S.L.cashdesk_changer_sw_1_50) (S.L.cashdesk_changer_sw_0_50)
+{end}
+
+
+{trigger:cashdesk_changer_4_00}
+	1 (S.L.cashdesk_changer_sw_4_00) (S.L.cashdesk_changer_sw_1_00)
+	3 (M.V.GiveChangeCoin)
+	3 (M.V.GiveChangeCoin)
+	3 (M.V.GiveChangeCoin)
+	3 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange)
+		0 (S.L.cashdesk_changetimer1)
+	{else}
+		(L.L.cashdesk_changetimer2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange2)
+			0 (S.L.cashdesk_changetimer2)
+		{else}
+			(T.L.ev_ticketsale_givechange3)
+			0 (S.L.cashdesk_changetimer3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_4_00_off}
+	0 (S.L.cashdesk_changer_sw_4_00) (S.L.cashdesk_changer_sw_1_00)
+{end}
+
+
+
+{trigger:cashdesk_changer_8_00}
+	1 (S.L.cashdesk_changer_sw_8_00) (S.L.cashdesk_changer_sw_2_00)
+	4 (M.V.GiveChangeCoin)
+	4 (M.V.GiveChangeCoin)
+	4 (M.V.GiveChangeCoin)
+	4 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange)
+		0 (S.L.cashdesk_changetimer1)
+	{else}
+		(L.L.cashdesk_changetimer2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange2)
+			0 (S.L.cashdesk_changetimer2)
+		{else}
+			(T.L.ev_ticketsale_givechange3)
+			0 (S.L.cashdesk_changetimer3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_8_00_off}
+	0 (S.L.cashdesk_changer_sw_8_00) (S.L.cashdesk_changer_sw_2_00)
+{end}
+
+
+{trigger:cashdesk_changer_15_00}
+	1 (S.L.cashdesk_changer_sw_15_00) (S.L.cashdesk_changer_sw_5_00)
+	5 (M.V.GiveChangeCoin)
+	5 (M.V.GiveChangeCoin)
+	5 (M.V.GiveChangeCoin)
+	
+	(L.L.cashdesk_changetimer1) 1 >
+	{if}
+		(T.L.ev_ticketsale_givechange)
+		0 (S.L.cashdesk_changetimer1)
+	{else}
+		(L.L.cashdesk_changetimer2) 1 >
+		{if}
+			(T.L.ev_ticketsale_givechange2)
+			0 (S.L.cashdesk_changetimer2)
+		{else}
+			(T.L.ev_ticketsale_givechange3)
+			0 (S.L.cashdesk_changetimer3)	
+		{endif}
+	{endif}	
+{end}
+
+{trigger:cashdesk_changer_15_00_off}
+	0 (S.L.cashdesk_changer_sw_15_00) (S.L.cashdesk_changer_sw_5_00)
+{end}
+
+
+
+
+
+
+{macro:cashdesk_frame}
+
+'	Test: 3-fache Polyphonie der Geldausgabesounds für mehr Geschepper ;-)
+
+	(L.L.cashdesk_changetimer1) (L.S.Timegap) + (S.L.cashdesk_changetimer1)
+	(L.L.cashdesk_changetimer2) (L.S.Timegap) + (S.L.cashdesk_changetimer2)
+	(L.L.cashdesk_changetimer3) (L.S.Timegap) + (S.L.cashdesk_changetimer3)
+
+	(L.L.cashdesk_changetimer_solo1) (L.S.Timegap) + (S.L.cashdesk_changetimer_solo1)
+	(L.L.cashdesk_changetimer_solo2) (L.S.Timegap) + (S.L.cashdesk_changetimer_solo2)
+	(L.L.cashdesk_changetimer_solo3) (L.S.Timegap) + (S.L.cashdesk_changetimer_solo3)
+
+{end}

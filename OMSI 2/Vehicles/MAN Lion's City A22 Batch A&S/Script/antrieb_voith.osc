@@ -1,0 +1,937 @@
+'##############
+'Getriebe-Script
+'##############
+
+'Voith-DIWA 3-stepped D851/D853/D863
+'Voith-DIWA 4-stepped D854/D864/D884
+'Generation 3E/5
+
+'(c) 2008-2010 Rüdiger Hülsmann
+'(c) 2016 Edit by Morphi
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- engine
+'- bremse
+
+'Revision History:
+'- Rüdiger Hülsmann	13.04.2009	Neutralstellung mit anderer Zeitverzögerung
+'- Rüdiger Hülsmann	04.06.2009	Verzögertes Einsetzen des Retarders
+'- Marcel Kuhnt		13.06.2009	Removed Gearbox switches to cockpit script
+'- Marcel Kuhnt		09.08.2009	Added Gearbox Failure
+'- Rüdiger Hülsmann	09.10.2009	Rework for improved flexibility: Support for D.2/3-gearbox via config file
+'					Functions added: Automatic neutral, retarder in 1st gear
+'- Rüdiger Hülsmann	29.10.2009	Retarder bug removed
+'- Rüdiger Hülsmann	16.09.2010	Reverse gear torque reduction
+'- Rüdiger Hülsmann	14.10.2010	Downshift 3-2 added
+'- Rüdiger Hülsmann	13.12.2010	Gearshift procedures debugged, smooth retarder fadeout, dynamic shifting moment
+'- Rüdiger Hülsmann	27.12.2010	Retarder fadeout debugged
+'- Rüdiger Hülsmann	01.01.2011	Retarder linked to ABS
+'- Rüdiger Hülsmann	04.01.2011	Reverse only below 5 km/h
+
+
+'----------------------
+'	Init
+'----------------------
+
+{macro:antrieb_init}
+	1 (S.L.antrieb_getr_gangwahl) (S.L.antrieb_getr_gangvorwahl)
+	1 (S.L.antrieb_getr_aktugang)
+	
+	0 (S.L.antrieb_wandler_moment)
+{end}
+
+'----------------------
+'	Frame
+'----------------------
+
+{macro:antrieb_frame}
+
+'Berechnen der Abtriebsdrehzahl
+	(L.L.Wheel_RotationSpeed_1_L) (L.L.Wheel_RotationSpeed_1_R) + 2 / (C.L.antrieb_i_achse) * (S.L.antrieb_n_kardanwelle)
+
+'Einlegen der Fahrstufe
+
+	(L.S.GetTime) (L.L.antrieb_getr_gangwahlzeitpunkt) - (C.L.antrieb_gangwahlzeit) >
+	(L.L.antrieb_getr_gangvorwahl) (L.L.antrieb_getr_gangwahl) = ! &&
+	(L.L.antrieb_failure_general) ! &&
+	{if}
+			
+		(L.L.antrieb_getr_gangwahl) 1 =
+		{if}
+			(L.L.engine_on) 1 = 
+			{if}
+				(L.L.engine_n) (S.L.antrieb_rucksoundvol)
+				(L.L.engine_n) (C.L.torque_apex_at_RPM) min (F.L.engine_M_maxThrottle) 200 + (S.L.antrieb_schaltmoment_soll)
+
+				(L.L.antrieb_getr_gangvorwahl) 1 >
+				{if}
+					(L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwDnMinSpd3) >
+					{if}
+						3 (S.L.antrieb_getr_aktugang)
+						(T.L.ev_schaltruck)
+					{else}
+						(L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwDnMinSpd2) >
+						{if}
+							2 (S.L.antrieb_getr_aktugang)
+							(T.L.ev_schaltruck)
+						{else}
+							1 (S.L.antrieb_getr_aktugang)
+							0 (S.L.antrieb_gear_engaged_timer)
+							(T.L.ev_schaltruck)
+						{endif}
+					{endif}
+				{else}
+					(L.L.velocity) 5 <
+					{if}
+						1 (S.L.antrieb_getr_aktugang)
+						0 (S.L.antrieb_gear_engaged_timer)
+						(T.L.ev_schaltruck)
+					{endif}
+				{endif}
+			{endif}
+		{endif}	
+		(L.L.antrieb_getr_gangvorwahl) (S.L.antrieb_getr_gangwahl)
+	{endif}
+
+'Gang rausnehmen, wenn Neutral angefordert
+
+	(L.L.antrieb_getr_gangwahl) 1 = (L.L.engine_n) 200 < ||
+	{if}
+		0 (S.L.antrieb_getr_aktugang)
+	{endif}
+'Verhindern, dass der Rückwärtsgang oberhalb von 5 km/h eingelegt werden kann
+
+	(L.L.antrieb_getr_gangvorwahl) 0 =
+	(L.L.velocity) 5 >= &&
+	{if}
+		1 (S.L.antrieb_getr_gangwahl)
+	{endif}
+
+'Prüfen, ob Gang gewechselt wird - aber nur, wenn Getriebe heil ist:
+
+	(L.L.antrieb_failure_general) !
+	{if}
+		(M.L.antrieb_getr_chkNxtGear)
+	{endif}
+
+'Berechnung des aktuellen Motordrehmoments:
+
+	(M.L.engine_moment)
+
+'Berechnung des dynamischen Schaltmoments
+
+	(L.L.throttle) 0 =
+	{if}
+		200 /-/ (S.L.schaltmoment_kurzzeit)
+	{else}
+		0 (S.L.schaltmoment_kurzzeit)
+	{endif}
+
+	(L.L.throttle) 0 =
+	{if}
+		1000 (S.L.schaltzeit)
+	{else}
+		2000 (S.L.schaltzeit)
+	{endif}
+
+
+'Berechnung des dynamischen Schaltmoments
+
+	(L.L.antrieb_getr_fest) !
+	{if}
+		(L.L.antrieb_schaltmoment) (L.S.Timegap) (L.L.schaltzeit) * + (L.L.antrieb_schaltmoment_soll) min (S.L.antrieb_schaltmoment)
+	{endif}
+
+' Timer für Schaltverzoegerung
+
+	(L.L.throttle) 0 >
+	{if}
+		(L.L.schalttimer) (L.S.Timegap) + 5 min (S.L.schalttimer)
+	{else}
+		0 (S.L.schalttimer)
+	{endif}
+
+	(L.L.schaltverzoegerung) (L.S.Timegap) + 5 min (S.L.schaltverzoegerung)
+	(L.L.schaltverzoegerung_runter) (L.S.Timegap) + 5 min (S.L.schaltverzoegerung_runter)
+
+'Drehmomentsperre
+	(C.L.engine_drehmomentsperre) 1 =
+	{if}
+		(L.L.antrieb_getr_aktugang) (F.L.antrieb_getr_torquerestriction) (S.L.engine_M_restriction)
+	{else}
+		1 (S.L.engine_M_restriction)
+	{endif}
+
+'Schaltpunktdynamik - Getriebe reagiert damit nun unterschiedlich auf die Pedalstellung und Topographie
+
+(C.L.SensoTop_enabled) 1 =
+{if}
+	(L.L.Throttle) 0.85 >= (L.L.velocity) 50 < && (L.L.antrieb_getr_aktugang) 1 = && (L.L.antrieb_beschleunigung) 0.9 <= &&
+	(L.L.Throttle) 0.85 >= (L.L.velocity) 50 < && (L.L.antrieb_getr_aktugang) 2 = && (L.L.antrieb_beschleunigung) 0.7 <= && ||
+	(L.L.Throttle) 0.85 >= (L.L.velocity) 50 < && (L.L.antrieb_getr_aktugang) 3 = && (L.L.antrieb_beschleunigung) 0.5 <= && ||
+	(L.L.Throttle) 0.85 >= (L.L.velocity) 50 < && (L.L.antrieb_getr_aktugang) 4 = && (L.L.antrieb_beschleunigung) 0.3 <= && ||
+	(L.L.antrieb_M_restriction) 0.85 >= &&
+	{if}
+		(L.L.SensoTop_aktivTimer) (L.S.Timegap) 2 * + 1 min (S.L.SensoTop_aktivTimer)
+		1 =
+		{if}
+			1 (S.L.SensoTop_aktiv)
+			1.1 (S.L.SensoTop_faktor)
+		{endif}
+	{else}
+		(L.L.SensoTop_aktivTimer) (L.S.Timegap) 2 * - 0 max (S.L.SensoTop_aktivTimer)
+	{endif}
+{else}
+1 (S.L.SensoTop_faktor)
+{endif}
+
+(C.L.SensoTop_enabled) 1 =
+{if}
+	(L.L.antrieb_beschleunigung) 1.1 > (L.L.antrieb_getr_aktugang) 1 = &&
+	(L.L.antrieb_beschleunigung) 0.9 > (L.L.antrieb_getr_aktugang) 2 = && ||
+	(L.L.antrieb_beschleunigung) 0.7 > (L.L.antrieb_getr_aktugang) 3 = && ||
+	(L.L.antrieb_beschleunigung) 0.5 > (L.L.antrieb_getr_aktugang) 4 = && ||
+	(L.L.velocity) 50 > ||
+	(L.L.throttle) 0 = ||
+	{if}
+		(L.L.SensoTop_Timer) (L.S.Timegap) 1 * + 1 min (S.L.SensoTop_Timer)
+		1 =
+		{if}
+		0 (S.L.SensoTop_aktiv)
+		1 (S.L.SensoTop_faktor)
+		{endif}
+	{else}
+		(L.L.SensoTop_Timer) (L.S.Timegap) 2 * - 0 max (S.L.SensoTop_Timer)
+	{endif}
+{endif}
+
+(L.L.throttle) 0.90 >
+(L.L.motorbremse) 1 = ||
+(L.L.SensoTop_aktiv) 1 = ||
+(L.L.velocity) 60 < &&
+{if}
+	(L.L.throttle_internb) (L.S.Timegap) 1 * + 1 min (S.L.throttle_internb)
+	1 =
+	{if}
+		1.1 (L.L.SensoTop_faktor) * (L.L.motorbremse_faktor) * (S.L.shift_dynamics_high)
+	{endif}
+{else}
+	(L.L.throttle_internb) (L.S.Timegap) 1 * - 0 max (S.L.throttle_internb)
+	0 =
+	{if}
+		1 (S.L.shift_dynamics_high)
+	{endif}
+{endif}
+
+(L.L.throttle) 0.1 > (L.L.throttle) 0.80 < &&
+{if}
+	(L.L.throttle_intern) (L.S.Timegap) 1 * + 1 min (S.L.throttle_intern)
+	1 =
+	{if}
+		0.9 (S.L.shift_dynamics_low)
+	{endif}
+{else}
+	(L.L.throttle_intern) (L.S.Timegap) 1 * - 0 max (S.L.throttle_intern)
+	0 =
+	{if}
+		1 (S.L.shift_dynamics_low)
+	{endif}
+{endif}
+
+'Motorbremseffekt, wenn hohe Geschwindigkeit erreicht wurde und dann abgebremmst wird.
+
+(C.L.SensoTop_enabled) 1 =
+{if}
+	(L.L.velocity) 70 >
+	(L.L.antrieb_beschleunigung) 0 > (L.L.brake) 0.1 >= && ||
+	{if}
+		1 (S.L.motorbremse)
+	{endif}
+	(L.L.antrieb_getr_aktugang) 1 =
+	(L.L.velocity) 10 > &&
+	(L.L.schaltverzoegerung_runter) 1 < &&
+	{if}
+		(L.L.schaltverzoegerung_runter) 0.5 <=
+		(L.L.throttle) 0.5 > &&
+		{if}
+			0.5 (S.L.engine_internal_throttle)
+		{endif}
+	{endif}
+{endif}
+
+(L.L.velocity) 70 <=
+(L.L.throttle) 0.1 > &&
+{if}
+	0 (S.L.motorbremse)
+{endif}
+
+(L.L.motorbremse) 1 =
+{if}
+	1.4 (S.L.motorbremse_faktor)
+{else}
+	1 (S.L.motorbremse_faktor)
+{endif}
+
+
+'Fallunterscheidung, ob Getriebe reibt oder wandelt oder nicht:
+
+	(L.L.antrieb_getr_fest)
+	{if}
+
+'#################################################################################
+'	Berechnung der Beschleunigung des Antriebsstrangs (am Motorflansch)
+'#################################################################################
+
+
+		(L.L.n_Wheel) (L.L.antrieb_getr_ratio) * (L.L.engine_n) - 2 * pi * 60 / (L.S.Timegap) / 
+
+'	Berechnung des Momentes am Motor durch Trägheit:
+
+		(C.L.engine_J) * s0
+
+'	Berechnung des vom Antriebsstrang durchgeleiteten Momentes
+
+		l0 /-/ (L.L.engine_M) (L.L.engine_M_additional_load) - + s1
+
+
+'	Wenn das Antriebsmoment zu groß ist oder ein Wandlergang eingelegt wird, rutscht die Kupplung durch:
+
+		l1 abs (L.L.antrieb_schaltmoment) > (L.L.antrieb_getr_gangwahl) 1 <= || (L.L.antrieb_getr_aktugang) 1 = || 
+
+
+		{if}
+
+			0 (S.L.antrieb_getr_fest)
+
+		{else}
+
+'		Setzen des Momentes
+
+			l1 (S.L.antrieb_getr_M_an)
+
+
+'		Berechnung des Getriebeabtriebmomentes:
+
+			(L.L.antrieb_getr_M_an) (L.L.antrieb_getr_ratio) * (C.L.gear_efficiency) * (S.L.torque_limit) (S.L.M_Wheel) 
+
+'		Drehzahl des Motors ergibt sich aus der Getriebeabtriebswelle:
+
+			(L.L.antrieb_getr_ratio) (L.L.n_Wheel) * (C.L.engine_governed_max_RPM) min (S.L.engine_n)		
+		{endif}
+
+
+		2000 (S.L.antrieb_wandler_moment)
+
+	{else}
+
+'#################################################################################
+'	Bestimmen, ob Leerlauf ist...:
+'#################################################################################
+
+		(L.L.antrieb_getr_gangwahl) 1 = (L.L.antrieb_getr_aktugang) 0 = ||
+
+		{if}
+
+'		... Antriebs- und Getriebeantriebsmoment sind 0:
+			0 (S.L.M_Wheel) (S.L.antrieb_getr_M_an)
+
+			(M.L.engine_acceleration)
+			0 (S.L.antrieb_wandler_moment) (S.L.antrieb_wandler_ny)
+
+'			Wenn Neutralgang beim Bremsen eingelegt wird
+			(L.L.antrieb_getr_gangwahl) 1 =
+			{if}
+				0 (S.L.antrieb_retarder_wasrunning) (S.L.antrieb_gear_engaged_timer)
+			{endif}
+
+		{else}
+
+'#################################################################################
+'		Bestimmen, ob ein Wandlergang eingelegt ist...:
+'#################################################################################
+
+			(L.L.antrieb_getr_aktugang) 1 =
+			{if}
+
+				(L.L.antrieb_wandler_moment) abs (L.L.antrieb_getr_M_an) abs >
+				{if}
+					(L.L.antrieb_wandler_moment) 0 >
+					{if}
+						(L.L.antrieb_getr_M_an) (C.L.antrieb_wandler_fillrate) (L.S.Timegap) * + (S.L.antrieb_getr_M_an)
+						(L.L.antrieb_wandler_moment) (L.L.antrieb_getr_M_an) <
+						{if}
+							(L.L.antrieb_wandler_moment) (S.L.antrieb_getr_M_an)
+						{endif}
+					{else}
+						(L.L.antrieb_getr_M_an) (C.L.antrieb_wandler_fillrate) (L.S.Timegap) * - (S.L.antrieb_getr_M_an)
+						(L.L.antrieb_wandler_moment) (L.L.antrieb_getr_M_an) >
+						{if}
+							(L.L.antrieb_wandler_moment) (S.L.antrieb_getr_M_an)
+						{endif}
+					{endif}
+				{else}
+					(L.L.antrieb_wandler_moment) (S.L.antrieb_getr_M_an)
+				{endif}
+	
+			
+			
+
+'#################################################################################
+'			Wandler Rückwärtsgang:
+'#################################################################################
+
+				(L.L.antrieb_getr_gangwahl) 0 =
+				{if}
+					(L.L.antrieb_n_kardanwelle) 2 * (S.L.antrieb_getr_n_ab) /-/ (L.L.engine_n) / (S.L.antrieb_wandler_ny)
+
+
+
+							
+
+'					Berechnung des Motor-Antriebsmomentes
+
+						(L.L.engine_n) 2 * 3.14 * 60 / (L.L.engine_n) 2 * 3.14 * 60 / * s1
+						0.0042 (L.L.antrieb_wandler_ny) (F.L.antrieb_wandler_lambda) * l1 * (L.L.engine_n) (F.L.antrieb_wandler_lowrpmsoftness) * (S.L.antrieb_wandler_moment)
+
+
+'					Berechnung des Rad-Abtriebsmomentes
+		
+						(L.L.antrieb_wandler_ny) (F.L.antrieb_wandler_my) (L.L.antrieb_getr_M_an) * (C.L.antrieb_i_achse) * 0.9 * /-/ (C.L.gear_efficiency) * 
+					 	(L.L.antrieb_n_kardanwelle) (F.L.antrieb_reverse_torque_reduction) *
+						(S.L.M_Wheel)
+					
+
+'#################################################################################
+'			Wandler Vorwärtsgang:	
+'#################################################################################
+
+				{else}
+					(L.L.n_Wheel) (C.L.antrieb_i_achse) * (S.L.antrieb_getr_n_ab) (L.L.engine_n) / (S.L.antrieb_wandler_ny)
+
+					(L.L.antrieb_wandler_ny) 0.7 <
+					{if}		
+
+'					Berechnung des Motor-Antriebsmomentes
+
+						(L.L.engine_n) 2 * 3.14 * 60 / (L.L.engine_n) 2 * 3.14 * 60 / * s1
+						0.0042 (L.L.antrieb_wandler_ny) (F.L.antrieb_wandler_lambda) * l1 * (L.L.engine_n) (F.L.antrieb_wandler_lowrpmsoftness) * (S.L.antrieb_wandler_moment)
+
+
+'					Berechnung des Rad-Abtriebsmomentes
+		
+						(L.L.antrieb_wandler_ny) (F.L.antrieb_wandler_my) (L.L.antrieb_getr_M_an) * (C.L.antrieb_i_achse) * 0.77 * (C.L.gear_efficiency) * (L.L.engine_n) (F.L.antrieb_wandler_idleforce) (L.L.velocity) (F.L.wandler_idle_fadeout) * max (S.L.M_Wheel) (S.L.torque_limit)
+					{else}
+	
+'					Berechnung des Motor-Antriebsmomentes
+			
+						(L.L.engine_n) (L.L.antrieb_getr_n_ab) / (S.L.antrieb_wandler_ny_r)
+
+						(L.L.engine_n) 2 * 3.14 * 60 / (L.L.engine_n) 2 * 3.14 * 60 / * s1
+						0.0042 (L.L.antrieb_wandler_ny_r) (F.L.antrieb_wandler_lambda_r) * l1 * (L.L.engine_n) (F.L.antrieb_wandler_lowrpmsoftness) * (S.L.antrieb_wandler_moment)
+
+
+'					Berechnung des Rad-Abtriebsmomentes
+		
+						(L.L.antrieb_wandler_ny_r) (F.L.antrieb_wandler_my_r) (L.L.antrieb_getr_M_an) * (C.L.antrieb_i_achse) * 0.77 * (C.L.gear_efficiency) * (L.L.engine_n) (F.L.antrieb_wandler_idleforce) (L.L.velocity) (F.L.wandler_idle_fadeout) * max (S.L.M_Wheel)
+					{endif}
+				{endif}
+
+'			Vergleich der Ein- und Ausgangsleistungen:
+				(L.L.M_Wheel) (L.L.n_Wheel) * 3.14 * 30000 / (S.L.antrieb_gesamtleistung)
+				(L.L.antrieb_gesamtleistung) (L.L.antrieb_motorleistung) / (S.L.antrieb_eta)
+
+	
+				(M.L.engine_acceleration)
+			
+
+'#################################################################################
+'			Sonst ist ein normaler Gang eingelegt:
+'#################################################################################
+
+			{else}
+
+
+'			Berechnung der Drehzahldifferenz:
+
+				(L.L.antrieb_getr_ratio) (L.L.n_Wheel) * (L.L.engine_n) - s0
+
+
+
+'			An dieser Stelle muss ggf. noch das unterschiedliche Kupplungsmoment eingesetzt werden:
+
+				l0 0 <
+				{if}
+					(L.L.antrieb_schaltmoment)
+				{else}
+					(L.L.antrieb_schaltmoment) /-/
+				{endif}
+				(S.L.antrieb_getr_M_an)
+				(L.L.antrieb_getr_ratio) *
+				(C.L.gear_efficiency) * (L.L.torque_limit) max (L.L.torque_limit) min (S.L.M_Wheel)
+
+				(M.L.engine_acceleration)
+
+'			Prüfen, ob sich das Vorzeichen der Drehzahldifferenz umgekehrt hat:
+
+				(L.L.antrieb_getr_ratio) (L.L.n_Wheel) * (L.L.engine_n) - l0 * 0 <= (L.L.engine_n) 560 > &&
+				{if}
+					(L.L.antrieb_getr_ratio) (L.L.n_Wheel) * (S.L.engine_n)
+					(L.L.n_Wheel) (L.L.antrieb_getr_ratio) * (L.L.engine_n) - 2 * pi * 60 / (L.S.Timegap) / 
+
+'					Berechnung des Momentes am Motor durch Trägheit:
+
+					(C.L.engine_J) * s0
+
+'					Berechnung des vom Antriebsstrang durchgeleiteten Momentes
+
+					l0 /-/ (L.L.engine_M) (L.L.engine_M_additional_load) - + (S.L.antrieb_getr_M_an)
+
+
+'					Berechnung des Getriebeabtriebmomentes:
+
+					(L.L.antrieb_getr_M_an) abs (L.L.antrieb_schaltmoment) abs <
+					{if}
+						(L.L.antrieb_getr_M_an) (L.L.antrieb_getr_ratio) * (C.L.gear_efficiency) * (S.L.M_Wheel)
+						1 (S.L.antrieb_getr_fest)
+						(L.L.engine_n) (C.L.torque_apex_at_RPM) min (F.L.engine_M_maxThrottle) 200 + (S.L.antrieb_schaltmoment)
+					{else}
+						(L.L.antrieb_schaltmoment) /-/ (S.L.antrieb_getr_M_an) (L.L.antrieb_getr_ratio) * (C.L.gear_efficiency) * (S.L.M_Wheel)
+					{endif}
+					
+
+
+				{endif}
+
+				0 (S.L.antrieb_wandler_moment)
+
+			{endif}
+		{endif}
+
+	{endif}
+
+
+
+
+
+
+
+'#################################################################################
+'	Retarder
+'#################################################################################
+
+
+	(L.L.brake) 0.05 >
+	(L.L.antrieb_getr_gangwahl) 1 > &&
+	(L.L.Throttle) 0.1 < &&
+	(L.L.antrieb_n_kardanwelle) 0.1 > &&
+	(L.L.antrieb_failure_general) ! &&
+	(L.L.bremse_ABS_eingriff) ! &&
+	(L.L.vdv_error_retarder_active) ! &&
+	{if}	
+
+		(L.L.antrieb_retarder_armed) !
+		{if}
+			1 (S.L.antrieb_retarder_armed)
+			0 (S.L.antrieb_retarder_armtime_elapsed)
+		{endif}
+
+'		Das Hochschalten aus dem 1. Gang (Antriebsstrang nicht fest eingekuppelt) zählt nicht zur Latenzzeit, solange also Armtime auf 0 halten:
+		(L.L.antrieb_getr_fest) ! (L.L.antrieb_retarder) ! &&
+		{if}
+			0 (S.L.antrieb_retarder_armtime_elapsed)
+		{endif}
+	
+
+		(L.L.antrieb_n_kardanwelle) (C.L.retarder_min_einschaltspeed) > (L.L.antrieb_retarder_armtime_elapsed) (C.L.antrieb_retarder_startdelay) > && (L.L.antrieb_retarder) ! && 
+		{if}
+			1 (S.L.antrieb_retarder)
+			0 (S.L.antrieb_retarder_time_elapsed)
+		{endif}
+
+
+		(L.L.brake) 0.2 <
+		{if}
+			1 (S.L.antrieb_retarderstufe)
+		{else}
+			2 (S.L.antrieb_retarderstufe)
+		{endif}
+
+'Verhaltensweise des Retarders beim Erreichen der Drehzahluntergrenze im 2. Gang:
+
+		(L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwDnMinSpd2) < 
+		(L.L.antrieb_retarder) 1 = &&
+		{if}
+			(C.L.antrieb_getr_version) s0 1 = l0 3 = ||
+			{if}
+				0 (S.L.antrieb_retarder) (S.L.antrieb_wendesatz)
+				(L.L.engine_n) (S.L.antrieb_rucksoundvol)
+				(T.L.ev_schaltruck)
+			{else}
+				0 (S.L.antrieb_getr_aktugang)
+			{endif}
+		{endif}
+	
+
+		(L.L.antrieb_retarder_armed)
+		{if}
+			(L.L.antrieb_retarder_armtime_elapsed) (L.S.Timegap) + (S.L.antrieb_retarder_armtime_elapsed)
+			(L.L.antrieb_retarder_time_elapsed) (L.S.Timegap) + (S.L.antrieb_retarder_time_elapsed)
+		{endif}
+
+' Ausschalten des Retarders:
+
+	{else}
+		(L.L.antrieb_retarder) (L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwDnMinSpd2) < &&
+		{if}
+			0 (S.L.antrieb_retarder_offtime) (S.L.antrieb_wendesatz)
+			1 (S.L.antrieb_retarder_wasrunning)
+		{endif}
+		0 (S.L.antrieb_retarder) (S.L.antrieb_retarder_armed) (S.L.antrieb_retarder_armtime_elapsed) (S.L.antrieb_retarder_time_elapsed)	
+	{endif}
+
+'Umschaltverzögerung zwischen Bremsen und Traktion:
+
+	(L.L.antrieb_retarder_wasrunning)
+	{if}
+		(L.L.antrieb_retarder_offtime) (L.S.Timegap) + (S.L.antrieb_retarder_offtime) 
+		(C.L.antrieb_retarder_changetime) >
+		(L.L.antrieb_getr_gangwahl) 1 > &&
+		{if}
+			(T.L.ev_retarder_aus)
+
+'3424 soll hier laut rucken!
+			(L.$.number) "3424" $=
+			{if}
+				900
+			{else}
+				(L.L.engine_n)
+			{endif}
+			(S.L.antrieb_rucksoundvol)
+			(T.L.ev_schaltruck)
+			1 (S.L.antrieb_getr_aktugang)
+			0 (S.L.antrieb_retarder_wasrunning) (S.L.antrieb_gear_engaged_timer)
+		{endif}
+	{endif}
+
+	
+
+'Bremsmoment des Retarders:
+
+	(L.L.antrieb_retarder) 1 =
+	{if}
+		(L.L.antrieb_retarderstufe) 1 =
+		{if}
+			(L.L.antrieb_n_kardanwelle) 29.3 / (F.L.retarder_stufe1) 0.7 * (C.L.antrieb_i_achse) /-/ * (L.L.antrieb_retarder_time_elapsed) (F.L.retarder_fadein) * (S.L.antrieb_retardermoment) (L.L.M_Wheel) + (S.L.M_Wheel) 
+		{else}
+			(L.L.antrieb_retarderstufe) 2 =
+			{if}
+				(L.L.antrieb_retardermoment) (L.S.Timegap) 10000 * - s1
+				(L.L.antrieb_n_kardanwelle) 29.3 / (F.L.retarder_stufe2) 0.7 * (C.L.antrieb_i_achse) /-/ * (L.L.antrieb_retarder_time_elapsed) (F.L.retarder_fadein) * s2
+				l1 l2 max (S.L.antrieb_retardermoment) (L.L.M_Wheel) + (S.L.M_Wheel)
+			{else}
+			(L.L.antrieb_retarderstufe) 3 =
+			{if}	
+				(L.L.antrieb_retardermoment) (L.S.Timegap) 10000 * - s1
+				(L.L.antrieb_n_kardanwelle) 29.3 / (F.L.retarder_stufe3) 0.7 * (C.L.antrieb_i_achse) /-/ * (L.L.antrieb_retarder_time_elapsed) (F.L.retarder_fadein) * s2
+				l1 l2 max (S.L.antrieb_retardermoment) (L.L.M_Wheel) + (S.L.M_Wheel)
+			{else}
+			(L.L.antrieb_retarderstufe) 4 =
+			{if}	
+				(L.L.antrieb_retardermoment) (L.S.Timegap) 10000 * - s1
+				(L.L.antrieb_n_kardanwelle) 29.3 / (F.L.retarder_stufe4) 0.7 * (C.L.antrieb_i_achse) /-/ * (L.L.antrieb_retarder_time_elapsed) (F.L.retarder_fadein) * s2
+				l1 l2 max (S.L.antrieb_retardermoment) (L.L.M_Wheel) + (S.L.M_Wheel)
+			{endif}
+			{endif}
+			{endif}
+		{endif}
+	{else}
+'		Ausfaden der Retarder-Bremsstärke
+		(L.L.antrieb_retardermoment) (L.S.Timegap) 10000 * + 0 min (S.L.antrieb_retardermoment) (L.L.M_Wheel) + (S.L.M_Wheel)
+		(L.L.antrieb_retarder_volume) (L.S.Timegap) 2 * - 0 max (S.L.antrieb_retarder_volume) s0
+		l0 0 =
+		{if}
+			0 (S.L.antrieb_wendesatz)
+		{endif}
+	
+	{endif}
+
+
+
+'#################################################################################
+'	Automatische Neutralschaltung bei Stillstand
+'#################################################################################
+
+(C.L.antrieb_getr_version) 1 >
+{if}
+	(L.L.antrieb_gear_engaged_timer) (L.S.Timegap) + (S.L.antrieb_gear_engaged_timer)
+	
+	(L.L.antrieb_n_kardanwelle) (C.L.antrieb_neutral_maxspeed) <
+	(L.L.antrieb_getr_gangwahl) 1 > &&
+	(L.L.antrieb_retarder) ! &&
+	(L.L.antrieb_retarder_wasrunning) ! &&	
+	{if}
+		(L.L.bremse_p_Brzyl_HA) (C.L.antrieb_neutral_brakepressure) >
+		(L.L.bremse_feststell) ||
+		{if}
+			(L.L.antrieb_neutral_requested) !
+			{if}
+				1 (S.L.antrieb_neutral_requested)
+
+				(C.L.antrieb_getr_version) 2 = !
+				(C.L.antrieb_getr_version) 2 = (L.L.antrieb_gear_engaged_timer) (C.L.antrieb_gear_engaged_mintime) < && ||
+				{if}
+					0 (S.L.antrieb_gear_engaged_timer)
+				{endif}
+			{endif}
+			
+			(L.L.antrieb_neutral_requested)
+			(L.L.antrieb_gear_engaged_timer) (C.L.antrieb_gear_engaged_mintime) >= &&
+			{if}
+				0 (S.L.antrieb_getr_aktugang)
+			{endif}
+
+		{else}		
+			1 (S.L.antrieb_getr_aktugang)
+			0 (S.L.antrieb_neutral_requested) (S.L.antrieb_gear_engaged_timer)
+		{endif}
+		
+	{endif}
+{endif}
+
+
+'#################################################################################
+'	Planetengetriebe-Wendesatz (Fjü-Sound)
+'#################################################################################
+	
+	(L.L.antrieb_retarder)  
+	(L.L.antrieb_getr_gangwahl) 0 = ||
+	{if}
+		1 (S.L.antrieb_wendesatz)
+		(L.L.antrieb_retarder_volume) (L.S.Timegap) + 2 min (S.L.antrieb_retarder_volume)
+'		Rücksetzen auf 0 erfolgt beim Fadeout des Retarderbremsmoments
+	{endif}
+{end}
+
+
+
+'#################################################################################
+'	Bestimmung der Schaltgeschwindigkeiten
+'#################################################################################
+
+{macro:antrieb_getr_chkNxtGear}
+
+'	Höchster Gang: s0!
+
+'	Verzögerung der Kickdown-Schaltung:
+
+(C.L.kickdown_enable) 1 =
+	{if}
+		(L.L.throttle) 1 =
+		{if}
+			(L.L.antrieb_kickdown_stellglied) (L.S.Timegap) 2 * + 1 min (S.L.antrieb_kickdown_stellglied)
+			1 =
+			{if}
+				1 (S.L.antrieb_kickdown)
+			{endif}
+		{else}
+			(L.L.antrieb_kickdown_stellglied) (L.S.Timegap) 1 * - 0 max (S.L.antrieb_kickdown_stellglied)
+			0 =
+			{if}
+				0 (S.L.antrieb_kickdown)
+			{endif}
+		{endif}
+	{endif}
+
+'	Verzögerung der gaspedalabhängigen Schaltschwelle:
+
+	
+	(L.L.throttle) (L.L.antrieb_throttle_stellglied) >
+	{if}
+		(L.L.antrieb_throttle_stellglied) (L.S.Timegap) 1 * + (L.L.throttle) min (S.L.antrieb_throttle_stellglied)
+	{else}
+		(L.L.antrieb_throttle_stellglied) (L.S.Timegap) 0.5 * - (L.L.throttle) max (S.L.antrieb_throttle_stellglied)
+	{endif}
+	
+'	Berechnen der aktuellen Beschleunigung:
+	
+	(L.L.Velocity) (L.L.antrieb_last_geschwindigkeit) - 3.6 / (L.S.Timegap) / (S.L.antrieb_beschleunigung)
+	(L.L.Velocity) (S.L.antrieb_last_geschwindigkeit)
+
+			(L.L.antrieb_getr_aktugang) s1
+			1 =
+			{if}
+				(C.L.antrieb_getr_ratio1) (C.L.antrieb_i_achse) * (S.L.antrieb_getr_ratio)
+				(L.L.antrieb_kickdown)
+				{if}
+					(C.L.antrieb_getr_autoSwUpkickdnSpd1) s3 s4
+				{else}
+					(C.L.antrieb_getr_autoSwUpMinSpd1) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s4
+					(C.L.antrieb_getr_autoSwUpMaxSpd1) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s3
+				{endif}
+		
+				(M.L.antrieb_getr_chkCh) (L.L.antrieb_n_kardanwelle) < (L.L.antrieb_beschleunigung) 0 > &&
+				(L.L.schalttimer) 1.5 > &&
+				(L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwUpkickdnSpd1) > (L.L.throttle) 0 = && ||
+				(L.L.antrieb_getr_gangwahl) 2 > &&
+				{if}
+					(L.L.throttle) 0.6 max (S.L.antrieb_M_restriction)
+					0 (S.L.schaltverzoegerung) (S.L.schalttimer)
+					2 (S.L.antrieb_getr_aktugang)
+					(M.L.antrieb_getr_schaltmoment) 100 + (S.L.antrieb_schaltmoment_soll) (S.L.antrieb_schaltmoment)				
+					(T.L.ev_gear_upshift1)
+				{endif}
+
+				(L.L.antrieb_getr_aktugang) 1 = 
+				(L.L.antrieb_getr_gangwahl) 1 > &&
+				(L.L.antrieb_retarder_armed) 1 = &&
+				(L.L.antrieb_n_kardanwelle) (C.L.retarder_min_einschaltspeed) > &&
+				{if}
+					2 (S.L.antrieb_getr_aktugang)
+					300 (S.L.antrieb_schaltmoment_soll) (S.L.antrieb_schaltmoment)
+					0 (S.L.schaltverzoegerung) (S.L.schalttimer)
+				{endif}
+				
+			{endif}
+			l1 2 =
+			{if}
+				(C.L.antrieb_getr_ratio2) (C.L.antrieb_i_achse) * (S.L.antrieb_getr_ratio)
+				(L.L.antrieb_kickdown)
+				{if}
+					(C.L.antrieb_getr_autoSwUpkickdnSpd2) s3 s4
+				{else}
+					(C.L.antrieb_getr_autoSwUpMinSpd2) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s4
+					(C.L.antrieb_getr_autoSwUpMaxSpd2) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s3
+				{endif}
+				(M.L.antrieb_getr_chkCh) (L.L.antrieb_n_kardanwelle) < (L.L.antrieb_beschleunigung) 0 > &&
+				(L.L.schalttimer) 1 > &&
+				(L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwUpkickdnSpd2) > (L.L.throttle) 0 = && ||
+				(L.L.antrieb_getr_gangwahl) 3 > &&
+				{if}
+					(L.L.throttle) 0.6 max (S.L.antrieb_M_restriction)
+					0 (S.L.schaltverzoegerung) (S.L.schalttimer)
+					3 (S.L.antrieb_getr_aktugang)
+					(M.L.antrieb_getr_schaltmoment) (S.L.antrieb_schaltmoment_soll) (S.L.antrieb_schaltmoment)
+					(T.L.ev_gear_upshift2)			
+				{endif}
+				(L.L.antrieb_kickdown) l0 1 = ||
+				{if}
+					(C.L.antrieb_getr_autoSwDnkickdnSpd2) s3 s4
+				{else}
+					(C.L.antrieb_getr_autoSwDnMinSpd2) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s4
+					(C.L.antrieb_getr_autoSwDnMaxSpd2) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s3
+				{endif}
+				(M.L.antrieb_getr_chkCh) (L.L.antrieb_n_kardanwelle) > (L.L.antrieb_retarder_armed) ! &&
+				(L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwDnMinSpd2) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * < ||
+				(L.L.schaltverzoegerung_runter) 1 > &&
+				(L.L.schaltverzoegerung) 1 > &&
+				(L.L.schaltverzoegerung) 3 > (L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwUpkickdnSpd1) < && (L.L.throttle) 0.85 >= && ||
+				(L.L.engine_n) (C.L.engine_governed_idle_RPM) < ||
+				{if}
+					(L.L.throttle) 0.6 max (S.L.antrieb_M_restriction)
+					0 (S.L.schaltverzoegerung_runter) (S.L.schalttimer)
+					1 (S.L.antrieb_getr_aktugang)
+					(M.L.antrieb_getr_schaltmoment_runter) (S.L.antrieb_schaltmoment_soll)
+					0 (L.L.schaltmoment_kurzzeit) + (S.L.antrieb_schaltmoment)
+					(T.L.ev_gear_downshift3)
+				{endif}
+			{endif}
+			l1 3 =
+			{if}
+				(C.L.antrieb_getr_ratio3) (C.L.antrieb_i_achse) * (S.L.antrieb_getr_ratio)
+				(L.L.antrieb_kickdown)
+				{if}
+					(C.L.antrieb_getr_autoSwUpkickdnSpd3) s3 s4
+				{else}
+					(C.L.antrieb_getr_autoSwUpMinSpd3) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s4
+					(C.L.antrieb_getr_autoSwUpMaxSpd3) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s3
+				{endif}
+				(M.L.antrieb_getr_chkCh) (L.L.antrieb_n_kardanwelle) < (L.L.antrieb_beschleunigung) 0 > &&
+				(L.L.schalttimer) 1 > &&
+				(L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwUpkickdnSpd3) > (L.L.throttle) 0 = && ||
+				(L.L.antrieb_getr_gangwahl) 4 >= &&
+				{if}
+					(L.L.throttle) 0.6 max (S.L.antrieb_M_restriction)
+					0 (S.L.schaltverzoegerung) (S.L.schalttimer)
+					4 (S.L.antrieb_getr_aktugang)
+					(M.L.antrieb_getr_schaltmoment) (S.L.antrieb_schaltmoment_soll) (S.L.antrieb_schaltmoment)
+					(T.L.ev_gear_upshift3)			
+				{endif}
+				(L.L.antrieb_kickdown) l0 2 = ||
+				{if}
+					(C.L.antrieb_getr_autoSwDnkickdnSpd3) s3 s4
+				{else}
+					(C.L.antrieb_getr_autoSwDnMinSpd3) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s4
+					(C.L.antrieb_getr_autoSwDnMaxSpd3) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s3
+				{endif}
+				(M.L.antrieb_getr_chkCh) (L.L.antrieb_n_kardanwelle) > (L.L.antrieb_retarder_armed) ! &&
+				(L.L.antrieb_n_kardanwelle) (C.L.antrieb_getr_autoSwDnMinSpd3) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * < ||
+				(L.L.schaltverzoegerung_runter) 1 > &&
+				(L.L.schaltverzoegerung) 1 > &&
+				(L.L.engine_n) (C.L.engine_governed_idle_RPM) < ||
+				{if}
+					(L.L.throttle) 0.6 max (S.L.antrieb_M_restriction)
+					0 (S.L.schaltverzoegerung_runter) (S.L.schalttimer)
+					2 (S.L.antrieb_getr_aktugang)
+					(M.L.antrieb_getr_schaltmoment_runter) (S.L.antrieb_schaltmoment_soll)
+					0 (L.L.schaltmoment_kurzzeit) + (S.L.antrieb_schaltmoment)
+				{endif}
+			{endif}
+			l1 4 =
+			{if}
+				(C.L.antrieb_getr_ratio4) (C.L.antrieb_i_achse) * (S.L.antrieb_getr_ratio)
+				(L.L.antrieb_kickdown)
+				{if}
+					(C.L.antrieb_getr_autoSwDnkickdnSpd4) s3 s4
+				{else}
+					(C.L.antrieb_getr_autoSwDnMinSpd4) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s4
+					(C.L.antrieb_getr_autoSwDnMaxSpd4) (L.L.shift_dynamics_high) * (L.L.shift_dynamics_low) * s3
+				{endif}
+				(M.L.antrieb_getr_chkCh) (L.L.antrieb_n_kardanwelle) >
+				(L.L.schaltverzoegerung_runter) 1 > &&
+				(L.L.schaltverzoegerung) 1 > &&
+				(L.L.engine_n) (C.L.engine_governed_idle_RPM) < ||
+				{if}
+					(L.L.throttle) 0.6 max (S.L.antrieb_M_restriction)
+					0 (S.L.schaltverzoegerung_runter) (S.L.schalttimer)
+					3 (S.L.antrieb_getr_aktugang)
+					(M.L.antrieb_getr_schaltmoment_runter) (S.L.antrieb_schaltmoment_soll)
+					0 (L.L.schaltmoment_kurzzeit) + (S.L.antrieb_schaltmoment)
+					(T.L.ev_gear_downshift2)
+				{endif}
+			{endif}
+	{endif}
+	{endif}
+
+
+'	Testweise: Differenzialdrehzahlpfeifen
+
+	(L.L.engine_n) (L.L.antrieb_n_kardanwelle) 2 * - (S.L.antrieb_n_differenz)
+
+{end}
+
+{macro:antrieb_getr_chkCh}
+'	Berechnung der aktuellen Hochschaltschwelle: (l3 = bei Vollgas, l4 = bei Leergas)
+	(L.L.antrieb_throttle_stellglied) s2 l3 * 1 l2 - l4 * +
+{end}
+
+{macro:antrieb_getr_schaltmoment}
+	(L.L.throttle) 0 >
+	{if}
+		(L.L.schaltverzoegerung) 2 >
+		(L.L.schaltverzoegerung_runter) 1 > &&
+		{if}
+			(L.L.throttle) (L.L.engine_n) (C.L.torque_apex_at_RPM) min (F.L.engine_M_maxThrottle) 200 + *
+		{else}
+			(L.L.throttle) (L.L.antrieb_M_restriction) min (L.L.engine_n) (C.L.torque_apex_at_RPM) min (F.L.engine_M_maxThrottle) 200 + *
+		{endif}
+	{else}
+		(L.L.engine_n) (C.L.torque_apex_at_RPM) min (F.L.engine_M_maxThrottle) 200 +
+	{endif}
+{end}
+
+{macro:antrieb_getr_schaltmoment_runter}
+	(L.L.engine_n) (C.L.torque_apex_at_RPM) min (F.L.engine_M_maxThrottle) 200 +
+{end}

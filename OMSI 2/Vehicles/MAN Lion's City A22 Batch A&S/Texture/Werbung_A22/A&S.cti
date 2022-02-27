@@ -1,0 +1,209 @@
+***************************************
+A&S
+***************************************
+
+[item]
+A&S
+body
+A&S\a21_body.png
+
+[item]
+A&S
+body_windows
+A&S\a21_body_windows.png
+
+[item]
+A&S
+seating
+A&S\seating.png
+
+[item]
+A&S
+interior_bars
+A&S\interior_bars.png
+
+[item]
+A&S
+interior_bar_joints
+A&S\interior_bar_joints.png
+
+[item]
+A&S
+cab_windows
+A&S\cab_windows.png
+
+[item]
+A&S
+ticket_stamper
+A&S\ticket_stamper.png
+
+[item]
+A&S
+mirror_render
+A&S\mirror_renders.png
+
+[item]
+A&S
+lenkrad
+A&S\lenkrad_eev2.png
+
+[item]
+A&S
+body_cowl
+A&S\body_cowl.png
+
+[setvar]
+vis_hubcap
+0
+
+[setvar]
+vis_cngtank
+0
+
+[setvar]
+vis_archguard
+0
+
+[setvar]
+cowl
+1
+
+***************************************
+A&S Blank
+***************************************
+
+[item]
+A&S Blank
+body
+A&S\a21_body_2.png
+
+[item]
+A&S Blank
+body_windows
+A&S\a21_body_windows.png
+
+[item]
+A&S Blank
+seating
+A&S\seating.png
+
+[item]
+A&S Blank
+interior_bars
+A&S\interior_bars.png
+
+[item]
+A&S Blank
+interior_bar_joints
+A&S\interior_bar_joints.png
+
+[item]
+A&S Blank
+cab_windows
+A&S\cab_windows.png
+
+[item]
+A&S Blank
+ticket_stamper
+A&S\ticket_stamper.png
+
+[item]
+A&S Blank
+mirror_render
+A&S\mirror_renders.png
+
+[item]
+A&S Blank
+lenkrad
+A&S\lenkrad_eev2.png
+
+[item]
+A&S Blank
+body_cowl
+A&S\body_cowl.png
+
+[setvar]
+vis_hubcap
+0
+
+[setvar]
+vis_cngtank
+0
+
+[setvar]
+vis_archguard
+0
+
+[setvar]
+cowl
+1
+
+***************************************
+A&S IKEA
+***************************************
+
+[item]
+A&S IKEA
+body
+A&S\a21_body_IS.png
+
+[item]
+A&S IKEA
+body_windows
+A&S\a21_body_windows.png
+
+[item]
+A&S IKEA
+seating
+A&S\seating.png
+
+[item]
+A&S IKEA
+interior_bars
+A&S\interior_bars.png
+
+[item]
+A&S IKEA
+interior_bar_joints
+A&S\interior_bar_joints.png
+
+[item]
+A&S IKEA
+cab_windows
+A&S\cab_windows.png
+
+[item]
+A&S IKEA
+ticket_stamper
+A&S\ticket_stamper.png
+
+[item]
+A&S IKEA
+mirror_render
+A&S\mirror_renders.png
+
+[item]
+A&S IKEA
+lenkrad
+A&S\lenkrad_eev2.png
+
+[item]
+A&S IKEA
+body_cowl
+A&S\body_cowl.png
+
+[setvar]
+vis_hubcap
+0
+
+[setvar]
+vis_cngtank
+0
+
+[setvar]
+vis_archguard
+0
+
+[setvar]
+cowl
+1

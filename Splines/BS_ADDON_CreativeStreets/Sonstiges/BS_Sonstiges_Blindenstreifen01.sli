@@ -1,0 +1,29 @@
+BS_Sonstiges_Bordstein_M.sli
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+Splines\BS_ADDON_CreativeStreets\Gehwege\texture\BS_Gehweg_Bussteig.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+
+
+[profile]
+0
+
+[profilepnt]
+-0.2
+0.253
+0.669921875
+0.6
+
+[profilepnt]
+0.2
+0.253
+0.859375
+0.6

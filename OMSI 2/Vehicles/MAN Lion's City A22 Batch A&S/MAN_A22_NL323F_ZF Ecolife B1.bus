@@ -1,0 +1,531 @@
+[friendlyname]
+MAN | ST KINETICS
+A22 | A&S | NL 323 F | ZF Ecolife B1
+Default
+
+[description]
+The MAN NL323F (A22) is a low-floor, wheelchair-accessible, single-deck transit bus chassis offered by MAN Truck & Bus. As part of the MAN NLxx3F line of bus chassis, units were sold to various operators around the world, particularly in Germany, Spain, Israel, Singapore and the UK, and built up by various bodywork companies. First introduced locally in 2010 by SMRT Buses, a successful trial unit led to further purchase of 734 units in three batches. Deliveries and registrations completed in October 2016.
+The bus model is currently operated by SMRT Buses and Tower Transit. In 2016, under the Bus Contracting Model, the Land Transport Authority has leased MAN NL323F buses (built to SMRT specifications) to Tower Transit.
+
+Technical Information:
+The MAN NL323F is part of the MAN NLxx3F line of bus chassis (coded A22), the ‘3’ referring to a third-generation rear-engined citybus chassis, It is designed off MAN’s popular urban bus line, the Lion’s City, which is only available with integral bodywork by MAN. The NL323F is available with various bodywork designs from different manufacturers.
+Diesel-powered MAN NLxx3Fs come with the standard MAN D2066 LUH inline 6-cylinder, horizontally-mounted, turbocharged & inter-cooled engine, with a rage of available power outputs of between 270 and 400 horsepower over Euro III to Euro V emission standards. For the Euro V rating, 320hp, 360hp and 400hp versions are available, along with a 2-stage turbocharger for high torque rating. The engine uses Exhaust Gas Re-circulation (EGR) technology and MAN’s own PM-Kat® exhaust treatment system to achieve its Euro V rating.
+For transmission, the MAN NLxx3F offers a Voith 4-speed automatic transmission as standard, with an optional offering of a ZF EcoLife 6-speed automatic transmission. The integrated hydraulic retarder features boosted operating economy, longer service life, and higher temperature resistance for operation with Euro V compatible engines. A portal axle is used for the rear wheels, and all wheels come with disc brakes. Similar to other MAN urban buses, the NL323F chassis in manufactured and assembled in Salzgitter, Germany.
+Hybrid-electric, compressed natural gas (CNG) and regular diesel powered variants of the MAN NLxx3F are available, all capable of meeting Euro-VI emission standards.
+
+Technical Data:
+MAN NL323F (A22)
+
+Length:11,980 mm
+Width:2,550 mm
+Height:2,980 mm
+
+Year:Sep 2011 – Feb 2013
+Engine: MAN D2066LUH-32
+Power Output:320 hp (235 kW) @ 1900 rpm / 1600 Nm @ 1000 - 1400 rpm 
+Gearbox: ZF Ecolife 6 AP 1700 B
+Rear Axle: MAN-ZF HONP-13100 (i: 5,74)
+Max Speed: 60km/h (limited)
+
+
+[end]
+
+	[number] aktiviert die Zuweisung von Nummern
+	{colorscheme specific numbers path}	Pfad zu den *.org-(Omsi-Registration)-Dateien, welche für die Vergabe von Nummern zuständig sind.
+
+	Aufbau einer Nummernliste: in der ersten Zeile kommt der Name des Anstrichs (wie er auch im CTC angegeben wird), dann beliebig viele zulässige Nummern.
+	Steht in der ersten Zeile nichts, dann handelt es sich um die "Hauptliste", welche für alle Anstriche gilt, für welche keine Nummern spezifiziert werden.
+
+
+	[registration_automatic] aktiviert die Zuweisung der Kennzeichen im automatischen Modus
+	{regPrefix}				Präfix vor Nummer am Kennzeichen. Soll bspw. Nr 2000 das Kennzeichen "D-A 2000H" bekommen, ist der Präfix "D-A "
+	{regPostfix}				Postfix hinter Nummer am Kennzeichen. Im obigen Beispiel "H".
+
+	[registration_list] öffnet die angegebene Datei, um die Kennzeichenzuweisung nach den Nummern vorzunehmen. Der Index läuft hierbei parallel zu jener *.org-Datei, welche die Hauptliste enthält.
+	{filename}
+
+	[registration_free] aktiviert die freie Kennzeichenzuweisung. Im AI-Modus wird ein Kennzeichen der Map-Registrations-Datei verwendet, der User kann es für sein Fahrzeug frei wählen.
+
+
+
+
+[number]
+Regs_A21.org
+
+	[registration_free]
+
+[registration_automatic]
+PC
+
+
+[kmcounter_init]
+2010
+50000
+
+
+
+[sound]
+sound2\lc_Euro5_zfecolifeB1.cfg
+
+[sound_ai]
+sound2\lc_Euro5_zfecolifeB1.cfg
+
+[model]
+model\A221.cfg
+
+[paths]
+model\paths_A21.cfg
+
+[passengercabin]
+model\passengercabin_A21.cfg
+
+	////////////////////////////////////////////////////////
+		Scripts
+	////////////////////////////////////////////////////////
+
+[varnamelist]
+23
+script\AI_varlist.txt
+script\Collision_varlist.txt
+script\antrieb_ZF_varlist.txt
+script\engine_varlist.txt
+script\elec_varlist.txt
+script\bremse_varlist.txt
+script\auspuff_varlist.txt
+script\lights_varlist.txt
+script\door_varlist.txt
+script\wiper_varlist.txt
+script\cockpit_varlist.txt
+script\klappern_varlist.txt
+script\heizung_varlist.txt
+script\rain_varlist.txt
+script\dirt_varlist.txt
+script\Ibox\ticketprinter_varlist.txt
+script\churaKrueger\VMatrix_varlist.txt
+script\wimpel_varlist.txt
+script\visual_varlist.txt
+script\cashdesk_varlist.txt
+script\MAN_dashboard_varlist.txt
+script\spray_varlist.txt
+script\Ibox\IBIS_varlist.txt
+
+[stringvarnamelist]
+5
+script\Ibox\ticketprinter_stringvarlist.txt
+script\churaKrueger\vMatrix_stringvarlist.txt
+script\cockpit_stringvarlist.txt
+script\MAN_dashboard_stringvarlist.txt
+script\Ibox\IBIS_stringvarlist.txt
+
+[script]
+27
+script\AI.osc
+script\main.osc
+script\main_AI.osc
+script\collision.osc
+script\cockpit.osc
+script\antrieb_ZF.osc
+script\engine.osc
+script\elec.osc
+script\bremse.osc
+script\auspuff.osc
+script\lights.osc
+script\door_manual.osc
+script\wiper.osc
+script\klappern.osc
+script\forcefeedback.osc
+script\rain.osc
+script\dirt.osc
+script\sound_volume.osc
+script\heizung.osc
+script\Ibox\Ticketprinter.osc
+script\churaKrueger\vmatrix.osc
+script\wimpel.osc
+script\cashdesk.osc
+script\summer.osc
+script\MAN_dashboard.osc
+script\spray.osc
+script\Ibox\IBIS-2.osc
+
+[constfile]
+18
+script\AI_constfile.txt
+script\collision_constfile.txt
+script\antrieb_ZF-6HP-604.txt
+script\engine_D20_EEV_235kW_100kmh.txt
+script\elec_constfile.txt
+script\bremse_constfile.txt
+script\lights_constfile.txt
+script\door_constfile.txt
+script\auspuff_constfile.txt
+script\cockpit_constfile.txt
+script\klappern_constfile.txt
+script\forcefeedback_constfile.txt
+script\wiper_constfile.txt
+script\dirt_constfile.txt
+script\heizung_constfile.txt
+script\Ibox\IBIS_constfile.txt
+script\churaKrueger\vmatrix_constfile_K++.txt
+script\MAN_dashboard_constfile.txt
+
+
+
+
+	////////////////////////////////////////////////////////
+		Kameras *NEU01*
+	////////////////////////////////////////////////////////
+
+	0: Looking leftmost
+[add_camera_driver]
+-1.5
+4.18
+1.89
+-0.06
+55
+-170
+-5
+	1: Looking diagonally left
+[add_camera_driver]
+-0.70902
+4.38
+1.82
+-0.06
+55
+-60
+-5
+	2: Looking into the left mirror
+[add_camera_driver]
+-0.70902
+4.42
+1.78
+0
+55
+-30
+-5
+
+	3: Looking ahead (std)
+[add_camera_driver]
+-0.70902
+4.42
+1.78
+0
+50
+0
+-7
+
+	4: Looking in the mirror right
+[add_camera_driver]
+-0.70902
+4.42
+1.78
+0
+55
+35
+-5
+
+	5: At the door
+[add_camera_driver]
+-0.70902
+4.38
+1.82
+-0.06
+55
+70
+-6
+
+	6: Ticket sales view
+[add_camera_driver]
+-0.73916
+4.38
+1.82
+0
+35
+37
+-16
+
+[view_ticketselling]
+
+
+	7: Looking far right
+[add_camera_driver]
+0
+4.18
+1.83
+-0.06
+55
+160
+-10
+
+
+	8: Panel-Zoom
+[add_camera_driver]
+-0.73916
+4.38
+1.82
+-0.06
+55
+5
+-70
+
+	7: Timetable view
+[add_camera_driver]
+-0.73916
+4.38
+1.82
+-0.06
+30
+-30
+45
+[view_schedule]
+
+
+
+################
+Passagiersichten
+################
+
+	0: Hinten links sitzend
+[add_camera_pax]
+-0.943
+-2.419
+2
+-0.06
+45
+25
+0
+
+	1: Stehplatz an der Hintertuer
+[add_camera_pax]
+-0.8
+0.409
+1.985
+-0.06
+45
+90
+0
+	2: vorne rechts sitzend
+[add_camera_pax]
+0.967
+1.374
+1.554
+-0.06
+45
+-20
+0
+
+	3: vorne rechts sitzend2
+[add_camera_pax]
+0.836
+3.455
+1.852
+-0.06
+45
+-20
+0
+
+	2: hinten rechts sitzend
+[add_camera_pax]
+0.006
+-5.516
+2.1
+-0.06
+45
+-20
+0
+
+	4: Oberdeck hinten Mitte
+[add_camera_pax]
+0.0
+-5.3
+3.8
+-0.06
+45
+0
+0
+
+	5: Oberdeck hinten Mitte
+[add_camera_pax]
+0
+0
+3.0
+40.0
+45
+0
+0
+
+	5: Oberdeck hinten Mitte
+[add_camera_pax]
+0
+0
+3.0
+75
+45
+0
+0
+
+
+	5: Oberdeck hinten Mitte
+[add_camera_pax]
+0
+0
+3.0
+100
+45
+0
+0
+
+
+
+	Folgender Befehl setzt die Standardfahrerkamera:
+
+[set_camera_std]
+3
+
+	Folgender Befehl setzt den Zentrierpunkt der Au?enkamera:
+
+[set_camera_outside_center]
+0
+0
+1.2
+
+
+
+	////////////////////////////////////////////////////////
+		Reflexionskameras *NEU01*
+	////////////////////////////////////////////////////////
+	
+[add_camera_reflexion_2]
+-1.397
+5.316
+1.965
+0
+52
+169
+-10
+0.15
+
+[add_camera_reflexion_2]
+1.358
+6.214
+2.033
+0
+52
+201
+-10
+0.15
+
+[add_camera_reflexion]
+-0.005
+5.2
+2.576
+0
+52
+195
+-22
+
+[add_camera_reflexion_2]
+1.33136
+6.02872
+2.26738
+0
+61
+240
+-24
+0.15
+
+
+	////////////////////////////////////////////////////////
+		Physikalische und geometrische Grunddaten
+	////////////////////////////////////////////////////////
+
+	Masse in t:
+[mass]
+13
+
+	Trägheitsmomente um x, y und z-Achse, also Quer-, Längs- und Hochachse um den Schwerpunkt in dieser Reihenfolge in t*m^2:
+510
+205
+510
+
+[momentofintertia]
+600
+90
+400
+
+
+	Boundingbox des Busses *NEU01*
+	
+	Breite
+    Länge
+    Höhe
+    Abstand des Mittelpunkts der Boundingbox vom Nullpunkt des lokalen Koordinatensystems auf Breitenachse in m (x)
+    Abstand des Mittelpunkts der Boundingbox vom Nullpunkt des lokalen Koordinatensystems auf Längsachse in m (y)
+    Abstand des Mittelpunkts der Boundingbox vom Nullpunkt des lokalen Koordinatensystems auf Hochachse in m (z) 
+
+[boundingbox]
+2.52
+12
+2.4
+0
+-0.35
+1.7
+
+	Höhe d. Schwerpunktes ueberm Boden:
+
+[schwerpunkt]
+0.9
+
+
+
+	Rollwiderstand (konstant, wird demnächst eventuell geändert) als Kraft in N
+[rollwiderstand]
+1545
+
+[rot_pnt_long]
+-2.66472
+
+[inv_min_turnradius]
+0.16
+
+[ai_deltaheight]
+-0.10
+
+	Front axle :
+
+[newachse]
+achse_long
+3.18772
+achse_maxwidth
+2.339
+achse_minwidth
+1.765
+achse_raddurchmesser
+0.9675
+achse_feder
+240
+achse_maxforce
+90
+achse_daempfer
+20
+achse_antrieb
+0
+
+	Rear axle:
+
+[newachse]
+achse_long
+-2.66472
+achse_maxwidth
+2.36
+achse_minwidth
+1.086
+achse_raddurchmesser
+0.9675
+achse_feder
+280
+achse_maxforce
+116
+achse_daempfer
+20
+achse_antrieb
+1

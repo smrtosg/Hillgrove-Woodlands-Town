@@ -1,0 +1,9498 @@
+#####TEMPLATE FILE#####
+SD200_SD202_Template.xml
+
+#####COMMENT#####
+
+
+#####ENDCOMMENT#####
+
+[name]
+[K++] BRT Berlin
+
+[servicetrip]													
+Betriebsfahrt													
+													
+	Sets some global strings for that depot file.												
+	Setzt einige globale Strings für diese Depot-Datei:												
+	0: Announcements subdirectory / Ansagen-Unterordner												
+	1: Roller Blind Subdirectory / Rollband-Unterordner												
+	2: Side sign subdirectory / Seitenschild-Unterordner												
+	3: IBIS special code for 900 (..N till 90, N.. since 91)												
+	4: IBIS special code for 800 (X since '92)												
+	5: IBIS special code for 500 (M since '94)												
+													
+[global_strings]
+6
+BRT Berlin
+BRT Berlin
+BRT Berlin
+35
+28
+36
+
+stringcount_terminus
+8
+
+stringcount_busstop
+4
+
+######################################
+ TERMINI
+######################################
+
+
+[addterminus_allexit]
+0
+Empty
+LEERFELD
+
+
+
+Leerfield
+Leerfeld
+
+BRT\SMRTG.png
+
+................
+
+
+[addterminus_allexit]
+1
+MATRIX READER
+MATRIX READER
+
+
+
+MATRIX READER
+MATRIX READER
+
+BRT\MR.png
+
+................
+
+
+[addterminus_allexit]
+2
+MESSAGES
+MESSAGES
+
+
+
+MESSAGES
+MESSAGES
+
+BRT\MES.png
+
+................
+
+
+[addterminus]
+032
+U Fehrbelliner Platz    (Barstr.)
+FEHRBELLINER PL.
+FEHRBELLINER PL.
+   U-BAHNHOF
+FEHRBELLINER PL.
+FEHRBELLINER PL.
+
+
+BRT\11501.png
+
+................
+
+[addterminus]
+1032
+U Fehrbelliner Platz    (Barstr.)
+FEHRBELLINER PL.
+FEHRBELLINER PL.
+   U-BAHNHOF
+FEHRBELLINER PL.
+FEHRBELLINER PL.
+
+
+BRT\MES.png
+
+................
+
+[addterminus]
+103
+Spanische Al./Potsd. Ch.
+SPANISCHE ALLEE
+SPANISCHE ALLEE
+ POTSDAMER CH.
+ SPANISCHE AL.
+SPANISCHE ALLEE
+
+
+BRT\11502.png
+
+................
+
+[addterminus]
+1103
+Spanische Al./Potsd. Ch.
+SPANISCHE ALLEE
+SPANISCHE ALLEE
+ POTSDAMER CH.
+ SPANISCHE AL.
+SPANISCHE ALLEE
+
+
+BRT\MES.png
+
+................
+
+
+[addterminus]
+076
+Neuruppiner Str.
+NEURUPPINER STR.
+NEURUPPINER STR.
+NEURUPPINER STR.
+   DÜPPEL-SÜD
+NEURUPPINER STR.
+
+
+BRT\11504.png
+
+.........................
+
+[addterminus]
+1076
+Neuruppiner Str.
+NEURUPPINER STR.
+NEURUPPINER STR.
+NEURUPPINER STR.
+   DÜPPEL-SÜD
+NEURUPPINER STR.
+
+
+BRT\MES.png
+
+.........................
+
+
+
+[addterminus]
+094
+Roseneck
+ROSENECK
+   GRUNEWALD
+    ROSENECK
+    ROSENECK
+ROSENECK
+
+
+BRT\11001.png
+
+.........................
+
+[addterminus]
+1094
+Roseneck
+ROSENECK
+   GRUNEWALD
+    ROSENECK
+    ROSENECK
+ROSENECK
+
+
+BRT\MES.png
+
+.........................
+
+
+[addterminus]
+122
+S+U Zoologischer Garten (Hertzallee)
+HERTZALLEE
+  S+U-BAHNHOF
+ ZOOLOG. GARTEN
+    S+U ZOO
+S+U ZOO
+
+
+BRT\11002.png
+
+.........................
+
+[addterminus]
+1122
+S+U Zoologischer Garten (Hertzallee)
+HERTZALLEE
+  S+U-BAHNHOF
+ ZOOLOG. GARTEN
+    S+U ZOO
+S+U ZOO
+
+
+BRT\MES.png
+
+.........................
+
+[addterminus]
+053
+Hochmeisterplatz
+HOCHMEISTERPLATZ
+  WILMERSDORF
+HOCHMEISTERPLATZ
+ HOCHMEISTERPL.
+HOCHMEISTERPLATZ
+
+
+BRT\11003.png
+
+.........................
+
+[addterminus]
+1053
+Hochmeisterplatz
+HOCHMEISTERPLATZ
+  WILMERSDORF
+HOCHMEISTERPLATZ
+ HOCHMEISTERPL.
+HOCHMEISTERPLATZ
+
+
+BRT\MES.png
+
+.........................
+
+
+######################################
+ BUS STOPS
+######################################
+
+
+[addbusstop]
+Sigridshorst
+SIGRIDSHORST
+Sigridshorst
+
+Teltow Sigridshorst
+.........................
+
+
+[addbusstop]
+Tulpenweg
+TULPENWEG
+Tulpenweg
+
+Teltow Tulpenweg
+.........................
+
+
+[addbusstop]
+Teltow Bahnhof
+TELTOW BAHNHOF
+Bahnhof
+
+Teltow Bahnhof
+.........................
+
+
+[addbusstop]
+Teltow Bahnhof T
+TELTOW BAHNHOF
+Bahnhof
+
+Teltow Bahnhof
+.........................
+
+
+[addbusstop]
+Mozartstr.
+MOZARTSTRASSE
+Mozartstr.
+
+Teltow Mozartstraße
+.........................
+
+
+[addbusstop]
+Blumenstr.
+BLUMENSTRASSE
+Blumenstr.
+
+Teltow Blumenstraße
+.........................
+
+
+[addbusstop]
+Gustl-Sandtner-Str.
+G.-SANDTNER-STR.
+G.-Sandtner-Str.
+
+Gustl-Sandtner-Str.
+.........................
+
+
+[addbusstop]
+S Teltow Stadt-Mahlower Str.
+S TELTOW STADT
+S Teltow Stadt/
+Mahlower Str.
+S Teltow Stadt
+.........................
+
+
+[addbusstop]
+S Teltow Stadt-Gonfrevillestr.
+S TELTOW STADT
+S Teltow Stadt/
+Gonfrevillestr.
+S Teltow Stadt
+.........................
+
+
+[addbusstop]
+Buergertreff
+BÜRGERTREFF
+Teltow Bürgertreff
+
+Teltow Bürgertreff
+.........................
+
+
+[addbusstop]
+Ruhlsdorfer Platz
+RUHLSDORFER PL.
+Ruhlsdorfer Platz
+
+Telt. Ruhlsdorfer Pl
+.........................
+
+
+[addbusstop]
+Jahnstr.
+TELTOW JAHNSTR.
+Jahnstraße
+
+Teltow Jahnstraße
+.........................
+
+
+[addbusstop]
+Striewitzweg
+STRIEWITZWEG
+Striewitzweg
+
+Teltow Striewitzweg
+.........................
+
+
+[addbusstop]
+Havelstr.
+HAVELSTRASSE
+Havelstr.
+
+Teltow Havelstraße
+.........................
+
+
+[addbusstop]
+Warthestr.
+WARTHESTRASSE
+Warthestr.
+
+Teltow Warthestraße
+.........................
+
+
+[addbusstop]
+Warthestr. T
+WARTHESTRASSE
+Warthestr.
+
+Teltow Warthestraße
+.........................
+
+
+[addbusstop]
+Feuerwehr
+TELTOW FEUERWEHR
+Teltow Feuerwehr
+
+Teltow Feuerwehr
+.........................
+
+
+[addbusstop]
+Schwarzer Weg
+SCHWARZER WEG
+Schwarzer Weg
+
+Schwarzer Weg
+.........................
+
+
+[addbusstop]
+Puschkinstr.
+PUSCHKINSTRASSE
+Puschkinstr.
+
+Puschkinstraße
+.........................
+
+
+[addbusstop]
+Stahnsdorfer Hof
+STAHNSDORFER HOF
+Stahnsdorfer Hof
+
+Stahnsdorfer Hof
+.........................
+
+
+[addbusstop]
+Waldschaenke
+WALDSCHÄNKE
+Waldschänke
+
+Waldschänke
+.........................
+
+
+[addbusstop]
+Waldschaenke T
+WALDSCHÄNKE
+Waldschänke
+
+Waldschänke
+.........................
+
+
+[addbusstop]
+Zehlendorfer Str.
+ZEHLENDORFER STR
+Zehlendorfer Str.
+
+Zehlendorfer Straße
+.........................
+
+
+[addbusstop]
+Badstr.
+TELTOW BADSTR.
+Badstr.
+
+Teltow Badstraße
+.........................
+
+
+[addbusstop]
+Jahnsportplatz
+JAHNSPORTPLATZ
+Jahnsportplatz
+
+Jahnsportplatz
+.........................
+
+
+[addbusstop]
+Nuthestr.
+TELTOW NUTHESTR.
+Nuthestr.
+
+Teltow Nuthestraße
+.........................
+
+
+[addbusstop]
+Nuthestr. UA
+TELTOW NUTHESTR.
+Nuthestr.
+
+Teltow Nuthestraße
+.........................
+
+
+[addbusstop]
+Nuthestr. UE
+TELTOW NUTHESTR.
+Nuthestr.
+
+Teltow Nuthestraße
+.........................
+
+
+[addbusstop]
+Einkaufszentrum Oderstr.
+EKZ ODERSTR.
+Einkaufszentrum
+Oderstraße
+Einkaufsz. Oderstr.
+.........................
+
+
+[addbusstop]
+Neissestr.
+TELTOW NEISSESTR
+Neißestr.
+
+Teltow Neißestraße
+.........................
+
+
+[addbusstop]
+Rammrath-Bruecke
+RAMMRATH-BRÜCKE
+Rammrath-Brücke
+
+Rammrath-Brücke
+.........................
+
+
+[addbusstop]
+Rammrath-Bruecke UA
+RAMMRATH-BRÜCKE
+Rammrath-Brücke
+
+Rammrath-Brücke
+.........................
+
+
+[addbusstop]
+Rammrath-Bruecke UE
+RAMMRATH-BRÜCKE
+Rammrath-Brücke
+
+Rammrath-Brücke
+.........................
+
+
+[addbusstop]
+Alt-Schoenow
+ALT-SCHÖNOW
+Alt-Schönow
+
+Alt-Schönow
+.........................
+
+
+[addbusstop]
+Alt-Schoenow C
+ALT-SCHÖNOW
+Alt-Schönow
+
+Alt-Schönow
+.........................
+
+
+[addbusstop]
+Wupperstr.
+WUPPERSTRASSE
+Wupperstr.
+
+Wupperstraße
+.........................
+
+
+[addbusstop]
+Beeskowdamm
+BEESKOWDAMM
+Beeskowdamm
+
+Beeskowdamm
+.........................
+
+
+[addbusstop]
+Andreezeile
+ANDREEZEILE
+Andreezeile
+
+Andreezeile
+.........................
+
+
+[addbusstop]
+Am Rehwechsel
+AM REHWECHSEL
+Am Rehwechsel
+
+Am Rehwechsel
+.........................
+
+
+[addbusstop]
+Am Birkenknick
+AM BIRKENKNICK
+Am Birkenknick
+
+Am Birkenknick
+.........................
+
+
+[addbusstop]
+Laehrstr.
+LAEHRSTRASSE
+Laehrstr.
+
+Laehrstraße
+.........................
+
+
+[addbusstop]
+Leo-Baeck-Str.
+LEO-BAECK-STR.
+Leo-Baeck-Str.
+
+Leo-Baeck-Straße
+.........................
+
+
+[addbusstop]
+Schweizerhofpark
+SCHWEIZERHOFPARK
+Schweizerhofpark
+
+Schweizerhofpark
+.........................
+
+
+[addbusstop]
+Schoenower Park
+SCHÖNOWER PARK
+Schönower Park
+
+Schönower Park
+.........................
+
+
+[addbusstop]
+Machnower Str.
+MACHNOWER STR.
+Machnower Str.
+
+Machnower Straße
+.........................
+
+
+[addbusstop]
+S Zehlendorf
+S ZEHLENDORF
+S Zehlendorf
+
+S Zehlendorf
+.........................
+
+
+[addbusstop]
+S Zehlendorf UA
+S ZEHLENDORF
+S Zehlendorf
+
+S Zehlendorf
+.........................
+
+
+[addbusstop]
+Rathaus Zehlendorf
+RATH. ZEHLENDORF
+Rathaus Zehlendorf
+
+Rathaus Zehlendorf
+.........................
+
+
+[addbusstop]
+Zehlendorf Eiche
+ZEHLENDORF EICHE
+Zehlendorf Eiche
+
+Zehlendorf Eiche
+.........................
+
+
+[addbusstop]
+Zehlendorf Eiche B
+ZEHLENDORF EICHE
+Zehlendorf Eiche
+
+Zehlendorf Eiche
+.........................
+
+
+[addbusstop]
+Zehlendorf Eiche UE
+ZEHLENDORF EICHE
+Zehlendorf Eiche
+
+Zehlendorf Eiche
+.........................
+
+
+[addbusstop]
+Scharfestr.
+SCHARFESTRASSE
+Scharfestr.
+
+Scharfestraße
+.........................
+
+
+[addbusstop]
+Schuetzallee
+SCHÜTZALLEE
+Schützallee
+
+Schützallee
+.........................
+
+
+[addbusstop]
+Schuetzallee S
+SCHÜTZALLEE
+Schützallee
+
+Schützallee
+.........................
+
+
+[addbusstop]
+Leichhardtstr.
+LEICHHARDTSTR.
+Leichhardtstr.
+
+Leichhardtstraße
+.........................
+
+
+[addbusstop]
+Clayallee 229
+CLAYALLEE 229
+Clayallee 229
+
+Clayallee 229
+.........................
+
+
+[addbusstop]
+U Oskar-Helene-Heim
+U OSKAR-HELENE-H
+U Oskar-Helene-Hm.
+
+U Oskar-Helene-Heim
+.........................
+
+
+[addbusstop]
+Huettenweg
+HÜTTENWEG
+Hüttenweg
+
+Hüttenweg
+.........................
+
+
+[addbusstop]
+Alliiertenmuseum
+ALLIIERTENMUSEUM
+Alliiertenmuseum
+
+Alliiertenmuseum
+.........................
+
+
+[addbusstop]
+Koenigin-Luise-Str.-Clayallee
+KÖNIGIN-LUISE-S.
+Königin-Luise-Str./
+Clayallee
+Königin-Luise-Str./C
+.........................
+
+
+[addbusstop]
+Koenigin-Luise-Str.-Clayallee UA
+KÖNIGIN-LUISE-S.
+Königin-Luise-Str./
+Clayallee
+Königin-Luise-Str./C
+.........................
+
+
+[addbusstop]
+Koenigin-Luise-Str.-Clayallee UE
+KÖNIGIN-LUISE-S.
+Königin-Luise-Str./
+Clayallee
+Königin-Luise-Str./C
+.........................
+
+
+[addbusstop]
+Teplitzer Str.
+TEPLITZER STR.
+Teplitzer Str.
+
+Teplitzer Straße
+.........................
+
+
+[addbusstop]
+Joseph-Joachim-Platz
+JOSEPH-JOACHIM-P
+Joseph-Joachim-Pl.
+
+Joseph-Joachim-Platz
+.........................
+
+
+[addbusstop]
+Delbrueckstr.
+DELBRÜCKSTRASSE
+Delbrückstr.
+
+Delbrückstraße
+.........................
+
+
+[addbusstop]
+Herthastr.
+HERTHASTRASSE
+Herthastr.
+
+Herthastraße
+.........................
+
+
+[addbusstop]
+Lynarstr.
+LYNARSTRASSE
+Lynarstr.
+
+Lynarstraße
+.........................
+
+
+[addbusstop]
+Bismarckplatz
+BISMARCKPLATZ
+Bismarckplatz
+
+Bismarckplatz
+.........................
+
+
+[addbusstop]
+Herbertstr.
+HERBERTSTRASSE
+Herbertstr.
+
+Herbertstraße
+.........................
+
+
+[addbusstop]
+Rathenauplatz
+RATHENAUPLATZ
+Rathenauplatz
+
+Rathenauplatz
+.........................
+
+
+[addbusstop]
+Rathenauplatz UA
+RATHENAUPLATZ
+Rathenauplatz
+
+Rathenauplatz
+.........................
+
+
+[addbusstop]
+S Halensee
+S HALENSEE
+S Halensee
+
+S Halensee
+.........................
+
+
+[addbusstop]
+Kurfuerstendamm-Joachim-Friedrich-Str.
+J.-FRIEDRICH-STR
+Kurfürstendamm/
+J.-Friedrich-Str.
+J.-Friedrich-Straße
+.........................
+
+
+[addbusstop]
+Lehniner Platz-Schaubuehne
+LEHNINER PLATZ
+Lehniner Platz/
+Schaubühne
+Lehniner Platz
+.........................
+
+
+[addbusstop]
+U Adenauerplatz
+U ADENAUERPLATZ
+U Adenauerplatz
+
+U Adenauerplatz
+.........................
+
+
+[addbusstop]
+Olivaer Platz
+OLIVAER PLATZ
+Olivaer Platz
+
+Olivaer Platz
+.........................
+
+
+[addbusstop]
+Olivaer Platz S
+OLIVAER PLATZ
+Olivaer Platz
+
+Olivaer Platz
+.........................
+
+
+[addbusstop]
+Bleibtreustr.
+BLEIBTREUSTRASSE
+Bleibtreustr.
+
+Bleibtreustraße
+.........................
+
+
+[addbusstop]
+U Uhlandstr.
+U UHLANDSTRASSE
+U Uhlandstr.
+
+U Uhlandstraße
+.........................
+
+
+[addbusstop]
+U Kurfuerstendamm
+U KURFÜRSTENDAMM
+U Kurfürstendamm
+
+U Kurfürstendamm
+.........................
+
+
+[addbusstop]
+Europa-Center
+EUROPA-CENTER
+Europa-Center
+
+Europa-Center
+.........................
+
+
+[addbusstop]
+S+U Zoologischer Garten Bhf
+S+U ZOO
+S+U Zoolog. Garten
+
+S+U Zoolog. Garten
+.........................
+
+
+[addbusstop]
+S+U Zoologischer Garten Bhf B
+S+U ZOO
+S+U Zoolog. Garten
+
+S+U Zoolog. Garten
+.........................
+
+
+[addbusstop]
+Hertzallee
+HERTZALLEE
+Hertzallee
+
+Hertzallee
+.........................
+
+
+[addbusstop]
+Hertzallee T
+HERTZALLEE
+Hertzallee
+
+Hertzallee
+.........................
+
+
+[addbusstop]
+Neuruppiner Str.
+NEURUPPINER STR.
+Neuruppiner Str.
+
+Neuruppiner Straße
+.........................
+
+
+[addbusstop]
+Neuruppiner Str. T
+NEURUPPINER STR.
+Neuruppiner Str.
+
+Neuruppiner Straße
+.........................
+
+
+[addbusstop]
+Neuruppiner Str. UA
+NEURUPPINER STR.
+Neuruppiner Str.
+
+Neuruppiner Straße
+.........................
+
+
+[addbusstop]
+Neuruppiner Str. UE
+NEURUPPINER STR.
+Neuruppiner Str.
+
+Neuruppiner Straße
+.........................
+
+
+[addbusstop]
+Fercher Str.
+FERCHER STRASSE
+Fercher Str.
+
+Fercher Straße
+.........................
+
+
+[addbusstop]
+Ludwigsfelder Str.
+LUDWIGSFELDER S.
+Ludwigsfelder Str.
+
+Ludwigsfelder Straße
+.........................
+
+
+[addbusstop]
+Loebellstr.
+LOEBELLSTRASSE
+Loebellstr.
+
+Loebellstraße
+.........................
+
+
+[addbusstop]
+Radtkestr.
+RADTKESTRASSE
+Radtkestr.
+
+Radtkestraße
+.........................
+
+
+[addbusstop]
+Camphausenstr.
+CAMPHAUSENSTR.
+Camphausenstr.
+
+Camphausenstraße
+.........................
+
+
+[addbusstop]
+Schrockstr.
+SCHROCKSTRASSE
+Schrockstr.
+
+Schrockstraße
+.........................
+
+
+[addbusstop]
+Machnower Str.-Berlepschstr.
+MACHNOWER STR./B
+Machnower Str./
+Berlepschstr.
+Machnower Str./Berle
+.........................
+
+
+[addbusstop]
+Waltraudstr.
+WALTRAUDSTRASSE
+Waltraudstr.
+
+Waltraudstraße
+.........................
+
+
+[addbusstop]
+Am Hegewinkel
+AM HEGEWINKEL
+Am Hegewinkel
+
+Am Hegewinkel
+.........................
+
+
+[addbusstop]
+Am Waldfriedhof
+AM WALDFRIEDHOF
+Am Waldfriedhof
+
+Am Waldfriedhof
+.........................
+
+
+[addbusstop]
+Am Waldfriedhof B
+AM WALDFRIEDHOF
+Am Waldfriedhof
+
+Am Waldfriedhof
+.........................
+
+
+[addbusstop]
+Finkenstr.
+FINKENSTRASSE
+Finkenstr.
+
+Finkenstraße
+.........................
+
+
+[addbusstop]
+Puecklerstr.
+PÜCKLERSTRASSE
+Pücklerstr.
+
+Pücklerstraße
+.........................
+
+
+[addbusstop]
+Messelstr.
+MESSELSTRASSE
+Messelstr.
+
+Messelstraße
+.........................
+
+
+[addbusstop]
+Roseneck
+ROSENECK
+Roseneck
+
+Roseneck
+.........................
+
+
+[addbusstop]
+Roseneck B
+ROSENECK
+Roseneck
+
+Roseneck
+.........................
+
+
+[addbusstop]
+Elsterplatz
+ELSTERPLATZ
+Elsterplatz
+
+Elsterplatz
+.........................
+
+
+[addbusstop]
+Elsterplatz UA
+ELSTERPLATZ
+Elsterplatz
+
+Elsterplatz
+.........................
+
+
+[addbusstop]
+Elsterplatz UE
+ELSTERPLATZ
+Elsterplatz
+
+Elsterplatz
+.........................
+
+
+[addbusstop]
+Elsterplatz S
+ELSTERPLATZ
+Elsterplatz
+
+Elsterplatz
+.........................
+
+
+[addbusstop]
+Forckenbeckstr.
+FORCKENBECKSTR.
+Forckenbeckstr.
+
+Forckenbeckstraße
+.........................
+
+
+[addbusstop]
+Salzbrunner Str.
+SALZBRUNNER STR.
+Salzbrunner Str.
+
+Salzbrunner Straße
+.........................
+
+
+[addbusstop]
+Cunostr.
+CUNOSTRASSE
+Cunostr.
+
+Cunostraße
+.........................
+
+
+[addbusstop]
+Friedrichsruher Str.
+FRIEDRICHSR. STR
+Friedrichsruher Str.
+
+Friedrichsruher Str.
+.........................
+
+
+[addbusstop]
+S Hohenzollerndamm
+S HOHENZOLLERND.
+S Hohenzollerndamm
+
+S Hohenzollerndamm
+.........................
+
+
+[addbusstop]
+Hoffmann-von-Fallersleben-Platz
+FALLERSLEBEN-PL.
+H-v.-Fallersleben-
+Platz
+H.-v.-Fallersleben-P
+.........................
+
+
+[addbusstop]
+U Fehrbelliner Platz
+U FEHRBELLINER P
+U Fehrbelliner Pl.
+
+U Fehrbelliner Platz
+.........................
+
+
+[addbusstop]
+U Fehrbelliner Platz B
+U FEHRBELLINER P
+U Fehrbelliner Pl.
+
+U Fehrbelliner Platz
+.........................
+
+
+[addbusstop]
+U Fehrbelliner Platz T
+U FEHRBELLINER P
+U Fehrbelliner Pl.
+
+U Fehrbelliner Platz
+.........................
+
+
+[addbusstop]
+U Fehrbelliner Platz E
+U FEHRBELLINER P
+U Fehrbelliner Pl.
+
+U Fehrbelliner Platz
+.........................
+
+
+[addbusstop]
+Mansfelder Str.-Barstr.
+MANSFELDER STR.
+Mansfelder Str./
+Barstr.
+Mansfelder Str./Bars
+.........................
+
+
+[addbusstop]
+Elgersburger Str.
+ELGERSBURGER STR
+Elgersburger Str.
+
+Elgersburger Straße
+.........................
+
+
+[addbusstop]
+Elgersburger Str. UE
+ELGERSBURGER STR
+Elgersburger Str.
+
+Elgersburger Straße
+.........................
+
+
+[addbusstop]
+Wangenheimstr.
+WANGENHEIMSTR.
+Wangenheimstr.
+
+Wangenheimstraße
+.........................
+
+
+[addbusstop]
+Grieser Platz
+GRIESER PLATZ
+Grieser Platz
+
+Grieser Platz
+.........................
+
+
+[addbusstop]
+Seesener Str.
+SEESENER STRASSE
+Seesener Str.
+
+Seesener Straße
+.........................
+
+
+[addbusstop]
+Hochmeisterplatz
+HOCHMEISTERPLATZ
+Hochmeisterplatz
+
+Hochmeisterplatz
+.........................
+
+
+[addbusstop]
+Hochmeisterplatz B
+HOCHMEISTERPLATZ
+Hochmeisterplatz
+
+Hochmeisterplatz
+.........................
+
+
+[addbusstop]
+Hochmeisterplatz T
+HOCHMEISTERPLATZ
+Hochmeisterplatz
+
+Hochmeisterplatz
+.........................
+
+
+[addbusstop]
+Joachim-Friedrich-Str.-Westfaelische Str.
+WESTFÄLISCHE STR
+J.-Friedrich-Str./
+Westfälische Str.
+Westfälische Str.
+.........................
+
+
+[addbusstop]
+Postviertel-Paul-Lincke-Str.
+POSTVIERTEL
+Postviertel/
+Paul-Lincke-Str.
+Postviertel
+.........................
+
+
+[addbusstop]
+Beethovenstr.-Kita
+BEETHOVENSTR./KI
+Beethovenstr./Kita
+
+Beethovenstr./Kita
+.........................
+
+
+[addbusstop]
+Oskar-Pollner-Str.
+OSKAR-POLLNER-S.
+Oskar-Pollner-Str.
+
+Oskar-Pollner-Straße
+.........................
+
+
+[addbusstop]
+Anne-Frank-Schule
+A.-FRANK-SCHULE
+Anne-Frank-Schule
+
+Anne-Frank-Schule
+.........................
+
+
+[addbusstop]
+Kanada-Allee
+KANADA-ALLEE
+Kanada-Allee
+
+Teltow Kanada-Allee
+.........................
+
+
+[addbusstop]
+Marktplatz
+TELT. MARKTPLATZ
+Marktplatz
+
+Teltow Marktplatz
+.........................
+
+
+[addbusstop]
+Iserstr.-Gesundheitszentrum
+ISERSTR./GESUNDH
+Iserstr./
+Gesundheitszentrum
+Iserstr./Gesundheits
+.........................
+
+
+[addbusstop]
+Bremer Str.
+BREMER STRASSE
+Teltow Bremer Str.
+
+Teltow Bremer Straße
+.........................
+
+
+[addbusstop]
+Iserstr. Sued
+ISERSTRASSE SÜD
+Iserstr. Süd
+
+Iserstraße Süd
+.........................
+
+
+[addbusstop]
+Stahnsdorfer Str.
+STAHNSDORFER STR
+Stahnsdorfer Str.
+
+Stahnsdorfer Straße
+.........................
+
+
+[addbusstop]
+Ruhlsdorf
+RUHLSDORF
+Ruhlsdorf
+
+Teltow Ruhlsdorf
+.........................
+
+
+[addbusstop]
+Heinersdorfer Weg
+HEINERSDORFER W.
+Heinersdorfer Weg
+
+Heinersdorfer Weg
+.........................
+
+
+[addbusstop]
+Bernhard-Lichtenberg-Str.
+B.-LICHTENBERG-S
+B.-Lichtenberg-Str
+
+B.-Lichtenberg-Str.
+.........................
+
+
+[addbusstop]
+Asternstr.
+ASTERNSTRASSE
+Asternstr.
+
+Teltow Asternstraße
+.........................
+
+
+[addbusstop]
+Lilienstr.
+LILIENSTRASSE
+Lilienstr.
+
+Teltow Lilienstraße
+.........................
+
+
+[addbusstop]
+Fliederstr.
+FLIEDERSTRASSE
+Fliederstr.
+
+Teltow Fliederstraße
+.........................
+
+
+[addbusstop]
+An den Eichen
+AN DEN EICHEN
+An den Eichen
+
+An den Eichen
+.........................
+
+
+[addbusstop]
+Green Park
+GREEN PARK
+Green Park
+
+Green Park
+.........................
+
+
+[addbusstop]
+Enzianweg
+ENZIANWEG
+Enzianweg
+
+Stahnsdorf Enzianweg
+.........................
+
+
+[addbusstop]
+Briefzentrum
+BRIEFZENTRUM
+Briefzentrum
+
+Briefzentrum
+.........................
+
+
+[addbusstop]
+Tellstr.
+TELLSTR.
+Tellstr.
+
+Stahnsdorf Tellstr.
+.........................
+
+
+[addbusstop]
+Gruener Weg
+GRÜNER WEG
+Grüner Weg
+
+Grüner Weg
+.........................
+
+
+[addbusstop]
+U Wittenbergplatz
+U WITTENBERGPL.
+U Wittenbergplatz
+
+U Wittenbergplatz
+.........................
+
+
+[addbusstop]
+U Wittenbergplatz T
+U WITTENBERGPL.
+U Wittenbergplatz
+
+U Wittenbergplatz
+.........................
+
+
+[addbusstop]
+S Teltow Stadt-Gonfrevillestr. T
+S TELTOW STADT
+S Teltow Stadt/
+Gonfrevillestr.
+S Teltow Stadt
+.........................
+
+
+[addbusstop]
+Rammrath-Bruecke T
+RAMMRATH-BRÜCKE
+Rammrath-Brücke
+
+Rammrath-Brücke
+.........................
+
+
+[addbusstop]
+Andreezeile T
+ANDREEZEILE
+Andreezeile
+
+Andreezeile
+.........................
+
+
+[addbusstop]
+U Oskar-Helene-Heim T
+U OSK.-HELENE-HM
+U Oskar-Helene-Hm.
+
+U Oskar-Helene-Heim
+.........................
+
+
+[addbusstop]
+Schrockstr. T
+SCHROCKSTRASSE
+Schrockstr.
+
+Schrockstraße
+.........................
+
+
+[addbusstop]
+Zehlendorf Eiche T
+ZEHLENDORF EICHE
+Zehlendorf Eiche
+
+Zehlendorf Eiche
+.........................
+
+
+[addbusstop]
+Terminus
+
+
+
+
+.........................
+
+
+[addbusstop]
+Rathenauplatz T
+RATHENAUPLATZ
+Rathenauplatz
+
+Rathenauplatz
+.........................
+
+
+[addbusstop]
+Wupperstr. T
+WUPPERSTRASSE
+Wupperstr.
+
+Wupperstraße
+.........................
+
+
+[addbusstop]
+Spanische Allee-Potsdamer Chaussee
+SPANISCHE ALLEE
+Spanische Allee/
+Potsdamer Chaussee
+Spanische Allee
+.........................
+
+
+[addbusstop]
+Am Rohrgarten
+AM ROHRGARTEN
+Am Rohrgarten
+
+Am Rohrgarten
+.........................
+
+
+[addbusstop]
+Lloyd-George-Wells-Str.
+LLOYD-G.-WELLS-S
+Lloyd-G.-Wells-Str.
+
+Lloyd-G.-Wells-Str.
+.........................
+
+
+[addbusstop]
+Spanische Allee-Potsdamer Chaussee B
+SPANISCHE ALLEE
+Spanische Allee/
+Potsdamer Chaussee
+Spanische Allee
+.........................
+
+
+[addbusstop]
+Spanische Allee-Potsdamer Chaussee T
+SPANISCHE ALLEE
+Spanische Allee/
+Potsdamer Chaussee
+Spanische Allee
+.........................
+
+
+[addbusstop]
+Betriebshof Cicerostr.
+CICEROSTR.
+
+Hochmeisterplatz
+Betriebsh. Cicerostr
+.........................
+
+
+[addbusstop]
+Agathe-Lasch-Platz
+AGATHE-LASCH-PL.
+Agathe-Lasch-Platz
+
+Agathe-Lasch-Platz
+.........................
+
+
+[addbusstop]
+Roseneck-Teplitzer Str.
+TEPLITZER STR.
+Roseneck/
+Teplitzer Str.
+Roseneck/Teplitzer S
+.........................
+
+
+[addbusstop]
+Roseneck-Hohenzollerndamm
+ROSENECK/HOHENZO
+Roseneck/
+Hohenzollerndamm
+Roseneck/Hohenzoller
+.........................
+
+
+[addbusstop]
+Betriebshof
+STDF BETRIEBSHOF
+Betriebshof
+
+Stahnsd. Betriebshof
+.........................
+
+
+[addbusstop]
+Muehlenbergstr.
+MÜHLENBERGSTR.
+Mühlenbergstr.
+
+Teltow Mühlenbergstr
+.........................
+
+
+[addbusstop]
+Halifax-Platz
+HALIFAX-PLATZ
+Halifax-Platz
+
+Teltow Halifax-Platz
+.........................
+
+
+[addbusstop]
+Mansfelder Str.-Barstr. T
+MANSFELDER STR.
+Mansfelder Str./
+Barstr.
+Mansfelder Str./Bars
+.........................
+
+
+[addbusstop]
+Oderstr.-Saganer Str.
+SAGANER STRASSE
+Oderstr./
+Saganer Str.
+Oderstr./Saganer Str
+.........................
+
+
+[addbusstop]
+Schenkendorfer Weg
+SCHENKENDORFER W
+Schenkendorfer Weg
+
+Schenkendorfer Weg
+.........................
+
+
+[addbusstop]
+Albert-Wiebach-Str.
+A.-WIEBACH-STR.
+Albert-Wiebach-Str
+
+Albert-Wiebach-Str.
+.........................
+
+
+[addbusstop]
+Geschwister-Scholl-Str.
+G.-SCHOLL-STR.
+G.-Scholl-Str.
+
+Geschw.-Scholl-Str.
+.........................
+
+
+[addbusstop]
+S Zehlendorf-Machnower Str.
+S ZEHLENDORF/MAC
+S Zehlendorf/
+Machnower Str.
+S Zehlendorf/Machnow
+.........................
+
+
+[addbusstop]
+S Zehlendorf-Teltower Damm
+S ZEHLENDORF/TEL
+S Zehlendorf/
+Teltower Damm
+S Zehlendorf/Teltowe
+.........................
+
+
+[addbusstop]
+Behring-Krankenhaus
+BEHRING-KRANKENH
+Behring-Krankenh.
+
+Behring-Krankenhaus
+.........................
+
+
+[addbusstop]
+Friedrich-Weissler-Pl.
+FR.-WEISSLER-PL.
+Fr.-Weißler-Platz
+
+Friedrich-Weißler-Pl
+.........................
+
+
+[addbusstop]
+Schoenower Str.
+SCHÖNOWER STR.
+Schönower Str.
+
+Schönower Straße
+.........................
+
+
+[addbusstop]
+Saargemuender Str.
+SAARGEMUENDER S.
+Saargemünder Str.
+
+Saargemünder Straße
+.........................
+
+
+[addbusstop]
+Bruecke-Museum-Kunsthaus Dahlem
+BRÜCKE-MUSEUM
+Brücke-Museum/
+Kunsthaus Dahlem
+Brücke Museum/Kunsth
+.........................
+
+
+[addbusstop]
+U Adenauerplatz T
+U ADENAUERPLATZ
+U Adenauerplatz
+
+U Adenauerplatz
+.........................
+
+
+[addbusstop]
+S Halensee T
+S HALENSEE
+S Halensee
+
+S Halensee
+.........................
+
+
+[addbusstop]
+S+U Zoologischer Garten Bhf WH
+S+U ZOO
+S+U Zoolog. Garten
+
+S+U Zoolog. Garten
+.........................
+
+
+[addbusstop]
+Zehlendorfer Str. WR
+ZEHLENDORFER STR
+Zehlendorfer Str.
+
+Zehlendorfer Straße
+.........................
+
+
+[addbusstop]
+Zehlendorfer Str. WS
+ZEHLENDORFER STR
+Zehlendorfer Str.
+
+Zehlendorfer Straße
+.........................
+
+
+[addbusstop]
+Zehlendorfer Str. WB
+ZEHLENDORFER STR
+Zehlendorfer Str.
+
+Zehlendorfer Straße
+.........................
+
+
+[addbusstop]
+S Halensee S
+S HALENSEE
+S Halensee
+
+S Halensee
+.........................
+
+
+[addbusstop]
+Seesener Str. S
+SEENSENER STR.
+Seesener Str.
+
+Seesener Straße
+.........................
+
+
+[addbusstop]
+Am Rehwechsel S
+AM REHWECHSEL
+Am Rehwechsel
+
+Am Rehwechsel
+.........................
+
+
+[addbusstop]
+U Fehrbelliner Platz WB
+U FEHRBELLINER P
+U Fehrbelliner Pl.
+
+U Fehrbelliner Platz
+.........................
+
+
+[addbusstop]
+S Halensee F
+S HALENSEE
+S Halensee
+
+S Halensee
+.........................
+
+
+[addbusstop]
+Egerstr.
+TELTOW EGERSTR.
+Egerstr.
+
+Teltow Egerstr.
+.........................
+
+
+
+
+
+
+######################################
+ TRIPS / ROUTES
+######################################
+
+
+Line 501, Route 01: Waldschaenke  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+50101
+WALDSCHAENKE  >>  TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+18
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Terminus
+
+
+Line 501, Route 02: Teltow Bahnhof  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+50102
+TELTOW BAHNHOF  >>  TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+17
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 501, Route 03: Waldschaenke  >>  Sigridshorst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+50103
+WALDSCHAENKE  >>  SIGRIDSHORST
+102
+XXX
+
+[infosystem_busstop_list]
+19
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Tulpenweg
+Sigridshorst
+
+
+Line 501, Route 04: Sigridshorst  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+50104
+SIGRIDSHORST  >>  TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+18
+Sigridshorst
+Tulpenweg
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 501, Route 05: Puschkinstr.  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+50105
+PUSCHKINSTR.  >>  TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+15
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Terminus
+
+
+Line 501, Route 07: Warthestr.  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+50107
+WARTHESTR.  >>  TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+12
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Terminus
+
+
+Line 510, Route 01: Hertzallee  >>  Teltow Bahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51001
+HERTZALLEE  >>  TELTOW BAHNHOF
+109
+XXX
+
+[infosystem_busstop_list]
+32
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WB
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof T
+Teltow Bahnhof
+
+
+Line 510, Route 02: Teltow Bahnhof  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51002
+TELTOW BAHNHOF  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+31
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 510, Route 03: Hertzallee  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51003
+HERTZALLEE  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+32
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 510, Route 04: Rammrath-Bruecke  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51004
+RAMMRATH-BRUECKE  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+31
+Rammrath-Bruecke
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 510, Route 05: Hertzallee  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51005
+HERTZALLEE  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+24
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 510, Route 06: Andreezeile  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51006
+ANDREEZEILE  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+23
+Andreezeile
+Andreezeile
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 510, Route 07: U Adenauerplatz  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51007
+U ADENAUERPLATZ  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+19
+U Adenauerplatz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 510, Route 08: Andreezeile  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51008
+ANDREEZEILE  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+17
+Andreezeile
+Andreezeile
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 510, Route 09: Hertzallee  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51009
+HERTZALLEE  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+28
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WS
+Buergertreff
+S Teltow Stadt-Gonfrevillestr. T
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 510, Route 10: S Teltow Stadt-Gonfrevillestr.  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51010
+S TELTOW STADT-GONFREVILLESTR.  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+27
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 510, Route 11: U Adenauerplatz  >>  Teltow Bahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51011
+U ADENAUERPLATZ  >>  TELTOW BAHNHOF
+109
+XXX
+
+[infosystem_busstop_list]
+26
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WB
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof T
+Teltow Bahnhof
+
+
+Line 510, Route 12: Teltow Bahnhof  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51012
+TELTOW BAHNHOF  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+25
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 510, Route 13: U Adenauerplatz  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51013
+U ADENAUERPLATZ  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+26
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 510, Route 14: Rammrath-Bruecke  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51014
+RAMMRATH-BRUECKE  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+25
+Rammrath-Bruecke
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 510, Route 15: Hertzallee  >>  Rathaus Zehlendorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51015
+HERTZALLEE  >>  RATHAUS ZEHLENDORF
+091
+XXX
+
+[infosystem_busstop_list]
+16
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee S
+Zehlendorf Eiche
+Rathaus Zehlendorf
+
+
+Line 510, Route 16: Rathaus Zehlendorf  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51016
+RATHAUS ZEHLENDORF  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+17
+Rathaus Zehlendorf
+Rathaus Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 510, Route 17: Hertzallee  >>  Warthestr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51017
+HERTZALLEE  >>  WARTHESTR. T
+119
+XXX
+
+[infosystem_busstop_list]
+30
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str.
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr. T
+
+
+Line 510, Route 18: Warthestr.  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51018
+WARTHESTR.  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+29
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf
+Hertzallee T
+Hertzallee
+
+
+Line 510, Route 19: S+U Zoologischer Garten Bhf  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51019
+S+U ZOOLOGISCHER GARTEN BHF  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+30
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 510, Route 20: Rathaus Zehlendorf  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51020
+RATHAUS ZEHLENDORF  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+11
+Rathaus Zehlendorf
+Rathaus Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 510, Route 21: Bismarckplatz  >>  Rathaus Zehlendorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51021
+BISMARCKPLATZ  >>  RATHAUS ZEHLENDORF
+091
+XXX
+
+[infosystem_busstop_list]
+8
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee S
+Zehlendorf Eiche
+Rathaus Zehlendorf
+
+
+Line 510, Route 22: Zehlendorf Eiche  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51022
+ZEHLENDORF EICHE  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+9
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 510, Route 23: Koenigin-Luise-Str.-Clayallee  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51023
+KOENIGIN-LUISE-STR.-CLAYALLEE  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+13
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 510, Route 24: Zehlendorf Eiche  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51024
+ZEHLENDORF EICHE  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+18
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 510, Route 25: Koenigin-Luise-Str.-Clayallee  >>  Teltow Bahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51025
+KOENIGIN-LUISE-STR.-CLAYALLEE  >>  TELTOW BAHNHOF
+109
+XXX
+
+[infosystem_busstop_list]
+21
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WB
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof T
+Teltow Bahnhof
+
+
+Line 510, Route 26: S Halensee  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51026
+S HALENSEE  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+8
+S Halensee
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 510, Route 27: Joseph-Joachim-Platz  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51027
+JOSEPH-JOACHIM-PLATZ  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+15
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 510, Route 29: U Kurfuerstendamm  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51029
+U KURFUERSTENDAMM  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+21
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 510, Route 31: U Oskar-Helene-Heim  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+51031
+U OSKAR-HELENE-HEIM  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+20
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 910, Route 51: Hertzallee  >>  Warthestr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91051
+HERTZALLEE  >>  WARTHESTR. T
+119
+XXX
+
+[infosystem_busstop_list]
+36
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+Joachim-Friedrich-Str.-Westfaelische Str.
+Seesener Str.
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz UA
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee UE
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf UA
+Machnower Str.
+Nuthestr. UE
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr. T
+
+
+Line 910, Route 52: Warthestr.  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91052
+WARTHESTR.  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+36
+Warthestr.
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr. UA
+S Zehlendorf
+Zehlendorf Eiche UE
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee UA
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz UE
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Seesener Str.
+Joachim-Friedrich-Str.-Westfaelische Str.
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 910, Route 53: Hertzallee  >>  Schrockstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91053
+HERTZALLEE  >>  SCHROCKSTR.
+099
+XXX
+
+[infosystem_busstop_list]
+34
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+Joachim-Friedrich-Str.-Westfaelische Str.
+Seesener Str.
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz UA
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee UE
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Schrockstr. T
+Schrockstr.
+
+
+Line 910, Route 54: Machnower Str.-Berlepschstr.  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91054
+MACHNOWER STR.-BERLEPSCHSTR.  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+33
+Schrockstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee UA
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz UE
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Seesener Str.
+Joachim-Friedrich-Str.-Westfaelische Str.
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 910, Route 55: Hertzallee  >>  Rathaus Zehlendorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91055
+HERTZALLEE  >>  RATHAUS ZEHLENDORF
+091
+XXX
+
+[infosystem_busstop_list]
+31
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+Joachim-Friedrich-Str.-Westfaelische Str.
+Seesener Str.
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz UA
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee UE
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+Rathaus Zehlendorf
+
+
+Line 910, Route 56: Zehlendorf Eiche  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91056
+ZEHLENDORF EICHE  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+30
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee UA
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz UE
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Seesener Str.
+Joachim-Friedrich-Str.-Westfaelische Str.
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 910, Route 57: U Adenauerplatz  >>  Warthestr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91057
+U ADENAUERPLATZ  >>  WARTHESTR. T
+119
+XXX
+
+[infosystem_busstop_list]
+29
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+Joachim-Friedrich-Str.-Westfaelische Str.
+Seesener Str.
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz UA
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee UE
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf UA
+Machnower Str.
+Nuthestr. UE
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr. T
+
+
+Line 910, Route 58: Warthestr.  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91058
+WARTHESTR.  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+29
+Warthestr.
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr. UA
+S Zehlendorf
+Zehlendorf Eiche UE
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee UA
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz UE
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Seesener Str.
+Joachim-Friedrich-Str.-Westfaelische Str.
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz T
+
+
+Line 910, Route 59: U Oskar-Helene-Heim  >>  Warthestr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91059
+U OSKAR-HELENE-HEIM  >>  WARTHESTR. T
+119
+XXX
+
+[infosystem_busstop_list]
+12
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf UA
+Machnower Str.
+Nuthestr. UE
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr. T
+
+
+Line 910, Route 60: Warthestr.  >>  U Oskar-Helene-Heim T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91060
+WARTHESTR.  >>  U OSKAR-HELENE-HEIM T
+080
+XXX
+
+[infosystem_busstop_list]
+12
+Warthestr.
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr. UA
+S Zehlendorf
+Zehlendorf Eiche UE
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim T
+
+
+Line 910, Route 62: Warthestr.  >>  Zehlendorf Eiche T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91062
+WARTHESTR.  >>  ZEHLENDORF EICHE T
+121
+XXX
+
+[infosystem_busstop_list]
+7
+Warthestr.
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr. UA
+S Zehlendorf
+Zehlendorf Eiche T
+
+
+Line 910, Route 64: Machnower Str.-Berlepschstr.  >>  U Oskar-Helene-Heim T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91064
+MACHNOWER STR.-BERLEPSCHSTR.  >>  U OSKAR-HELENE-HEIM T
+080
+XXX
+
+[infosystem_busstop_list]
+9
+Schrockstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim T
+
+
+Line 912, Route 01: Zehlendorf Eiche  >>  Waldschaenke T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91201
+ZEHLENDORF EICHE  >>  WALDSCHAENKE T
+020
+XXX
+
+[infosystem_busstop_list]
+23
+Zehlendorf Eiche
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Camphausenstr.
+Radtkestr.
+Loebellstr.
+Ludwigsfelder Str.
+Fercher Str.
+Neuruppiner Str. UA
+Beeskowdamm
+Alt-Schoenow
+Zehlendorfer Str.
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke T
+
+
+Line 912, Route 02: Waldschaenke  >>  Zehlendorf Eiche
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91202
+WALDSCHAENKE  >>  ZEHLENDORF EICHE
+121
+XXX
+
+[infosystem_busstop_list]
+24
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Neuruppiner Str. UE
+Fercher Str.
+Ludwigsfelder Str.
+Loebellstr.
+Radtkestr.
+Camphausenstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche B
+Zehlendorf Eiche T
+Zehlendorf Eiche
+
+
+Line 912, Route 03: Zehlendorf Eiche  >>  Waldschaenke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91203
+ZEHLENDORF EICHE  >>  WALDSCHAENKE
+116
+XXX
+
+[infosystem_busstop_list]
+23
+Zehlendorf Eiche
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Camphausenstr.
+Radtkestr.
+Loebellstr.
+Ludwigsfelder Str.
+Fercher Str.
+Neuruppiner Str. UA
+Beeskowdamm
+Alt-Schoenow
+Zehlendorfer Str.
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke T
+
+
+Line 913, Route 01: Waldschaenke  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91301
+WALDSCHAENKE  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+14
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Albert-Wiebach-Str.
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 913, Route 02: S Teltow Stadt-Gonfrevillestr.  >>  Waldschänke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91302
+S TELTOW STADT-GONFREVILLESTR.  >>  WALDSCHAENKE
+086
+XXX
+
+[infosystem_busstop_list]
+13
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 819, Route 01: Herbertstr.  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81901
+HERBERTSTR.  >>  U WITTENBERGPLATZ
+070
+XXX
+
+[infosystem_busstop_list]
+13
+Herbertstr.
+Rathenauplatz
+S Halensee F
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 819, Route 02: U Wittenbergplatz  >>  Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81902
+U WITTENBERGPLATZ  >>  HERBERTSTR.
+042
+XXX
+
+[infosystem_busstop_list]
+14
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee F
+Rathenauplatz UA
+Bismarckplatz
+Herbertstr.
+
+
+Line 819, Route 03: Rathenauplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81903
+RATHENAUPLATZ  >>  U WITTENBERGPLATZ
+070
+XXX
+
+[infosystem_busstop_list]
+12
+Rathenauplatz
+S Halensee
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 819, Route 04: U Wittenbergplatz  >>  Rathenauplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81904
+U WITTENBERGPLATZ  >>  RATHENAUPLATZ
+092
+XXX
+
+[infosystem_busstop_list]
+13
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee
+Rathenauplatz T
+Rathenauplatz
+
+
+Line 819, Route 05: Herbertstr.  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81905
+HERBERTSTR.  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+6
+Herbertstr.
+Rathenauplatz
+S Halensee F
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz T
+
+
+Line 819, Route 06: U Adenauerplatz  >>  Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81906
+U ADENAUERPLATZ  >>  HERBERTSTR.
+042
+XXX
+
+[infosystem_busstop_list]
+7
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee F
+Rathenauplatz UA
+Bismarckplatz
+Herbertstr.
+
+
+Line 819, Route 07: U Wittenbergplatz  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81907
+U WITTENBERGPLATZ  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+8
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz S
+U Adenauerplatz T
+
+
+Line 819, Route 08: U Adenauerplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81908
+U ADENAUERPLATZ  >>  U WITTENBERGPLATZ
+070
+XXX
+
+[infosystem_busstop_list]
+8
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 819, Route 09: S Halensee  >>  Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81909
+U HALENSEE  >>  HERBERTSTR.
+042
+XXX
+
+[infosystem_busstop_list]
+4
+S Halensee
+Rathenauplatz UA
+Bismarckplatz
+Herbertstr.
+
+
+Line 819, Route 12: U Wittenbergplatz  >>  Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+81911
+U WITTENBERGPLATZ  >>  HERBERTSTR.
+045
+XXX
+
+[infosystem_busstop_list]
+14
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee F
+Rathenauplatz UA
+Bismarckplatz
+Herbertstr.
+
+
+Line 829, Route 01: Roseneck  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82901
+ROSENECK  >>  U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+20
+Roseneck
+Roseneck
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Delbrueckstr.
+Herthastr.
+Lynarstr.
+Bismarckplatz
+Rathenauplatz
+S Halensee F
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 829, Route 02: U Wittenbergplatz  >>  Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82902
+U WITTENBERGPLATZ  >>  ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+20
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee F
+Rathenauplatz
+Bismarckplatz
+Lynarstr.
+Herthastr.
+Delbrueckstr.
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Roseneck B
+Roseneck
+
+
+Line 829, Route 03: Rathenauplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82903
+RATHENAUPLATZ  >>  U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+12
+Rathenauplatz
+S Halensee
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 829, Route 04: U Wittenbergplatz  >>  Rathenauplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82904
+U WITTENBERGPLATZ  >>  RATHENAUPLATZ
+092
+XXX
+
+[infosystem_busstop_list]
+13
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee
+Rathenauplatz T
+Rathenauplatz
+
+
+Line 829, Route 05: Hochmeisterplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82905
+HOCHMEISTERPLATZ  >>  U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+10
+Hochmeisterplatz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 829, Route 06: U Wittenbergplatz  >>  Hochmeisterplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82906
+U WITTENBERGPLATZ  >>  HOCHMEISTERPLATZ T
+053
+XXX
+
+[infosystem_busstop_list]
+10
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz S
+U Adenauerplatz
+Hochmeisterplatz B
+Hochmeisterplatz T
+
+
+Line 829, Route 07: Hochmeisterplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82907
+HOCHMEISTERPLATZ  >>  U WITTENBERGPLATZ
+143
+XXX
+
+[infosystem_busstop_list]
+10
+Hochmeisterplatz
+Agathe-Lasch-Platz
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 829, Route 08: U Wittenbergplatz  >>  Hochmeisterplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82908
+U WITTENBERGPLATZ  >>  HOCHMEISTERPLATZ T
+053
+XXX
+
+[infosystem_busstop_list]
+9
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz S
+U Adenauerplatz
+Hochmeisterplatz T
+
+
+Line 829, Route 09: U Adenauerplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82909
+U ADENAUERPLATZ  >>  U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+8
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 829, Route 11: Rathenauplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+82911
+RATHENAUPLATZ  >>  U WITTENBERGPLATZ
+143
+XXX
+
+[infosystem_busstop_list]
+12
+Rathenauplatz
+S Halensee
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 943, Route 01: Waldschaenke  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94301
+WALDSCHAENKE  >>  TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+19
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Terminus
+
+
+Line 943, Route 02: Teltow Bahnhof  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+94302
+TELTOW BAHNHOF  >>  TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+18
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 984, Route 01: Wupperstr.  >>  Zehlendorf Eiche
+----------------------------------------------------------------------
+
+[infosystem_trip]
+98401
+WUPPERSTR.  >>  ZEHLENDORF EICHE
+121
+XXX
+
+[infosystem_busstop_list]
+13
+Wupperstr.
+Wupperstr.
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+Schoenower Park
+S Zehlendorf
+Zehlendorf Eiche B
+Zehlendorf Eiche T
+Zehlendorf Eiche
+
+
+Line 984, Route 02: Zehlendorf Eiche  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+98402
+ZEHLENDORF EICHE  >>  WUPPERSTR.
+111
+XXX
+
+[infosystem_busstop_list]
+13
+Zehlendorf Eiche
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 984, Route 04: Zehlendorf Eiche  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+98404
+ZEHLENDORF EICHE  >>  WUPPERSTR.
+016
+XXX
+
+[infosystem_busstop_list]
+13
+Zehlendorf Eiche
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 984, Route 06: Zehlendorf Eiche  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+98406
+ZEHLENDORF EICHE  >>  WUPPERSTR.
+111
+XXX
+
+[infosystem_busstop_list]
+12
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 984, Route 08: Zehlendorf Eiche  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+98408
+ZEHLENDORF EICHE  >>  WUPPERSTR.
+016
+XXX
+
+[infosystem_busstop_list]
+12
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 110, Route 01: Hertzallee  >>  Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11001
+HERTZALLEE  >>  ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+17
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Hochmeisterplatz
+Seesener Str.
+Grieser Platz
+Wangenheimstr.
+Herthastr.
+Elgersburger Str.
+Elsterplatz UA
+Roseneck B
+Roseneck
+
+
+Line 110, Route 02: Roseneck  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11002
+ROSENECK  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+17
+Roseneck
+Roseneck
+Roseneck-Hohenzollerndamm
+Elgersburger Str. UE
+Herthastr.
+Wangenheimstr.
+Grieser Platz
+Seesener Str.
+Hochmeisterplatz
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 110, Route 03: Hertzallee  >>  Hochmeisterplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11003
+HERTZALLEE  >>  HOCHMEISTERPLATZ T
+053
+XXX
+
+[infosystem_busstop_list]
+9
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Hochmeisterplatz T
+
+
+Line 110, Route 04: Hochmeisterplatz  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11004
+HOCHMEISTERPLATZ  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+9
+Hochmeisterplatz
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 110, Route 05: Hochmeisterplatz  >>  Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11005
+HOCHMEISTERPLATZ  >>  ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+9
+Hochmeisterplatz
+Seesener Str.
+Grieser Platz
+Wangenheimstr.
+Herthastr.
+Elgersburger Str.
+Elsterplatz UA
+Roseneck B
+Roseneck
+
+
+Line 110, Route 06: Roseneck  >>  Hochmeisterplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11006
+ROSENECK  >>  HOCHMEISTERPLATZ T
+053
+XXX
+
+[infosystem_busstop_list]
+9
+Roseneck
+Roseneck
+Roseneck-Hohenzollerndamm
+Elgersburger Str. UE
+Herthastr.
+Wangenheimstr.
+Grieser Platz
+Seesener Str. S
+Hochmeisterplatz T
+
+
+Line 115, Route 01: Spanische Allee-Potsdamer Chaussee  >>  Mansfelder Str.-Barstr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11501
+SPANISCHE ALLEE-POTSDAMER CHAUSSEE  >>  MANSFELDER STR.-BARSTR. T
+032
+XXX
+
+[infosystem_busstop_list]
+32
+Spanische Allee-Potsdamer Chaussee
+Am Rohrgarten
+Lloyd-George-Wells-Str.
+Neuruppiner Str.
+Fercher Str.
+Ludwigsfelder Str.
+Loebellstr.
+Radtkestr.
+Camphausenstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Hoffmann-von-Fallersleben-Platz
+U Fehrbelliner Platz WB
+Mansfelder Str.-Barstr. T
+
+
+Line 115, Route 02: Mansfelder Str.-Barstr.  >>  Spanische Allee-Potsdamer Chaussee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11502
+MANSFELDER STR.-BARSTR.  >>  SPANISCHE ALLEE-POTSDAMER CHAUSSEE
+103
+XXX
+
+[infosystem_busstop_list]
+34
+Mansfelder Str.-Barstr.
+Mansfelder Str.-Barstr.
+U Fehrbelliner Platz
+Hoffmann-von-Fallersleben-Platz
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Camphausenstr.
+Radtkestr.
+Loebellstr.
+Ludwigsfelder Str.
+Fercher Str.
+Neuruppiner Str.
+Lloyd-George-Wells-Str.
+Am Rohrgarten
+Spanische Allee-Potsdamer Chaussee B
+Spanische Allee-Potsdamer Chaussee
+
+
+Line 115, Route 03: Neuruppiner Str.  >>  Mansfelder Str.-Barstr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11503
+MANSFELDER STR.-BARSTR.  >>  MANSFELDER STR.-BARSTR. T
+032
+XXX
+
+[infosystem_busstop_list]
+30
+Neuruppiner Str.
+Neuruppiner Str.
+Fercher Str.
+Ludwigsfelder Str.
+Loebellstr.
+Radtkestr.
+Camphausenstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Hoffmann-von-Fallersleben-Platz
+U Fehrbelliner Platz WB
+Mansfelder Str.-Barstr. T
+
+
+Line 115, Route 04: Mansfelder Str.-Barstr.  >>  Neuruppiner Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11504
+U FEHRBELLINER PLATZ  >>  NEURUPPINER STR.
+076
+XXX
+
+[infosystem_busstop_list]
+31
+Mansfelder Str.-Barstr.
+Mansfelder Str.-Barstr.
+U Fehrbelliner Platz
+Hoffmann-von-Fallersleben-Platz
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz
+Roseneck
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Camphausenstr.
+Radtkestr.
+Loebellstr.
+Ludwigsfelder Str.
+Fercher Str.
+Neuruppiner Str. T
+Neuruppiner Str.
+
+
+Line 115, Route 05: Roseneck  >>  Mansfelder Str.-Barstr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11505
+ROSENECK  >>  MANSFELDER STR.-BARSTR. T
+032
+XXX
+
+[infosystem_busstop_list]
+11
+Roseneck
+Roseneck
+Roseneck-Hohenzollerndamm
+Elsterplatz
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Hoffmann-von-Fallersleben-Platz
+U Fehrbelliner Platz WB
+Mansfelder Str.-Barstr. T
+
+
+Line 115, Route 06: Mansfelder Str.-Barstr.  >>  Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11506
+MANSFELDER STR.-BARSTR.  >>  ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+11
+Mansfelder Str.-Barstr.
+Mansfelder Str.-Barstr.
+U Fehrbelliner Platz
+Hoffmann-von-Fallersleben-Platz
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz S
+Roseneck B
+Roseneck
+
+
+Line 115, Route 07: Zehlendorf Eiche  >>  Mansfelder Str.-Barstr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11507
+ZEHLENDORF EICHE  >> MANSFELDER STR.-BARSTR. T
+032
+XXX
+
+[infosystem_busstop_list]
+21
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Hoffmann-von-Fallersleben-Platz
+U Fehrbelliner Platz WB
+Mansfelder Str.-Barstr. T
+
+
+Line 115, Route 08: Mansfelder Str.-Barstr.  >>  Zehlendorf Eiche T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11508
+MANSFELDER STR.-BARSTR.  >>  ZEHLENDORF EICHE T
+121
+XXX
+
+[infosystem_busstop_list]
+22
+Mansfelder Str.-Barstr.
+Mansfelder Str.-Barstr.
+U Fehrbelliner Platz
+Hoffmann-von-Fallersleben-Platz
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche T
+
+
+Line 115, Route 09: Rathaus Zehlendorf  >>  Mansfelder Str.-Barstr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11509
+RATHAUS ZEHLENDORF  >>  MANSFELDER STR.-BARSTR. T
+032
+XXX
+
+[infosystem_busstop_list]
+23
+Rathaus Zehlendorf
+Rathaus Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Hoffmann-von-Fallersleben-Platz
+U Fehrbelliner Platz WB
+Mansfelder Str.-Barstr. T
+
+
+Line 115, Route 10: Mansfelder Str.-Barstr.  >>  Rathaus Zehlendorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11510
+MANSFELDER STR.-BARSTR.  >>  RATHAUS ZEHLENDORF
+091
+XXX
+
+[infosystem_busstop_list]
+23
+Mansfelder Str.-Barstr.
+Mansfelder Str.-Barstr.
+U Fehrbelliner Platz
+Hoffmann-von-Fallersleben-Platz
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+Rathaus Zehlendorf
+
+
+Line 115, Route 11: Neuruppiner Str.  >>  U Fehrbelliner Platz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11511
+NEURUPPINER STR.  >>  U FEHRBELLINER PLATZ T
+033
+XXX
+
+[infosystem_busstop_list]
+29
+Neuruppiner Str.
+Neuruppiner Str.
+Fercher Str.
+Ludwigsfelder Str.
+Loebellstr.
+Radtkestr.
+Camphausenstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Hoffmann-von-Fallersleben-Platz
+U Fehrbelliner Platz T
+
+
+Line 115, Route 12: U Fehrbelliner Platz  >>  Neuruppiner Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11512
+U FEHRBELLINER PLATZ  >>  NEURUPPINER STR.
+076
+XXX
+
+[infosystem_busstop_list]
+29
+U Fehrbelliner Platz
+Hoffmann-von-Fallersleben-Platz
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Camphausenstr.
+Radtkestr.
+Loebellstr.
+Ludwigsfelder Str.
+Fercher Str.
+Neuruppiner Str. T
+Neuruppiner Str.
+
+
+Line 115, Route 13: Roseneck  >>  U Fehrbelliner Platz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11513
+ROSENECK  >>  U FEHRBELLINER PLATZ T
+033
+XXX
+
+[infosystem_busstop_list]
+10
+Roseneck
+Roseneck
+Roseneck-Hohenzollerndamm
+Elsterplatz
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Hoffmann-von-Fallersleben-Platz
+U Fehrbelliner Platz T
+
+
+Line 115, Route 14: U Fehrbelliner Platz  >>  Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11514
+U FEHRBELLINER PLATZ  >>  ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+9
+U Fehrbelliner Platz
+Hoffmann-von-Fallersleben-Platz
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz S
+Roseneck B
+Roseneck
+
+
+Line 115, Route 15: Rathaus Zehlendorf  >>  U Fehrbelliner Platz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11515
+RATHAUS ZEHLENDORF  >>  U FEHRBELLINER PLATZ T
+033
+XXX
+
+[infosystem_busstop_list]
+22
+Rathaus Zehlendorf
+Rathaus Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Hoffmann-von-Fallersleben-Platz
+U Fehrbelliner Platz T
+
+
+Line 115, Route 16: U Fehrbelliner Platz  >>  Rathaus Zehlendorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11516
+U FEHRBELLINER PLATZ  >>  RATHAUS ZEHLENDORF
+091
+XXX
+
+[infosystem_busstop_list]
+21
+U Fehrbelliner Platz
+Hoffmann-von-Fallersleben-Platz
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+Rathaus Zehlendorf
+
+
+Line 115, Route 18: U Fehrbelliner Platz  >>  Spanische Allee-Potsdamer Chaussee T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11518
+U FEHRBELLINER PLATZ  >>  SPANISCHE ALLEE-POTSDAMER CHAUSSEE T
+103
+XXX
+
+[infosystem_busstop_list]
+33
+Mansfelder Str.-Barstr.
+Mansfelder Str.-Barstr.
+U Fehrbelliner Platz
+Hoffmann-von-Fallersleben-Platz
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Camphausenstr.
+Radtkestr.
+Loebellstr.
+Ludwigsfelder Str.
+Fercher Str.
+Neuruppiner Str.
+Lloyd-George-Wells-Str.
+Am Rohrgarten
+Spanische Allee-Potsdamer Chaussee T
+
+
+Line 285, Route 01: Am Waldfriedhof  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28501
+AM WALDFRIEDHOF  >>  WUPPERSTR.
+090
+XXX
+
+[infosystem_busstop_list]
+21
+Am Waldfriedhof
+Am Waldfriedhof
+Am Hegewinkel
+Waltraudstr.
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 285, Route 02: Wupperstr.  >>  Am Waldfriedhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28502
+WUPPERSTR.  >>  AM WALDFRIEDHOF
+115
+XXX
+
+[infosystem_busstop_list]
+21
+Wupperstr.
+Wupperstr.
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+Schoenower Park
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+U Oskar-Helene-Heim
+Waltraudstr.
+Am Hegewinkel
+Am Waldfriedhof B
+Am Waldfriedhof
+
+
+Line 285, Route 03: U Oskar-Helene-Heim  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28503
+U OSKAR-HELENE-HEIM  >>  WUPPERSTR.
+090
+XXX
+
+[infosystem_busstop_list]
+18
+U Oskar-Helene-Heim
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 285, Route 04: Wupperstr.  >>  U Oskar-Helene-Heim
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28504
+WUPPERSTR.  >>  U OSKAR-HELENE-HEIM
+080
+XXX
+
+[infosystem_busstop_list]
+18
+Wupperstr.
+Wupperstr.
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+Schoenower Park
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+U Oskar-Helene-Heim T
+U Oskar-Helene-Heim
+
+
+Line 285, Route 05: Am Waldfriedhof  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28505
+AM WALDFRIEDHOF  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+20
+Am Waldfriedhof
+Am Waldfriedhof
+Am Hegewinkel
+Waltraudstr.
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 285, Route 06: Andreezeile  >>  Am Waldfriedhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28506
+ANDREEZEILE  >>  AM WALDFRIEDHOF
+115
+XXX
+
+[infosystem_busstop_list]
+20
+Andreezeile
+Andreezeile
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+Schoenower Park
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+U Oskar-Helene-Heim
+Waltraudstr.
+Am Hegewinkel
+Am Waldfriedhof B
+Am Waldfriedhof
+
+
+Line 285, Route 07: Am Waldfriedhof  >>  Zehlendorf Eiche T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28507
+AM WALDFRIEDHOF  >>  ZEHLENDORF EICHE T
+121
+XXX
+
+[infosystem_busstop_list]
+10
+Am Waldfriedhof
+Am Waldfriedhof
+Am Hegewinkel
+Waltraudstr.
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche T
+
+
+Line 285, Route 08: Wupperstr.  >>  U Oskar-Helene-Heim T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28508
+WUPPERSTR.  >>  U OSKAR-HELENE-HEIM T
+080
+XXX
+
+[infosystem_busstop_list]
+16
+Wupperstr.
+Wupperstr.
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+Schoenower Park
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim T
+
+
+Line 285, Route 09: Zehlendorf Eiche  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28509
+ZEHLENDORF EICHE  >>  WUPPERSTR.
+019
+XXX
+
+[infosystem_busstop_list]
+12
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 285, Route 10: Wupperstr.  >>  Zehlendorf Eiche T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28510
+WUPPERSTR.  >>  ZEHLENDORF EICHE T
+121
+XXX
+
+[infosystem_busstop_list]
+11
+Wupperstr.
+Wupperstr.
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+Schoenower Park
+S Zehlendorf
+Zehlendorf Eiche T
+
+
+Line 285, Route 11: Am Waldfriedhof  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28511
+AM WALDFRIEDHOF  >>  WUPPERSTR.
+019
+XXX
+
+[infosystem_busstop_list]
+21
+Am Waldfriedhof
+Am Waldfriedhof
+Am Hegewinkel
+Waltraudstr.
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 285, Route 12: Wupperstr.  >>  Am Waldfriedhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28512
+WUPPERSTR.  >>  AM WALDFRIEDHOF
+115
+XXX
+
+[infosystem_busstop_list]
+20
+Wupperstr.
+Wupperstr.
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+Schoenower Park
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+U Oskar-Helene-Heim
+Waltraudstr.
+Am Hegewinkel
+Am Waldfriedhof
+
+
+Line 285, Route 13: U Oskar-Helene-Heim  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28513
+U OSKAR-HELENE-HEIM  >>  WUPPERSTR.
+019
+XXX
+
+[infosystem_busstop_list]
+18
+U Oskar-Helene-Heim
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 285, Route 15: U Oskar-Helene-Heim  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28515
+U OSKAR-HELENE-HEIM  >>  WUPPERSTR.
+090
+XXX
+
+[infosystem_busstop_list]
+17
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 285, Route 17: U Oskar-Helene-Heim  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+28517
+U OSKAR-HELENE-HEIM  >>  WUPPERSTR.
+019
+XXX
+
+[infosystem_busstop_list]
+17
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 601, Route 01: Waldschaenke  >>  Sigridshorst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60101
+WALDSCHAENKE  >>  SIGRIDSHORST
+102
+XXX
+
+[infosystem_busstop_list]
+21
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr.
+Jahnsportplatz
+Badstr.
+Zehlendorfer Str.
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Tulpenweg
+Sigridshorst
+
+
+Line 601, Route 02: Sigridshorst  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60102
+SIGRIDSHORST  >>  TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+21
+Sigridshorst
+Tulpenweg
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Zehlendorfer Str.
+Badstr.
+Jahnsportplatz
+Nuthestr.
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+Terminus
+
+
+Line 601, Route 03: Waldschaenke  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60103
+WALDSCHAENKE  >>  TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+20
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr.
+Jahnsportplatz
+Badstr.
+Zehlendorfer Str.
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Terminus
+
+
+Line 601, Route 04: Teltow Bahnhof  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60104
+TELTOW BAHNHOF  >>  TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+20
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Zehlendorfer Str.
+Badstr.
+Jahnsportplatz
+Nuthestr.
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+Terminus
+
+
+Line 601, Route 05: Warthestr.  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60105
+WARTHESTR.  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+9
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr.
+Jahnsportplatz
+Badstr.
+Zehlendorfer Str.
+Buergertreff
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 601, Route 06: Warthestr.  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60106
+WARTHESTR.  >>  TERMINUS
+020
+XXX
+
+[infosystem_busstop_list]
+7
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+Terminus
+
+
+Line 601, Route 07: Waldschaenke  >>  Teltow Bahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60107
+WALDSCHAENKE  >>  TELTOW BAHNHOF
+109
+XXX
+
+[infosystem_busstop_list]
+20
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr.
+Jahnsportplatz
+Badstr.
+Zehlendorfer Str.
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+
+
+Line 601, Route 08: Teltow Bahnhof  >>  S Teltow Stadt-Mahlower Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60108
+TELTOW BAHNHOF  >>  S TELTOW STADT-MAHLOWER STR.
+110
+XXX
+
+[infosystem_busstop_list]
+6
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+
+
+Line 601, Route 10: Havelstr.  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60110
+HAVELSTR.  >>  TERMINUS
+088
+XXX
+
+[infosystem_busstop_list]
+7
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+Terminus
+
+
+Line 601, Route 12: Sigridshorst  >>  Waldschänke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60112
+SIGRIDSHORST  >>  WALDSCHÄNKE
+086
+XXX
+
+[infosystem_busstop_list]
+20
+Sigridshorst
+Tulpenweg
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Zehlendorfer Str.
+Badstr.
+Jahnsportplatz
+Nuthestr.
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 601, Route 14: Teltow Bahnhof  >>  Waldschänke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60114
+TELTOW BAHNHOF  >>  WALDSCHÄNKE
+086
+XXX
+
+[infosystem_busstop_list]
+19
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Zehlendorfer Str.
+Badstr.
+Jahnsportplatz
+Nuthestr.
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 602, Route 01: Waldschaenke  >>  Havelstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+60201
+WALDSCHAENKE  >>  HAVELSTR.
+048
+XXX
+
+[infosystem_busstop_list]
+11
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Tellstr.
+Briefzentrum
+Green Park
+Iserstr.-Gesundheitszentrum
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Havelstr.
+
+
+Line 620, Route 01: Rammrath-Bruecke  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62001
+RAMMRATH-BRUECKE  >>  TERMINUS
+110
+XXX
+
+[infosystem_busstop_list]
+10
+Rammrath-Bruecke
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Gonfrevillestr.
+Terminus
+
+
+Line 620, Route 02: S Teltow Stadt-Gonfrevillestr.  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62002
+S TELTOW STADT-GONFREVILLESTR.  >>  TERMINUS
+117
+XXX
+
+[infosystem_busstop_list]
+10
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke
+Terminus
+
+
+Line 620, Route 03: Rammrath-Bruecke  >>  Warthestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62003
+RAMMRATH-BRUECKE  >>  WARTHESTR.
+119
+XXX
+
+[infosystem_busstop_list]
+3
+Rammrath-Bruecke
+Rammrath-Bruecke
+Warthestr.
+
+
+Line 620, Route 04: Teltow Bahnhof  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62004
+TELTOW BAHNHOF  >>  TERMINUS
+158
+XXX
+
+[infosystem_busstop_list]
+14
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke
+Terminus
+
+
+Line 620, Route 05: Rammrath-Bruecke  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62005
+RAMMRATH-BRUECKE  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+9
+Rammrath-Bruecke
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 620, Route 06: S Teltow Stadt-Gonfrevillestr.  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62006
+S TELTOW STADT-GONFREVILLESTR.  >>  TERMINUS
+117
+XXX
+
+[infosystem_busstop_list]
+9
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke
+Terminus
+
+
+Line 620, Route 08: S Teltow Stadt-Gonfrevillestr.  >>  Warthestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62008
+S TELTOW STADT-GONFREVILLESTR.  >>  WARTHESTR.
+119
+XXX
+
+[infosystem_busstop_list]
+8
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+
+
+Line 621, Route 01: S Teltow Stadt-Gonfrevillestr.  >>  Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62101
+S TELTOW STADT-GONFREVILLESTR.  >>  RUHLSDORF
+068
+XXX
+
+[infosystem_busstop_list]
+14
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Iserstr.-Gesundheitszentrum
+Bremer Str.
+Iserstr. Sued
+Muehlenbergstr.
+Ruhlsdorf
+Ruhlsdorf
+
+
+Line 621, Route 02: Ruhlsdorf  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62102
+RUHLSDORF  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+13
+Ruhlsdorf
+Muehlenbergstr.
+Iserstr. Sued
+Bremer Str.
+Iserstr.-Gesundheitszentrum
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 621, Route 03: S Teltow Stadt-Gonfrevillestr.  >>  Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62103
+S TELTOW STADT-GONFREVILLESTR.  >>  RUHLSDORF
+068
+XXX
+
+[infosystem_busstop_list]
+17
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Oderstr.-Saganer Str.
+Feuerwehr
+Iserstr.-Gesundheitszentrum
+Bremer Str.
+Iserstr. Sued
+Schenkendorfer Weg
+Muehlenbergstr.
+Ruhlsdorf
+Ruhlsdorf
+
+
+Line 621, Route 04: Ruhlsdorf  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62104
+RUHLSDORF  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+16
+Ruhlsdorf
+Muehlenbergstr.
+Schenkendorfer Weg
+Iserstr. Sued
+Bremer Str.
+Iserstr.-Gesundheitszentrum
+Oderstr.-Saganer Str.
+Feuerwehr
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 621, Route 05: Hamburger Platz  >>  Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62105
+HAMBURGER PLATZ  >>  RUHLSDORF
+068
+XXX
+
+[infosystem_busstop_list]
+9
+Hamburger Platz
+Warthestr.
+Iserstr.-Gesundheitszentrum
+Bremer Str.
+Iserstr. Sued
+Schenkendorfer Weg
+Muehlenbergstr.
+Ruhlsdorf
+Ruhlsdorf
+
+
+Line 621, Route 06: Ruhlsdorf  >>  Hamburger Platz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62106
+RUHLSDORF  >>  HAMbURGER PLATZ
+119
+XXX
+
+[infosystem_busstop_list]
+8
+Ruhlsdorf
+Muehlenbergstr.
+Schenkendorfer Weg
+Iserstr. Sued
+Bremer Str.
+Iserstr.-Gesundheitszentrum
+Warthestr.
+Hamburger Platz
+
+
+Line 621, Route 07: Warthestr.  >>  Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62107
+WARTHESTR.  >>  RUHLSDORF
+097
+XXX
+
+[infosystem_busstop_list]
+14
+Warthestr.
+Iserstr.-Gesundheitszentrum
+Bremer Str.
+Iserstr. Sued
+Green Park
+Enzianweg
+Betriebshof
+Briefzentrum
+Enzianweg
+Green Park
+Schenkendorfer Weg
+Muehlenbergstr.
+Ruhlsdorf
+Ruhlsdorf
+
+
+Line 623, Route 01: Schrockstr.  >>  Saargemuender Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62301
+SCHROCKSTR.  >>  SAARGEMUENDER STR.
+080
+XXX
+
+[infosystem_busstop_list]
+10
+Schrockstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Saargemuender Str.
+
+
+Line 623, Route 02: U Oskar-Helene-Heim  >>  Schrockstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62302
+U OSKAR-HELENE-HEIM  >>  SCHROCKSTR.
+052
+XXX
+
+[infosystem_busstop_list]
+11
+U Oskar-Helene-Heim
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Schrockstr.
+Schrockstr.
+
+
+Line 623, Route 04: U Oskar-Helene-Heim  >>  Schrockstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62304
+U OSKAR-HELENE-HEIM  >>  SCHROCKSTR.
+116
+XXX
+
+[infosystem_busstop_list]
+11
+U Oskar-Helene-Heim
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Schrockstr.
+Schrockstr.
+
+
+Line 625, Route 01: Ruhlsdorf  >>  Postviertel-Paul-Lincke-Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62501
+RUHLSDORF  >>  POSTVIERTEL-PAUL-LINCKE-STR.
+085
+XXX
+
+[infosystem_busstop_list]
+18
+Ruhlsdorf
+Muehlenbergstr.
+Iserstr. Sued
+Bremer Str.
+Iserstr.-Gesundheitszentrum
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Striewitzweg
+Jahnstr.
+Marktplatz
+Buergertreff
+S Teltow Stadt-Gonfrevillestr.
+Halifax-Platz
+Anne-Frank-Schule
+Oskar-Pollner-Str.
+Beethovenstr.-Kita
+Postviertel-Paul-Lincke-Str.
+
+
+Line 625, Route 02: Postviertel-Paul-Lincke-Str.  >>  Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62502
+POSTVIERTEL-PAUL-LINCKE-STR.  >>  RUHLSDORF
+097
+XXX
+
+[infosystem_busstop_list]
+18
+Postviertel-Paul-Lincke-Str.
+Beethovenstr.-Kita
+Oskar-Pollner-Str.
+Anne-Frank-Schule
+Halifax-Platz
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Marktplatz
+Jahnstr.
+Striewitzweg
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr.
+Iserstr.-Gesundheitszentrum
+Bremer Str.
+Iserstr. Sued
+Muehlenbergstr.
+Ruhlsdorf
+
+
+Line 625, Route 03: Ruhlsdorf  >>  Warthestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62503
+RUHLSDORF  >>  WARTHESTR.
+119
+XXX
+
+[infosystem_busstop_list]
+6
+Ruhlsdorf
+Muehlenbergstr.
+Iserstr. Sued
+Bremer Str.
+Iserstr.-Gesundheitszentrum
+Warthestr.
+
+
+Line 625, Route 04: Warthestr.  >>  Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62504
+WARTHESTR.  >>  RUHLSDORF
+097
+XXX
+
+[infosystem_busstop_list]
+5
+Warthestr.
+Iserstr.-Gesundheitszentrum
+Bremer Str.
+Iserstr. Sued
+Muehlenbergstr.
+Ruhlsdorf
+
+
+Line 625, Route 05: S Teltow Stadt-Gonfrevillestr.  >>  Postviertel-Paul-Lincke-Str.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62505
+S TELTOW STADT-GONFREVILLESTR.  >>  POSTVIERTEL-PAUL-LINCKE-STR.
+085
+XXX
+
+[infosystem_busstop_list]
+6
+S Teltow Stadt-Gonfrevillestr.
+Halifax-Platz
+Anne-Frank-Schule
+Oskar-Pollner-Str.
+Beethovenstr.-Kita
+Postviertel-Paul-Lincke-Str.
+
+
+Line 625, Route 06: Postviertel-Paul-Lincke-Str.  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62506
+POSTVIERTEL-PAUL-LINCKE-STR.  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+6
+Postviertel-Paul-Lincke-Str.
+Beethovenstr.-Kita
+Oskar-Pollner-Str.
+Anne-Frank-Schule
+Halifax-Platz
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 625, Route 08: Postviertel-Paul-Lincke-Str.  >>  Buergertreff
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62508
+POSTVIERTEL-PAUL-LINCKE-STR.  >>  BUERGERTREFF
+028
+XXX
+
+[infosystem_busstop_list]
+7
+Postviertel-Paul-Lincke-Str.
+Beethovenstr.-Kita
+Oskar-Pollner-Str.
+Anne-Frank-Schule
+Halifax-Platz
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+
+
+Line 625, Route 11: S Teltow Stadt-Gonfrevillestr.  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62511
+S TELTOW STADT-GONFREVILLESTR.  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+11
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Geschwister-Scholl-Str.
+Beethovenstr.-Kita
+Postviertel-Paul-Lincke-Str.
+Beethovenstr.-Kita
+Oskar-Pollner-Str.
+Anne-Frank-Schule
+Halifax-Platz
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 625, Route 12: S Teltow Stadt-Gonfrevillestr.  >>  Buergertreff
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62512
+S TELTOW STADT-GONFREVILLESTR.  >>  BUERGERTREFF
+028
+XXX
+
+[infosystem_busstop_list]
+12
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Geschwister-Scholl-Str.
+Beethovenstr.-Kita
+Postviertel-Paul-Lincke-Str.
+Beethovenstr.-Kita
+Oskar-Pollner-Str.
+Anne-Frank-Schule
+Halifax-Platz
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+
+
+Line 625, Route 13: S Teltow Stadt-Gonfrevillestr.  >>  Egerstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62513
+S TELTOW STADT-GONFREVILLESTR.  >>  EGERSTR.
+156
+XXX
+
+[infosystem_busstop_list]
+15
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Geschwister-Scholl-Str.
+Beethovenstr.-Kita
+Postviertel-Paul-Lincke-Str.
+Beethovenstr.-Kita
+Oskar-Pollner-Str.
+Anne-Frank-Schule
+Halifax-Platz
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Ruhlsdorfer Platz
+Striewitzweg
+Egerstr.
+
+
+Line 625, Route 14: S Teltow Stadt-Gonfrevillestr.  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62514
+S TELTOW STADT-GONFREVILLESTR.  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+12
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Geschwister-Scholl-Str.
+Beethovenstr.-Kita
+Postviertel-Paul-Lincke-Str.
+Beethovenstr.-Kita
+Oskar-Pollner-Str.
+Anne-Frank-Schule
+Halifax-Platz
+S Teltow Stadt-Gonfrevillestr.
+
+
+
+Line 626, Route 01: Betriebshof  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62601
+BETRIEBSHOF  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+14
+Betriebshof
+Betriebshof
+Briefzentrum
+Enzianweg
+Green Park
+Schenkendorfer Weg
+Muehlenbergstr.
+Ruhlsdorf
+An den Eichen
+Fliederstr.
+Lilienstr.
+Asternstr.
+Kanada-Allee
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 626, Route 02: S Teltow Stadt-Gonfrevillestr.  >>  Betriebshof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62602
+S TELTOW STADT-GONFREVILLESTR.  >>  BETRIEBSHOF
+162
+XXX
+
+[infosystem_busstop_list]
+16
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Albert-Wiebach-Str.
+Kanada-Allee
+Asternstr.
+Lilienstr.
+Fliederstr.
+An den Eichen
+Ruhlsdorf
+Muehlenbergstr.
+Schenkendorfer Weg
+Green Park
+Enzianweg
+Briefzentrum
+Betriebshof
+Betriebshof
+
+
+Line 626, Route 04: S Teltow Stadt-Gonfrevillestr.  >>  Betriebshof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62604
+S TELTOW STADT-GONFREVILLESTR.  >>  BETRIEBSHOF
+162
+XXX
+
+[infosystem_busstop_list]
+17
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Albert-Wiebach-Str.
+Kanada-Allee
+Asternstr.
+Lilienstr.
+Fliederstr.
+An den Eichen
+Ruhlsdorf
+Muehlenbergstr.
+Schenkendorfer Weg
+Green Park
+Enzianweg
+Briefzentrum
+Betriebshof
+Betriebshof
+
+
+Line 626, Route 05: Waldschaenke  >>  Heinersdorfer Weg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62605
+WALDSCHAENKE  >>  HEINERSDORFER WEG
+050
+XXX
+
+[infosystem_busstop_list]
+16
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Gruener Weg
+Tellstr.
+Briefzentrum
+Enzianweg
+Green Park
+Muehlenbergstr.
+Ruhlsdorf
+An den Eichen
+Fliederstr.
+Lilienstr.
+Asternstr.
+S Teltow Stadt-Gonfrevillestr.
+Heinersdorfer Weg
+
+
+Line 626, Route 06: Heinersdorfer Weg  >>  Waldschaenke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62606
+HEINERSDORFER WEG  >>  WALDSCHAENKE
+116
+XXX
+
+[infosystem_busstop_list]
+17
+Heinersdorfer Weg
+Bernhard-Lichtenberg-Str.
+Buergertreff
+S Teltow Stadt-Gonfrevillestr.
+Asternstr.
+Lilienstr.
+Fliederstr.
+An den Eichen
+Ruhlsdorf
+Muehlenbergstr.
+Green Park
+Enzianweg
+Briefzentrum
+Tellstr.
+Gruener Weg
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 626, Route 07: Waldschaenke  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62607
+WALDSCHAENKE  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+15
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Gruener Weg
+Tellstr.
+Briefzentrum
+Enzianweg
+Green Park
+Muehlenbergstr.
+Ruhlsdorf
+An den Eichen
+Fliederstr.
+Lilienstr.
+Asternstr.
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 626, Route 08: S Teltow Stadt-Gonfrevillestr.  >>  Waldschaenke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62608
+S TELTOW STADT-GONFREVILLESTR.  >>  WALDSCHAENKE
+116
+XXX
+
+[infosystem_busstop_list]
+14
+S Teltow Stadt-Gonfrevillestr.
+Asternstr.
+Lilienstr.
+Fliederstr.
+An den Eichen
+Ruhlsdorf
+Muehlenbergstr.
+Green Park
+Enzianweg
+Briefzentrum
+Tellstr.
+Gruener Weg
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 626, Route 09: Enzianweg  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62609
+ENZIANWEG  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+10
+Betriebshof
+Enzianweg
+Green Park
+Muehlenbergstr.
+Ruhlsdorf
+An den Eichen
+Fliederstr.
+Lilienstr.
+Asternstr.
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 626, Route 10: S Teltow Stadt-Gonfrevillestr.  >>  Enzianweg
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62610
+S TELTOW STADT-GONFREVILLESTR.  >>  ENZIANWEG
+031
+XXX
+
+[infosystem_busstop_list]
+10
+S Teltow Stadt-Gonfrevillestr.
+Asternstr.
+Lilienstr.
+Fliederstr.
+An den Eichen
+Ruhlsdorf
+Muehlenbergstr.
+Green Park
+Enzianweg
+Betriebshof
+
+
+Line 626, Route 11: Waldschaenke  >>  Ruhlsdorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+62611
+WALDSCHAENKE  >>  RUHLSDORF
+097
+XXX
+
+[infosystem_busstop_list]
+10
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Gruener Weg
+Tellstr.
+Briefzentrum
+Enzianweg
+Green Park
+Muehlenbergstr.
+Ruhlsdorf
+
+
+============================== Doppelte Routen für alte IBIS-Geräte ==============================
+
+Line 001, Route 01: Waldschaenke  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00101
+WALDSCHAENKE  >>  TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+18
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Terminus
+
+
+Line 001, Route 02: Teltow Bahnhof  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00102
+TELTOW BAHNHOF  >>  TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+17
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 001, Route 03: Waldschaenke  >>  Sigridshorst
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00103
+WALDSCHAENKE  >>  SIGRIDSHORST
+102
+XXX
+
+[infosystem_busstop_list]
+19
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Tulpenweg
+Sigridshorst
+
+
+Line 001, Route 04: Sigridshorst  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00104
+SIGRIDSHORST  >>  TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+18
+Sigridshorst
+Tulpenweg
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 001, Route 05: Puschkinstr.  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00105
+PUSCHKINSTR.  >>  TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+15
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Terminus
+
+
+Line 001, Route 07: Warthestr.  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+00107
+WARTHESTR.  >>  TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+12
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Terminus
+
+
+Line 010, Route 01: Hertzallee  >>  Teltow Bahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01001
+HERTZALLEE  >>  TELTOW BAHNHOF
+109
+XXX
+
+[infosystem_busstop_list]
+32
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WB
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof T
+Teltow Bahnhof
+
+
+Line 010, Route 02: Teltow Bahnhof  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01002
+TELTOW BAHNHOF  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+31
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 03: Hertzallee  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01003
+HERTZALLEE  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+32
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 010, Route 04: Rammrath-Bruecke  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01004
+RAMMRATH-BRUECKE  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+31
+Rammrath-Bruecke
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 05: Hertzallee  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01005
+HERTZALLEE  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+24
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 010, Route 06: Andreezeile  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01006
+ANDREEZEILE  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+23
+Andreezeile
+Andreezeile
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 07: U Adenauerplatz  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01007
+U ADENAUERPLATZ  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+19
+U Adenauerplatz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 010, Route 08: Andreezeile  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01008
+ANDREEZEILE  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+17
+Andreezeile
+Andreezeile
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 010, Route 09: Hertzallee  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01009
+HERTZALLEE  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+28
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WS
+Buergertreff
+S Teltow Stadt-Gonfrevillestr. T
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 010, Route 10: S Teltow Stadt-Gonfrevillestr.  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01010
+S TELTOW STADT-GONFREVILLESTR.  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+27
+S Teltow Stadt-Gonfrevillestr.
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 11: U Adenauerplatz  >>  Teltow Bahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01011
+U ADENAUERPLATZ  >>  TELTOW BAHNHOF
+109
+XXX
+
+[infosystem_busstop_list]
+26
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WB
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof T
+Teltow Bahnhof
+
+
+Line 010, Route 12: Teltow Bahnhof  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01012
+TELTOW BAHNHOF  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+25
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 010, Route 13: U Adenauerplatz  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01013
+U ADENAUERPLATZ  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+26
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 010, Route 14: Rammrath-Bruecke  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01014
+RAMMRATH-BRUECKE  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+25
+Rammrath-Bruecke
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 010, Route 15: Hertzallee  >>  Rathaus Zehlendorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01015
+HERTZALLEE  >>  RATHAUS ZEHLENDORF
+091
+XXX
+
+[infosystem_busstop_list]
+16
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee S
+Zehlendorf Eiche
+Rathaus Zehlendorf
+
+
+Line 010, Route 16: Rathaus Zehlendorf  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01016
+RATHAUS ZEHLENDORF  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+17
+Rathaus Zehlendorf
+Rathaus Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 17: Hertzallee  >>  Warthestr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01017
+HERTZALLEE  >>  WARTHESTR. T
+119
+XXX
+
+[infosystem_busstop_list]
+30
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str.
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr. T
+
+
+Line 010, Route 18: Warthestr.  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01018
+WARTHESTR.  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+29
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+S Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee F
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 19: S+U Zoologischer Garten Bhf  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01019
+S+U ZOOLOGISCHER GARTEN BHF  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+30
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 010, Route 20: Rathaus Zehlendorf  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01020
+RATHAUS ZEHLENDORF  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+11
+Rathaus Zehlendorf
+Rathaus Zehlendorf
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 010, Route 21: Bismarckplatz  >>  Rathaus Zehlendorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01021
+BISMARCKPLATZ  >>  RATHAUS ZEHLENDORF
+091
+XXX
+
+[infosystem_busstop_list]
+8
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee S
+Zehlendorf Eiche
+Rathaus Zehlendorf
+
+
+Line 010, Route 22: Zehlendorf Eiche  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01022
+ZEHLENDORF EICHE  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+9
+Zehlendorf Eiche
+Schuetzallee
+U Oskar-Helene-Heim
+Koenigin-Luise-Str.-Clayallee
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Bismarckplatz
+S Halensee S
+U Adenauerplatz T
+
+
+Line 010, Route 23: Koenigin-Luise-Str.-Clayallee  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01023
+KOENIGIN-LUISE-STR.-CLAYALLEE  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+13
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 010, Route 24: Zehlendorf Eiche  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01024
+ZEHLENDORF EICHE  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+18
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 010, Route 25: Koenigin-Luise-Str.-Clayallee  >>  Teltow Bahnhof
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01025
+KOENIGIN-LUISE-STR.-CLAYALLEE  >>  TELTOW BAHNHOF
+109
+XXX
+
+[infosystem_busstop_list]
+21
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WB
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof T
+Teltow Bahnhof
+
+
+Line 010, Route 26: S Halensee  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01026
+S HALENSEE  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+8
+S Halensee
+U Adenauerplatz
+Olivaer Platz
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 27: Joseph-Joachim-Platz  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01027
+JOSEPH-JOACHIM-PLATZ  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+15
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 010, Route 29: U Kurfuerstendamm  >>  Andreezeile
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01029
+U KURFUERSTENDAMM  >>  ANDREEZEILE
+017
+XXX
+
+[infosystem_busstop_list]
+21
+U Kurfuerstendamm
+U Uhlandstr.
+Olivaer Platz
+U Adenauerplatz
+S Halensee F
+Bismarckplatz
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Koenigin-Luise-Str.-Clayallee
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel S
+Andreezeile T
+Andreezeile
+
+
+Line 010, Route 31: U Oskar-Helene-Heim  >>  Rammrath-Bruecke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01031
+U OSKAR-HELENE-HEIM  >>  RAMMRATH-BRUECKE
+087
+XXX
+
+[infosystem_busstop_list]
+20
+U Oskar-Helene-Heim
+Schuetzallee
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Alt-Schoenow C
+Zehlendorfer Str. WR
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke T
+Rammrath-Bruecke
+
+
+Line 010, Route 51: Hertzallee  >>  Warthestr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01051
+HERTZALLEE  >>  WARTHESTR. T
+119
+XXX
+
+[infosystem_busstop_list]
+36
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+Joachim-Friedrich-Str.-Westfaelische Str.
+Seesener Str.
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz UA
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee UE
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf UA
+Machnower Str.
+Nuthestr. UE
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr. T
+
+
+Line 010, Route 52: Warthestr.  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01052
+WARTHESTR.  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+36
+Warthestr.
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr. UA
+S Zehlendorf
+Zehlendorf Eiche UE
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee UA
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz UE
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Seesener Str.
+Joachim-Friedrich-Str.-Westfaelische Str.
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 53: Hertzallee  >>  Schrockstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01053
+HERTZALLEE  >>  SCHROCKSTR.
+099
+XXX
+
+[infosystem_busstop_list]
+34
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+Joachim-Friedrich-Str.-Westfaelische Str.
+Seesener Str.
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz UA
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee UE
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Schrockstr. T
+Schrockstr.
+
+
+Line 010, Route 54: Machnower Str.-Berlepschstr.  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01054
+MACHNOWER STR.-BERLEPSCHSTR.  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+33
+Schrockstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee UA
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz UE
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Seesener Str.
+Joachim-Friedrich-Str.-Westfaelische Str.
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 55: Hertzallee  >>  Rathaus Zehlendorf
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01055
+HERTZALLEE  >>  RATHAUS ZEHLENDORF
+091
+XXX
+
+[infosystem_busstop_list]
+31
+Hertzallee
+Hertzallee
+S+U Zoologischer Garten Bhf
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+Joachim-Friedrich-Str.-Westfaelische Str.
+Seesener Str.
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz UA
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee UE
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+Rathaus Zehlendorf
+
+
+Line 010, Route 56: Zehlendorf Eiche  >>  Hertzallee
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01056
+ZEHLENDORF EICHE  >>  HERTZALLEE
+122
+XXX
+
+[infosystem_busstop_list]
+30
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee UA
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz UE
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Seesener Str.
+Joachim-Friedrich-Str.-Westfaelische Str.
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+S+U Zoologischer Garten Bhf WH
+Hertzallee T
+Hertzallee
+
+
+Line 010, Route 57: U Adenauerplatz  >>  Warthestr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01057
+U ADENAUERPLATZ  >>  WARTHESTR. T
+119
+XXX
+
+[infosystem_busstop_list]
+29
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+Joachim-Friedrich-Str.-Westfaelische Str.
+Seesener Str.
+S Hohenzollerndamm
+Cunostr.
+Salzbrunner Str.
+Forckenbeckstr.
+Elsterplatz UA
+Roseneck-Hohenzollerndamm
+Messelstr.
+Puecklerstr.
+Finkenstr.
+Koenigin-Luise-Str.-Clayallee UE
+Alliiertenmuseum
+Huettenweg
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf UA
+Machnower Str.
+Nuthestr. UE
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr. T
+
+
+Line 010, Route 58: Warthestr.  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01058
+WARTHESTR.  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+29
+Warthestr.
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr. UA
+S Zehlendorf
+Zehlendorf Eiche UE
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim
+Huettenweg
+Alliiertenmuseum
+Koenigin-Luise-Str.-Clayallee UA
+Finkenstr.
+Puecklerstr.
+Messelstr.
+Roseneck-Hohenzollerndamm
+Elsterplatz UE
+Forckenbeckstr.
+Salzbrunner Str.
+Cunostr.
+S Hohenzollerndamm
+Seesener Str.
+Joachim-Friedrich-Str.-Westfaelische Str.
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz T
+
+
+Line 010, Route 59: U Oskar-Helene-Heim  >>  Warthestr. T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01059
+U OSKAR-HELENE-HEIM  >>  WARTHESTR. T
+119
+XXX
+
+[infosystem_busstop_list]
+12
+U Oskar-Helene-Heim
+Clayallee 229
+Leichhardtstr.
+Schuetzallee
+Scharfestr.
+Zehlendorf Eiche
+S Zehlendorf UA
+Machnower Str.
+Nuthestr. UE
+Einkaufszentrum Oderstr.
+Neissestr.
+Warthestr. T
+
+
+Line 010, Route 60: Warthestr.  >>  U Oskar-Helene-Heim T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01060
+WARTHESTR.  >>  U OSKAR-HELENE-HEIM T
+080
+XXX
+
+[infosystem_busstop_list]
+12
+Warthestr.
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr. UA
+S Zehlendorf
+Zehlendorf Eiche UE
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim T
+
+
+Line 010, Route 62: Warthestr.  >>  Zehlendorf Eiche T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01062
+WARTHESTR.  >>  ZEHLENDORF EICHE T
+121
+XXX
+
+[infosystem_busstop_list]
+7
+Warthestr.
+Warthestr.
+Neissestr.
+Einkaufszentrum Oderstr.
+Nuthestr. UA
+S Zehlendorf
+Zehlendorf Eiche T
+
+
+Line 010, Route 64: Machnower Str.-Berlepschstr.  >>  U Oskar-Helene-Heim T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01064
+MACHNOWER STR.-BERLEPSCHSTR.  >>  U OSKAR-HELENE-HEIM T
+080
+XXX
+
+[infosystem_busstop_list]
+9
+Schrockstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche
+Scharfestr.
+Schuetzallee
+Leichhardtstr.
+Clayallee 229
+U Oskar-Helene-Heim T
+
+
+Line 012, Route 01: Zehlendorf Eiche  >>  Waldschaenke T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01201
+ZEHLENDORF EICHE  >>  WALDSCHAENKE T
+020
+XXX
+
+[infosystem_busstop_list]
+23
+Zehlendorf Eiche
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Camphausenstr.
+Radtkestr.
+Loebellstr.
+Ludwigsfelder Str.
+Fercher Str.
+Neuruppiner Str. UA
+Beeskowdamm
+Alt-Schoenow
+Zehlendorfer Str.
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke T
+
+
+Line 012, Route 02: Waldschaenke  >>  Zehlendorf Eiche
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01202
+WALDSCHAENKE  >>  ZEHLENDORF EICHE
+121
+XXX
+
+[infosystem_busstop_list]
+24
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Zehlendorfer Str.
+Alt-Schoenow
+Beeskowdamm
+Neuruppiner Str. UE
+Fercher Str.
+Ludwigsfelder Str.
+Loebellstr.
+Radtkestr.
+Camphausenstr.
+Machnower Str.-Berlepschstr.
+S Zehlendorf
+Zehlendorf Eiche B
+Zehlendorf Eiche T
+Zehlendorf Eiche
+
+
+Line 012, Route 03: Zehlendorf Eiche  >>  Waldschaenke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01203
+ZEHLENDORF EICHE  >>  WALDSCHAENKE
+116
+XXX
+
+[infosystem_busstop_list]
+23
+Zehlendorf Eiche
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.-Berlepschstr.
+Camphausenstr.
+Radtkestr.
+Loebellstr.
+Ludwigsfelder Str.
+Fercher Str.
+Neuruppiner Str. UA
+Beeskowdamm
+Alt-Schoenow
+Zehlendorfer Str.
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke T
+
+
+Line 013, Route 01: Waldschaenke  >>  S Teltow Stadt-Gonfrevillestr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01301
+WALDSCHAENKE  >>  S TELTOW STADT-GONFREVILLESTR.
+110
+XXX
+
+[infosystem_busstop_list]
+14
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Albert-Wiebach-Str.
+S Teltow Stadt-Gonfrevillestr.
+
+
+Line 013, Route 02: S Teltow Stadt-Gonfrevillestr.  >>  Waldschänke
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01302
+S TELTOW STADT-GONFREVILLESTR.  >>  WALDSCHAENKE
+086
+XXX
+
+[infosystem_busstop_list]
+13
+S Teltow Stadt-Gonfrevillestr.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 019, Route 01: Herbertstr.  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01901
+HERBERTSTR.  >>  U WITTENBERGPLATZ
+070
+XXX
+
+[infosystem_busstop_list]
+13
+Herbertstr.
+Rathenauplatz
+S Halensee F
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 019, Route 02: U Wittenbergplatz  >>  Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01902
+U WITTENBERGPLATZ  >>  HERBERTSTR.
+042
+XXX
+
+[infosystem_busstop_list]
+14
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee F
+Rathenauplatz UA
+Bismarckplatz
+Herbertstr.
+
+
+Line 019, Route 03: Rathenauplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01903
+RATHENAUPLATZ  >>  U WITTENBERGPLATZ
+070
+XXX
+
+[infosystem_busstop_list]
+12
+Rathenauplatz
+S Halensee
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 019, Route 04: U Wittenbergplatz  >>  Rathenauplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01904
+U WITTENBERGPLATZ  >>  RATHENAUPLATZ
+092
+XXX
+
+[infosystem_busstop_list]
+13
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee
+Rathenauplatz T
+Rathenauplatz
+
+
+Line 019, Route 05: Herbertstr.  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01905
+HERBERTSTR.  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+6
+Herbertstr.
+Rathenauplatz
+S Halensee F
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz T
+
+
+Line 019, Route 06: U Adenauerplatz  >>  Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01906
+U ADENAUERPLATZ  >>  HERBERTSTR.
+042
+XXX
+
+[infosystem_busstop_list]
+7
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee F
+Rathenauplatz UA
+Bismarckplatz
+Herbertstr.
+
+
+Line 019, Route 07: U Wittenbergplatz  >>  U Adenauerplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01907
+U WITTENBERGPLATZ  >>  U ADENAUERPLATZ T
+014
+XXX
+
+[infosystem_busstop_list]
+8
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz S
+U Adenauerplatz T
+
+
+Line 019, Route 08: U Adenauerplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01908
+U ADENAUERPLATZ  >>  U WITTENBERGPLATZ
+070
+XXX
+
+[infosystem_busstop_list]
+8
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 019, Route 09: S Halensee  >>  Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01909
+U HALENSEE  >>  HERBERTSTR.
+042
+XXX
+
+[infosystem_busstop_list]
+4
+S Halensee
+Rathenauplatz UA
+Bismarckplatz
+Herbertstr.
+
+
+Line 019, Route 12: U Wittenbergplatz  >>  Herbertstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+01911
+U WITTENBERGPLATZ  >>  HERBERTSTR.
+045
+XXX
+
+[infosystem_busstop_list]
+14
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee F
+Rathenauplatz UA
+Bismarckplatz
+Herbertstr.
+
+
+Line 029, Route 01: Roseneck  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02901
+ROSENECK  >>  U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+20
+Roseneck
+Roseneck
+Roseneck-Teplitzer Str.
+Joseph-Joachim-Platz
+Delbrueckstr.
+Herthastr.
+Lynarstr.
+Bismarckplatz
+Rathenauplatz
+S Halensee F
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 029, Route 02: U Wittenbergplatz  >>  Roseneck
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02902
+U WITTENBERGPLATZ  >>  ROSENECK
+094
+XXX
+
+[infosystem_busstop_list]
+20
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee F
+Rathenauplatz
+Bismarckplatz
+Lynarstr.
+Herthastr.
+Delbrueckstr.
+Joseph-Joachim-Platz
+Roseneck-Teplitzer Str.
+Roseneck B
+Roseneck
+
+
+Line 029, Route 03: Rathenauplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02903
+RATHENAUPLATZ  >>  U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+12
+Rathenauplatz
+S Halensee
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 029, Route 04: U Wittenbergplatz  >>  Rathenauplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02904
+U WITTENBERGPLATZ  >>  RATHENAUPLATZ
+092
+XXX
+
+[infosystem_busstop_list]
+13
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz
+U Adenauerplatz
+Lehniner Platz-Schaubuehne
+Agathe-Lasch-Platz
+S Halensee
+Rathenauplatz T
+Rathenauplatz
+
+
+Line 029, Route 05: Hochmeisterplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02905
+HOCHMEISTERPLATZ  >>  U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+10
+Hochmeisterplatz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 029, Route 06: U Wittenbergplatz  >>  Hochmeisterplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02906
+U WITTENBERGPLATZ  >>  HOCHMEISTERPLATZ T
+053
+XXX
+
+[infosystem_busstop_list]
+10
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz S
+U Adenauerplatz
+Hochmeisterplatz B
+Hochmeisterplatz T
+
+
+Line 029, Route 07: Hochmeisterplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02907
+HOCHMEISTERPLATZ  >>  U WITTENBERGPLATZ
+143
+XXX
+
+[infosystem_busstop_list]
+10
+Hochmeisterplatz
+Agathe-Lasch-Platz
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 029, Route 08: U Wittenbergplatz  >>  Hochmeisterplatz T
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02908
+U WITTENBERGPLATZ  >>  HOCHMEISTERPLATZ T
+053
+XXX
+
+[infosystem_busstop_list]
+9
+U Wittenbergplatz
+U Wittenbergplatz
+Europa-Center
+U Kurfuerstendamm
+U Uhlandstr.
+Bleibtreustr.
+Olivaer Platz S
+U Adenauerplatz
+Hochmeisterplatz T
+
+
+Line 029, Route 09: U Adenauerplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02909
+U ADENAUERPLATZ  >>  U WITTENBERGPLATZ
+051
+XXX
+
+[infosystem_busstop_list]
+8
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 029, Route 11: Rathenauplatz  >>  U Wittenbergplatz
+----------------------------------------------------------------------
+
+[infosystem_trip]
+02911
+RATHENAUPLATZ  >>  U WITTENBERGPLATZ
+143
+XXX
+
+[infosystem_busstop_list]
+12
+Rathenauplatz
+S Halensee
+Agathe-Lasch-Platz
+Lehniner Platz-Schaubuehne
+U Adenauerplatz
+Olivaer Platz
+Bleibtreustr.
+U Uhlandstr.
+U Kurfuerstendamm
+Europa-Center
+U Wittenbergplatz T
+U Wittenbergplatz
+
+
+Line 043, Route 01: Waldschaenke  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+04301
+WALDSCHAENKE  >>  TERMINUS
+109
+XXX
+
+[infosystem_busstop_list]
+19
+Waldschaenke
+Waldschaenke
+Stahnsdorfer Hof
+Puschkinstr.
+Schwarzer Weg
+Feuerwehr
+Rammrath-Bruecke
+Warthestr.
+Havelstr.
+Striewitzweg
+Jahnstr.
+Ruhlsdorfer Platz
+Buergertreff
+S Teltow Stadt-Mahlower Str.
+Gustl-Sandtner-Str.
+Blumenstr.
+Mozartstr.
+Teltow Bahnhof
+Terminus
+
+
+Line 043, Route 02: Teltow Bahnhof  >>  Terminus
+----------------------------------------------------------------------
+
+[infosystem_trip]
+04302
+TELTOW BAHNHOF  >>  TERMINUS
+086
+XXX
+
+[infosystem_busstop_list]
+18
+Teltow Bahnhof
+Teltow Bahnhof
+Mozartstr.
+Blumenstr.
+Gustl-Sandtner-Str.
+S Teltow Stadt-Mahlower Str.
+Buergertreff
+Ruhlsdorfer Platz
+Jahnstr.
+Striewitzweg
+Havelstr.
+Warthestr.
+Rammrath-Bruecke
+Feuerwehr
+Schwarzer Weg
+Puschkinstr.
+Stahnsdorfer Hof
+Waldschaenke
+
+
+Line 084, Route 01: Wupperstr.  >>  Zehlendorf Eiche
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08401
+WUPPERSTR.  >>  ZEHLENDORF EICHE
+121
+XXX
+
+[infosystem_busstop_list]
+13
+Wupperstr.
+Wupperstr.
+Beeskowdamm
+Am Rehwechsel
+Am Birkenknick
+Laehrstr.
+Leo-Baeck-Str.
+Schweizerhofpark
+Schoenower Park
+S Zehlendorf
+Zehlendorf Eiche B
+Zehlendorf Eiche T
+Zehlendorf Eiche
+
+
+Line 084, Route 02: Zehlendorf Eiche  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08402
+ZEHLENDORF EICHE  >>  WUPPERSTR.
+111
+XXX
+
+[infosystem_busstop_list]
+13
+Zehlendorf Eiche
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 084, Route 04: Zehlendorf Eiche  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08404
+ZEHLENDORF EICHE  >>  WUPPERSTR.
+016
+XXX
+
+[infosystem_busstop_list]
+13
+Zehlendorf Eiche
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 084, Route 06: Zehlendorf Eiche  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08406
+ZEHLENDORF EICHE  >>  WUPPERSTR.
+111
+XXX
+
+[infosystem_busstop_list]
+12
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+
+
+Line 084, Route 08: Zehlendorf Eiche  >>  Wupperstr.
+----------------------------------------------------------------------
+
+[infosystem_trip]
+08408
+ZEHLENDORF EICHE  >>  WUPPERSTR.
+016
+XXX
+
+[infosystem_busstop_list]
+12
+Zehlendorf Eiche
+S Zehlendorf
+Machnower Str.
+Schoenower Park
+Schweizerhofpark
+Leo-Baeck-Str.
+Laehrstr.
+Am Birkenknick
+Am Rehwechsel
+Beeskowdamm
+Wupperstr. T
+Wupperstr.
+

@@ -1,0 +1,52 @@
+Mittelzaun
+
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+BS_Gelaender4.png
+
+[matl_alpha]
+1
+
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+###########################  Betonmauer 1
+
+[profile]
+0
+
+[profilepnt]
+0
+0
+0.005
+0.28
+
+[profilepnt]
+0
+1.1
+0.995
+0.28
+
+###########################  Betonmauer 1
+
+[profile]
+0
+
+[profilepnt]
+0
+1.1
+0.995
+0.28
+
+[profilepnt]
+0
+0
+0.005
+0.28
+

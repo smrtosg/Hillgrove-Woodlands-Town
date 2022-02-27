@@ -1,0 +1,15 @@
+[const]
+lights_blinkertime_on
+0.35
+
+[const]
+lights_blinkertime_firston
+0.45
+
+[const]
+lights_blinkertime_off
+0.3
+
+[const]
+lights_blinkautom_minLenk
+0.15

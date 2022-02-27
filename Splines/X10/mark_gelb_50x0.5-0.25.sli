@@ -1,0 +1,44 @@
+Diese Datei wurde ganz sicher nicht mit dem StreetCreator erstellt.
+
+---------------------------
+      Height Profiles
+---------------------------
+
+[heightprofile]
+-0.25
+0.25
+0.104
+0.104
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+mark_gelb.dds
+
+[matl_alpha]
+1
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+[profile]
+0
+
+[profilepnt]
+-0.25
+0.104
+0.8
+1.333
+
+[profilepnt]
+0.25
+0.104
+0.95
+1.333
+
+---------------------------
+          Paths
+---------------------------

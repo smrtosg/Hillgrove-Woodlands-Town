@@ -1,0 +1,535 @@
+=== Created with Simple Spline Editor ===
+=== Author: Anonymous ===
+
+=== Height profiles ===
+== <Unnamed profile> ==
+== Breite: 32.5 Meter ==
+[heightprofile]
+-16.25
+16.25
+0.1
+0.1
+
+== LeitplankeL ==
+== Breite: 2.4 Meter ==
+[heightprofile]
+-1.2
+-1.2
+0.45
+0.75
+
+== LeitplankeR ==
+== Breite: 2.4 Meter ==
+[heightprofile]
+1.2
+1.2
+0.45
+0.75
+
+=== Textures ===
+== 0 ==
+[texture]
+str_asphdrk.bmp
+[matl]
+str_asphdrk.bmp
+0
+[matl_alpha]
+2
+
+== 1 ==
+[texture]
+str_asphdrk_1C.bmp
+[matl]
+str_asphdrk_1C.bmp
+0
+[matl_alpha]
+2
+
+== 2 ==
+[texture]
+str_asphdrk_1line.bmp
+[matl]
+str_asphdrk_1line.bmp
+0
+[matl_alpha]
+2
+
+== 3 ==
+[texture]
+str_asphdrk_2line.bmp
+[matl]
+str_asphdrk_2line.bmp
+0
+[matl_alpha]
+2
+
+== 4 ==
+[texture]
+str_gruenstreifen.bmp
+[matl]
+str_gruenstreifen.bmp
+0
+[matl_alpha]
+2
+
+== 5 ==
+[texture]
+Leitplanke.bmp
+[matl]
+Leitplanke.bmp
+0
+[matl_alpha]
+2
+
+=== Textur wrappings ===
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-16.25
+0.1
+0.995
+0.2
+== TO ==
+[profilepnt]
+-15
+0.1
+0.05
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-15
+0.1
+0.05
+0.2
+== TO ==
+[profilepnt]
+-13.75
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+-13.75
+0.1
+0.05
+0.2
+== TO ==
+[profilepnt]
+-13.5
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+-13.5
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+-13.25
+0.1
+0.05
+0.2
+== END ==
+
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+-13.25
+0.1
+0.995
+0.2
+== TO ==
+[profilepnt]
+-9.5
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+3
+== FROM ==
+[profilepnt]
+-9.5
+0.1
+0.995
+0.2
+== TO ==
+[profilepnt]
+-6
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+-6
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+-2.5
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+-2.5
+0.1
+0.05
+0.2
+== TO ==
+[profilepnt]
+-2.25
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+-2.25
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+-2
+0.1
+0.05
+0.2
+== END ==
+
+== START ==
+[profile]
+4
+== FROM ==
+[profilepnt]
+-2
+0.1
+0.973
+0.2
+== TO ==
+[profilepnt]
+0
+0.1
+0.36
+0.2
+== END ==
+
+== START ==
+[profile]
+4
+== FROM ==
+[profilepnt]
+0
+0.1
+0.36
+0.2
+== TO ==
+[profilepnt]
+2
+0.1
+0.973
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+2
+0.1
+0.05
+0.2
+== TO ==
+[profilepnt]
+2.25
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+2.25
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+2.5
+0.1
+0.05
+0.2
+== END ==
+
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+2.5
+0.1
+0.995
+0.2
+== TO ==
+[profilepnt]
+6
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+3
+== FROM ==
+[profilepnt]
+6
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+9.5
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+2
+== FROM ==
+[profilepnt]
+9.5
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+13.25
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+13.25
+0.1
+0.05
+0.2
+== TO ==
+[profilepnt]
+13.5
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+1
+== FROM ==
+[profilepnt]
+13.5
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+13.75
+0.1
+0.05
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+13.75
+0.1
+0.995
+0.2
+== TO ==
+[profilepnt]
+15
+0.1
+0.005
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+15
+0.1
+0.005
+0.2
+== TO ==
+[profilepnt]
+16.25
+0.1
+0.995
+0.2
+== END ==
+
+== START ==
+[profile]
+5
+== FROM ==
+[profilepnt]
+-1.2
+0.45
+0
+0.2
+== TO ==
+[profilepnt]
+-1.2
+0.75
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+5
+== FROM ==
+[profilepnt]
+-1.2
+0.75
+0
+0.2
+== TO ==
+[profilepnt]
+-1.2
+0.45
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+5
+== FROM ==
+[profilepnt]
+1.2
+0.45
+0
+0.2
+== TO ==
+[profilepnt]
+1.2
+0.75
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+5
+== FROM ==
+[profilepnt]
+1.2
+0.75
+0
+0.2
+== TO ==
+[profilepnt]
+1.2
+0.45
+1
+0.2
+== END ==
+
+=== Pathes ===
+[path]
+0
+-11.375
+0.1
+3.314
+1
+
+[path]
+0
+-7.75
+0.1
+3.093
+1
+
+[path]
+0
+-4.25
+0.1
+3.093
+1
+
+[path]
+0
+4.25
+0.1
+3.093
+0
+
+[path]
+0
+7.75
+0.1
+3.093
+0
+
+[path]
+0
+11.375
+0.1
+3.314
+0
+

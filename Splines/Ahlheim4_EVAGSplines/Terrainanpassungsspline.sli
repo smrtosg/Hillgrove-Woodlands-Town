@@ -1,0 +1,41 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-40.000
+40.000
+0.100
+0.100
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+gras1.bmp
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Fahrbahn
+
+[profile]
+0
+
+[profilepnt]
+-10.000
+0.100
+0.005
+0.200
+
+[profilepnt]
+10.000
+0.100
+0.995
+0.200
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +

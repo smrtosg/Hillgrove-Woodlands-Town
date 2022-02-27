@@ -1,0 +1,15 @@
+
+{macro:spray_frame}
+
+' Nasse Straße:
+
+	(L.L.StreetCond) d 1 >= 2 <= &&
+	{if}
+		(L.L.Velocity) 30 / 1 min (S.L.tire_wet_live)
+		(L.L.Velocity) (S.L.tire_wet_freq)
+	{else}
+		0 (S.L.tire_wet_freq)
+	{endif}	
+	
+{end}
+

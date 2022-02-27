@@ -1,0 +1,71 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-7.500
+7.500
+0.100
+0.100
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+Beton1.dds
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Fahrbahn
+
+[profile]
+0
+
+[profilepnt]
+-7.500
+0.100
+0.005
+0.200
+
+[profilepnt]
+-2.500
+0.100
+0.995
+0.200
+
+[profile]
+0
+
+[profilepnt]
+-2.500
+0.100
+0.005
+0.200
+
+[profilepnt]
+2.500
+0.100
+0.995
+0.200
+
+[profile]
+0
+
+[profilepnt]
+2.500
+0.100
+0.005
+0.200
+
+[profilepnt]
+7.500
+0.100
+0.995
+0.200
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +

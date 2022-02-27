@@ -1,0 +1,27 @@
+'##############
+'Exhaust Script
+'##############
+
+'Controls Exhaust Effect
+
+'(c) 01.08.2007 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- Engine
+
+'Revision History:
+'- Marcel Kuhnt		12.06.2009	Last Change	
+'- Rüdiger Hülsmann	08.07.2010	Bugfix: "Throttle" changed to "Throttle_injection"
+
+'--------------------------------------------------------------
+
+{macro:Auspuff_Frame}
+	(L.L.engine_throttle_injection) (C.L.auspuff_max_vel) (S.L.auspuff_vel)
+	(L.L.engine_n) 50 / (S.L.auspuff_freq)
+	(L.L.engine_throttle_injection) 2 * 0.5 + (S.L.auspuff_leben)
+	(L.L.engine_throttle_injection) 1 + (C.L.auspuff_max_alpha) * (S.L.auspuff_alpha)
+{end}
+

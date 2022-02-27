@@ -1,0 +1,31 @@
+Invisible Street
+
+[onlyeditor]
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+align_to.tga
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Grass strip:
+
+[profile]
+0
+
+[profilepnt]
+-1.5
+0.1
+0
+-0.1
+
+[profilepnt]
+1.5
+0.1
+1
+-0.1

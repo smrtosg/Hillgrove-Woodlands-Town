@@ -1,0 +1,50 @@
+BS_Sonstiges_NaturBuesche01.sli
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+BS_Zaun03.png
+
+[matl_alpha]
+1
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+### Busch ###
+
+[profile]
+0
+
+[profilepnt]
+0
+0
+0.151099
+0.27
+
+[profilepnt]
+0
+3
+0.995
+0.27
+
+### Busch ###
+
+[profile]
+0
+
+[profilepnt]
+0
+3
+0.995
+0.27
+
+[profilepnt]
+0
+0
+0.151099
+0.27
+

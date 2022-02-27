@@ -1,0 +1,42 @@
+Invisible Airway
+
+[onlyeditor]
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+helper_path_air_1.bmp
+
+---------------------------
+     Graphical Lanes
+---------------------------
+
+Grass strip:
+
+[profile]
+0
+
+[profilepnt]
+-10
+0
+0
+-0.02
+
+[profilepnt]
+10
+0
+1
+-0.02
+
+---------------------------
+          Paths
+---------------------------
+
+[path]
+3
+0
+0
+0
+0

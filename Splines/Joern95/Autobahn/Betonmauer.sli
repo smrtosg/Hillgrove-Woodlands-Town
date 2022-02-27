@@ -1,0 +1,91 @@
+=== Created with Simple Spline Editor ===
+=== Author: Anonymous ===
+
+=== Height profiles ===
+== LINKS ==
+== Breite: 1 Meter ==
+[heightprofile]
+-0.5
+-0.5
+0
+0.8
+
+== OBEN ==
+== Breite: 1 Meter ==
+[heightprofile]
+-0.5
+0.5
+0.8
+0.8
+
+== RECHTS ==
+== Breite: 1 Meter ==
+[heightprofile]
+0.5
+0.5
+0.8
+0
+
+=== Textures ===
+== 0 ==
+[texture]
+str_betonplatten.bmp
+[matl]
+str_betonplatten.bmp
+0
+[matl_alpha]
+2
+
+=== Textur wrappings ===
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.5
+0
+0
+0.2
+== TO ==
+[profilepnt]
+-0.5
+0.8
+0.5
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.5
+0.8
+0
+0.2
+== TO ==
+[profilepnt]
+0.5
+0.8
+0.5
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0.5
+0.8
+0
+0.2
+== TO ==
+[profilepnt]
+0.5
+0
+0.5
+0.2
+== END ==
+
+=== Pathes ===

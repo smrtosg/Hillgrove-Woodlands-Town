@@ -1,0 +1,226 @@
+=== Created with Simple Spline Editor ===
+=== Author: Joern95 ===
+
+=== Height profiles ===
+== <Unnamed profile> ==
+== Breite: 0.425 Meter ==
+[heightprofile]
+-0.3
+-0.125
+0
+0.33
+
+== <Unnamed profile> ==
+== Breite: 0.215 Meter ==
+[heightprofile]
+-0.125
+-0.09
+0.33
+0.44
+
+== <Unnamed profile> ==
+== Breite: 0.18 Meter ==
+[heightprofile]
+-0.09
+0.09
+0.44
+0.44
+
+== <Unnamed profile> ==
+== Breite: 0.215 Meter ==
+[heightprofile]
+0.09
+0.125
+0.44
+0.33
+
+== <Unnamed profile> ==
+== Breite: 0.425 Meter ==
+[heightprofile]
+0.125
+0.3
+0.33
+0
+
+=== Textures ===
+== 0 ==
+[texture]
+str_betonplatten_dunkel.bmp
+[matl]
+str_betonplatten_dunkel.bmp
+0
+[matl_alpha]
+2
+
+=== Textur wrappings ===
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.3
+0
+0
+0.2
+== TO ==
+[profilepnt]
+-0.125
+0.33
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.125
+0.33
+0
+0.2
+== TO ==
+[profilepnt]
+-0.09
+0.44
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.09
+0.44
+0
+0.2
+== TO ==
+[profilepnt]
+0.09
+0.44
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0.09
+0.44
+0
+0.2
+== TO ==
+[profilepnt]
+0.125
+0.33
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0.125
+0.33
+0
+0.2
+== TO ==
+[profilepnt]
+0.3
+0
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.125
+0.33
+0
+0.2
+== TO ==
+[profilepnt]
+-0.3
+0
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-0.09
+0.44
+0
+0.2
+== TO ==
+[profilepnt]
+-0.125
+0.33
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0.09
+0.44
+0
+0.2
+== TO ==
+[profilepnt]
+-0.09
+0.44
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0.125
+0.33
+0
+0.2
+== TO ==
+[profilepnt]
+0.09
+0.44
+1
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+0.3
+0
+0
+0.2
+== TO ==
+[profilepnt]
+0.125
+0.33
+1
+0.2
+== END ==
+
+=== Pathes ===

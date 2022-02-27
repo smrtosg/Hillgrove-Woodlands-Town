@@ -1,0 +1,57 @@
+'##############
+'Rain Script
+'##############
+
+'Processes Variables to visualize rain on windows
+
+'(c) 13.06.2009 Marcel Kuhnt
+'(c) 04.03.2009 Rüdiger Hülsmann
+
+'Script Version: 1.2
+'Omsi release: 1.0
+
+'Needs:
+'- nothing
+
+'Revision History:
+'- Rüdiger Hülsmann	04.03.2009	Added Wiper Washer Wetness
+'- Marcel Kuhnt		13.06.2009	Moved Wiper/Washer Function to wiper script
+
+'--------------------------------------------------
+
+
+{macro:rain_frame}
+
+'Raindrop incr/decr due to rain/sunshine
+
+	(L.S.Timegap) (L.L.PrecipRate) * s0
+
+	(L.L.Rain_Window_Front_Wetness) l0
+	+ 1 min 0 max
+	(S.L.Rain_Window_Front_Wetness)
+
+	(L.L.Rain_Window_Norm_Wetness) l0
+	+ 1 min 0 max
+	(S.L.Rain_Window_Norm_Wetness)
+
+	(L.L.Rain_Window_Wiped_Wetness) l0
+	+ 1 min 0 max
+	(S.L.Rain_Window_Wiped_Wetness)
+		
+	(L.L.Rain_Window_Mirror) l0
+    + 1 min 0 max
+    (S.L.Rain_Window_Mirror)
+	
+	(L.L.Rain_Window_door0) l0
+     + 1 min 0 max
+    (S.L.Rain_Window_door0)
+	
+	(L.L.Rain_Window_door1) l0
+     + 1 min 0 max
+    (S.L.Rain_Window_door1)
+	
+    (L.L.Rain_Window_fahrf) l0
+     + 1 min 0 max
+    (S.L.Rain_Window_fahrf)
+	
+{end}

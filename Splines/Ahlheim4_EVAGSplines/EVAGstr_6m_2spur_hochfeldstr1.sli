@@ -1,0 +1,70 @@
+========================
+Höhenprofile
+========================
+
+[heightprofile]
+-3
+3
+0.1
+0.1
+
+---------------------------
+         Textures
+---------------------------
+
+
+[texture]
+DDR-Kleinpflaster01_variety.bmp
+
+	// Texture will be splitted longitudinally
+
+	[patchwork_chain]
+	{length of one segment in m}
+	{chain of transitions}
+	{chain of weight factors}
+	{invertable? 0 / 1}
+
+
+[patchwork_chain]
+5
+AAAABBAACAAADAAAA
+0011311111111133
+0000000000000000
+
+
+========================
+Texturierung
+========================
+
+[profile]
+0
+
+[profilepnt]
+-3
+0.1
+0.995
+0.2
+
+[profilepnt]
+3
+0.1
+0.005
+0.2
+
+========================
+Verkehrswege
+========================
+
+[path]
+0
+-1.5
+0.1
+2.5
+1
+
+[path]
+0
+1.5
+0.1
+2.5
+0

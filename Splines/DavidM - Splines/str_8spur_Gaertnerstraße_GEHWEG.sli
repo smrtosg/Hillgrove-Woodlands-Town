@@ -1,0 +1,66 @@
+=== Created with Simple Spline Editor ===
+=== Author: davidm2412 ===
+
+=== Height profiles ===
+== <Unnamed profile> ==
+== Breite: 5 Meter ==
+[heightprofile]
+-2.5
+2.5
+0.25
+0.25
+
+
+=== Textures ===
+== 0 ==
+[texture]
+str_gehweg03.bmp
+[matl]
+str_gehweg03.bmp
+0
+[matl_alpha]
+2
+
+=== Textur wrappings ===
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+-2.5
+0.25
+0.005
+0.2
+== TO ==
+[profilepnt]
+2.5
+0.25
+0.973
+0.2
+== END ==
+
+== START ==
+[profile]
+0
+== FROM ==
+[profilepnt]
+2.5
+0.25
+0.973
+0.2
+== TO ==
+[profilepnt]
+2.5
+0.0
+0.995
+0.2
+== END ==
+
+
+=== Pathes ===
+[path]
+1
+0.00
+0.25
+1.664
+2

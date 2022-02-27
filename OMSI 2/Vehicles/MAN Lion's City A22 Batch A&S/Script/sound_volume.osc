@@ -1,0 +1,33 @@
+'#####################
+'Outside Volume Script
+'#####################
+
+'Controls outside sound volume (when doors are open, you can hear outside sounds louder).
+
+'(c) 10.11.2008 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- door.osc
+
+
+'Revision History:
+'- Marcel Kuhnt		10.08.2009	Added Revision History
+
+'------------------------------------------------------------------------------------------
+
+{macro:sound_volume_frame}
+'Hier wird der hörbare Anteil der Außenlautstärke ermittelt:
+	(L.L.door_0) 0.5 *
+	(L.L.door_1) 0.5 * +
+	(L.L.door_2) 0.125 * +
+	(L.L.door_3) 0.125 * +
+	(L.L.door_4) 0.06 * +
+	(L.L.door_5) 0.06 * +
+	(L.L.cp_fahrerfenster_pos) 0.5 * +
+	0.5 min
+	0 max
+	(S.L.Snd_OutsideVol)
+{end}

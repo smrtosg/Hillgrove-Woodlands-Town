@@ -1,0 +1,1912 @@
+#####TEMPLATE FILE#####
+SD200_SD202_Template.xml
+
+#####COMMENT#####
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####ENDCOMMENT#####
+
+
+>>> Created: 2/11/2014, 11:34:34
+
+>>> This file was created with HOF Creator 1.1. Thank you for usage!
+>>> www.jan-kiesewalter.de
+
+
+[name]
+RRTS_DEPOT V
+
+[servicetrip]
+Blank
+
+
+stringcount_terminus
+8
+
+stringcount_busstop
+4
+
+
+
+######################################
+ TERMINI
+######################################
+
+
+[addterminus_allexit]
+0
+Blank
+
+
+
+
+
+
+
+WDL CITY\SMRTG_BLANK.png
+.........................
+
+
+[addterminus_allexit]
+1
+OFF SERVICE
+  OFF SERVICE
+OFF SERVICE
+
+  OFF SERVICE
+
+    OFF SERVICE
+
+WDL CITY\SMRTG_OFFSVC.png
+.........................
+
+
+[addterminus_allexit]
+2
+EDS Ver
+EDS VER
+LAWO 281215
+
+  EDS 281215
+
+  EDS Ver 281215
+.........................
+
+
+[addterminus_allexit]
+3
+RRTS BUSES
+   RRTS BUSES
+
+RRTS BUSES
+   RRTS BUSES
+
+     RRTS BUSES
+.........................
+
+
+[addterminus_allexit]
+4
+Training Bus
+  TRAINING BUS
+TRAINING BUS
+
+  TRAINING BUS
+
+    Training Bus
+.........................
+
+
+[addterminus]
+5
+LAST BUS
+  LAST BUS
+LAST BUS
+
+  LAST BUS
+
+    LAST BUS
+.........................
+
+
+[addterminus_allexit]
+6
+SMRT BUSES
+  SMRT BUSES
+SMRT BUSES
+
+  SMRT BUSES
+
+    SMRT BUSES
+
+WDL CITY\SMB30.png
+.........................
+
+
+[addterminus_allexit]
+7
+BREAKDOWN
+BREAKDOWN
+BUS BREAKDOWN
+
+ BUS BREAKDOWN
+
+
+.........................
+
+
+[addterminus_allexit]
+8
+ON TEST
+    ON TEST
+ON TEST
+
+     ON TEST
+
+
+.........................
+
+
+[addterminus_allexit]
+9
+RRTS ADVERTISE
+RRTS ADVERT
+SMRT
+
+ ADVERTS WANTED
+
+
+.........................
+
+
+[addterminus]
+10
+Woodlands Industrial Depot
+WDL IND DEPOT
+WOODLANDS
+  DEPOT
+WDL IND DEPOT
+
+  WDL IND DEPOT
+.........................
+
+
+[addterminus]
+11
+Hillview Depot
+HILLVIEW DEPOT
+HILLVIEW
+DEPOT
+HILLVIEW DEPOT
+
+  HILLVIEW DEPOT
+.........................
+
+
+[addterminus]
+12
+CHARTERED
+CHARTERED
+CHARTERED
+
+CHARTERED
+
+  CHARTERED
+.........................
+
+
+[addterminus]
+20
+EMPLOYEE SHUTTLE
+EMPLOYEE SHUTTLE
+EMPLOYEE
+SHUTTLE
+EMPLOYEE SHUTTLE
+
+  EMPLOYEE SHUTTLE
+.........................
+
+
+[addterminus]
+30
+NDP MSG
+NDP MSG
+SMRT
+Fly Our Flag
+NDP MSG
+
+NDP MSG
+.........................
+
+
+[addterminus]
+31
+HAPPY NEW YEAR
+HAPPY NEW YEAR
+HAPPY NEW YEAR
+
+HAPPY NEW YEAR
+
+HAPPY NEW YEAR
+.........................
+
+
+[addterminus]
+32
+HAPPY CNY
+HAPPY CNY
+GONG XI FA CAI
+
+HAPPY CNY
+
+HAPPY CNY
+.........................
+
+
+[addterminus]
+33
+HAPPY DEEPAVALI
+HAPPY DEEPAVALI
+HAPPY DEEPAVALI
+
+HAPPY DEEPAVALI
+
+HAPPY DEEPAVALI
+.........................
+
+
+[addterminus]
+34
+HARI RAYA MSG
+HARI RAYA MSG
+SELAMAT HARI RAYA
+
+HARI RAYA MSG
+
+HARI RAYA MSG
+.........................
+
+
+[addterminus]
+35
+SG50 NDP
+SG50 NDP
+MAJULAH
+SINGAPURA
+SG50 NDP
+
+SG50 NDP
+.........................
+
+
+[addterminus]
+1035
+SG50 NDP
+SG50 NDP
+OUR GOLDEN
+JUBILEE
+SG50 NDP
+
+SG50 NDP
+.........................
+
+
+[addterminus]
+901
+Woodlands Int 901
+  901 WDL INT
+WDL INT via
+WOODLANDS LOOP
+WDL INT VIA LOOP
+
+WDL INT via WDL LOOP
+.........................
+
+
+[addterminus]
+902
+Woodlands Int 902
+  902 WDL INT
+  WOODLANDS
+  INT / MRT
+WDL INT VIA IND
+
+WDL VIA WDL IND EST
+.........................
+
+
+[addterminus]
+1902
+Woodlands Int 902
+  902 WDL INT
+WOODLANDS INT via
+WDL IND  ESTATE
+WDL INT VIA IND
+
+WDL VIA WDL IND EST
+.........................
+
+
+[addterminus]
+903
+Woodlands Industrial Est 902
+902 END WDL IND
+ENDS AT Lay Huat
+Woodworks
+ENDS AT LAY HUAT
+
+  ENDS AT LAY HUAT
+.........................
+
+
+[addterminus]
+911
+Woodlands Int 911
+WDL INT      911
+  WOODLANDS
+  INT / MRT
+WDL INT   (LOOP)
+
+WDL INT (LOOP)   911
+
+WDL CITY\911011.png
+.........................
+
+
+[addterminus]
+1911
+Woodlands Int 911
+WDL INT      911
+WOODLANDS INT via
+WOODLANDS AVE 3
+WDL INT   (LOOP)
+
+WDL INT (LOOP)   911
+
+WDL CITY\911012.png
+.........................
+
+
+[addterminus]
+2911
+Woodlands Int 911
+WDL INT      911
+WOODLANDS INT via
+WOODLANDS LOOP
+WDL INT   (LOOP)
+
+WDL INT (LOOP)   911
+
+WDL CITY\911013.png
+.........................
+
+
+[addterminus]
+3911
+Woodlands Int 911
+WDL INT      911
+WOODLANDS INT via
+WOODLANDS AVE 4,5,7
+WDL INT   (LOOP)
+
+WDL INT (LOOP)   911
+
+WDL CITY\911014.png
+.........................
+
+
+[addterminus]
+4911
+Woodlands Int 911
+WDL INT      911
+WOODLANDS INT via
+WOODLANDS ST 81
+WDL INT   (LOOP)
+
+WDL INT (LOOP)   911
+
+WDL CITY\911015.png
+.........................
+
+
+[addterminus]
+904
+Woodlands Int PPSS 902
+PPSS WDL INT 902
+PPSS
+ENDS AT WDL INT
+ENDS AT WDL INT
+
+PPSS Svc     WDL INT
+.........................
+
+
+[addterminus]
+859
+Woodlands Int 858
+858  TER WDL INT
+   ENDS AT
+WOODLANDS INT
+ENDS AT WDL INT
+
+  Ends at WDL Int
+
+WDL CITY\858011.png
+.........................
+
+
+[addterminus]
+858
+Intl Airport Ter 858
+858  AIRPT WDL
+INTERNATIONAL
+  AIRPORT
+ AIRPT VIA WDL
+
+Airport via WDL INT
+
+WDL CITY\858021.png
+.........................
+
+
+[addterminus]
+1858
+Intl Airport Ter 858
+858  AIRPT WDL
+INTL AIRPORT via 
+AIRPORT BLVD
+ AIRPT VIA WDL
+
+Airport via WDL INT
+
+WDL CITY\858022.png
+.........................
+
+
+[addterminus]
+2858
+Intl Airport Ter 858
+858  AIRPT WDL
+INTL AIRPORT via 
+CTE
+ AIRPT VIA WDL
+
+Airport via WDL INT
+
+WDL CITY\858023.png
+.........................
+
+
+[addterminus]
+3858
+Intl Airport Ter 858
+858  AIRPT WDL
+INTL AIRPORT via 
+WOODLANDS AVE 7
+ AIRPT VIA WDL
+
+Airport via WDL INT
+
+WDL CITY\858024.png
+.........................
+
+
+[addterminus]
+4858
+Intl Airport Ter 858
+858  AIRPT WDL
+INTL AIRPORT via 
+WOODLANDS INT
+ AIRPT VIA WDL
+
+Airport via WDL INT
+
+WDL CITY\858025.png
+.........................
+
+
+[addterminus]
+5858
+Intl Airport Ter 858
+858  AIRPT WDL
+INTL AIRPORT via 
+WOODLANDS AVE 5
+ AIRPT VIA WDL
+
+Airport via WDL INT
+
+WDL CITY\858026.png
+.........................
+
+
+[addterminus]
+882
+Edgeview Estate 882
+EDGEVIEW ESTATE
+EDGEVIEW
+ESTATE
+EDGEVIEW ESTATE
+
+  Edgeview Estate
+
+WDL CITY\882011.png
+.........................
+
+
+[addterminus]
+1882
+Edgeview Estate 882
+EDGEVIEW ESTATE
+EDGEVIEW EST via 
+EDGEVIEW LINK
+EDGEVIEW ESTATE
+
+  Edgeview Estate
+
+WDL CITY\882012.png
+.........................
+
+
+[addterminus]
+2882
+Edgeview Estate 882
+EDGEVIEW ESTATE
+EDGEVIEW EST via 
+AIRPORT BLVD
+EDGEVIEW ESTATE
+
+  Edgeview Estate
+
+WDL CITY\882013.png
+.........................
+
+
+[addterminus]
+3882
+Edgeview Estate 882
+EDGEVIEW ESTATE
+EDGEVIEW EST via 
+CTE
+EDGEVIEW ESTATE
+
+  Edgeview Estate
+
+WDL CITY\882014.png
+.........................
+
+
+[addterminus]
+4882
+Edgeview Estate 882
+EDGEVIEW ESTATE
+EDGEVIEW EST via 
+EDGEVIEW SOUTH RD
+EDGEVIEW ESTATE
+
+  Edgeview Estate
+
+WDL CITY\882015.png
+.........................
+
+[addterminus]
+101
+T1 Shuttle
+T1 AIRPT SHUTTLE
+ T1 SHUTTLE BUS
+
+AIRPORT SHUTTLE
+
+ Airport T1 Shuttle
+.........................
+
+
+[addterminus]
+1101
+T1 Shuttle
+T1 AIRPT SHUTTLE
+INTL AIRPT TER via 
+TER 1 DEPARTURE
+AIRPORT SHUTTLE
+
+ Airport T1 Shuttle
+.........................
+
+
+[addterminus]
+2101
+T1 Shuttle
+T1 AIRPT SHUTTLE
+INTL AIRPT TER via 
+TER 1 ARRIVAL
+AIRPORT SHUTTLE
+
+ Airport T1 Shuttle
+.........................
+
+
+[addterminus]
+3101
+T1 Shuttle
+T1 AIRPT SHUTTLE
+INTL AIRPT TER via 
+TER 1 CHECK-IN
+AIRPORT SHUTTLE
+
+ Airport T1 Shuttle
+.........................
+
+
+[addterminus]
+102
+T2 Shuttle
+T2 AIRPT SHUTTLE
+T2 SHUTTLE BUS
+
+AIRPORT SHUTTLE
+
+ Airport T2 Shuttle
+.........................
+
+
+[addterminus]
+1102
+T2 Shuttle
+T2 AIRPT SHUTTLE
+INTL AIRPT TER via 
+TERMINAL 2 BLDG
+AIRPORT SHUTTLE
+
+ Airport T2 Shuttle
+.........................
+
+
+[addterminus]
+401
+Edgeview Int 401
+   PARKS 401
+
+PARKS
+ 
+  EDGEVIEW INT
+
+    Edgeview Int
+WDL CITY\401011.png
+.........................
+
+
+[addterminus]
+1401
+Edgeview Int 401
+   PARKS 401
+EDGEVIEW INT via 
+MT FABER CP
+  EDGEVIEW INT
+
+    Edgeview Int
+
+WDL CITY\401012.png
+.........................
+
+
+[addterminus]
+2401
+Edgeview Int 401
+   PARKS 401
+EDGEVIEW INT via 
+MT FABER FIELD
+  EDGEVIEW INT
+
+    Edgeview Int
+
+WDL CITY\401013.png
+.........................
+
+
+[addterminus]
+3401
+Edgeview Int 401
+   PARKS 401
+EDGEVIEW INT via 
+MOUNT FABER
+  EDGEVIEW INT
+
+    Edgeview Int
+
+WDL CITY\401014.png
+.........................
+
+
+[addterminus]
+4401
+Edgeview Int 401
+   PARKS 401
+EDGEVIEW INT via 
+MT. FABER INFO CTR.
+  EDGEVIEW INT
+
+    Edgeview Int
+
+WDL CITY\401015.png
+.........................
+
+
+[addterminus]
+111
+IKEA Edgeview
+IKEA SHUTTLE 
+IKEA SHUTTLE 
+EDGEVIEW ESTATE
+EDGEVIEW ESTATE
+
+    Edgeview Int
+.........................
+
+
+[addterminus]
+111
+IKEA Hillview
+IKEA SHUTTLE 
+IKEA SHUTTLE 
+HILLVIEW ESTATE
+HILLVIEW ESTATE
+
+    Edgeview Int
+.........................
+
+
+[addterminus]
+883
+Edgeview Int 882A
+EDGEVIEW ESTATE
+EDGEVIEW
+ESTATE
+EDGEVIEW ESTATE
+
+  Edgeview Estate
+
+WDL CITY\882021.png
+.........................
+
+
+[addterminus]
+1883
+Edgeview Int 882A
+EDGEVIEW ESTATE
+EDGEVIEW INT via
+EDGEVIEW CRESCENT
+EDGEVIEW ESTATE
+
+  Edgeview Estate
+
+WDL CITY\882022.png
+.........................
+
+
+[addterminus]
+2883
+Edgeview Int 882A
+EDGEVIEW ESTATE
+EDGEVIEW INT via
+EDGEVIEW LINK
+EDGEVIEW LINK
+
+  Edgeview Estate
+
+WDL CITY\882023.png
+.........................
+
+
+[addterminus]
+965
+Admiralty Int 965
+ADMIRALTY INT
+ADMIRALTY
+INT / MRT
+
+
+Admiralty Int
+
+WDL CITY\965011.png
+.........................
+
+
+[addterminus]
+1965
+Admiralty Int 965
+ADMIRALTY INT
+ADMIRALTY INT via
+WOODLANDS AVE 7
+
+Admiralty Int
+
+
+WDL CITY\965012.png
+.........................
+
+
+[addterminus]
+2965
+Admiralty Int 965
+ADMIRALTY INT
+ADMIRALTY INT via
+EDGEVIEW SOUTH RD
+
+
+Admiralty Int
+
+WDL CITY\965013.png
+.........................
+
+
+[addterminus]
+3965
+Admiralty Int 965
+ADMIRALTY INT
+ADMIRALTY INT via
+EDGEVIEW CRESCENT
+
+
+Admiralty Int
+
+WDL CITY\965014.png
+.........................
+
+
+[addterminus]
+4965
+Admiralty Int 965
+ADMIRALTY INT
+ADMIRALTY INT via
+UPP HILLVIEW AVE
+
+
+Admiralty Int
+
+WDL CITY\965015.png
+.........................
+
+
+[addterminus]
+5965
+Admiralty Int 965
+ADMIRALTY INT
+ADMIRALTY INT via
+ADMIRALTY SQ
+
+
+Admiralty Int
+
+WDL CITY\965016.png
+.........................
+
+
+[addterminus]
+6965
+Admiralty Int 965
+ADMIRALTY INT
+ADMIRALTY INT via
+ADMIRALTY RD
+
+
+Admiralty Int
+
+WDL CITY\965017.png
+.........................
+
+
+[addterminus]
+966
+Woodlands Int 965
+WDL INT
+WOODLANDS
+INT / MRT
+
+
+Woodlands Int
+
+WDL CITY\965021.png
+.........................
+
+
+[addterminus]
+1966
+Woodlands Int 965
+WDL INT
+WOODLANDS INT via
+ADMIRALTY SQ
+
+
+Woodlands Int
+
+WDL CITY\965022.png
+.........................
+
+
+[addterminus]
+2966
+Woodlands Int 965
+WDL INT
+WOODLANDS INT via
+ADMIRALTY RD
+
+
+Woodlands Int
+
+WDL CITY\965023.png
+.........................
+
+
+[addterminus]
+3966
+Woodlands Int 965
+WDL INT
+WOODLANDS INT via
+UPP HILLVIEW AVE
+
+
+Woodlands Int
+
+WDL CITY\965024.png
+.........................
+
+
+[addterminus]
+4966
+Woodlands Int 965
+WOODLANDS INT via
+EDGEVIEW CRESCENT
+
+
+Woodlands Int
+
+
+WDL CITY\965025.png
+.........................
+
+
+[addterminus]
+5966
+Woodlands Int 965
+WDL INT
+WOODLANDS INT via
+EDGEVIEW STH RD
+
+
+  Edgeview Estate
+
+WDL CITY\965026.png
+.........................
+
+
+[addterminus]
+6966
+Woodlands Int 965
+WDL INT
+WOODLANDS INT via
+WOODLANDS AVE 5
+
+
+  Edgeview Estate
+
+WDL CITY\965027.png
+.........................
+
+
+[addterminus]
+371
+Admiralty Int 371
+ADM INT
+ADMIRALTY
+INT / MRT
+
+
+Admiralty Int
+
+WDL CITY\371011.png
+.........................
+
+
+[addterminus]
+1371
+Admiralty Int 371
+ADM INT
+ADMIRALTY INT VIA
+ADMIRALTY SQ
+
+
+Admiralty Int
+
+WDL CITY\371012.png
+.........................
+
+
+[addterminus]
+2371
+Admiralty Int 371
+ADM INT
+ADMIRALTY INT VIA
+ADMIRALTY RD
+
+
+Admiralty Int
+
+WDL CITY\371013.png
+.........................
+
+
+[addterminus]
+3371
+Admiralty Int 371
+ADM INT
+ADMIRALTY INT VIA
+RIVERVALE DR
+
+
+Admiralty Int
+
+WDL CITY\371014.png
+.........................
+
+
+[addterminus]
+1850
+Woodlands Int 850
+850  AIRPT WDL
+INTERNATIONAL
+AIRPORT
+ AIRPT VIA WDL
+
+Airport via WDL INT
+.........................
+
+
+[addterminus]
+850
+Woodlands Int 850
+850  AIRPT WDL
+WOODLANDS
+INTERCHANGE
+ AIRPT VIA WDL
+
+Airport via WDL INT
+.........................
+
+
+[addterminus]
+904
+Riverside Estate 904
+904 RVS EST
+WDL INT via
+RIVERSIDE EST
+RVS EST
+
+RVS EST
+.........................
+
+
+[addterminus]
+860
+Intl Airport T2 860
+860  AIRPT ADM
+INTERNATIONAL
+AIRPORT
+ AIRPT VIA ADM
+
+Airport via ADM INT
+.........................
+
+
+[addterminus]
+983
+Balmoral Int 983
+BALMORAL INT 983
+BALMORAL INT
+
+
+
+Balmoral Interchange
+
+WDL CITY\983011.png
+.........................
+
+
+[addterminus]
+1983
+Balmoral Int 983
+BALMORAL INT 983
+BALMORAL INT via
+BALMORAL LOOP
+
+
+Balmoral Interchange
+
+WDL CITY\983012.png
+.........................
+
+
+[addterminus]
+2983
+Balmoral Int 983
+BALMORAL INT 983
+BALMORAL INT via
+BALMORAL AVE 4
+
+
+Balmoral Interchange
+
+WDL CITY\983013.png
+.........................
+
+
+[addterminus]
+3983
+Balmoral Int 983
+BALMORAL INT 983
+BALMORAL INT via
+BALMORAL AVE 5
+
+
+Balmoral Interchange
+
+WDL CITY\983014.png
+.........................
+
+[addterminus]
+985
+Balmoral Int 985
+BALMORAL INT 985
+BALMORAL
+INTERCHANGE
+  BALMORAL INT
+
+  Balmoral Int 985
+
+WDL CITY\985011.png
+.........................
+
+
+[addterminus]
+1985
+Balmoral Int 985
+BALMORAL INT 985
+BALMORAL INT via
+EDGEVIEW CRES
+  BALMORAL INT
+
+  Balmoral Int 985
+
+WDL CITY\985012.png
+.........................
+
+
+[addterminus]
+2985
+Balmoral Int 985
+BALMORAL INT 985
+BALMORAL INT via
+EDGEVIEW SOUTH RD
+  BALMORAL INT
+
+  Balmoral Int 985
+
+WDL CITY\985013.png
+.........................
+
+
+[addterminus]
+3985
+Balmoral Int 985
+BALMORAL INT 985
+BALMORAL INT via
+CTE
+  BALMORAL INT
+
+  Balmoral Int 985
+
+WDL CITY\985014.png
+.........................
+
+
+[addterminus]
+4985
+Balmoral Int 985
+BALMORAL INT 985
+BALMORAL INT via
+AIRPT BLVD
+  BALMORAL INT
+
+  Balmoral Int 985
+
+WDL CITY\985015.png
+.........................
+
+
+[addterminus]
+5985
+Balmoral Int 985
+BALMORAL INT 985
+BALMORAL INT via
+LAKEFIELD AVE 2
+  BALMORAL INT
+
+  Balmoral Int 985
+
+WDL CITY\985016.png
+.........................
+
+
+[addterminus]
+6985
+Balmoral Int 985
+BALMORAL INT 985
+BALMORAL INT via
+BALMORAL RD
+  BALMORAL INT
+
+  Balmoral Int 985
+
+WDL CITY\985017.png
+.........................
+
+
+[addterminus]
+7985
+Balmoral Int 985
+BALMORAL INT 985
+BALMORAL INT via
+BALMORAL AVE 4
+  BALMORAL INT
+
+  Balmoral Int 985
+
+WDL CITY\985018.png
+.........................
+
+
+[addterminus]
+8985
+Balmoral Int 985
+BALMORAL INT 985
+BALMORAL INT via
+BALMORAL LOOP
+  BALMORAL INT
+
+  Balmoral Int 985
+
+WDL CITY\985019.png
+.........................
+
+
+[addterminus]
+986
+Edgeview Int 985
+EDGEVIEW INT 985
+EDGEVIEW
+INTERCHANGE
+EDGEVIEW INT
+
+  Edgeview Int 985
+
+WDL CITY\985021.png
+.........................
+
+
+[addterminus]
+1986
+Edgeview Int 985
+EDGEVIEW INT 985
+EDGEVIEW INT via
+BALMORAL LOOP
+EDGEVIEW INT
+
+  Edgeview Int 985
+
+WDL CITY\985022.png
+.........................
+
+
+[addterminus]
+2986
+Edgeview Int 985
+EDGEVIEW INT 985
+EDGEVIEW INT via
+BALMORAL AVE 4
+EDGEVIEW INT
+
+  Edgeview Int 985
+
+WDL CITY\985023.png
+.........................
+
+
+[addterminus]
+3986
+Edgeview Int 985
+EDGEVIEW INT 985
+EDGEVIEW INT via
+BALMORAL RD
+EDGEVIEW INT
+
+  Edgeview Int 985
+
+WDL CITY\985024.png
+.........................
+
+
+[addterminus]
+4986
+Edgeview Int 985
+EDGEVIEW INT 985
+EDGEVIEW INT via
+LAKEFIELD AVE 2
+EDGEVIEW INT
+
+  Edgeview Int 985
+
+WDL CITY\985025.png
+.........................
+
+
+[addterminus]
+5986
+Balmoral Int 985
+BALMORAL INT 985
+EDGEVIEW INT via
+AIRPT BLVD
+EDGEVIEW INT
+
+  Edgeview Int 985
+
+WDL CITY\985026.png
+.........................
+
+
+[addterminus]
+6986
+Edgeview Int 985
+EDGEVIEW INT 985
+EDGEVIEW INT via
+CTE
+EDGEVIEW INT
+
+  Edgeview Int 985
+
+WDL CITY\985027.png
+.........................
+
+
+[addterminus]
+7986
+Edgeview Int 985
+EDGEVIEW INT 985
+EDGEVIEW INT via
+EDGEVIEW SOUTH RD
+EDGEVIEW INT
+
+  Edgeview Int 985
+
+WDL CITY\985028.png
+.........................
+
+
+[addterminus]
+8986
+Edgeview Int 985
+EDGEVIEW INT 985
+EDGEVIEW INT via
+EDGEVIEW CRES
+EDGEVIEW INT
+
+  Edgeview Int 985
+
+WDL CITY\985029.png
+.........................
+
+
+
+
+
+
+######################################
+ BUS STOPS
+######################################
+
+[addbusstop]
+Blk 153
+BLK 153
+Blk 153
+Rivervale Estate
+Blk 153
+.........................
+
+
+[addbusstop]
+Blk 156A CP
+BLK 156A CP
+Blk 156A CP
+Rivervale Estate
+Blk 156A CP
+.........................
+
+
+[addbusstop]
+Blk 241
+BLK 241
+Blk 241
+Admiralty Estate
+Blk 241
+.........................
+
+
+[addbusstop]
+Blk 248A
+BLK 248A
+Blk 248A
+Admiralty Estate
+Blk 248A
+.........................
+
+
+[addbusstop]
+Blk 253
+BLK 253
+Blk 253
+Admiralty Estate
+Blk 253
+.........................
+
+
+[addbusstop]
+Blk 259C
+BLK 259C
+Blk 259C
+Admiralty Estate
+Blk 259C
+.........................
+
+
+[addbusstop]
+Blk 297A
+BLK 297A
+Blk 297A
+Admiralty Estate
+Blk 297A
+.........................
+
+
+[addbusstop]
+Opp Blk 178A
+OPP BLK 178A
+opp Blk 178A
+Rivervale Estate
+opp Blk 178A
+.........................
+
+
+[addbusstop]
+Opp Rivervale Pri Sch
+OPP RV PRIMARY
+opp RV Primary
+Rivervale Estate
+opp Rivervale Pri
+.........................
+
+
+[addbusstop]
+Rivervale Pri Sch
+RIVERVALE PRI
+Rivervale Pri
+Rivervale Estate
+Rivervale Primary
+.........................
+
+
+[addbusstop]
+Admiralty Int 371
+ADMIRALTY INT BO
+Admiralty Interchange
+Welcome Onboard 371
+Admiralty Int
+.........................
+
+
+[addbusstop]
+International Airport 858
+INTL AIRPT   858
+International Airport
+Welcome Onboard 858
+    Intl Airport
+.........................
+
+
+[addbusstop]
+Sington Warehouse
+SINGTON WAREHSE
+Sington Warehouse
+
+Sington Warehouse
+.........................
+
+
+[addbusstop]
+Worldwide Postal Services
+WRWD POST SVCS
+Worldwide Postal
+
+Worldwide Postal Svc
+.........................
+
+
+[addbusstop]
+Airport Maintenance Office
+AIRPT MAINT OFF
+International Airport
+Maintenance OFfice
+Intl Airpt Maint Off
+.........................
+
+
+[addbusstop]
+opp Lakefield Reservoir
+OPP LKF RESERV
+opp Lakefield
+Service Reservoir
+opp LKF Svc Reserv
+.........................
+
+
+[addbusstop]
+opp WDL Esso Station
+OPP WDL ESSO STN
+opp WDL Esso Stn
+
+opp WDL Esso Station
+.........................
+
+
+[addbusstop]
+Blk 585 CP
+BLK 585 CP
+Blk 585 CP
+Woodlands Estate
+Blk 585 CP
+.........................
+
+
+[addbusstop]
+Woodlands Interchange 858
+WDL INT      858
+Woodlands Interchange
+
+Woodlands Interchang
+.........................
+
+
+[addbusstop]
+Delicious Barbeque
+DELICIOUS BBQ
+Delicious BBQ
+
+Delicious Barbeque
+.........................
+
+
+[addbusstop]
+opp Blk 585 CP
+OPP BLK 585 CP
+opp Blk 585 CP
+Woodlands Estate
+opp Blk 585 CP
+.........................
+
+
+[addbusstop]
+Bef WDL Esso Station
+BEF WDL ESSO STN
+Bef WDL Esso Stn
+
+Bef WDL Esso Station
+.........................
+
+
+[addbusstop]
+Lakefield Service Reservoir
+LKF SERV RESERV
+Lakefield
+Service Reservoir
+LKF Service Reserv
+.........................
+
+
+[addbusstop]
+Skyfield Catering
+SKYFIELD CATERIN
+Skyfield Catering
+
+Skyfield Catering
+.........................
+
+
+[addbusstop]
+Kensington Jet
+KENSINGTON JET
+Kensington Jet
+
+Kensington Jet
+.........................
+
+
+[addbusstop]
+Farfield Medical Centre
+FARFIELD MED CTR
+Farfield Medical Ctr
+
+Farfield Medical Ctr
+.........................
+
+
+[addbusstop]
+International Airport ALG 858
+INTL AIRPT ALG
+International Airport
+Bus Ends Here
+Intl Airpt Alight
+.........................
+
+
+
+
+
+######################################
+ TRIPS / ROUTES
+######################################
+
+
+Line , Route 10: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+10
+#####  >>  #####
+101
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line , Route 11: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+11
+#####  >>  #####
+102
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line , Route 20: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+20
+#####  >>  #####
+111
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 371, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+37101
+ADMIRALTY INT 371  >>  ADMIRALTY INT 371
+371
+XXX
+
+[infosystem_busstop_list]
+13
+Admiralty Int 371
+Blk 241
+Blk 248A
+Blk 253
+Opp Rivervale Pri Sch
+Blk 156A CP
+Opp Blk 178A
+Blk 153
+Opp Blk 178A
+Blk 153
+Rivervale Pri Sch
+Blk 297A
+Admiralty Int 371
+
+
+Line 401, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+40101
+#####  >>  #####
+401
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 850, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+85001
+#####  >>  #####
+850
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 858, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+85801
+#####  >>  #####
+858
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 882, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+88201
+#####  >>  #####
+882
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 882, Route 03: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+88203
+#####  >>  #####
+883
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 902, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+90201
+#####  >>  #####
+902
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 902, Route 03: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+90203
+#####  >>  #####
+903
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 911, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+91101
+#####  >>  #####
+911
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 965, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+96501
+#####  >>  #####
+966
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 965, Route 02: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+96502
+#####  >>  #####
+965
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 983, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+98301
+#####  >>  #####
+983
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 985, Route 01: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+98501
+#####  >>  #####
+985
+XXX
+
+[infosystem_busstop_list]
+0
+
+
+Line 985, Route 02: #####  >>  #####
+----------------------------------------------------------------------
+
+[infosystem_trip]
+98502
+#####  >>  #####
+986
+XXX
+
+[infosystem_busstop_list]
+0

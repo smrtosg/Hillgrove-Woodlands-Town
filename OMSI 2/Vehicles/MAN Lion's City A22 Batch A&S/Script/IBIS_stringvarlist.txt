@@ -1,0 +1,12 @@
+IBIS
+IBIS_busstop_name
+IBIS_terminus_name
+IBIS_Complex_Line
+IBIS_cabindisplay
+IBIS_Delay_min
+IBIS_Delay_sec
+IBIS_Delay_state
+IBIS_Cockpit_Display
+wagennummer
+kennzeichen
+Haltestelle

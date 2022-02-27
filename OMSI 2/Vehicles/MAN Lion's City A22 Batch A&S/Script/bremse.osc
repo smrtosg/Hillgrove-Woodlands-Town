@@ -1,0 +1,1445 @@
+'##############
+'Brake Script
+'##############
+
+'Controls Brakes and includes air system (compressor)
+
+'(c) 2007-2011 Rüdiger Hülsmann, Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- Engine (for compressor)
+
+'Revision History:
+'- Rüdiger Hülsmann	11.05.2009	Last Change
+'- Rüdiger Hülsmann	15.03.2010	Brake squeak
+'- Marcel Kuhnt		15.04.2010	Pressure Calculation Stabilized
+'- Rüdiger Hülsmann	06.11.2010	Automatic level control
+'- Marcel Kuhnt		28.12.2010	Added wheel separated brake force variables
+'- Rüdiger Hülsmann	01.01.2011	Added ABS function
+'- Rüdiger Hülsmann	06.01.2011	separated brake force debugged (pipe diameter)
+'- Rüdiger Hülsmann	23.01.2011	ABS relais sound
+'- Rüdiger Hülsmann	31.01.2011	Random initial pressure, nonreturn valves for air suspension
+'- Rüdiger Hülsmann	03.02.2011	Random squeak sound volume
+
+'--------------------------------------------------------------
+
+
+{trigger:parking_brake_toggle}
+	(L.L.bremse_feststell) ! (S.L.bremse_feststell) (S.L.bremse_feststell_sw)
+	{if}
+		(T.L.ev_bremse_feststell_ein)
+	{else}
+		(T.L.ev_bremse_feststell_aus)
+	{endif}
+{end}
+
+
+{trigger:parking_brake_set}
+	(L.L.bremse_feststell) !
+	{if}
+		(S.L.bremse_feststell)
+		(T.L.ev_bremse_feststell_ein)
+		1 (S.L.bremse_feststell_sw)
+	{endif}
+{end}
+
+{trigger:parking_brake_release}
+	(L.L.bremse_feststell)
+	{if}
+		! (S.L.bremse_feststell)
+		(T.L.ev_bremse_feststell_aus)
+		0 (S.L.bremse_feststell_sw)
+	{endif}
+{end}
+
+{trigger:parking_brake_mouse_drag}
+	(L.S.mouse_y) 200 / (L.L.bremse_feststell_sw) + (S.L.bremse_feststell_sw) s0
+	l0 0 <
+	{if}
+		0 (S.L.bremse_feststell_sw)
+	{endif}
+	l0 1 >
+	{if}
+		1 (S.L.bremse_feststell_sw)
+	{endif}
+	l0 0.6 > (L.L.bremse_feststell) 0 = &&
+	{if}
+		1 (S.L.bremse_feststell)
+		(T.L.ev_bremse_feststell_ein)
+	{endif}
+	l0 0.4 < (L.L.bremse_feststell) 1 = &&
+	{if}
+		0 (S.L.bremse_feststell)
+		(T.L.ev_bremse_feststell_aus)
+	{endif}
+
+	1 (S.L.bremse_feststell_klinke)
+{end}
+
+{trigger:parking_brake_mouse_off}
+	0 (S.L.bremse_feststell_klinke)
+{end}
+
+{trigger:wagenkasten_anheben}
+	(L.L.anheben_sw) ! (S.L.anheben_sw)
+	{if}
+		(T.L.ev_VDV_on)
+		(T.L.ev_anheben)
+		0.10 (S.L.wagenkasten_anheben)
+	{else}
+		(T.L.ev_VDV_off)
+		(T.L.ev_absenken)
+		0 (S.L.wagenkasten_anheben)
+	{endif}	
+{end}
+
+
+'----------------------
+'	Init
+'----------------------
+
+{macro:bremse_init}
+	10 random 10 / 0.55 max (S.L.Axle_Springfactor_0_L)
+	10 random 10 / 0.55 max (S.L.Axle_Springfactor_0_R)
+	10 random 10 / 0.55 max (S.L.Axle_Springfactor_1_L)
+	10 random 10 / 0.55 max (S.L.Axle_Springfactor_1_R)
+
+	(C.L.bremse_level_setpoint) (S.L.bremse_level_setpoint)
+	1 (S.L.bremse_feststell_sw) (S.L.bremse_feststell) (S.L.bremse_UeVentil_1) (S.L.bremse_UeVentil_2)
+
+'Kreis 1 zufällig befüllen
+	500000 random 400000 + (S.L.bremse_p_tank01) (S.L.bremse_p_leitung01) (S.L.bremse_p_leitung02) s0
+
+'Kreis 2 in Abhängigkeit vom Druck in Kreis 1 befüllen: Wenn Druckausgleich vorhanden, dann p2=p1 ansonsten Zufallswert unterhalb des Sicherungsdrucks (5 bar)
+	(C.L.bremse_UeVentil_1_schliessdruck) >
+	{if}
+		l0 (S.L.bremse_p_tank02)
+	{else}
+		300000 random 300000 + (S.L.bremse_p_tank02)
+	{endif}
+
+'Kreis 3 zufällig befüllen, aber mindestens Druck wie in Kreis 
+	500000 random 400000 + l0 max (S.L.bremse_p_tank03) s0
+
+'Kreis 4 in Abhängigkeit vom Druck in Kreis 3 befüllen: Wenn Druckausgleich vorhanden, dann p4=p3 ansonsten Zufallswert unterhalb des Sicherungsdrucks (5 bar)
+	(C.L.bremse_UeVentil_2_schliessdruck) >
+	{if}
+		l0 (S.L.bremse_p_tank04)
+	{else}
+		300000 random 300000 + (S.L.bremse_p_tank04) s0
+	{endif}
+
+'Setzen der Bremszylinderdrücke	
+	100000 (S.L.bremse_p_luft) (S.L.bremse_p_brzyl_VA) (S.L.bremse_p_brzyl_VA_R) (S.L.bremse_p_brzyl_VA_L) (S.L.bremse_p_brzyl_HA) (S.L.bremse_p_brzyl_HA_R) (S.L.bremse_p_brzyl_HA_L) (S.L.bremse_p_Brzyl_FBA) 
+
+
+	0 (S.L.bremse_loesezischbereitschaft) (S.L.bremse_bremszischbereitschaft) (S.L.bremse_zieldruckdifferenz) 
+	
+	0 (L.L.bremse_loesezischzeit)
+	
+' Setzen des Initial-Hup/Quietschvolumes
+
+	-2 (S.L.bremse_quietsch_volume)
+{end}
+
+'----------------------
+'	Frame
+'----------------------
+
+{macro:bremse_frame}
+
+
+'Bremskraftberechnung Vorderachse
+'Rechte Seite
+	(L.L.bremse_p_brzyl_VA_R) 100000 - 20000 - 850000 / (C.L.max_bremskraft) * s0
+
+'	Luftwiderstand:
+	(L.L.Velocity) 3.6 / (L.L.Velocity) 3.6 / * 9.5 0.8 0.6 * * * +
+'	Gesamtbremskraft auf 4 Räder aufteilen
+	4 /
+	(S.L.Axle_Brakeforce_0_R)
+
+'Linke Seite
+	(L.L.bremse_p_brzyl_VA_L) 100000 - 20000 - 850000 / (C.L.max_bremskraft) * s0
+
+'	Luftwiderstand:
+	(L.L.Velocity) 3.6 / (L.L.Velocity) 3.6 / * 9.5 0.8 0.6 * * * +
+'	Gesamtbremskraft auf 4 Räder aufteilen
+	4 /
+	(S.L.Axle_Brakeforce_0_L)
+
+
+'Bremskraftberechnung Hinterachse
+'Rechte Seite
+	(L.L.bremse_p_brzyl_HA_R) 100000 - 20000 - 850000 / (C.L.max_bremskraft) * s0
+
+'	Luftwiderstand:
+	(L.L.Velocity) 3.6 / (L.L.Velocity) 3.6 / * 9.5 0.8 0.6 * * * +
+'	Gesamtbremskraft auf 4 Räder aufteilen
+	4 /
+'	Feststellbremse obendrauf
+	(L.L.bremse_p_Brzyl_FBA) (F.L.Bremskraft_FBA) 2 / + 
+	(S.L.Axle_Brakeforce_1_R)
+
+'Linke Seite
+	(L.L.bremse_p_brzyl_HA_L) 100000 - 20000 - 850000 / (C.L.max_bremskraft) * s0
+
+'	Luftwiderstand:
+	(L.L.Velocity) 3.6 / (L.L.Velocity) 3.6 / * 9.5 0.8 0.6 * * * +
+'	Gesamtbremskraft auf 4 Räder aufteilen
+	4 /
+'	Feststellbremse obendrauf
+	(L.L.bremse_p_Brzyl_FBA) (F.L.Bremskraft_FBA) 2 / + 
+	(S.L.Axle_Brakeforce_1_L)
+
+
+
+	(M.L.bremse_kompressor)
+	
+	(M.L.bremse_druckluftsound)
+
+	(M.L.bremse_levelcontrol)
+
+'	(M.L.kneeling)
+
+
+'	Setzen des Bremssollwertes (Pedalbetätigungen bis 0.1 bleiben unberücksichtigt => Rasten für Retarder)
+	
+	(L.L.Brake) 0.1 - 1.1 * s0 0 <
+	{if}
+		0 (S.L.bremse_luft)
+	{else}
+		l0 (S.L.bremse_luft)
+	{endif}
+	
+
+{end}
+
+{macro:bremse_kompressor}
+
+'	Berechnung des Massenstroms vom Kompressor in die Füllleitung zum Vierkreisschutzventil:
+
+	(L.L.bremse_kompressor) 1 =
+	{if}
+		(L.L.engine_n) (L.S.Timegap) * 60 / (C.L.bremse_m_kompressor) * 
+		(C.L.RT_Luft) * (C.L.bremse_V_leitung01) / (L.L.bremse_p_leitung01) + (S.L.bremse_p_leitung01)
+	{endif}
+
+
+'#################################################################
+'	Vierkreisschutzventil
+
+'	Berechnung der Querschnittsfläche der Überströmventile in Abhängigkeit der anliegenden Drücke von Bremskreis und Füllleitung:
+
+	
+	(C.L.bremse_UeVentil_1_oeffnungsdruck) (C.L.bremse_UeVentil_1_schliessdruck) - (C.L.bremse_UeVentil_1_schliessdruck) / (L.L.bremse_p_Tank01) * (L.L.bremse_p_leitung01) + (C.L.bremse_UeVentil_1_oeffnungsdruck) - 200000000000000 / 0 max sqrt (S.L.bremse_A_UeVentil_1)
+
+	(C.L.bremse_UeVentil_2_oeffnungsdruck) (C.L.bremse_UeVentil_2_schliessdruck) - (C.L.bremse_UeVentil_2_schliessdruck) / (L.L.bremse_p_Tank02) * (L.L.bremse_p_leitung01) + (C.L.bremse_UeVentil_2_oeffnungsdruck) - 200000000000000 / 0 max sqrt (S.L.bremse_A_UeVentil_2)
+
+	(C.L.bremse_UeVentil_3_oeffnungsdruck) (C.L.bremse_UeVentil_3_schliessdruck) - (C.L.bremse_UeVentil_3_schliessdruck) / (L.L.bremse_p_Tank03) * (L.L.bremse_p_leitung02) + (C.L.bremse_UeVentil_3_oeffnungsdruck) - 200000000000000 / 0 max sqrt (S.L.bremse_A_UeVentil_3)
+
+	(C.L.bremse_UeVentil_4_oeffnungsdruck) (C.L.bremse_UeVentil_4_schliessdruck) - (C.L.bremse_UeVentil_4_schliessdruck) / (L.L.bremse_p_Tank04) * (L.L.bremse_p_leitung02) + (C.L.bremse_UeVentil_4_oeffnungsdruck) - 200000000000000 / 0 max sqrt (S.L.bremse_A_UeVentil_4)
+
+'#################################################################
+'	Testleck in Kreis 2 beim Betätigen des Warnblinkers:
+
+'	(L.L.lights_sw_warnblinker)
+'	{if}
+'		(L.L.bremse_p_Tank02) s1
+'		(L.L.bremse_p_luft) s2
+'		(C.L.bremse_V_Tank02) s3
+'		1000000 s4
+'		(C.L.bremse_A_Leck) s5
+'
+'		(M.L.bremse_druckausgleich)
+'
+'		l1 (S.L.bremse_p_Tank02) 
+'	{endif}
+'
+'	Testleck in Kreis 3 beim Betätigen der Hupe:
+'
+'	(L.L.cockpit_hupe)
+'	{if}
+'		(L.L.bremse_p_Tank03) s1
+'		(L.L.bremse_p_luft) s2
+'		(C.L.bremse_V_Tank03) s3
+'		1000000 s4
+'		(C.L.bremse_A_Leck) s5
+'
+'		(M.L.bremse_druckausgleich)
+'
+'		l1 (S.L.bremse_p_Tank03) 
+'	{endif}
+
+'#################################################################	
+'Kreise 1+2
+'#################################################################	
+
+'	Druckausgleich in Bremskreis 1 und 2 bei geöffneten Überstromventilen 1 und 2:
+
+	(L.L.bremse_A_UeVentil_1) 0 > (L.L.bremse_A_UeVentil_2) 0 > &&
+	{if}
+	
+		(L.L.bremse_p_Tank01) s1
+		(L.L.bremse_p_Tank02) s2
+		(C.L.bremse_V_Tank01) s3
+		(C.L.bremse_V_Tank02) s4
+		(L.L.bremse_A_UeVentil_1) (L.L.bremse_A_UeVentil_2) min s5	
+		
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Tank01)
+		l2 (S.L.bremse_p_Tank02)
+
+	{endif}
+
+
+'	Befüllen von Bremskreis 1, mit Rückschlagventil gesichert
+
+	(L.L.bremse_A_UeVentil_1) 0 > (L.L.bremse_p_leitung01) (L.L.bremse_p_Tank01) > &&
+
+	{if}
+
+'		Druckausgleich Füllleitung - Bremskreis 1:
+		
+		(L.L.bremse_p_leitung01) s1
+		(L.L.bremse_p_Tank01) s2
+		(C.L.bremse_V_leitung01) s3
+		(C.L.bremse_V_Tank01) s4
+		(L.L.bremse_A_UeVentil_1) s5	
+		
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_leitung01) 
+		l2 (S.L.bremse_p_Tank01) 
+
+
+	{endif}	
+
+'	Befüllen von Bremskreis 2, mit Rückschlagventil gesichert
+
+	(L.L.bremse_A_UeVentil_2) 0 > (L.L.bremse_p_leitung01) (L.L.bremse_p_Tank02) > &&
+	{if}
+
+'		Druckausgleich Füllleitung - Bremskreis 2:
+
+		(L.L.bremse_p_leitung01) s1
+		(L.L.bremse_p_Tank02) s2
+		(C.L.bremse_V_leitung01) s3
+		(C.L.bremse_V_Tank02) s4
+		(L.L.bremse_A_UeVentil_2) s5	
+		
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_leitung01)
+		l2 (S.L.bremse_p_Tank02)
+		
+
+	{endif}
+
+'#################################################################	
+'Kreise 3+4
+'#################################################################	
+
+'Füllen der Fülleitung für die Kreise 3+4 aus den Behältern 1 und 2 (jeweils dem mit dem höheren Druck), mit Rückschlagventil gesichert:
+
+
+	(L.L.bremse_p_Tank01) (L.L.bremse_p_Tank02) > 
+	{if}
+		
+		(L.L.bremse_p_Tank01) (L.L.bremse_p_leitung02) >
+		{if}
+'			Druckausgleich Bremskreis 1 - Füllleitung Kreis 3+4
+
+			(L.L.bremse_p_Tank01) s1
+			(L.L.bremse_p_leitung02) s2
+			(C.L.bremse_V_Tank01) s3
+			(C.L.bremse_V_leitung02) s4
+			(C.L.bremse_A_Rueckschlagventil_1) s5	
+		
+			(M.L.bremse_druckausgleich)
+
+			l1 (S.L.bremse_p_Tank01)
+			l2 (S.L.bremse_p_leitung02)
+		{endif}
+	{else}	
+		(L.L.bremse_p_Tank02) (L.L.bremse_p_leitung02) >
+		{if}
+
+'			Druckausgleich Bremskreis 2 - Füllleitung Kreis 3+4
+		
+			(L.L.bremse_p_Tank02) s1
+			(L.L.bremse_p_leitung02) s2
+			(C.L.bremse_V_Tank02) s3
+			(C.L.bremse_V_leitung02) s4
+			(C.L.bremse_A_Rueckschlagventil_1) s5	
+		
+			(M.L.bremse_druckausgleich)
+
+			l1 (S.L.bremse_p_Tank02)
+			l2 (S.L.bremse_p_leitung02)
+		{endif}
+	{endif}
+
+
+	
+'	Druckausgleich in Bremskreis 3 und 4 bei geöffneten Überstromventilen 3 und 4:
+
+	(L.L.bremse_A_UeVentil_3) 0 > (L.L.bremse_A_UeVentil_4) 0 > &&
+	{if}
+	
+		(L.L.bremse_p_Tank03) s1
+		(L.L.bremse_p_Tank04) s2
+		(C.L.bremse_V_Tank03) s3
+		(C.L.bremse_V_Tank04) s4
+		(L.L.bremse_A_UeVentil_3) (L.L.bremse_A_UeVentil_4) min s5	
+		
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Tank03)
+		l2 (S.L.bremse_p_Tank04)
+
+	{endif}
+
+
+
+'	Befüllen von Bremskreis 3, mit Rückschlagventil gesichert
+
+	(L.L.bremse_A_UeVentil_3) 0 > (L.L.bremse_p_leitung02) (L.L.bremse_p_Tank03) > &&
+
+	{if}
+
+'		Druckausgleich Füllleitung - Bremskreis 1:
+		
+		(L.L.bremse_p_leitung02) s1
+		(L.L.bremse_p_Tank03) s2
+		(C.L.bremse_V_leitung02) s3
+		(C.L.bremse_V_Tank03) s4
+		(L.L.bremse_A_UeVentil_3) s5	
+		
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_leitung02) 
+		l2 (S.L.bremse_p_Tank03) 
+
+
+	{endif}	
+
+'	Befüllen von Bremskreis 4, mit Rückschlagventil gesichert
+
+	(L.L.bremse_A_UeVentil_4) 0 > (L.L.bremse_p_leitung02) (L.L.bremse_p_Tank04) > &&
+	{if}
+
+'		Druckausgleich Füllleitung - Bremskreis 2:
+
+		(L.L.bremse_p_leitung02) s1
+		(L.L.bremse_p_Tank04) s2
+		(C.L.bremse_V_leitung02) s3
+		(C.L.bremse_V_Tank04) s4
+		(L.L.bremse_A_UeVentil_4) s5	
+		
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_leitung02)
+		l2 (S.L.bremse_p_Tank04)
+		
+
+	{endif}
+'#########################################################################
+
+
+'	Haltestellenbremse
+'	Setzen des Zieldruckes
+
+	(L.L.bremse_halte)
+	(L.L.elec_busbar_main) &&
+	(L.L.bremse_feststell) ! &&
+	{if}
+		(C.L.bremse_pmax_halte) (L.L.bremse_p_Tank01) min (S.L.bremse_zieldruck_halte)
+	{else}
+		100000 (S.L.bremse_zieldruck_halte)
+	{endif}	
+
+
+'	Setzen des Zieldrucks der Betriebsbremse für Kreis 1 (HA)
+
+	(L.L.bremse_luft) (L.L.bremse_p_tank01) * 1.1 * 100000 + (S.L.bremse_zieldruck_BBA)
+
+
+'	Setzen des Bremszylinderzieldruckes HA (Fuß- und Haltestellenbremse):
+	
+	(L.L.bremse_zieldruck_BBA) (L.L.bremse_zieldruck_halte) max (S.L.bremse_zieldruck_HA) (S.L.bremse_zieldruck_HA_R) (S.L.bremse_zieldruck_HA_L)
+
+'	Setzen des Zustands des Wechselventils Fußbremse <> Haltestellenbremse
+'	0 = Fußbremse, 1= Haltestellenbremse
+	
+	(L.L.bremse_zieldruck_BBA) (L.L.bremse_p_brzyl_HA) >
+	{if}
+		0 (S.L.bremse_wechselventil_HA)
+	{endif}
+	
+		(L.L.bremse_zieldruck_halte) (L.L.bremse_zieldruck_BBA) >
+	{if}
+		1 (S.L.bremse_wechselventil_HA)
+	{endif}
+
+
+
+'	Setzen des Bremszylinderzieldruckes VA:
+	
+	(L.L.bremse_luft) (L.L.bremse_p_tank02) * 1.1 * 100000 +  (S.L.bremse_zieldruck_VA) (S.L.bremse_zieldruck_VA_R) (S.L.bremse_zieldruck_VA_L)
+
+
+'	Setzen des Bremszylinderzieldruckes FBA (mit Überlastschutz)
+
+
+	1 (L.L.bremse_feststell_sw) - (L.L.bremse_p_tank03) * 1.1 * 100000 + s1
+	
+	(L.L.bremse_zieldruck_HA) l1 max (S.L.bremse_zieldruck_FBA)
+
+
+
+'	ABS-Regelung
+
+'	Ist ABS überhaupt vorhanden und aktiv?
+
+
+	(C.L.bremse_ABS) (L.L.elec_busbar_main) &&
+	
+	{if}
+'		Berechnen der Referenzdrehzahl
+'		Umrechnungsfaktor Geschwindigkeit (km/h) auf Raddrehzahl (1/min) = 5.64 bei Raddurchmesser 94cm
+
+		(L.L.Velocity_Ground) 5.15 * (S.L.bremse_ABS_referenzdrehzahl) s0
+		
+'		If your bus has also a different wheel diameter:
+'		your new value = 5.64*0.94/D
+'		Where D is the diameter of the wheel set in the bus file
+
+'		Übersteigt die Drehzahldifferenz einen kritischen Wret, dann den entsprechenden Bremszylinder entlüften
+		
+		l0 (L.L.Wheel_RotationSpeed_0_R) - 10 >
+		(L.L.Velocity_Ground) 6 > &&
+		{if}
+			(L.L.bremse_ABS_eingriff_0R) !
+			{if}
+				(T.L.ev_bremse_ABS_0R_on)
+			{endif}
+			100000 (S.L.bremse_zieldruck_VA_R)
+			1 (S.L.bremse_ABS_eingriff_0R)
+		{else}
+			(L.L.bremse_ABS_eingriff_0R) 
+			{if}
+				(T.L.ev_bremse_ABS_0R_off)
+			{endif}
+			0 (S.L.bremse_ABS_eingriff_0R)
+		{endif}
+
+		l0 (L.L.Wheel_RotationSpeed_0_L) - 10 >
+		(L.L.Velocity_Ground) 6 > &&
+		{if}
+			(L.L.bremse_ABS_eingriff_0L) !
+			{if}
+				(T.L.ev_bremse_ABS_0L_on)
+			{endif}
+			100000 (S.L.bremse_zieldruck_VA_L)
+			1 (S.L.bremse_ABS_eingriff_0L)
+		{else}
+			(L.L.bremse_ABS_eingriff_0L) 
+			{if}
+				(T.L.ev_bremse_ABS_0L_off)
+			{endif}
+			0 (S.L.bremse_ABS_eingriff_0L)
+		{endif}
+
+		l0 (L.L.Wheel_RotationSpeed_1_R) - 10 >
+		(L.L.Velocity_Ground) 6 > &&
+		{if}
+			(L.L.bremse_ABS_eingriff_1R) !
+			{if}
+				(T.L.ev_bremse_ABS_1R_on)
+			{endif}
+			100000 (S.L.bremse_zieldruck_HA_R)
+			1 (S.L.bremse_ABS_eingriff_1R)
+		{else}
+			(L.L.bremse_ABS_eingriff_1R) 
+			{if}
+				(T.L.ev_bremse_ABS_1R_off)
+			{endif}
+			0 (S.L.bremse_ABS_eingriff_1R)
+		{endif}
+
+		l0 (L.L.Wheel_RotationSpeed_1_L) - 10 >
+		(L.L.Velocity_Ground) 6 > &&
+		{if}
+			(L.L.bremse_ABS_eingriff_1L) !
+			{if}
+				(T.L.ev_bremse_ABS_1L_on)
+			{endif}
+			100000 (S.L.bremse_zieldruck_HA_L)
+			1 (S.L.bremse_ABS_eingriff_1L)
+		{else}
+			(L.L.bremse_ABS_eingriff_1L) 
+			{if}
+				(T.L.ev_bremse_ABS_1L_off)
+			{endif}
+			0 (S.L.bremse_ABS_eingriff_1L)
+		{endif}
+
+		(L.L.bremse_ABS_eingriff_0R)
+		(L.L.bremse_ABS_eingriff_0L) ||
+		(L.L.bremse_ABS_eingriff_1R) ||
+		(L.L.bremse_ABS_eingriff_1L) ||
+		(L.L.bremse_ABS_selftest) ||
+		(S.L.bremse_ABS_eingriff)
+
+	{else}
+		0 (S.L.bremse_ABS_eingriff)
+
+	{endif}
+
+'	ABS-Selbsttest erfolgreich bei V>6km/h
+	(L.L.velocity) 6 > (L.L.bremse_ABS_selftest) &&
+	{if}
+		0 (S.L.bremse_ABS_selftest)
+	{endif}
+
+'	a1) Hinterachse rechts
+
+'	Ist geforderter Bremsdruck höher als der aktuelle?
+	(L.L.bremse_zieldruck_HA_R) (L.L.bremse_p_brzyl_HA_R) > 
+	{if}
+		(L.L.bremse_zieldruck_HA_R) (L.L.bremse_p_brzyl_HA_R) - 20000000000 / (S.L.bremse_A_BrVentil_HA_R)
+
+'		Berechnung des Massenstroms aus Behälter 1 zum Bremszylinder HA
+
+		(L.L.bremse_p_Tank01) s1
+		(L.L.bremse_p_Brzyl_HA_R) s2
+		(C.L.bremse_V_tank01) s3
+		(C.L.bremse_V_Brzyl_HA_R) s4
+
+'		Ventilwahl abhängig von der Stellung des Wechselventils
+		(L.L.bremse_wechselventil_HA)
+		{if}
+			(L.L.bremse_A_BrVentil_HA_R) 2 * s5
+		{else}
+			(L.L.bremse_A_BrVentil_HA_R) s5
+		{endif}
+
+		(M.L.bremse_druckausgleich)
+		l1 (S.L.bremse_p_Tank01) 
+		l2 (S.L.bremse_p_Brzyl_HA_R) 
+
+	{else}
+		(L.L.bremse_p_brzyl_HA_R) (L.L.bremse_zieldruck_HA_R) - sqrt 20000000 / (S.L.bremse_A_BrVentil_HA_R)
+
+'		Berechnung des Massenstroms aus Bremszylinder HA ins Freie
+
+		(L.L.bremse_p_Brzyl_HA_R) s1
+		(L.L.bremse_p_luft) s2
+		(C.L.bremse_V_brzyl_HA_R) s3
+		1 s4
+
+'		Ventilwahl abhängig von der Stellung des Wechselventils
+		(L.L.bremse_wechselventil_HA)
+		{if}
+			(L.L.bremse_A_BrVentil_HA_R) 2 * s5
+		{else}
+			(L.L.bremse_A_BrVentil_HA_R) s5
+		{endif}
+
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Brzyl_HA_R) 
+		
+	{endif}
+
+'	a2) Hinterachse links
+
+'	Ist geforderter Bremsdruck höher als der aktuelle?
+	(L.L.bremse_zieldruck_HA_L) (L.L.bremse_p_brzyl_HA_L) > 
+	{if}
+		(L.L.bremse_zieldruck_HA_L) (L.L.bremse_p_brzyl_HA_L) - 20000000000 / (S.L.bremse_A_BrVentil_HA_L)
+
+'		Berechnung des Massenstroms aus Behälter 1 zum Bremszylinder HA
+
+		(L.L.bremse_p_Tank01) s1
+		(L.L.bremse_p_Brzyl_HA_L) s2
+		(C.L.bremse_V_tank01) s3
+		(C.L.bremse_V_Brzyl_HA_L) s4
+
+'		Ventilwahl abhängig von der Stellung des Wechselventils
+		(L.L.bremse_wechselventil_HA)
+		{if}
+			(L.L.bremse_A_BrVentil_HA_L) 2 * s5
+		{else}
+			(L.L.bremse_A_BrVentil_HA_L) s5
+		{endif}
+
+		(M.L.bremse_druckausgleich)
+		l1 (S.L.bremse_p_Tank01) 
+		l2 (S.L.bremse_p_Brzyl_HA_L) 
+
+	{else}
+		(L.L.bremse_p_brzyl_HA_L) (L.L.bremse_zieldruck_HA_L) - sqrt 20000000 / (S.L.bremse_A_BrVentil_HA_L)
+
+'		Berechnung des Massenstroms aus Bremszylinder HA ins Freie
+
+		(L.L.bremse_p_Brzyl_HA_L) s1
+		(L.L.bremse_p_luft) s2
+		(C.L.bremse_V_brzyl_HA_L) s3
+		1 s4
+
+'		Ventilwahl abhängig von der Stellung des Wechselventils
+		(L.L.bremse_wechselventil_HA)
+		{if}
+			(L.L.bremse_A_BrVentil_HA_L) 2 * s5
+		{else}
+			(L.L.bremse_A_BrVentil_HA_L) s5
+		{endif}
+
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Brzyl_HA_L) 
+		
+	{endif}
+
+'	Bildung des Mittelwertes für weitere Berechnungen
+	(L.L.bremse_p_Brzyl_HA_R) (L.L.bremse_p_Brzyl_HA_L) + 2 / (S.L.bremse_p_Brzyl_HA) 
+
+'	b1) Vorderachse rechts
+'	Ist geforderter Bremsdruck höher als der aktuelle?
+
+	(L.L.bremse_zieldruck_VA_R) (L.L.bremse_p_brzyl_VA_R) >
+	{if}
+		(L.L.bremse_zieldruck_VA_R) (L.L.bremse_p_brzyl_VA_R) - 20000000000 / (S.L.bremse_A_BrVentil_VA_R)
+
+'		Berechnung des Massenstroms aus Behälter 2 zum Bremszylinder VA
+
+		(L.L.bremse_p_Tank02) s1
+		(L.L.bremse_p_Brzyl_VA_R) s2
+		(C.L.bremse_V_tank02) s3
+		(C.L.bremse_V_Brzyl_VA_R) s4
+		(L.L.bremse_A_BrVentil_VA_R) s5
+
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Tank02) 
+		l2 (S.L.bremse_p_Brzyl_VA_R) 
+
+	{else}
+		(L.L.bremse_p_brzyl_VA_R) (L.L.bremse_zieldruck_VA_R) - sqrt 20000000 / (S.L.bremse_A_BrVentil_VA_R)
+
+'		Berechnung des Massenstroms aus Bremszylinder VA ins Freie
+	
+		(L.L.bremse_p_Brzyl_VA_R) s1
+		(L.L.bremse_p_luft) s2
+		(C.L.bremse_V_brzyl_VA_R) s3
+		1000000 s4
+		(L.L.bremse_A_BrVentil_VA_R) s5
+
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Brzyl_VA_R) 
+		
+	{endif}
+
+'	b2) Vorderachse links
+'	Ist geforderter Bremsdruck höher als der aktuelle?
+
+	(L.L.bremse_zieldruck_VA_L) (L.L.bremse_p_brzyl_VA_L) >
+	{if}
+		(L.L.bremse_zieldruck_VA_L) (L.L.bremse_p_brzyl_VA_L) - 20000000000 / (S.L.bremse_A_BrVentil_VA_L)
+
+'		Berechnung des Massenstroms aus Behälter 2 zum Bremszylinder VA
+
+		(L.L.bremse_p_Tank02) s1
+		(L.L.bremse_p_Brzyl_VA_L) s2
+		(C.L.bremse_V_tank02) s3
+		(C.L.bremse_V_Brzyl_VA_L) s4
+		(L.L.bremse_A_BrVentil_VA_L) s5
+
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Tank02) 
+		l2 (S.L.bremse_p_Brzyl_VA_L) 
+
+	{else}
+		(L.L.bremse_p_brzyl_VA_L) (L.L.bremse_zieldruck_VA_L) - sqrt 20000000 / (S.L.bremse_A_BrVentil_VA_L)
+
+'		Berechnung des Massenstroms aus Bremszylinder VA ins Freie
+	
+		(L.L.bremse_p_Brzyl_VA_L) s1
+		(L.L.bremse_p_luft) s2
+		(C.L.bremse_V_brzyl_VA_L) s3
+		1000000 s4
+		(L.L.bremse_A_BrVentil_VA_L) s5
+
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Brzyl_VA_L) 
+		
+	{endif}
+
+'	Bildung des Mittelwertes für weitere Berechnungen
+	(L.L.bremse_p_Brzyl_VA_R) (L.L.bremse_p_Brzyl_VA_L) + 2 / (S.L.bremse_p_Brzyl_VA) 
+
+'	c) Federspeicherbremse
+'	Ist geforderter Lösedruck höher als der aktuelle?
+
+	(L.L.bremse_zieldruck_FBA) (L.L.bremse_p_brzyl_FBA) >
+	{if}
+		(L.L.bremse_zieldruck_FBA) (L.L.bremse_p_brzyl_FBA) - 10000000000 / (S.L.bremse_A_BrVentil_FBA)
+
+'		Berechnung des Massenstroms aus Behälter 2 zum Bremszylinder FBA
+
+		(L.L.bremse_p_Tank03) s1
+		(L.L.bremse_p_Brzyl_FBA) s2
+		(C.L.bremse_V_tank03) s3
+		(C.L.bremse_V_Brzyl_FBA) s4
+		(L.L.bremse_A_BrVentil_FBA) s5
+
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Tank03) 
+		l2 (S.L.bremse_p_Brzyl_FBA) 
+
+	{else}
+		(L.L.bremse_p_brzyl_FBA) (L.L.bremse_zieldruck_FBA) - sqrt 10000000 / (S.L.bremse_A_BrVentil_FBA)
+
+'		Berechnung des Massenstroms aus Bremszylinder FBA ins Freie
+	
+		(L.L.bremse_p_Brzyl_FBA) s1
+		(L.L.bremse_p_luft) s2
+		(C.L.bremse_V_brzyl_FBA) s3
+		1000000 s4
+		(L.L.bremse_A_BrVentil_FBA) s5
+
+		(M.L.bremse_druckausgleich)
+
+		l1 (S.L.bremse_p_Brzyl_FBA) 
+		
+	{endif}
+
+
+
+
+
+
+'	Überströmventile im Vierkreisschutzventil:
+
+
+	(L.L.bremse_p_Tank01) (C.L.bremse_UeVentil_1_schliessdruck) < (L.L.bremse_UeVentil_1) &&
+	{if}
+		0 (S.L.bremse_UeVentil_1)
+	{endif}
+	(L.L.bremse_p_leitung01) (C.L.bremse_UeVentil_1_oeffnungsdruck) > 
+	{if}
+		1 (S.L.bremse_UeVentil_1)
+	{endif}
+
+
+	(L.L.bremse_p_Tank02) (C.L.bremse_UeVentil_2_schliessdruck) < (L.L.bremse_UeVentil_2) &&
+	{if}
+		0 (S.L.bremse_UeVentil_2)
+	{endif}	
+	(L.L.bremse_p_leitung01) (C.L.bremse_UeVentil_2_oeffnungsdruck) > 
+	{if}
+		1 (S.L.bremse_UeVentil_2)
+	{endif}
+
+
+
+
+'	Ein- und Abschaltdrücke des Druckreglers:
+
+	(L.L.bremse_p_leitung01) 950000 > (L.L.bremse_kompressor) 1 = &&
+	{if}
+		(T.L.ev_kompressor_aus)
+		0 (S.L.bremse_kompressor)
+	{endif}
+
+	(L.L.bremse_p_leitung01) 900000 <  (L.L.bremse_kompressor) 0 = &&
+	{if}
+		(T.L.ev_kompressor_ein)
+		1 (S.L.bremse_kompressor)
+	{endif}
+
+
+	
+{end}
+
+
+
+{macro:bremse_levelcontrol}
+
+'Kneeling Sensor. Er stoppt das Kneeling, sobald der Wagenkasten den Bordstein berührt.
+1.2652	5.2306	0.4041	(M.V.GetHeightAbovePoint) 0 max (S.L.kneeling_sensor)
+
+	(L.L.cp_kneel_up_mode) 1 =
+	(C.L.disable_auto_kneeling) 1 = ||
+	{if}
+		1 (S.L.kneel_locked)
+	{endif}
+
+	(C.L.disable_auto_kneeling) !
+	{if}
+		(L.L.bremse_halte_sw)
+		(L.L.kneel_locked) 0 = &&
+		(L.L.velocity) 0.1 < &&
+		{if}
+			1 (S.L.kneel_allowed)
+		{else}
+			0 (S.L.kneel_allowed)
+		{endif}
+	{else}
+		(L.L.cp_kneel_down_mode) 1 =
+		(L.L.door_0) 0 = &&
+		(L.L.door_1) 0 = &&
+		(L.L.door_2) 0 = &&
+		(L.L.door_4) 0 = &&
+		(L.L.velocity) 0.1 < &&
+		{if}
+			1 (S.L.kneel_allowed)
+		{endif}
+		(L.L.cp_kneel_up_mode) 1 =
+		(L.L.door_0) 0 = &&
+		(L.L.door_1) 0 = &&
+		(L.L.door_2) 0 = &&
+		(L.L.door_4) 0 = &&
+		{if}
+			0 (S.L.kneel_allowed)
+		{endif}
+	{endif}
+
+
+'ECAS Startup-Timer
+
+(L.L.elec_busbar_main) (C.L.elec_busbar_minV) >
+(L.L.bremse_p_tank01) 500000 > &&
+(L.L.bremse_p_tank02) 500000 > &&
+(L.L.ECAS_Error_dist) (C.L.Fehlertoleranz) (L.L.wearlifespan) * <= &&
+{if}
+	(L.L.ecas_timer) (L.S.Timegap) + 3 min (S.L.ecas_timer)
+{else}
+	0 (S.L.ecas_timer)
+	1 (S.L.ecas_init)
+{endif}
+
+(L.L.ecas_timer) 3 =
+{if}
+'Nach Einschalten werden Drücke in den Bälgen geprüft und anschließend angeglichen
+
+	(L.L.ecas_init)
+	{if}
+		(L.L.Axle_Springfactor_0_L) 1 >
+		{if}
+			(L.L.Axle_Springfactor_0_L) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_0_L)
+		{else}
+			(L.L.Axle_Springfactor_0_L) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_0_L)
+		{endif}
+		(L.L.Axle_Springfactor_0_R) 1 >
+		{if}
+			(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_0_R)
+		{else}
+			(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_0_R)
+		{endif}
+		(L.L.Axle_Springfactor_1_L) 1 >
+		{if}
+			(L.L.Axle_Springfactor_1_L) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_1_L)
+		{else}
+			(L.L.Axle_Springfactor_1_L) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_1_L)
+		{endif}
+		(L.L.Axle_Springfactor_1_R) 1 >
+		{if}
+			(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_1_R)
+		{else}
+			(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_1_R)
+		{endif}
+
+		(L.L.Axle_Springfactor_0_L) 1 =
+		(L.L.Axle_Springfactor_0_R) 1 = &&
+		(L.L.Axle_Springfactor_1_L) 1 = &&
+		(L.L.Axle_Springfactor_1_R) 1 = &&
+		{if}
+			0 (S.L.ecas_init)
+		{endif}
+	{endif}
+
+'Wagenkasten anheben
+
+	(L.L.ecas_rise_active)
+	{if}
+		(L.L.ecas_rise)
+		{if}
+			(L.L.Axle_Springfactor_0_L) 2 >
+			{if}
+				(L.L.Axle_Springfactor_0_L) (L.S.Timegap) 4 / - 2 max (S.L.Axle_Springfactor_0_L)
+			{else}
+				(L.L.Axle_Springfactor_0_L) (L.S.Timegap) 3 / + 2 min (S.L.Axle_Springfactor_0_L)
+			{endif}
+			(L.L.Axle_Springfactor_0_R) 2 >
+			{if}
+				(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 4 / - 2 max (S.L.Axle_Springfactor_0_R)
+			{else}
+				(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 3 / + 2 min (S.L.Axle_Springfactor_0_R)
+			{endif}
+			(L.L.Axle_Springfactor_1_L) 2 >
+			{if}
+				(L.L.Axle_Springfactor_1_L) (L.S.Timegap) 4 / - 2 max (S.L.Axle_Springfactor_1_L)
+			{else}
+				(L.L.Axle_Springfactor_1_L) (L.S.Timegap) 3 / + 2 min (S.L.Axle_Springfactor_1_L)
+			{endif}
+			(L.L.Axle_Springfactor_1_R) 2 >
+			{if}
+				(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 4 / - 2 max (S.L.Axle_Springfactor_1_R)
+			{else}
+				(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 3 / + 2 min (S.L.Axle_Springfactor_1_R)
+			{endif}
+		{endif}
+		(L.L.Axle_Springfactor_0_L) 2 =
+		(L.L.Axle_Springfactor_0_R) 2 = &&
+		(L.L.Axle_Springfactor_1_L) 2 = &&
+		(L.L.Axle_Springfactor_1_R) 2 = &&
+		{if}
+			0 (S.L.ecas_rise)
+		{endif}
+	{endif}
+
+'Niveauprüfung und anschließender nötiger Ausgleich
+	(L.L.ecas_init) !
+	(L.L.ecas_kneel) ! &&
+	(L.L.ecas_kneel_up) ! &&
+	(L.L.ecas_rise_active) ! &&
+	(L.L.velocity) 1 < &&
+	(L.L.kneel_timer) 0 = &&
+	{if}
+'	Vorderachse Differenzbildung/Grenzwertprüfung
+
+'	Timer
+		(L.L.regelung_timer) (L.S.Timegap) + 999 min (S.L.regelung_timer)
+		(L.L.regelung_timer) (L.L.regelung_stand_timer) - (S.L.regelung_diff)
+
+		(L.L.Axle_Springfactor_0_L) (L.L.Axle_Springfactor_0_R) - (S.L.VA_diff)
+
+		(L.L.VA_diff) 0.075 >
+		(L.L.VA_diff) -0.075 < ||
+		(L.L.Axle_Springfactor_0_L) 0.8 <= ||
+		(L.L.Axle_Springfactor_0_R) 0.8 <= ||
+		(L.L.regelung_diff) 1 > &&
+		(L.L.Axle_Springfactor_0_L) 1 > ||
+		(L.L.Axle_Springfactor_0_R) 1 > ||
+		(L.L.regelung_timer) 2 > &&
+		{if}
+			1 (S.L.ecas_fill_front)
+			(L.L.regelung_timer) (S.L.regelung_stand_timer)
+			0 (S.L.ecas_drain) (S.L.regelung_diff)
+		{endif}
+'	Mittelachse Differenzbildung/Grenzwertprüfung
+
+		(L.L.Axle_Springfactor_1_L) (L.L.Axle_Springfactor_1_R) - (S.L.MA_diff)
+
+		(L.L.MA_diff) 0.075 >
+		(L.L.MA_diff) -0.075 < ||
+		(L.L.Axle_Springfactor_1_L) 0.8 <= ||
+		(L.L.Axle_Springfactor_1_R) 0.8 <= ||
+		(L.L.regelung_diff) 1 > &&
+		(L.L.Axle_Springfactor_1_R) 1 > ||
+		(L.L.Axle_Springfactor_1_R) 1 > ||
+		(L.L.regelung_timer) 2 > &&
+		{if}
+			1 (S.L.ecas_fill_mid)
+			(L.L.regelung_timer) (S.L.regelung_stand_timer)
+			0 (S.L.ecas_drain) (S.L.regelung_diff)
+		{endif}
+
+		(L.L.regelung_timer) 999 =
+		{if}
+			0 (S.L.regelung_timer) (S.L.regelung_stand_timer) (S.L.regelung_diff)
+		{endif}
+	{else}
+		0 (S.L.regelung_stand_timer) (S.L.regelung_timer) (S.L.regelung_diff)
+	{endif}
+
+'Dauerhafter Druckluftverlust
+
+	(L.L.ecas_init) !
+	(L.L.ecas_rise_active) ! &&
+	(L.L.ecas_fill_front) ! &&
+	(L.L.ecas_fill_mid) ! &&
+	(L.L.ecas_fill_back) ! &&
+	(L.L.ecas_kneel) ! &&
+	(L.L.ecas_kneel_up) ! &&
+	{if}
+'Randomize
+		(L.L.ecas_drain) !
+		{if}
+			1 (S.L.ecas_drain)
+			200 random 200 + (S.L.ecas_random_0_L)
+			200 random 200 + (S.L.ecas_random_0_R)
+			200 random 200 + (S.L.ecas_random_1_L)
+			200 random 200 + (S.L.ecas_random_1_R)
+		{endif}
+		(L.L.Axle_Springfactor_0_L) (L.S.Timegap) (L.L.ecas_random_0_L) / - 0.8 max (S.L.Axle_Springfactor_0_L)
+		(L.L.Axle_Springfactor_0_R) (L.S.Timegap) (L.L.ecas_random_0_R) / - 0.8 max (S.L.Axle_Springfactor_0_R)
+		(L.L.Axle_Springfactor_1_L) (L.S.Timegap) (L.L.ecas_random_1_L) / - 0.8 max (S.L.Axle_Springfactor_1_L)
+		(L.L.Axle_Springfactor_1_R) (L.S.Timegap) (L.L.ecas_random_1_R) / - 0.8 max (S.L.Axle_Springfactor_1_R)
+	{endif}
+
+	(L.L.ecas_fill_front)
+	{if}
+		(L.L.Axle_Springfactor_0_L) 1 >
+		{if}
+			(L.L.Axle_Springfactor_0_L) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_0_L)
+		{else}
+			(L.L.Axle_Springfactor_0_L) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_0_L)
+		{endif}
+		(L.L.Axle_Springfactor_0_R) 1 >
+		{if}
+			(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_0_R)
+		{else}
+			(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_0_R)
+		{endif}
+
+		(L.L.Axle_Springfactor_0_L) 1 =
+		(L.L.Axle_Springfactor_0_R) 1 = &&
+		{if}
+			0 (S.L.ecas_fill_front)
+		{endif}
+	{endif}
+	(L.L.ecas_fill_mid)
+	{if}
+		(L.L.Axle_Springfactor_1_L) 1 >
+		{if}
+			(L.L.Axle_Springfactor_1_L) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_1_L)
+		{else}
+			(L.L.Axle_Springfactor_1_L) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_1_L)
+		{endif}
+		(L.L.Axle_Springfactor_1_R) 1 >
+		{if}
+			(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_1_R)
+		{else}
+			(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_1_R)
+		{endif}
+
+		(L.L.Axle_Springfactor_1_L) 1 =
+		(L.L.Axle_Springfactor_1_R) 1 = &&
+		{if}
+			0 (S.L.ecas_fill_mid)
+		{endif}
+	{endif}
+
+	(L.L.ecas_kneel)
+	(L.L.ecas_init) ! &&
+	(L.L.ecas_rise_active) ! &&
+	(L.L.kneeling_sensor) 0.01 > &&
+	{if}
+		(L.L.Axle_Springfactor_0_R) 0.55 >
+		{if}
+			(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 10 / - 0.55 max (S.L.Axle_Springfactor_0_R)
+		{else}
+			(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 4 / + 0.55 min (S.L.Axle_Springfactor_0_R)
+		{endif}
+		(L.L.Axle_Springfactor_1_R) 0.55 >
+		{if}
+			(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 10 / - 0.55 max (S.L.Axle_Springfactor_1_R)
+		{else}
+			(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 4 / + 0.55 min (S.L.Axle_Springfactor_1_R)
+		{endif}
+
+		(L.L.Axle_Springfactor_0_R) 0.55 =
+		(L.L.Axle_Springfactor_1_R) 0.55 = &&
+		{if}
+			5 (S.L.kneel_timer)
+		{endif}
+	{endif}
+	(L.L.ecas_kneel_up)
+	(L.L.ecas_init) ! &&
+	(L.L.ecas_rise_active) ! &&
+	{if}
+		(L.L.Axle_Springfactor_0_R) 1 >
+		{if}
+			(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_0_R)
+		{else}
+			(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_0_R)
+		{endif}
+		(L.L.Axle_Springfactor_1_R) 1 >
+		{if}
+			(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 5 / - 1 max (S.L.Axle_Springfactor_1_R)
+		{else}
+			(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 4 / + 1 min (S.L.Axle_Springfactor_1_R)
+		{endif}
+
+		(L.L.Axle_Springfactor_0_R) 1 =
+		(L.L.Axle_Springfactor_1_R) 1 = &&
+		{if}
+			0 (S.L.ecas_kneel_up) (S.L.kneel_timer)
+			2 (S.L.regelung_stand_timer) (S.L.regelung_timer)
+			0.5 (S.L.regelung_diff)
+		{endif}
+	{endif}
+
+'	SOUND
+	(L.L.kneel_timer) 0 >
+	(L.L.kneel_timer) 5 < &&
+	(L.L.ecas_fill_front) ||
+	(L.L.ecas_fill_back) ||
+	(L.L.ecas_fill_mid) ||
+	(L.L.ecas_init) ||
+	(L.L.ecas_rise) 1 = ||
+	(L.L.ecas_kneel_up) ||
+	(L.L.ecas_timer) 3 = &&
+	(L.L.kneeling_sensor) 0.01 > &&
+	{if}
+'		DOWN
+		(L.L.kneel_timer) 0 >
+		(L.L.kneel_timer) 5 < &&
+		(L.L.ecas_fill_front) ! &&
+		(L.L.ecas_fill_back) ! &&
+		(L.L.ecas_fill_mid) ! &&
+		(L.L.ecas_init) ! &&
+		(L.L.ecas_rise) 0 = &&
+		(L.L.ecas_kneel_up) ! &&
+		{if}
+			1 (S.L.ecas_sound_0) (S.L.ecas_sound_1) (S.L.ecas_sound_2)
+		{else}
+			0 (S.L.ecas_sound_0) (S.L.ecas_sound_1) (S.L.ecas_sound_2)
+		{endif}
+
+'		UP
+		(L.L.ecas_fill_front)
+		(L.L.ecas_init) ||
+		(L.L.ecas_rise) 1 = ||
+		(L.L.ecas_kneel_up) ||
+		{if}
+			1 (S.L.ecas_sound_up_0)
+		{else}
+			0 (S.L.ecas_sound_up_0)
+		{endif}
+
+		(L.L.ecas_fill_mid)
+		(L.L.ecas_init) ||
+		(L.L.ecas_rise) 1 = ||
+		(L.L.ecas_kneel_up) ||
+		{if}
+			1 (S.L.ecas_sound_up_1)
+		{else}
+			0 (S.L.ecas_sound_up_1)
+		{endif}
+	{else}
+		0 (S.L.ecas_sound_0) (S.L.ecas_sound_up_0) (S.L.ecas_sound_1) (S.L.ecas_sound_up_1) (S.L.ecas_sound_2) (S.L.ecas_sound_up_2)
+	{endif}
+
+'Druckluftablass in den Tanks
+
+	(L.L.ecas_sound_up_0)
+	(L.L.ecas_sound_up_1) ||
+	{if}
+		(L.L.bremse_p_Tank01) (L.S.Timegap) 10000 * - (S.L.bremse_p_Tank01)
+		(L.L.bremse_p_Tank02) (L.S.Timegap) 10000 * - (S.L.bremse_p_Tank02)
+	{endif}
+
+'Kneeling-Steuerung
+
+	(L.L.kneel_allowed)
+	(L.L.Velocity) 0.1 < &&
+	{if}
+		1 (S.L.bremse_halte) (S.L.ecas_kneel)
+	{else}
+		(L.L.doortimer23) (C.L.tuerverzoegerung) >=
+		(L.L.doorTarget_0) 0 = &&
+		(L.L.doorTarget_1) 0 = &&
+		(L.L.doorTarget_23) 0 = &&
+		{if}
+			(L.L.ecas_kneel)
+			{if}
+				1 (S.L.ecas_kneel_up)
+			{endif}
+			0 (S.L.ecas_kneel)
+		{endif}
+	{endif}
+{else}
+'langsames Entlüften
+
+	(L.L.Axle_Springfactor_0_L) (L.S.Timegap) 100 / - 0.55 max (S.L.Axle_Springfactor_0_L)
+	(L.L.Axle_Springfactor_0_R) (L.S.Timegap) 100 / - 0.55 max (S.L.Axle_Springfactor_0_R)
+	(L.L.Axle_Springfactor_1_L) (L.S.Timegap) 100 / - 0.6 max (S.L.Axle_Springfactor_1_L)
+	(L.L.Axle_Springfactor_1_R) (L.S.Timegap) 100 / - 0.6 max (S.L.Axle_Springfactor_1_R)
+	0 (S.L.ecas_sound_0) (S.L.ecas_sound_up_0) (S.L.ecas_sound_1) (S.L.ecas_sound_up_1) (S.L.ecas_sound_2) (S.L.ecas_sound_up_2)
+	0 (S.L.regelung_stand_timer) (S.L.regelung_timer) (S.L.regelung_diff)
+{endif}
+
+
+
+{end}
+
+
+{macro:bremse_druckausgleich}
+	
+'	l1	Druck im Behälter 1
+'	l2	Druck im Behälter 2
+'	l3	Volumen Behälter 1
+'	l4	Volumen Behälter 2
+'	l5	Querschnittsfläche Verbindungsleitung
+'...
+'	l6	temporäre Variable, die die maximale Zeitkonstante enthält
+
+	l1 l2 + 2 / l1 l2 - s0 * (C.L.RT_Luft) / abs sqrt l0 sgn * l5 * (C.L.RT_Luft) * s0
+
+	l1 l2 - 1 l3 / 1 l4 / + l0 * / s6
+
+	(L.S.Timegap) l6 min   l0     * l4 / l2 + s2
+	(L.S.Timegap) l6 min   l0 /-/ * l3 / l1 + s1
+{end}
+
+{macro:bremse_druckausgleich_kneeling}
+	
+'	l1	Druck im Behälter 1
+'	l2	Druck im Behälter 2
+'	l3	Volumen Behälter 1
+'	l4	Volumen Behälter 2
+'	l5	Querschnittsfläche Verbindungsleitung
+'...
+'	l6	temporäre Variable, die die maximale Zeitkonstante enthält
+
+	l1 l2 + 2 / l1 l2 - s0 * (C.L.RT_Luft) / abs sqrt l0 sgn * l5 3 * * (C.L.RT_Luft) * s0
+
+	l1 l2 - 1 l3 / 1 l4 / + l0 * / s6
+
+	(L.S.Timegap) l6 min   l0     * l4 / l2 + s2
+	(L.S.Timegap) l6 min   l0 /-/ * l3 / l1 + s1
+{end}
+
+{macro:bremse_druckluftsound}
+
+'	Setzen der Druckdifferenz zur entsprechenden Sounduntermalung:
+
+	(L.L.bremse_zieldruck_VA) (L.L.bremse_p_brzyl_VA) - s1
+	(L.L.bremse_wechselventil_HA) !
+	{if}
+		(L.L.bremse_zieldruck_HA) (L.L.bremse_p_brzyl_HA) - s2
+	{else}
+		0 s2
+	{endif}
+	l1 l2 min (S.L.bremse_zieldruckdifferenz)
+
+
+	(L.L.bremse_p_brzyl_VA) (L.L.bremse_last_p_Brzyl) max s1
+	(L.L.bremse_wechselventil_HA) !
+	{if}
+		(L.L.bremse_p_brzyl_HA) (L.L.bremse_last_p_brzyl) max s2
+	{else}
+		0 s2
+	{endif}
+	l1 l2 max (S.L.bremse_last_p_Brzyl)
+
+	(L.L.bremse_zieldruckdifferenz) -40000 <
+	{if}
+		(L.L.bremse_loesezischbereitschaft) (L.L.bremse_loesezischzeit) 0.6 > &&
+		{if}
+			(L.L.bremse_last_p_Brzyl) (S.L.bremse_zischvolume)
+'			(T.L.ev_loesezischen)
+			0 (S.L.bremse_loesezischzeit)
+		{endif}
+		0 (S.L.bremse_loesezischbereitschaft)
+	{else}
+		(L.L.bremse_loesezischbereitschaft) !
+		{if}
+			1 (S.L.bremse_loesezischbereitschaft)
+			(L.L.bremse_p_brzyl_VA) s1
+			(L.L.bremse_wechselventil_HA) !
+			{if}
+				(L.L.bremse_p_brzyl_HA) s2
+			{endif}
+				l1 l2 max (S.L.bremse_last_p_Brzyl)
+		{endif}
+'		Inkrementierung der vergangenen Zeit seit letztem Lösezischen:
+		(L.L.bremse_loesezischzeit) (L.S.Timegap) + (S.L.bremse_loesezischzeit)
+	{endif}
+
+	(L.L.bremse_zieldruckdifferenz) -300000 <
+	(L.L.loesezischen_laenge) 0 = &&
+	{if}
+		4 (S.L.loesezischen_laenge)
+	{endif}
+	(L.L.bremse_zieldruckdifferenz) -150000 <
+	(L.L.loesezischen_laenge) 0 = &&
+	{if}
+		3 (S.L.loesezischen_laenge)
+	{endif}
+	(L.L.bremse_zieldruckdifferenz) -100000 <
+	(L.L.loesezischen_laenge) 0 = &&
+	{if}
+		2 (S.L.loesezischen_laenge)
+	{endif}
+	(L.L.bremse_zieldruckdifferenz) -40000 <
+	(L.L.loesezischen_laenge) 0 = &&
+	{if}
+		1 (S.L.loesezischen_laenge)
+	{endif}
+
+	(L.L.bremse_zieldruckdifferenz) -40000 >
+	(L.L.loesezischen_laenge) 0 > &&
+	{if}
+		(L.L.loesezischen_laenge) 4 =
+		{if}
+			(T.L.ev_loesezischen_lang)
+			(T.L.ev_loesezischen)
+			0 (S.L.loesezischen_laenge)
+		{endif}
+		(L.L.loesezischen_laenge) 3 =
+		{if}
+			(T.L.ev_loesezischen_mittellang)
+			(T.L.ev_loesezischen)
+			0 (S.L.loesezischen_laenge)
+		{endif}
+		(L.L.loesezischen_laenge) 2 =
+		{if}
+			(T.L.ev_loesezischen_mittel)
+			(T.L.ev_loesezischen)
+			0 (S.L.loesezischen_laenge)
+		{endif}
+		(L.L.loesezischen_laenge) 1 =
+		{if}
+			(T.L.ev_loesezischen_kurz)
+			(T.L.ev_loesezischen)
+			0 (S.L.loesezischen_laenge)
+		{endif}
+	{endif}
+
+	(L.L.bremse_zieldruckdifferenz) 100000 >
+	{if}
+		(L.L.bremse_bremszischbereitschaft)
+		{if}
+			(T.L.ev_bremszischen)
+		{endif}
+		0 (S.L.bremse_bremszischbereitschaft)
+	{else}
+		1 (S.L.bremse_bremszischbereitschaft)
+	{endif}
+
+
+'	Bremshupen Hinterachse
+'	Bestimmen der Gesamtlautstärke je nach Wagennummer:
+	(L.L.bremse_quietsch_volume) -1.5 <
+	{if}
+		(L.$.number) $StrToFloat 1000 * sin (S.L.bremse_quietsch_volume)
+	{endif}
+
+'	Triggern des Sounds jach Radumdrehung:
+	(L.L.Wheel_Rotation_1_R) 6.28318 / (L.L.Wheel_Rotation_1_R) 6.28318 / trunc - 0.5 > 
+	{if}
+		(L.L.bremse_hupsound) !
+		{if}	
+			(T.L.ev_bremse_hup)
+			1 (S.L.bremse_hupsound)
+		{endif}
+	{else}
+		0 (S.L.bremse_hupsound)
+	{endif}
+
+
+{end}

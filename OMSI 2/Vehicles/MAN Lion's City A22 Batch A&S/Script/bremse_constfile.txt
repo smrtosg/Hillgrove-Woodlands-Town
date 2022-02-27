@@ -1,0 +1,224 @@
+
+[const]
+max_bremskraft
+90000
+
+[const]
+disable_auto_kneeling
+1
+
+[const]
+bremse_ABS
+1
+
+Mass flow of the compressor in kg per engine revolution
+[const]
+bremse_m_kompressor
+0.00045
+
+Volume [m設 Air line Compressor protection valve
+[const]
+bremse_V_leitung01
+0.002
+
+Volume [m設 Airflow circuit 1 + 2 to 3 + 4
+[const]
+bremse_V_leitung02
+0.002
+
+Cross-sectional area Check valves for filling line circuits 3 + 4
+[const]
+bremse_A_Rueckschlagventil_1
+0.00003
+
+Volume [m設 Air container circuit 1 (HA)
+[const]
+bremse_V_tank01
+0.04
+
+Volume [m設 Air container circle 2 (VA)
+[const]
+bremse_V_tank02
+0.04
+
+Volume [m設 air tank circuit 3 (FBA)
+[const]
+bremse_V_tank03
+0.04
+
+Volume [m設 Air container circle 4 (suspension + doors + HBA)
+[const]
+bremse_V_tank04
+0.04
+
+Volumen Bremszylinder HA
+[const]
+bremse_V_Brzyl_HA
+0.0025
+
+Volumen Bremszylinder HA rechts
+[const]
+bremse_V_Brzyl_HA_R
+0.00125
+
+Volumen Bremszylinder HA
+[const]
+bremse_V_Brzyl_HA_L
+0.00125
+
+Volumen Bremszylinder VA
+[const]
+bremse_V_Brzyl_VA
+0.0025
+
+Volumen Bremszylinder VA rechts
+[const]
+bremse_V_Brzyl_VA_R
+0.00125
+
+Volumen Bremszylinder VA links
+[const]
+bremse_V_Brzyl_VA_L
+0.00125
+
+Volumen Bremszylinder FBA
+[const]
+bremse_V_brzyl_FBA
+0.01
+
+Volumen Luftfederbalg 0 R
+[const]
+bremse_V_balg_0_R
+0.005
+
+Volumen Luftfederbalg 0 L
+[const]
+bremse_V_balg_0_L
+0.005
+
+Volumen Luftfederbalg 1 R
+[const]
+bremse_V_balg_1_R
+0.01
+
+Volumen Luftfederbalg 1 L
+[const]
+bremse_V_balg_1_L
+0.01
+
+Volumen Luftfederbalg 2 R
+[const]
+bremse_V_balg_2_R
+0.01
+
+Volumen Luftfederbalg 2 L
+[const]
+bremse_V_balg_2_L
+0.01
+
+Gas constant * Average temperature
+[const]
+RT_Luft
+84091
+
+Operating pressure stop brake
+[const]
+bremse_pmax_halte
+450000
+
+Opening pressure of overflow valve circuit 1
+[const]
+bremse_UeVentil_1_oeffnungsdruck
+750000
+
+Closing pressure overflow valve circuit 1
+[const]
+bremse_UeVentil_1_schliessdruck
+600000
+
+Opening pressure overflow valve circuit 2
+[const]
+bremse_UeVentil_2_oeffnungsdruck
+750000
+
+Closing pressure overflow valve circuit 2
+[const]
+bremse_UeVentil_2_schliessdruck
+600000
+
+猈fnungsdruck 鈁erstromventil Kreis 3
+[const]
+bremse_UeVentil_3_oeffnungsdruck
+750000
+
+Schlie綄ruck 鈁erstromventil Kreis 3
+[const]
+bremse_UeVentil_3_schliessdruck
+600000
+
+猈fnungsdruck 鈁erstromventil Kreis 4
+[const]
+bremse_UeVentil_4_oeffnungsdruck
+750000
+
+Schlie綄ruck 鈁erstromventil Kreis 4
+[const]
+bremse_UeVentil_4_schliessdruck
+600000
+
+[newcurve]
+Bremskraft_FBA
+
+[pnt]
+100000
+35000
+
+[pnt]
+650000
+0
+
+[pnt]
+10000000
+0
+
+Setpoint for level control
+[const]
+bremse_level_setpoint
+-0.105
+
+
+
+Control tolerance for electronic level control:
+[const]
+bremse_levelcontrol_tolerance
+0.005
+
+Simulation of the pulse response of the control valves when approaching the target value (avoiding instabilities)
+[newcurve]
+bremse_suspension_regulatorcurve
+
+[pnt]
+-0.03
+1
+
+[pnt]
+-0.01
+0.15
+
+[pnt]
+0
+0.2
+
+[pnt]
+0.005
+0.5
+
+[pnt]
+0.01
+1
+
+
+Test lead cross-section
+[const]
+bremse_A_Leck
+0.0001

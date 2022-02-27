@@ -1,0 +1,341 @@
+File created with StreetCreator v1.000
+
+---------------------------
+      Height Profiles
+---------------------------
+
+Damm:
+	[heightprofile]
+	-8
+	-6.250
+	0.000
+	0.250
+
+[heightprofile]
+-15.450
+-6.250
+0.250
+0.250
+
+[heightprofile]
+-6.250
+6.250
+0.100
+0.100
+
+[heightprofile]
+6.250
+15.450
+0.250
+0.250
+
+	Damm:
+	[heightprofile]
+	6.250
+	8
+	0.250
+	0.000
+
+---------------------------
+         Textures
+---------------------------
+
+[texture]
+str_gruenstreifen.bmp
+
+[texture]
+str_asphdrk_1line.bmp
+
+[texture]
+str_asphdrk_2A.bmp
+
+[texture]
+gras1.bmp
+
+[texture]
+str_gehweg99.bmp
+
+	[texture]
+	gras1.bmp
+	
+	---------------------------
+	Damm:
+	---------------------------
+	
+	[profile]
+	3
+	
+	[profilepnt]
+	-8
+	0
+	0
+	0.1
+	
+	[profilepnt]
+	-6.450
+	0.250
+	0.3
+	0.1
+	
+	[profile]
+	3
+	
+	[profilepnt]
+	6.450	
+	0.250
+	0.3
+	0.1
+	
+	[profilepnt]
+	8	
+	0
+	0
+	0.1
+
+---------------------------
+     Graphical Lanes
+---------------------------
+Gehweg
+
+[profile]
+4
+
+[profilepnt]
+-15.450
+0.250
+0.005
+0.300
+
+[profilepnt]
+-12.450
+0.250
+0.995
+0.300
+
+Grass strip 6m
+
+[profile]
+3
+
+[profilepnt]
+-12.450
+0.250
+0.005
+0.167
+
+[profilepnt]
+-6.450
+0.250
+0.945
+0.167
+
+Grass strip:
+
+[profile]
+0
+
+[profilepnt]
+-6.450
+0.250
+0.945
+0.167
+
+[profilepnt]
+-6.250
+0.250
+0.973
+0.167
+
+[profile]
+0
+
+[profilepnt]
+-6.250
+0.250
+0.973
+0.167
+
+[profilepnt]
+-6.250
+0.100
+0.995
+0.167
+
+Lane:
+
+[profile]
+1
+
+[profilepnt]
+-6.250
+0.100
+0.995
+0.167
+
+[profilepnt]
+-3.250
+0.100
+0.005
+0.167
+
+Lane:
+
+[profile]
+2
+
+[profilepnt]
+-3.250
+0.100
+0.005
+0.167
+
+[profilepnt]
+0.000
+0.100
+0.995
+0.167
+
+Lane:
+
+[profile]
+2
+
+[profilepnt]
+0.000
+0.100
+0.995
+0.167
+
+[profilepnt]
+3.250
+0.100
+0.005
+0.167
+
+Lane:
+
+[profile]
+1
+
+[profilepnt]
+3.250
+0.100
+0.005
+0.167
+
+[profilepnt]
+6.250
+0.100
+0.995
+0.167
+
+Grass strip:
+
+[profile]
+0
+
+[profilepnt]
+6.250
+0.100
+0.995
+0.167
+
+[profilepnt]
+6.250
+0.250
+0.973
+0.167
+
+[profile]
+0
+
+[profilepnt]
+6.250
+0.250
+0.973
+0.167
+
+[profilepnt]
+6.450
+0.250
+0.945
+0.167
+
+Grass strip 6m:
+
+[profile]
+3
+
+[profilepnt]
+6.450
+0.250
+0.945
+0.167
+
+[profilepnt]
+12.450
+0.250
+0.945
+0.167
+
+Gehweg
+
+[profile]
+4
+
+[profilepnt]
+12.450
+0.250
+0.005
+0.300
+
+[profilepnt]
+15.450
+0.250
+0.995
+0.300
+
+---------------------------
+          Paths
+---------------------------
+[path]
+1
+-13.950
+0.250
+1.176
+2
+
+[path]
+0
+-4.750
+0.100
+2.879
+1
+
+[path]
+0
+-1.609
+0.100
+2.955
+1
+
+[path]
+0
+1.609
+0.100
+2.955
+0
+
+[path]
+0
+4.750
+0.100
+2.879
+0
+
+[path]
+1
+13.950
+0.250
+1.176
+2

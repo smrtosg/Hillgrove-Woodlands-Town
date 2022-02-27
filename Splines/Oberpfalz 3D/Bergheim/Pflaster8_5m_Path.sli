@@ -1,0 +1,55 @@
++ + + + + + + + + +
+Hoehenprofil
++ + + + + + + + + +
+
+[heightprofile]
+-2.500
+2.500
+0.100
+0.100
+
++ + + + + + + + + +
+Texturauflistung
++ + + + + + + + + +
+
+[texture]
+Pflaster8.dds
+
++ + + + + + + + + +
+Texturzuweisung
++ + + + + + + + + +
+
+'Fahrbahn
+
+[profile]
+0
+
+[profilepnt]
+-2.500
+0.100
+0.005
+0.200
+
+[profilepnt]
+2.500
+0.100
+0.995
+0.200
+
++ + + + + + + + + +
+Trampelpfade
++ + + + + + + + + +
+
+[path]
+0
+-2
+0.1
+1
+1
+
+[path]
+0
+1
+0.1
+1
+0
