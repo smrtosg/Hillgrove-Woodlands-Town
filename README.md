@@ -16,12 +16,27 @@ services – 401, 858, 882, 883, 885, 889, 901, 902, 903, 904, 911/T, 965, IKEA 
 - Vehicles (HOFs & A&S' A21)
 
 ## Things to note:
-- Woodlands Town is currently in preview, that means the map is unfinished, and some services are still not yet completed.
+- Woodlands Town is **currently in preview,** that means the map is unfinished, and some services are still not yet completed.
 
 ### How to Download?
 ```
 Step 1:
 Simply click on the Code Button, and select Download ZIP.
+```
+![rl-1](https://user-images.githubusercontent.com/77185714/155873153-e9ab0e95-18d4-437e-b10f-79488fd127b9.png)
+
+File Size: about xxMB
+
+### What's next?
+```
+Step 2:
+Use 7-Zip or WinZip to extract the folder into your OMSI 2 directory.
+```
+![rl-1](https://user-images.githubusercontent.com/77185714/155873153-e9ab0e95-18d4-437e-b10f-79488fd127b9.png)
+
+```
+Step 3:
+If you are running these maps for the first time, ensure you select 'Load map without buses'.
 ```
 ![rl-1](https://user-images.githubusercontent.com/77185714/155873153-e9ab0e95-18d4-437e-b10f-79488fd127b9.png)
 
