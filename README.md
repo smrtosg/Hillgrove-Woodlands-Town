@@ -38,6 +38,6 @@ Use 7-Zip or WinZip to extract the folder into your OMSI 2 directory.
 Step 3:
 If you are running these maps for the first time, ensure you select 'Load map without buses'.
 ```
-![rl-1](https://user-images.githubusercontent.com/77185714/155873153-e9ab0e95-18d4-437e-b10f-79488fd127b9.png)
+![rl-1](https://user-images.githubusercontent.com/77185714/155873705-4275bc3a-98c4-4665-baf2-456916cc9631.png)
 
 
