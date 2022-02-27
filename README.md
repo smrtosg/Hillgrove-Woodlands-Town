@@ -32,7 +32,7 @@ File Size: about 3.94GB
 Step 2:
 Use 7-Zip or WinZip to extract the folder into your OMSI 2 directory.
 ```
-![rl-1](https://user-images.githubusercontent.com/77185714/155873153-e9ab0e95-18d4-437e-b10f-79488fd127b9.png)
+![rl-1](https://user-images.githubusercontent.com/77185714/155873960-e2f69490-2fdb-45da-a02a-5c7fa911b87a.png)
 
 ```
 Step 3:
