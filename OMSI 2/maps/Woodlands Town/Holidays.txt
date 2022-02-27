@@ -1,0 +1,88 @@
+-----------------2016------------------------------
+
+[holiday]
+20160101
+New Year's Day
+
+[holidays]
+20160208
+20160209
+Chinese New Year
+
+[holiday]
+20160325
+Good Friday
+
+[holidays]
+20160501
+20160502
+Labour Day
+
+[holiday]
+20160521
+Vesak Day
+
+[holiday]
+20160523
+Vesak Day School-in-lieu
+
+[holiday]
+20160706
+Hari Raya Puasa
+
+[holiday]
+20160809
+National Day
+
+[holiday]
+20160912
+Hari Raya Haji
+
+[holiday]
+20161029
+Deepavali
+
+[holiday]
+20161031
+Deepavali School-in-lieu
+
+[holiday]
+20161225
+Christmas Day
+
+[holiday]
+20161226
+Christmas Day-in-lieu
+
+
+..............................
+
+[holidays]
+20160312
+20150320
+Term 1 Pri/Sec School Holiday
+
+[holidays]
+20160528
+20160626
+Term 2 Pri/Sec School Holiday
+
+[holidays]
+20160903
+20160911
+Term 3 Pri/Sec School Holiday
+
+[holidays]
+20161119
+20161231
+Term 3 Pri/Sec School Holiday
+
+-----------------2017------------------------------
+
+[holiday]
+20170101
+New Year's Day
+
+[holiday]
+20170101
+New Year's Day In-lieu

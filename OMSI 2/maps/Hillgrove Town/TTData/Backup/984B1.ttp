@@ -1,0 +1,70 @@
+-----------------------
+Time Table Trip File
+-----------------------
+
+Created with Omsi Version 2.2.032
+Date: 11/3/2020
+
+[trip]
+
+Hillgrove Int 984
+984
+
+.........................
+        Stations
+.........................
+
+[station_typ2]
+16819
+
+[station_typ2]
+10984
+
+[station_typ2]
+16790
+
+[station_typ2]
+16809
+
+[station_typ2]
+16805
+
+[station_typ2]
+11826
+
+[station_typ2]
+25455
+
+
+.........................
+        Profiles
+.........................
+
+[profile]
+984AP
+12.800
+
+[profile_man_arr_time]
+0
+0.689
+[profile_man_arr_time]
+1
+1.689
+[profile_man_arr_time]
+2
+3.883
+[profile_man_arr_time]
+3
+6.605
+[profile_man_arr_time]
+4
+8.831
+[profile_man_arr_time]
+5
+10.520
+[profile_man_arr_time]
+6
+12.800
+[profile_man_dep_time]
+6
+14.800

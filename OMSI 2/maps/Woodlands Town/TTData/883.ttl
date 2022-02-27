@@ -1,0 +1,722 @@
+-----------------------
+Time Table Line File
+-----------------------
+
+Created with Omsi Version 2.2.032
+Date: 26/2/2022
+
+[userallowed]
+
+[priority]
+1
+------------------------------------
+
+[newtour]
+AP01
+Buses DD
+1023
+
+------------------------------------
+
+  Dep.: 5:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+340.000
+
+  Dep.: 6:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+370.000
+
+  Dep.: 6:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+400.000
+
+  Dep.: 7:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+430.000
+
+  Dep.: 7:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+460.000
+
+  Dep.: 8:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+490.000
+
+  Dep.: 8:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+520.000
+
+  Dep.: 9:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+550.000
+
+  Dep.: 9:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+580.000
+
+  Dep.: 10:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+610.000
+
+  Dep.: 10:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+640.000
+
+  Dep.: 11:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+670.000
+
+  Dep.: 11:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+700.000
+
+  Dep.: 12:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+730.000
+
+  Dep.: 12:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+760.000
+
+  Dep.: 13:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+790.000
+
+  Dep.: 13:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+820.000
+
+  Dep.: 14:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+850.000
+
+  Dep.: 14:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+880.000
+
+  Dep.: 15:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+910.000
+
+  Dep.: 15:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+940.000
+
+  Dep.: 16:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+970.000
+
+  Dep.: 16:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1000.000
+
+  Dep.: 17:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1030.000
+
+  Dep.: 17:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1060.000
+
+  Dep.: 18:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1090.000
+
+  Dep.: 18:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1120.000
+
+  Dep.: 19:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1150.000
+
+  Dep.: 19:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1180.000
+
+  Dep.: 20:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1210.000
+
+  Dep.: 20:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1240.000
+
+  Dep.: 21:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1270.000
+
+  Dep.: 21:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1300.000
+
+  Dep.: 22:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1330.000
+
+  Dep.: 22:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1360.000
+
+  Dep.: 23:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1390.000
+
+  Dep.: 23:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1420.000
+
+  Dep.: 24:10:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1450.000
+
+------------------------------------
+
+[newtour]
+AP02
+Buses Rigid 883
+1023
+
+------------------------------------
+
+  Dep.: 5:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+355.000
+
+  Dep.: 6:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+385.000
+
+  Dep.: 6:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+415.000
+
+  Dep.: 7:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+445.000
+
+  Dep.: 7:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+475.000
+
+  Dep.: 8:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+505.000
+
+  Dep.: 8:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+535.000
+
+  Dep.: 9:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+565.000
+
+  Dep.: 9:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+595.000
+
+  Dep.: 10:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+625.000
+
+  Dep.: 10:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+655.000
+
+  Dep.: 11:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+685.000
+
+  Dep.: 11:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+715.000
+
+  Dep.: 12:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+745.000
+
+  Dep.: 12:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+775.000
+
+  Dep.: 13:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+805.000
+
+  Dep.: 13:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+835.000
+
+  Dep.: 14:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+865.000
+
+  Dep.: 14:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+895.000
+
+  Dep.: 15:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+925.000
+
+  Dep.: 15:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+955.000
+
+  Dep.: 16:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+985.000
+
+  Dep.: 16:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1015.000
+
+  Dep.: 17:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1045.000
+
+  Dep.: 17:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1075.000
+
+  Dep.: 18:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1105.000
+
+  Dep.: 18:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1135.000
+
+  Dep.: 19:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1165.000
+
+  Dep.: 19:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1195.000
+
+  Dep.: 20:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1225.000
+
+  Dep.: 20:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1255.000
+
+  Dep.: 21:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1285.000
+
+  Dep.: 21:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1315.000
+
+  Dep.: 22:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1345.000
+
+  Dep.: 22:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1375.000
+
+  Dep.: 23:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1405.000
+
+  Dep.: 23:55:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1435.000
+
+  Dep.: 24:25:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1465.000
+
+------------------------------------
+
+[newtour]
+AP03
+Buses Rigid 883
+1023
+
+------------------------------------
+
+  Dep.: 6:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+365.000
+
+  Dep.: 6:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+400.000
+
+  Dep.: 7:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+425.000
+
+  Dep.: 7:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+460.000
+
+  Dep.: 8:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+485.000
+
+  Dep.: 8:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+520.000
+
+  Dep.: 9:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+545.000
+
+  Dep.: 9:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+580.000
+
+  Dep.: 10:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+605.000
+
+  Dep.: 10:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+640.000
+
+  Dep.: 11:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+665.000
+
+  Dep.: 11:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+700.000
+
+  Dep.: 12:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+725.000
+
+  Dep.: 12:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+760.000
+
+  Dep.: 13:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+785.000
+
+  Dep.: 13:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+820.000
+
+  Dep.: 14:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+845.000
+
+  Dep.: 14:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+880.000
+
+  Dep.: 15:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+905.000
+
+  Dep.: 15:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+940.000
+
+  Dep.: 16:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+965.000
+
+  Dep.: 16:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1000.000
+
+  Dep.: 17:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1025.000
+
+  Dep.: 17:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1060.000
+
+  Dep.: 18:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1085.000
+
+  Dep.: 18:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1120.000
+
+  Dep.: 19:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1145.000
+
+  Dep.: 19:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1180.000
+
+  Dep.: 20:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1205.000
+
+  Dep.: 20:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1240.000
+
+  Dep.: 21:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1265.000
+
+  Dep.: 21:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1300.000
+
+  Dep.: 22:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1325.000
+
+  Dep.: 22:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1360.000
+
+  Dep.: 23:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1385.000
+
+  Dep.: 23:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1420.000
+
+  Dep.: 24:5:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1445.000
+
+  Dep.: 24:40:0
+[addtrip]
+883 BAL INT TO BAL CLS LOOP
+0
+1480.000
+

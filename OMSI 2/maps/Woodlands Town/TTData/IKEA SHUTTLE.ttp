@@ -1,0 +1,67 @@
+-----------------------
+Time Table Trip File
+-----------------------
+
+Created with Omsi Version 2.2.032
+Date: 26/2/2022
+
+[trip]
+
+IKEA Shuttle 100
+100
+
+.........................
+        Stations
+.........................
+
+[station_typ2]
+22954
+
+[station_typ2]
+5095
+
+[station_typ2]
+5094
+
+[station_typ2]
+5096
+
+[station_typ2]
+22996
+
+[station_typ2]
+5185
+
+[station_typ2]
+22954
+
+
+.........................
+        Profiles
+.........................
+
+[profile]
+standard
+24.500
+
+[profile_man_arr_time]
+0
+0.000
+[profile_man_arr_time]
+1
+3.027
+[profile_man_arr_time]
+2
+5.078
+[profile_man_arr_time]
+3
+7.105
+[profile_man_arr_time]
+4
+22.934
+[profile_man_arr_time]
+5
+22.934
+[profile_man_arr_time]
+6
+24.500
