@@ -1,0 +1,56 @@
+'############################
+'Traffic Light for Pedestrian
+'############################
+
+'Traffic Light for Pedestrian
+'Phase 0..2: red
+'Phase 3..5: blinking green
+'Phase 6..8: green
+'Phase 9..11: flashing green
+
+
+'(c) 25.3.2014 FF3170
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+{frame}
+	1 (S.L.Illumination)
+   	(L.L.TrafficLightPhase) s0
+   
+   	10 0 >= l0 2 <= && (S.L.Red)
+
+   	l0 3 >= l0 5 <= && (S.L.Yellow)
+
+	l0 6 >= l0 8 <= && (S.L.Green)
+	{if}
+		(L.L.Timer_Yellow) (L.S.Timegap) 2 * - 0 max 1 min (S.L.Yellow) sqr (S.L.Yellow)
+		(L.L.Timer_Green) (L.S.Timegap) 3 * + 0 max 1 min (S.L.Timer_Green) sqr sqr (S.L.Green)
+		0 (S.L.Timer_Green_flash)
+	{else}
+		(L.L.TrafficLightPhase) s0
+   
+   	10 0 >= l0 2 <= && (S.L.Red)
+
+   	l0 3 >= l0 5 <= && (S.L.Yellow)
+
+	l0 6 >= l0 8 <= && (S.L.Green)
+		{if}
+			(L.L.Timer_Yellow) (L.S.Timegap) 2 * - 0 max 1 min (S.L.Timer_Yellow) sqr (S.L.Yellow)
+			(L.L.Timer_Green_flash) + (S.L.Timer_Green_flash) (L.L.Timer_Green_flash) trunc - 0.5 >
+			{if}
+				(L.L.Timer_Green) (L.S.Timegap) 3 * + 0 max 1 min (S.L.Timer_Green) sqr sqr (S.L.Green)
+			{else}
+				(L.L.Timer_Green) (L.S.Timegap) 2 * - 0 max 1 min (S.L.Timer_Green) sqr (S.L.Green)
+			{endif}
+		{else}
+			(L.L.Timer_Yellow) (L.S.Timegap) 3 * + 0 max 1 min (S.L.Timer_Yellow) sqr sqr (S.L.Yellow)
+			(L.L.Timer_Green) (L.S.Timegap) 2 * - 0 max 1 min (S.L.Timer_Green) sqr (S.L.Green)
+			0 (S.L.Timer_Green_flash)
+		{endif}
+	{endif}
+{end}

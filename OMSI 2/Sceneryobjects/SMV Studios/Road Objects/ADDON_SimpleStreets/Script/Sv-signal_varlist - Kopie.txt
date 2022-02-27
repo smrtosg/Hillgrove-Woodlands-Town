@@ -1,0 +1,7 @@
+Light_OL_G
+Light_OR_G
+Light_OL_O
+Light_OR_O
+Light_R
+Light_UL_O
+Light_UR_O

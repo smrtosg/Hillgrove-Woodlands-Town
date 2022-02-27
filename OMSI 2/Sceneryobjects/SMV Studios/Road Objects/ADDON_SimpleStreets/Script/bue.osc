@@ -1,0 +1,47 @@
+'########################
+'Railway Crossing
+'########################
+
+'Railway Crossing
+'Phase 0..2, 9..11: active
+'Else: inactive
+
+'(c) 6.7.2009 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 2.0
+
+'Needs:
+'- none
+
+'Revision History
+'2009-07-06	Marcel Kuhnt		File Created
+'2013-02-28	Rüdiger Hülsmann	Variable blinking on/off intervals
+
+
+{frame}
+	(L.L.TrafficLightPhase) s0
+
+'##########################################
+'	TEST: Soll immer an sein:
+	1 s0
+'##########################################
+	l0 0 >= l0 2 <= &&
+	l0 9 >= l0 11 <= && ||
+
+	(L.L.light_timer) (L.S.Timegap) + (S.L.light_timer)
+
+	(L.L.light_timer) (L.L.light_timegap) > 
+	{if}
+		(L.L.light) ! (S.L.light)
+		{if}
+			(T.L.ev_bue_bell)
+			(C.L.light_on-time)
+		{else}
+				
+			(C.L.light_off-time)
+		{endif}
+		(S.L.light_timegap)
+		0 (S.L.light_timer)
+	{endif}
+{end}

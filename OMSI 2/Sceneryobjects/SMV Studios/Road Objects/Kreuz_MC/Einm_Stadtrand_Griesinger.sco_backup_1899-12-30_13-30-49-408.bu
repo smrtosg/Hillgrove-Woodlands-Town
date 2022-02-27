@@ -1,0 +1,31 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Junction Stadtrandstr./Griesinger Str.
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[surface]
+
+
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Einm_Stadtrand_Griesinger.o3d
+
+
+[collision_mesh]
+Einm_Stadtrand_Griesinger.o3d

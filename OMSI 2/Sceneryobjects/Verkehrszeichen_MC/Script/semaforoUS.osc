@@ -1,0 +1,29 @@
+'########################
+'Traffic Light for Cars
+'########################
+
+'Traffic Light for Cars
+'Phase 0..3: red
+'Phase 4..8: green
+'Phase 9..11: yellow
+'Else: off
+
+'(c) 30.4.2008 Marcel Kuhnt and Filipe Ricardo
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+
+{frame}
+	(L.L.TrafficLightPhase) s0
+
+	l0 0 >= l0 3 <= && (S.L.Red)
+
+	l0 4 >= l0 8 <= && (S.L.Green)
+
+	l0 9 >= l0 11 <= && (S.L.Yellow)
+{end}

@@ -1,0 +1,46 @@
+'Rotations-Skript zur Nutzung mit Baukran
+
+'Rotation des Objektes 45 Grad rechts und 45 Grad links 0,1 Grad pro Frame
+'Sobald die Straﬂenbeleuchtung eingeschaltet wird, stoppt der Kran, um einen "Arbeitsstopp" zu simulieren
+'Im Init Bereich wird die zuf‰llige Startposition der Drehung simuliert
+'Script by folti
+
+
+
+{init}
+1 s0
+90 random * (S.L.zufallszahl)
+
+(L.L.zufallszahl) 6 <
+	{if}
+		1 (S.L.rechts_switch)
+	{else}
+		0 (S.L.rechts_switch)
+	{endif}
+
+1 s0
+90 random * (S.L.zufallszahl)
+
+(L.L.zufallszahl) 2 - (S.L.zufallszahl)
+(L.L.rotation_pos) (L.L.zufallszahl) + (S.L.rotation_pos)
+{end}
+
+{frame}
+(L.L.NightlightA)
+{if}
+{else}
+	(L.L.rotation_pos) 2 <
+	(L.L.rechts_switch) 1 = &&
+	{if}
+		(L.L.rotation_pos) 0.01 + (S.L.rotation_pos)
+	{else}
+		0 (S.L.rechts_switch)
+		(L.L.rotation_pos) 0.01 - (S.L.rotation_pos)
+		
+		(L.L.rotation_pos) -2 <
+		{if}
+			1 (S.L.rechts_switch)
+		{endif}
+	{endif}
+{endif}
+{end}

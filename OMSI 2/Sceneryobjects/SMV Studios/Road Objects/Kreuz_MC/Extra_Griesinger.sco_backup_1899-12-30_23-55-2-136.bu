@@ -1,0 +1,39 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Extrasegment Griesinger Str.
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[collision_mesh]
+Extra_Griesinger.o3d
+
+[surface]
+
+[splinehelper]
+Splines\Marcel\str_2spur_6m_griesinger1.sli
+-6.02599991986356
+0
+-61.0780014899626
+184.999995378762
+0
+0
+
+
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Extra_Griesinger.o3d

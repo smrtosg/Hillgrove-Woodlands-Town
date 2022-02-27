@@ -1,0 +1,8 @@
+{init}
+	20 random 100 / 1 + (S.L.RW_Interval)
+{end}
+
+
+{frame}
+	(L.S.GetTime) (L.L.RW_Interval) % 0.2 < (S.L.RW_Flash)
+{end}

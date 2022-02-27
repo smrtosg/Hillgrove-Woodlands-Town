@@ -1,0 +1,22 @@
+'######################
+'Sound-Var mapping
+'######################
+
+'Copys global vars to local vars
+
+'(c) 23.09.2013 Marcel Kuhnt
+
+'Needs:
+'- none
+
+'Revision History:
+'	23.09.2013	Marcel Kuhnt	Created Script
+
+
+{frame}
+	(L.S.DayOfYear) (S.L.DayOfYear)
+	(L.S.Time) (S.L.Time)
+	(L.S.SunAlt) (S.L.SunAlt)
+{end}
+
+

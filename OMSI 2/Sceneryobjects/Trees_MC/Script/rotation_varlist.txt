@@ -1,0 +1,3 @@
+rotation_pos
+rechts_switch
+zufallszahl

@@ -1,0 +1,31 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Extrasegment Bus Loop Spektefeld Schulzentrum
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[absheight]
+
+[collision_mesh]
+Extra_Wende_Spekte.o3d
+
+[surface]
+
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Extra_Wende_Spekte.o3d

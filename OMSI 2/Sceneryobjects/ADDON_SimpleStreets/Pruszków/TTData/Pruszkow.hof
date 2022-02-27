@@ -1,0 +1,233 @@
+#####TEMPLATE FILE#####
+SD200_SD202_Template.xml
+
+#####COMMENT#####
+
+#####ENDCOMMENT#####
+
+
+>>> Created: 23/4/2011, 15:56:13
+
+>>> This file was created with HOF Creator 1.0. Thank you for usage!
+>>> www.jan-kiesewalter.de
+
+
+[name]
+ZTM
+
+[servicetrip]
+Przejazd techniczny
+
+
+stringcount_terminus
+6
+
+stringcount_busstop
+4
+
+
+
+######################################
+ TERMINI
+######################################
+
+
+[addterminus]
+11
+PKP PRUSZKOW
+PKP PRUSZKOW
+PKP PRUSZKOW
+L 11
+pkppruszkow.tga
+PKP PRUSZKOW
+.........................
+
+
+[addterminus]
+11
+OS. STASZICA
+OS. STASZICA
+OS. STASZICA
+L 11
+osstaszica.tga
+OS.STASZICA
+.........................
+
+
+[addterminus]
+1506
+Przejazd techniczny
+PRZEJAZD TECH
+PRZEJAZD
+TECHNICZNY
+
+
+przejazd techniczny
+.........................
+
+
+
+
+
+
+######################################
+ BUS STOPS
+######################################
+
+
+[addbusstop]
+OS. STASZICA START
+OS. STASZICA
+OS. STASZICA START
+OS. STASZICA START
+OS. STASZICA START
+.........................
+
+
+[addbusstop]
+PLANTOWA 01
+PLANTOWA 01
+PLANTOWA 01
+PLANTOWA 01
+PLANTOWA 01
+.........................
+
+
+[addbusstop]
+OLOWKOWA 01
+OLOWKOWA 01
+OLOWKOWA 01
+OLOWKOWA 01
+OLOWKOWA 01
+.........................
+
+
+[addbusstop]
+KUBUSIA PUCHATKA 01
+KUBUSIA PUCHATKA
+KUBUSIA PUCHATKA 01
+KUBUSIA PUCHATKA 01
+KUBUSIA PUCHATKA 01
+.........................
+
+
+[addbusstop]
+CHOPINA 01
+CHOPINA 01
+CHOPINA 01
+CHOPINA 01
+CHOPINA 01
+.........................
+
+
+[addbusstop]
+PKP PRUSZKOW START
+PKP PRUSZKOW
+PKP PRUSZKOW START
+PKP PRUSZKOW START
+PKP PRUSZKOW START
+.........................
+
+
+[addbusstop]
+PKP PRUSZKOW END
+PKP PRUSZKOW END
+PKP PRUSZKOW END
+PKP PRUSZKOW END
+PKP PRUSZKOW END
+.........................
+
+
+[addbusstop]
+MOKRA 02
+MOKRA 02
+MOKRA 02
+MOKRA 02
+MOKRA 02
+.........................
+
+
+[addbusstop]
+APTECZNA 02
+APTECZNA 02
+APTECZNA 02
+APTECZNA 02
+APTECZNA 02
+.........................
+
+
+[addbusstop]
+OLOWKOWA 02
+OLOWKOWA 02
+OLOWKOWA 02
+OLOWKOWA 02
+OLOWKOWA 02
+.........................
+
+
+[addbusstop]
+PLANTOWA 02
+PLANTOWA 02
+PLANTOWA 02
+PLANTOWA 02
+PLANTOWA 02
+.........................
+
+
+[addbusstop]
+OS. STASZICA KONIEC
+OS. STASZICA END
+OS. STASZICA KONIEC
+OS. STASZICA KONIEC
+OS. STASZICA KONIEC
+.........................
+
+
+
+
+
+
+######################################
+ TRIPS / ROUTES
+######################################
+
+
+Line L11, Route 01: OS. STASZICA START  >>  PKP PRUSZKOW END
+----------------------------------------------------------------------
+
+[infosystem_trip]
+L1101
+OS. STASZICA START  >>  PKP PRUSZKOW END
+11
+XXX
+
+[infosystem_busstop_list]
+7
+OS. STASZICA START
+PLANTOWA 01
+OLOWKOWA 01
+KUBUSIA PUCHATKA 01
+CHOPINA 01
+PKP PRUSZKOW START
+PKP PRUSZKOW END
+
+
+Line L11, Route 02: PKP PRUSZKOW START  >>  OS. STASZICA KONIEC
+----------------------------------------------------------------------
+
+[infosystem_trip]
+L1102
+PKP PRUSZKOW START  >>  OS. STASZICA KONIEC
+11
+XXX
+
+[infosystem_busstop_list]
+6
+PKP PRUSZKOW START
+MOKRA 02
+APTECZNA 02
+OLOWKOWA 02
+PLANTOWA 02
+OS. STASZICA KONIEC
+
+

@@ -1,0 +1,32 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Extrasegment Wendeschleife Waldkrankenhaus
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[absheight]
+
+[collision_mesh]
+Extra_Loop_Waldkrankenh.o3d
+
+[surface]
+
+
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Extra_Loop_Waldkrankenh.o3d

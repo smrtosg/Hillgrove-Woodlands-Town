@@ -1,0 +1,5 @@
+{frame}
+	0 (M.V.GetArrBusTimeDiff) 10 <=
+	0 (M.V.GetArrBusTimeDiff) 1 >= && 
+	(S.L.Green)
+{end}

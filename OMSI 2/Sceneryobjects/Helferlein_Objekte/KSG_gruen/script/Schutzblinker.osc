@@ -1,0 +1,22 @@
+'###########################
+'Wechselblinker
+'###########################
+
+{init}
+	0 (S.L.Timer)
+	1 (S.L.Yellow)
+	1 (S.L.Green)
+{end}
+
+{frame}
+	(L.L.TrafficLightPhase) s0 6 >= l0 8 <= && !
+	{if}
+		(L.L.Timer) (L.S.Timegap) + (S.L.Timer) 0.5 >
+		{if}
+			(L.L.Yellow) (S.L.Green) ! (S.L.Yellow)
+			0 (S.L.Timer)
+		{endif}
+	{else}
+		0 (S.L.Green) (S.L.Yellow) (S.L.Timer)
+	{endif}
+{end}

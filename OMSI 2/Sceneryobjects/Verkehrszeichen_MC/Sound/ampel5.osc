@@ -1,0 +1,25 @@
+'########################
+'Traffic Light for Cars
+'("vacation arrow")
+'########################
+
+'Traffic Light for Cars, "vacation arrow" for left turns
+'Phase 6..8: green
+'Else: off
+
+'(c) 7.6.2010 Marcel Kuhnt
+
+'Script Version: 1.2
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+
+
+{frame}
+	(L.L.TrafficLightPhase) s0
+
+	l0 6 >= l0 8 <= && (S.L.Green)
+{end}

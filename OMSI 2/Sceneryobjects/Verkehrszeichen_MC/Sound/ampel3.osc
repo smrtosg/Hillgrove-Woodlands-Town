@@ -1,0 +1,24 @@
+'########################
+'Traffic Light for Busses
+'########################
+
+'Traffic Light for Busses
+'Phase 6..8: left
+'Else: off
+
+'(c) 14.5.2009 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+
+
+{frame}
+	(L.L.TrafficLightPhase) s0
+
+	l0 6 >= l0 8 <= && (S.L.Left)
+{end}

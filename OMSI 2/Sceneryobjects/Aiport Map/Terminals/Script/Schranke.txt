@@ -1,0 +1,8 @@
+clock_hand_hour
+clock_hand_minute
+time
+schranke_pos
+schranke_run
+schranke
+red
+green

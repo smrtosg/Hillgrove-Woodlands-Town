@@ -1,0 +1,132 @@
+'######################
+'Church Clock with Bell
+'######################
+
+'Curch Clock with Minute and Hour Hand and Bell
+
+'(c) 11.5.2009 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+
+
+{init}
+	0 (S.L.clock_bell_used)
+	0 (S.L.clock_bell_used)
+	0 (L.L.clock_bell_quarters_left)
+	0 (L.L.clock_bell_hours_left)
+{end}
+
+{frame}
+
+'###########################
+' Clock Hands
+'###########################
+
+'Time in seconds...
+
+(L.S.Time) s0
+'Hour Hand: 360° in 12 hours:
+		120 / (S.L.clock_hand_hour)
+'Minute Hand: 360° in 1 hour:
+		l0 10 / (S.L.clock_hand_minute)
+
+
+'###########################
+' Clock Bell
+'###########################
+
+'Ermitteln der aktuellen Viertelstunde:
+	(L.S.Time) 900 / s0 trunc s1
+'L0 = Zeit in Viertelstunden (float), L1 = Anzahl der abgeschlossenen Viertelstunden
+'Bestimmen, ob geschlagen werden kann:
+'Innerhalb der ersten drei Minuten nach dem Erreichen einer vollen Viertelstunde:
+	l0 l1 - 0.2 <
+	{if}
+'Wenn noch nicht fertig geschlagen wurde, mach weiter!
+		(L.L.clock_bell_used) !
+		{if}
+			(L.L.clock_bell_quarters_left) 0 =
+			(L.L.clock_bell_hours_left) 0 = &&
+'Läutwerk wird auf neuen Schlagablauf eingestellt:
+			{if}
+				l1 4 / trunc s2
+'S2 = Anzahl der abgeschlossenen Stunden
+				l1 l2 4 * - s3
+'S3 = Anzahl der überzähligen Viertelstunden. Falls = 0 mach 4 draus:
+				0 = {if} 4 s3 {endif}
+'Abspeichern als Anzahl der noch abzuspielenden Viertelschläge:
+				l3 (S.L.clock_bell_quarters_left)
+
+				4 =
+				{if}
+'Einstellen der abzuspielenden Stundenschläge - bereinigen auf 1-12 (nur wenn 4 Viertelschläge):
+					l2 12 > {if} l2 12 - s2 {endif}
+					l2 0 = {if} 12 s2 {endif}
+					l2 (S.L.clock_bell_hours_left)
+				{endif}
+			{endif}
+		{endif}
+	{else}
+		0 (S.L.clock_bell_used)
+	{endif}
+
+'Nun entsprechend abspielen:
+
+	(L.L.clock_bell_quarters_left) 0 >
+	(L.L.clock_bell_hours_left) 0 >	||
+	(L.L.clock_bell_used) ! &&
+	{if}
+		(L.L.clock_bell_timer) s0 0 >
+		{if}
+			l0 (L.S.Timegap) - (S.L.clock_bell_timer)
+		{else}
+			(L.L.clock_bell_quarters_left) 0 >
+			{if}
+				(T.L.clock_bell_quarter)
+				(L.L.clock_bell_quarters_left) 1 -
+				(S.L.clock_bell_quarters_left)
+				0 >
+				{if}
+					2.5 (S.L.clock_bell_timer)
+				{else}
+					2.76 (S.L.clock_bell_timer)
+				{endif}
+			{else}
+				(L.L.clock_bell_hours_left) 0 >
+				{if}
+					(T.L.clock_bell_hour)
+					(L.L.clock_bell_hours_left) 1 -
+					(S.L.clock_bell_hours_left)
+					0 >
+					2.27 (S.L.clock_bell_timer)
+				{endif}
+			{endif}
+		{endif}
+		
+		(L.L.clock_bell_quarters_left) 0 =
+		(L.L.clock_bell_hours_left) 0 = &&
+		{if}
+			1 (S.L.clock_bell_used)
+			0 (S.L.clock_bell_timer)
+		{endif}
+
+	{endif}
+
+'###########################
+' Main Bell
+'###########################
+
+	(L.S.Time) 60 / s0
+	725 >
+	l0 735 < &&
+	l0 1085 >
+	l0 1095 < && ||
+	(S.L.mainbell_running)
+
+{end}

@@ -1,0 +1,29 @@
+'Uhrenscript (aus Betriebshof)
+
+'Revision History
+'01.01.2013	Rüdiger Hülsmann
+
+
+'Script Version: 1.1
+'Omsi release: 2.0
+
+'Needs:
+'- none
+
+
+
+{frame}
+
+'###########################
+' Clock Hands
+'###########################
+
+'Time in seconds...
+
+(L.S.Time) s0
+'Hour Hand: 360° in 12 hours:
+		120 / (S.L.clock_hand_hour)
+'Minute Hand: 360° in 1 hour:
+		l0 10 / (S.L.clock_hand_minute)
+
+{end}

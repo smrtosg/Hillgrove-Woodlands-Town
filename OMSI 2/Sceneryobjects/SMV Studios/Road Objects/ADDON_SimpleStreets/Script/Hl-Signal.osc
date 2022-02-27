@@ -1,0 +1,39 @@
+'######################
+'Hl-Signal
+'######################
+
+'Hl-Signal (DDR, Deutsche Reichsbahn signal system)
+
+'Derived from: Sv-Signal, (c) 13.5.2010 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 2.0
+
+'Needs:
+'- none
+
+'Revision History:
+'- Marcel Kuhnt		13.05.2010	Created and signal route intergration
+'- Rüdiger Hülsmann	05.03.2013	New file: Hl-Signals implemented
+
+
+
+
+{frame}
+
+(L.L.Signal)		1 >= s0 (S.L.Light_Green)
+(L.L.Signal)		0 =  (S.L.Light_Red)
+(L.L.Signal)		2 >= (S.L.Light_Yellow_u) (S.L.Light_Green)
+
+l0
+{if}
+	(L.L.NextSignal)	0 = l0 && (S.L.Light_Yellow_o)
+	(L.L.NextSignal)	1 >= l0 && 
+	(L.L.NextSignal)	2 >= l0 && (S.L.Light_Yellow_o)
+{else}
+	
+{endif}
+
+0 (S.L.Light_White)
+
+{end}

@@ -1,0 +1,33 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl inner
+Ka 0.000000 0.000000 0.000000
+Kd 0.639216 0.807843 0.109804
+Ks 0.330000 0.330000 0.330000
+map_Kd BSN/inner.png
+
+newmtl BSNumber
+Ka 0.000000 0.000000 0.000000
+Kd 0.698039 0.803922 0.368627
+Ks 0.330000 0.330000 0.330000
+map_Kd BSN/BSNumber.png
+
+newmtl ForegroundColor
+Ka 0.000000 0.000000 0.000000
+Kd 0.000000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
+newmtl TxtWhite
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.330000 0.330000 0.330000
+map_Kd BSN/TxtWhite.png
+
+newmtl txt1
+Ka 0.000000 0.000000 0.000000
+Kd 0.796078 0.858824 0.913725
+Ks 0.330000 0.330000 0.330000
+map_Kd BSN/txt1.bmp
+

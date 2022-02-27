@@ -1,0 +1,29 @@
+---------------------------------
+	     Up
+---------------------------------
+*upA - up (Normal Bus Svc)
+*upB - up (Depot)
+
+---------------------------------
+	    Left
+---------------------------------
+*leftA - Left (Normal Bus Svc)
+*leftB - Left (Depot)
+
+
+---------------------------------
+	    Right
+---------------------------------
+*rightA - Right (Normal Bus Svc)
+*rightB - Right (Depot)
+
+
+---------------------------------
+	    Others
+---------------------------------
+*Berth - Berth (Used in Interchanges/Terminals)
+*BusParkingL/R - Bus Parking Lots (Used in Interchanges/Terminals)
+*SkipBS - Skipped Bus Stop
+
+*- Completed
+

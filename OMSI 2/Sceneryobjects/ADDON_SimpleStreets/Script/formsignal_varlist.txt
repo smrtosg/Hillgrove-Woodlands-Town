@@ -1,0 +1,15 @@
+fluegel1
+fluegel2
+time
+hp0
+hp1
+hp2
+no_hp2
+vr0
+vr1
+no_vr1
+vr1_vr2
+no_vr1_vr2
+vr_scheibe
+vr_fluegel
+vr_farbscheibe2

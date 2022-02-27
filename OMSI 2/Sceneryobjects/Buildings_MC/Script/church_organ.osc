@@ -1,0 +1,25 @@
+'######################
+'Church Clock with Bell
+'######################
+
+'Curch Organ
+
+'(c) 23.2.2012 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+
+
+{frame}
+
+	(L.S.Time) 60 / s0
+	960 >
+	l0 1080 < &&
+	(S.L.organplay)
+
+{end}

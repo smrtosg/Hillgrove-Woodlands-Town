@@ -1,0 +1,34 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl Base
+Ka 0.000000 0.000000 0.000000
+Kd 0.917647 0.917647 0.917647
+Ks 0.330000 0.330000 0.330000
+map_Kd HillviewDepotWall/Base.png
+
+newmtl Address
+Ka 0.000000 0.000000 0.000000
+Kd 0.815686 0.815686 0.815686
+Ks 0.330000 0.330000 0.330000
+map_Kd HillviewDepotWall/Address.png
+
+newmtl Line
+Ka 0.000000 0.000000 0.000000
+Kd 0.694118 0.529412 0.176471
+Ks 0.330000 0.330000 0.330000
+map_Kd HillviewDepotWall/Line.png
+
+newmtl Buses
+Ka 0.000000 0.000000 0.000000
+Kd 0.400000 0.400000 0.400000
+Ks 0.330000 0.330000 0.330000
+map_Kd HillviewDepotWall/Buses.png
+
+newmtl Strides
+Ka 0.000000 0.000000 0.000000
+Kd 0.890196 0.113725 0.101961
+Ks 0.330000 0.330000 0.330000
+map_Kd HillviewDepotWall/Strides.png
+

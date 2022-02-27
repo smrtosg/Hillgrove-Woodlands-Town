@@ -1,0 +1,31 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Crossing Zeppelinstr./An der Kappe
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[surface]
+
+
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Kreuz_Zeppelin_Kappe.o3d
+
+
+[collision_mesh]
+Kreuz_Zeppelin_Kappe.o3d

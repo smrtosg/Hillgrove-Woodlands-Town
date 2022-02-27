@@ -1,0 +1,25 @@
+'#########################
+'Traffic Light for Persons
+'#########################
+
+'Traffic Light for Persons
+'Phase 6..8: green
+'Else: red
+
+'(c) 1.5.2008 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+{frame}
+	(L.L.TrafficLightPhase) s0
+
+	l0 6 >= l0 8 <= && (S.L.Green)
+
+	! (S.L.Red)
+
+{end}

@@ -1,0 +1,92 @@
+'######################
+'Semaphore
+'######################
+
+'Semaphore Animation Test
+
+'(c) 5.5.2010 Rüdiger Hülsmann
+'(c) 13.5.2010 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+'Revision History:
+'- Rüdiger Hülsmann	05.05.2010	Created, Lights, Testanimation
+'- Marcel Kuhnt		13.05.2010	Linked with Signal Route System
+
+{frame}
+
+'Fahrstrassengesteuert:
+
+'Sollwerte:
+
+(L.L.Signal) 1 >= /-/ (S.L.fluegel1)
+(L.L.Signal) 2 = /-/ (S.L.fluegel2)
+
+(L.L.NextSignal) 1 = /-/ (S.L.vr_scheibe) s0
+(L.L.NextSignal) 2 = /-/ (S.L.vr_fluegel) s1
+
+l0 l1 min (S.L.vr_farbscheibe2)
+
+'Hauptsignal-Lampen
+
+(L.L.fluegel1) -0.2 > (S.L.hp0)
+(L.L.fluegel1) -0.8 < (S.L.hp1)
+(L.L.fluegel2) -0.8 < (S.L.hp2)
+(L.L.fluegel2) -0.2 > (S.L.no_hp2)
+
+'Vorsignal-Lampen
+
+(L.L.vr_scheibe) -0.2 > (S.L.no_vr1)
+(L.L.vr_scheibe) -0.8 < (S.L.vr1)
+(L.L.vr_scheibe) -0.2 > (L.L.vr_fluegel) -0.2 > && (S.L.no_vr1_vr2)
+(L.L.vr_scheibe) -0.8 < (L.L.vr_fluegel) -0.8 < || (S.L.vr1_vr2)
+
+'TEST:
+'(L.L.Signal) 0 = (S.L.hp0)
+'(L.L.Signal) 1 = (S.L.hp1)
+'(L.L.Signal) 2 = (S.L.hp2)
+
+
+
+
+'###########################
+' Semaphore
+'###########################
+
+'Testdurchlauf zyklisch:
+
+'(L.L.time) (L.S.Timegap) 2 / + (S.L.time)
+'
+'
+'(L.L.time) 3.14159265 * sin 1 - 2 / (S.L.fluegel1) (S.L.fluegel2) (S.L.vr_scheibe) (S.L.vr_fluegel) (S.L.vr_farbscheibe2)
+'
+'
+'
+'(L.L.time) 1.5 + 2 / trunc 2 % 
+'{if}
+'	0 (S.L.fluegel2) (S.L.vr_fluegel)
+'{endif}
+'
+'(L.L.vr_fluegel)
+'{if}
+'	0 (S.L.vr_scheibe)
+'{endif}
+'
+'(L.L.fluegel1) -0.2 > (S.L.hp0)
+'(L.L.fluegel1) -0.8 < (S.L.hp1)
+'(L.L.fluegel2) -0.8 < (S.L.hp2)
+'(L.L.fluegel2) -0.2 > (S.L.no_hp2)
+
+'Vorsignal-Lampen
+
+'(L.L.vr_scheibe) -0.2 > (S.L.no_vr1)
+'(L.L.vr_scheibe) -0.8 < (S.L.vr1)
+'(L.L.vr_scheibe) -0.2 > (L.L.vr_fluegel) -0.2 > && (S.L.no_vr1_vr2)
+'(L.L.vr_scheibe) -0.8 < (L.L.vr_fluegel) -0.8 < || (S.L.vr1_vr2)
+
+
+{end}

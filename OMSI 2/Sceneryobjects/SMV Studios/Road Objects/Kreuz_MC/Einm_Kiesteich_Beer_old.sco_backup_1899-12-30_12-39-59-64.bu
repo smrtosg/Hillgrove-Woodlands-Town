@@ -1,0 +1,38 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Junction Am Kiesteich/Beerwinkel (alt)
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[collision_mesh]
+Einm_Kiesteich_Beer_old.o3d
+
+[surface]
+
+[splinehelper]
+Splines\Marcel\str_2spur_11m_kiesteich3.sli
+0.19999999686135
+0
+-16.0000004361028
+184.60001366442
+0
+0
+
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Einm_Kiesteich_Beer_old.o3d

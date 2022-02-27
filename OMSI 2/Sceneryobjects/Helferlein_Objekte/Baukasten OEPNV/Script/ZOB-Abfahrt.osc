@@ -1,0 +1,28 @@
+{init}
+	0 (S.L.Green)
+	0 (S.L.Abfahrt)
+	0 (S.L.AbfahrtZeit)
+{end}
+
+{frame}
+	0 (M.V.GetArrBusTimeDiff) 1 <
+	0 (M.V.GetArrBusTimeDiff) 0 > &&
+	(L.L.Abfahrt) ! &&
+	{if}
+		(L.S.Time) 0.35 + (S.L.AbfahrtZeit)
+		1 (S.L.Abfahrt)
+	{endif}
+
+'	Abfahrt
+	(L.L.Abfahrt)
+	{if}
+'		Signal erlischt nach 10 Sekunden
+		(L.S.Time) (L.L.AbfahrtZeit) - 10 >=
+		{if}
+			0 (S.L.Green)
+			0 (S.L.Abfahrt)
+		{else}
+			1 (S.L.Green)
+		{endif}
+	{endif}
+{end}

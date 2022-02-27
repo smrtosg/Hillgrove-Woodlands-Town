@@ -1,0 +1,38 @@
+'Schranke
+'basiert auf Omnibusbetriebshof Script von Marcel Kuhnt und Rüdiger Hülsmann
+
+{frame}
+
+(L.L.TrafficLightPhase) s0
+
+l0 1 >= l0 2 <= &&  /-/ (S.L.schranke)
+
+l0 2 >= l0 2 <= &&  /-/ (S.L.klappe)
+
+l0 3 >= l0 9 <= &&  /-/ (S.L.klappe_zu)
+
+(L.L.schranke) 
+{if}
+	(L.L.schranke_run) (L.S.Timegap) 3 / + 1 min (S.L.schranke_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.schranke_pos)
+{else}
+	(L.L.schranke_run) (L.S.Timegap) 3 / - 0 max (S.L.schranke_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.schranke_pos)
+{endif}
+
+(L.L.klappe) 
+{if}
+	(L.L.klappe_run) (L.S.Timegap) 120 / + 1 min (S.L.klappe_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.klappe_pos)
+{else}
+	(L.L.klappe_run) (L.S.Timegap) 110 / - 0 max (S.L.klappe_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.klappe_pos)
+{endif}
+
+'120 sec dauert das oeffnen und schliessen
+
+(L.L.klappe_zu)
+{if}
+	(L.L.schranke_run) (L.S.Timegap) 2 / - 0 max (S.L.schranke_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.schranke_pos)
+	(L.L.klappe_run) (L.S.Timegap) 2 / - 0 max (S.L.klappe_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.klappe_pos)
+{endif}
+
+
+
+{end}

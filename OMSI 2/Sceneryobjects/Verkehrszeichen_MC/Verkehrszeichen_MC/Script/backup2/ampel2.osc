@@ -1,0 +1,44 @@
+'#########################
+'Traffic Light for Persons
+'#########################
+
+'Traffic Light for Persons
+'Phase 0..2: red
+'Phase 3..5: blinking green
+'Phase 6..8: green
+'Phase 9..12: DO NOT USE THIS RANGE!
+'Else: red
+
+'(c) 1.5.2008 Marcel Kuhnt
+'Modified by Alex Leung in 2014
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+{frame}
+   (L.L.TrafficLightPhase) s0
+   
+   10 0 >= l0 2 <= && (S.L.Red)
+
+   l0 3 >= l0 5 <= && (S.L.Yellow)
+   {if}
+      (L.L.Timer) (L.S.Timegap) + (S.L.Timer) s0
+      1 >
+      {if}
+         0 (S.L.Timer)
+         1 (S.L.Yellow)
+      {else}
+         l0 0.5 >
+         {if}
+            0 (S.L.Yellow)
+         {endif}
+      {endif}
+   {endif}
+
+   l0 6 >= l0 8 <= && (S.L.Green)
+
+{end}

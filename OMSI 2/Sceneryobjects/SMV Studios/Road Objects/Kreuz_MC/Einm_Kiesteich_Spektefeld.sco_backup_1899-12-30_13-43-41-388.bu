@@ -1,0 +1,30 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Junction Am Kiesteich/Im Spektefeld
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[surface]
+
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Einm_Kiesteich_Spektefeld.o3d
+
+
+[collision_mesh]
+Einm_Kiesteich_Spektefeld.o3d

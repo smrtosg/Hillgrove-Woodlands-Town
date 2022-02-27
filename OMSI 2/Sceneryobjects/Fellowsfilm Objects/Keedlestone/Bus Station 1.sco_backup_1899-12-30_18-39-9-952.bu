@@ -1,0 +1,28 @@
+[friendlyname]
+Bus Station Through Stops
+
+[groups]
+2
+Fellowsfilm Objects
+Keedlestone
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[absheight]
+
+[nocollision]
+
+[surface]
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Bus Station 1.o3d

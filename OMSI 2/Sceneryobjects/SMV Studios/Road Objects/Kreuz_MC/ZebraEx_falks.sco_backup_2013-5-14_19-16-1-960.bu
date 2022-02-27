@@ -1,0 +1,47 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Crosswalk Falkenseer Chaussee (without zebra)
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[surface]
+
+[splinehelper]
+Splines\Marcel\str_6spur_falkenseer1.sli
+0
+0
+-39.99999937227
+0
+0
+0
+
+[splinehelper]
+Splines\Marcel\str_6spur_falkenseer1.sli
+0
+0
+19.999999686135
+0
+0
+0
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+ZebraEx_falks.o3d
+
+
+[collision_mesh]
+ZebraEx_falks.o3d

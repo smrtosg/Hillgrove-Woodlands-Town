@@ -1,0 +1,7 @@
+'Rot und Grün
+
+{frame}
+	(L.L.TrafficLightPhase) s0
+
+	l0 6 >= l0 8 <= && (S.L.Green) ! (S.L.red)
+{end}

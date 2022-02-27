@@ -1,0 +1,41 @@
+'########################
+'Railway Crossing
+'########################
+
+'Railway Crossing
+'Phase 0..2: active
+'Else: inactive
+
+'(c) 20.9.2013 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+{init}
+' Schranken initialisieren - 1 = offen, 0 = zu
+	0 (S.L.Schranke)
+{end}
+
+{frame}
+	(L.L.TrafficLightPhase) s0
+
+	l0 3 >= l0 11 <= && ! s0
+
+'Sollwert:
+	1 l0 -
+'Differenz zum Istwert:
+	(L.L.Schranke) -
+'So stark verringern, dass sie der maximalen Schließgeschwindigkeit entspricht:
+'Kleineren Wert auswählen (=begrenzen auf Höchstwert):
+	(L.S.Timegap) 0.5 * min
+	(L.S.Timegap) -0.5 * max
+'Auf Istwert addieren und speichern:
+	(L.L.Schranke) + (S.L.Schranke)
+
+'Nun noch das Warnlicht:
+	l0 (L.S.GetTime) d trunc - 0.5 < && (S.L.Light)
+
+{end}

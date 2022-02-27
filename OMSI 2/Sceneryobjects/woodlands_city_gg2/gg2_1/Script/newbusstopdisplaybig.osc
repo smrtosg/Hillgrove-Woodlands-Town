@@ -1,0 +1,161 @@
+{init}
+{end}
+
+{frame}
+	(L.S.GetTime) 2 % 1 < (S.L.Blink)
+	
+	"" (S.$.Content)
+	
+	0 (M.V.GetArrBusTerminus) "No busstop!" $= !
+	{if}		
+		0 (M.V.GetArrBusTerminus) "" $= !
+		{if}
+			0 (M.V.GetArrBusLine) $length s3
+			0 (M.V.GetArrBusTerminus) $length s4
+			0 (M.V.GetArrBusTimeDiff) s5
+			
+			l5 60 <
+			{if}
+				8 s6
+			{else}
+				l5 60 / $IntToStr " min" $+ $length s6
+			{endif}
+			
+			(L.$.Content) 
+				0 (M.V.GetArrBusLine) $+ " " 5 l3 - $SetLengthR $+
+				
+				0 (M.V.GetArrBusTerminus) $length l3 - $cutBegin 0 (M.V.GetArrBusLine) $=
+				{if}
+					0 (M.V.GetArrBusTerminus) l3 $cutEnd $+ " " 37 l4 - l6 - l3 + $SetLengthR $+
+				{else}
+					0 (M.V.GetArrBusTerminus) $+ " " 37 l4 - l6 - $SetLengthR $+
+				{endif}
+			
+				l5 60 <
+				{if}
+					"Arriving" $+ 
+				{else}
+					l5 60 / $IntToStr $+ " min" $+ (S.$.Content)
+				{endif}
+			
+			(S.$.Content)
+		{endif}
+		
+		1 (M.V.GetArrBusTerminus) "" $= !
+		{if}
+			(L.$.Content) "@" $+ (S.$.Content)
+			
+			1 (M.V.GetArrBusLine) $length s3
+			1 (M.V.GetArrBusTerminus) $length s4
+			1 (M.V.GetArrBusTimeDiff) s5
+			
+			l5 60 <
+			{if}
+				8 s6
+			{else}
+				l5 60 / $IntToStr " min" $+ $length s6
+			{endif}
+			
+			(L.$.Content) 
+				1 (M.V.GetArrBusLine) $+ " " 5 l3 - $SetLengthR $+
+				
+				1 (M.V.GetArrBusTerminus) $length l3 - $cutBegin 1 (M.V.GetArrBusLine) $=
+				{if}
+					1 (M.V.GetArrBusTerminus) l3 $cutEnd $+ " " 37 l4 - l6 - l3 + $SetLengthR $+
+				{else}
+					1 (M.V.GetArrBusTerminus) $+ " " 37 l4 - l6 - $SetLengthR $+
+				{endif}
+			
+				l5 60 <
+				{if}
+					"Arriving" $+ 
+				{else}
+					l5 60 / $IntToStr $+ " min" $+ (S.$.Content)
+				{endif}
+			(S.$.Content)
+		{endif}
+		
+		2 (M.V.GetArrBusTerminus) "" $= !
+		{if}
+			(L.$.Content) "@" $+ (S.$.Content)
+			
+			2 (M.V.GetArrBusLine) $length s3
+			2 (M.V.GetArrBusTerminus) $length s4
+			2 (M.V.GetArrBusTimeDiff) s5
+			
+			l5 60 <
+			{if}
+				8 s6
+			{else}
+				l5 60 / $IntToStr " min" $+ $length s6
+			{endif}
+			
+			(L.$.Content) 
+				2 (M.V.GetArrBusLine) $+ " " 5 l3 - $SetLengthR $+
+				
+				2 (M.V.GetArrBusTerminus) $length l3 - $cutBegin 2 (M.V.GetArrBusLine) $=
+				{if}
+					2 (M.V.GetArrBusTerminus) l3 $cutEnd $+ " " 37 l4 - l6 - l3 + $SetLengthR $+
+				{else}
+					2 (M.V.GetArrBusTerminus) $+ " " 37 l4 - l6 - $SetLengthR $+
+				{endif}
+			
+				l5 60 <
+				{if}
+					"Arriving" $+ 
+				{else}
+					l5 60 / $IntToStr $+ " min" $+ (S.$.Content)
+				{endif}
+			(S.$.Content)
+		{endif}
+		
+		3 (M.V.GetArrBusTerminus) "" $= !
+		{if}
+			(L.$.Content) "@" $+ (S.$.Content)
+			
+			3 (M.V.GetArrBusLine) $length s3
+			3 (M.V.GetArrBusTerminus) $length s4
+			3 (M.V.GetArrBusTimeDiff) s5
+			
+			l5 60 <
+			{if}
+				8 s6
+			{else}
+				l5 60 / $IntToStr " min" $+ $length s6
+			{endif}
+			
+			(L.$.Content) 
+				3 (M.V.GetArrBusLine) $+ " " 5 l3 - $SetLengthR $+
+				
+				3 (M.V.GetArrBusTerminus) $length l3 - $cutBegin 3 (M.V.GetArrBusLine) $=
+				{if}
+					3 (M.V.GetArrBusTerminus) l3 $cutEnd $+ " " 37 l4 - l6 - l3 + $SetLengthR $+
+				{else}
+					3 (M.V.GetArrBusTerminus) $+ " " 37 l4 - l6 - $SetLengthR $+
+				{endif}
+			
+				l5 60 <
+				{if}
+					"Arriving" $+ 
+				{else}
+					l5 60 / $IntToStr $+ " min" $+ (S.$.Content)
+				{endif}
+			(S.$.Content)
+		{endif}
+	{endif}
+	
+	(L.$.StationName) "" $= !
+	{if}
+		(L.$.Content)
+			(L.$.Content) "" $= !
+			{if}
+				 "@" $+
+			{endif}
+			
+			(L.$.StationName) $length s3 
+			$+ 
+		(S.$.Content)
+	{endif}
+	
+	1 (S.L.Refresh_Strings)
+{end}

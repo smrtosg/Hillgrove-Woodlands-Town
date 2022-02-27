@@ -1,0 +1,72 @@
+'Omnibusbetriebshof Spandau - Script zur Uhren- und Schranken- (und Falttor-?) -steuerung
+
+'Erstmal von Marcel klauen...:
+
+
+'Revision History
+'05.11.2009 Marcel Kuhnt
+'15.07.2010 Rüdiger Hülsmann
+
+'Script Version: 1.1
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+
+{frame}
+
+'###########################
+' Clock Hands
+'###########################
+
+'Time in seconds...
+
+(L.S.Time) s0
+'Hour Hand: 360° in 12 hours:
+		120 / (S.L.clock_hand_hour)
+'Minute Hand: 360° in 1 hour:
+		l0 10 / (S.L.clock_hand_minute)
+
+
+
+'###########################
+' Animation für Schranke
+'###########################
+
+
+
+'Traffic Light for Cars
+'Phase 0..2: red
+'Phase 3..5: red-yellow
+'Phase 6..8: green
+'Phase 9..11: yellow
+'Else: off
+
+
+	(L.L.TrafficLightPhase) s0
+
+	l0 6 >= l0 8 <= && (S.L.green) ! (S.L.red)
+
+	l0 0 >= l0 2 <= && ! /-/ (S.L.schranke)
+
+
+
+
+
+
+(L.L.schranke) 
+{if}
+	(L.L.schranke_run) (L.S.Timegap) 3 / + 1 min (S.L.schranke_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.schranke_pos)
+{else}
+	(L.L.schranke_run) (L.S.Timegap) 3 / - 0 max (S.L.schranke_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.schranke_pos)
+{endif}
+
+
+
+
+
+
+
+{end}

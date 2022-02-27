@@ -1,0 +1,113 @@
+'######################
+'Fireworks
+'######################
+
+'Fireworks on these events:
+'31.12./1.1. each year
+'3.10.1990 (German Unification)
+'12.2. each year (OMSI development start)
+
+'(c) 05.12.2014 Marcel Kuhnt
+
+'Needs:
+'- none
+
+'Revision History:
+'	10.2.2012	Marcel Kuhnt	Created Script
+'	05.12.2014	Marcel Kuhnt	Revised
+
+
+{init}
+'Low  frühester Start: 10:00
+'Low  spätester Start: 18:00
+	36000 28800 random + (S.L.starttime_low)
+'High frühester Start: 23:00
+'High spätester Start: 23:59
+	84600  1740 random + (S.L.starttime_high)
+'High frühestes Ende: 00:30
+'High spätestes Ende: 02:30
+	 1800  7200 random + (S.L.endtime_high)
+'Low frühestes Ende: 03:00
+'Low spätestes Ende: 08:00
+	10800 18000 random + (S.L.endtime_low)
+
+0.001 100 random 100 / 0.001 * + (S.L.frequency_low)
+0.03 100 random 100 / 0.01 * + (S.L.frequency_high)
+
+	(M.L.calc)
+{end}
+
+
+{frame}
+	(M.L.calc)
+{end}
+
+{macro:calc}
+	(L.S.Day) s0
+	(L.S.Month) s1
+	(L.S.Year) s2
+
+'Vorheriger Tag:
+
+'31.12. - Neujahr
+	l0 31 = l1 12 = &&
+
+'12.2. - Beginn der Omsi-Entwicklung im Jahre 2007
+	l0 11 = l1 2 = && ||
+
+'25.3. - Release-Datum der OMSI-Box
+	l0 24 = l1 3 = && ||
+
+'3.10. - Tag der Dt. Einheit
+	l0 2 = l1 10 = && l2 1990 = && ||
+
+'13.11. - Marcels Geburtstag
+	l0 12 = l1 11 = && ||
+
+'28.12. - Janines Geburtstag
+	l0 27 = l1 12 = && ||
+
+s3
+
+'Nächster Tag:
+
+'1.1. - Neujahr
+	l0 1 = l1 1 = &&
+
+'12.2. - Beginn der Omsi-Entwicklung im Jahre 2007
+	l0 12 = l1 2 = && ||
+
+'25.3. - Release-Datum der OMSI-Box
+	l0 25 = l1 3 = && ||
+
+'3.10. - Tag der Dt. Einheit
+	l0 3 = l1 10 = && l2 1990 = && ||
+
+'13.11. - Marcels Geburtstag
+	l0 13 = l1 11 = && ||
+
+'28.12. - Janines Geburtstag
+	l0 28 = l1 12 = && ||
+
+s4
+
+'Prüfen, ob viel, wenig oder gar nicht:
+	l3 (L.S.Time) (L.L.starttime_high) >= &&
+	l4 (L.S.Time) (L.L.endtime_high) <= && ||
+	{if}
+		(L.L.frequency_high) (S.L.frequency)
+		1 (S.L.sound_much)
+	{else}
+	l3 (L.S.Time) (L.L.starttime_low) >= &&
+	l4 (L.S.Time) (L.L.endtime_low) <= && ||
+	{if}
+		(L.L.frequency_low) (S.L.frequency)
+		0 (S.L.sound_much)
+	{else}
+		0 (S.L.frequency)
+		0 (S.L.sound_much)
+	{endif}
+	{endif}
+
+{end}
+

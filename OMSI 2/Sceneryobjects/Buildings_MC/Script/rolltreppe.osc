@@ -1,0 +1,33 @@
+'######################
+'Moving Stairs
+'######################
+
+
+'(c) 18.1.2011 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+
+
+{init}
+	0 (S.L.rolltreppe)
+{end}
+
+{frame}
+	(L.L.NightlightA)
+	{if}	
+		0 (S.L.rolltreppe)
+	{else}
+		(L.S.Timegap) 0.05 * (L.L.rolltreppe) + (S.L.rolltreppe)
+
+		(L.L.rolltreppe) 1 >
+		{if}
+			(L.L.rolltreppe) 1 - (S.L.rolltreppe)
+		{endif}
+	{endif}
+{end}

@@ -1,0 +1,8 @@
+clock_bell_quarter
+clock_bell_used
+clock_bell_hours_left
+clock_bell_quarters_left
+clock_bell_timer
+mainbell_running
+clock_hand_hour
+clock_hand_minute

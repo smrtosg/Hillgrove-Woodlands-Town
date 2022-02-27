@@ -1,0 +1,54 @@
+'######################
+'Cock script
+'######################
+
+'Cock calls at sunrise
+
+'(c) 29.10.2013 Marcel Kuhnt
+
+'Needs:
+'- none
+
+'Revision History:
+'	29.10.2013	Marcel Kuhnt	Created Script
+
+
+{init}
+	-1 (S.L.nextcall)
+	(M.L.setcounter)	
+{end}
+
+
+{frame}
+	(L.S.SunAlt) s0 -5 >
+	l0 5 < &&
+	(L.S.Time) 43200 < &&
+	{if}
+'Hahn ist armed:
+		(L.L.nextcall) (L.S.Time) <
+		{if}
+			(T.L.cock)
+			(L.L.counter) 1 - (S.L.counter)
+			0 <=
+			{if}
+'Wenn der Hahn seine Kräh-Gruppe durch hat, dann erst wieder in 2 bis 4 Minuten:
+				(L.S.Time) 2 random 3 + 60 * + (S.L.nextcall)
+				(M.L.setcounter)
+			{else}
+'Sonst nach 10-20 Sekunden nochmal krähen:
+				(L.S.Time) 10 random 10 + + (S.L.nextcall)
+			{endif}
+		{endif}
+	{else}
+'Hahn ist inaktiv:
+		-1 (S.L.nextcall)
+		(L.L.counter) 0 <=
+		{if}
+			(M.L.setcounter)
+		{endif}
+	{endif}
+{end}
+
+{macro:setcounter}
+	3 random 1 + (S.L.counter)
+{end}

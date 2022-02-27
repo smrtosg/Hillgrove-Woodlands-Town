@@ -1,0 +1,8 @@
+Red
+Yellow
+Green
+Timer_Red
+Timer_Yellow
+Timer_Green
+Timer_Green_flash
+Illumination

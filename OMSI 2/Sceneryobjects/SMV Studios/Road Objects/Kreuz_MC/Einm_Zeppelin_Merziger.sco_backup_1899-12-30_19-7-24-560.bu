@@ -1,0 +1,30 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Junction Zeppelinstr./Merziger Str.
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[collision_mesh]
+Einm_Zeppelin_Merziger.o3d
+
+[surface]
+
+
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Einm_Zeppelin_Merziger.o3d

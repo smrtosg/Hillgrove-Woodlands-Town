@@ -1,0 +1,32 @@
+'######################
+'Clock
+'######################
+
+'Clock with Minute and Hour Hand
+
+'(c) 5.11.2009 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+
+{frame}
+
+'###########################
+' Clock Hands
+'###########################
+
+'Time in seconds...
+
+(L.S.Time) s0
+'Hour Hand: 360° in 12 hours:
+		120 / (S.L.clock_hand_hour)
+'Minute Hand: 360° in 1 hour:
+		l0 10 / (S.L.clock_hand_minute)
+
+
+{end}

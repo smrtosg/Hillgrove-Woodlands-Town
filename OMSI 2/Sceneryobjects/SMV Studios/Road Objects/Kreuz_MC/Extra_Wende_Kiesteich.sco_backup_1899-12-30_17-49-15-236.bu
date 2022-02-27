@@ -1,0 +1,29 @@
+This file was created with the Omsi Object Editing tool
+
+[friendlyname]
+Extrasegment Bus Loop Kiesteich
+
+[groups]
+1
+Crossings
+
+[rendertype]
+surface
+
+[LightMapMapping]
+
+[fixed]
+
+[surface]
+
+###################
+     Model Data
+###################
+
+
+[mesh]
+Extra_Wende_Kiesteich.o3d
+
+
+[collision_mesh]
+Extra_Wende_Kiesteich.o3d

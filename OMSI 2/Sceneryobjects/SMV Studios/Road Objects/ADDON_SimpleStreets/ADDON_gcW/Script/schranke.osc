@@ -1,0 +1,23 @@
+'Schranke
+'basiert auf Omnibusbetriebshof Script von Marcel Kuhnt und Rüdiger Hülsmann
+
+{frame}
+
+(L.L.TrafficLightPhase) s0
+
+l0 0 >= l0 2 <= && ! /-/ (S.L.schranke)
+
+(L.L.schranke) 
+{if}
+	(L.L.schranke_run) (L.S.Timegap) 3 / + 1 min (S.L.schranke_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.schranke_pos)
+{else}
+	(L.L.schranke_run) (L.S.Timegap) 3 / - 0 max (S.L.schranke_run) 0.5 + 3.14159265 * sin 1 - 2 / (S.L.schranke_pos)
+{endif}
+
+
+
+
+
+
+
+{end}

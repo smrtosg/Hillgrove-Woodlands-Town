@@ -1,0 +1,66 @@
+'########################
+'Railway Crossing
+'########################
+
+'Railway Crossing
+'Phase 0..2, 9..11: active
+'Else: inactive
+
+'(c) 6.7.2009 Marcel Kuhnt
+
+'Script Version: 1.1
+'Omsi release: 2.0
+
+'Needs:
+'- none
+
+'Revision History
+'2009-07-06	Marcel Kuhnt		File Created
+'2013-02-28	Rüdiger Hülsmann	Variable blinking on/off intervals
+
+
+{init}
+	1 (S.L.Schranke_R) (S.L.Schranke_L)
+
+{end}
+
+{frame}
+	(L.L.TrafficLightPhase) s0
+
+
+	l0 0 >= l0 5 <= &&
+	l0 9 >= l0 11 <= && ||
+
+	(L.S.GetTime) d trunc - 0.65 < && s0
+
+	l0 (L.L.Light) ! &&
+	(L.L.TrafficLightPhase) 0 = (L.L.TrafficLightPhase) 9 = || &&
+	{if}
+		(T.L.ev_bue_bell)
+	{endif}
+
+	l0 (S.L.Light)
+
+
+
+
+
+
+	(L.L.TrafficLightPhase) s0
+
+	l0 0 >= l0 2 <= && s0
+
+'Sollwert:
+	l0 (S.L.Schranke_R)
+
+
+
+	(L.L.TrafficLightPhase) s0
+
+	l0 2 = s0
+
+'Sollwert:
+	l0 (S.L.Schranke_L)
+
+
+{end}

@@ -1,0 +1,58 @@
+[friendlyname]
+Thin Tall
+
+[groups]
+2
+Fellowsfilm Objects
+Signs
+
+[complexity]
+0
+
+-------------------------------
+
+[stringvarnamelist]
+1
+script\Small Directional Sign stringvarlist.txt
+
+[script]
+1
+script\Small Directional Sign.osc
+
+[varnamelist]
+1
+script\Small Directional Sign varlist.txt
+
+-------------------------------
+
+[rendertype]
+surface
+
+[fixed]
+
+[surface]
+
+[collision_mesh]
+Motorway Sign1.o3d
+
+[mesh]
+Motorway Sign1.o3d
+
+[shadow]
+
+-------------------
+
+[matl]
+Sign Template.bmp
+0
+
+[matl_alpha]
+2
+
+[matl_freetex]
+Sign Template.bmp
+Texture
+
+[matl_lightmap]
+LM Mway.bmp
+NightLightA

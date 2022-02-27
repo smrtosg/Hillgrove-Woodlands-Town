@@ -1,0 +1,37 @@
+'######################
+'Sv-Signal
+'######################
+
+'Sv-Signal (former Berlin S-Bahn signal system)
+
+'(c) 13.5.2010 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+'Revision History:
+'- Marcel Kuhnt		13.05.2010	Created and signal route intergration
+'- Rüdiger Hülsmann	11.11.2010	Added double amber when signal at danger
+
+
+
+
+
+{frame}
+
+(L.L.Signal)		1 >= s0 (S.L.Light_OL_G)
+(L.L.Signal)		0 =  (S.L.Light_OL_O) (S.L.Light_OR_O)
+
+l0
+{if}
+	(L.L.NextSignal)	0 = l0 && (S.L.Light_OR_O)
+	(L.L.NextSignal)	1 = l0 && (S.L.Light_OR_G)
+{else}
+	0 (S.L.Light_OR_G)
+{endif}
+
+
+{end}
