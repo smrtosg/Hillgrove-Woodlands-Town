@@ -18,10 +18,6 @@ Sceneryobjects\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli
 1048806022
 -
 -
-Sceneryobjects\ADDON_SimpleStreets\RQ_20n_Busstop004.sco
-1053014932
-1053014932
--1
 Sceneryobjects\ADDON_SimpleStreets\RQ_20n_w9,5_SideWide_CrossOne.sco
 1115192399
 1115192399
@@ -66,13 +62,13 @@ Sceneryobjects\Generic\routearrows_busstop.sco
 1395037235
 1395037235
 -1
-Sceneryobjects\RRTS_Studios\Bus_Stop\rrts_bs_01.sco
-1191548454
-1191548454
--1
 Sceneryobjects\RRTS_Studios\busstopdisplay\BusstopDisplay.sco
 1193185927
 1193185927
+-1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_Busstop004.sco
+1053014932
+1053014932
 -1
 Sceneryobjects\Streetobjects_RUE\Busstop_Name_Timetable_4.sco
 1344352890

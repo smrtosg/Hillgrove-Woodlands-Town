@@ -3,7 +3,7 @@ Time Table Trip File
 -----------------------
 
 Created with Omsi Version 2.2.032
-Date: 26/2/2022
+Date: 28/2/2022
 
 [trip]
 
@@ -90,7 +90,7 @@ Edgeview Ter 885
 
 [profile]
 standard
-26.500
+29.500
 
 [profile_man_arr_time]
 0
@@ -148,16 +148,16 @@ standard
 19.680
 [profile_man_arr_time]
 18
-21.938
+23.038
 [profile_man_arr_time]
 19
-22.914
+24.914
 [profile_man_arr_time]
 20
-23.955
+25.955
 [profile_man_arr_time]
 21
-25.995
+28.195
 [profile_man_arr_time]
 22
-26.500
+29.500

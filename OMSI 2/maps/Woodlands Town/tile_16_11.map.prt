@@ -1,6 +1,22 @@
+Sceneryobjects\ABB\electric_module.sco
+1390836429
+1390836429
+-1
+Sceneryobjects\ABB\pantograph_down_exp.sco
+1396489677
+1396489677
+-1
+Sceneryobjects\ABB\pantograph_down_exp2.sco
+1396506818
+1396506818
+-1
 Sceneryobjects\Addon_British-Style_Road_Markings\Road_Destination_Mark_3line.sco
 1397644558
 1397644558
+-1
+Sceneryobjects\Fellowsfilm Objects\Signs\Railings\Ped Railings.sco
+1162255387
+1162255387
 -1
 Sceneryobjects\Generic\bus_stop.sco
 1395037235
@@ -66,13 +82,13 @@ Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_9,5_to_10,5.sco
 1047956073
 1047956073
 -1
-Sceneryobjects\SMV Studios\Route Hints V4\arrow_leftA.sco
-1392487836
-1392487836
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_leftA.sco
+1398646342
+1398646342
 -1
-Sceneryobjects\SMV Studios\Route Hints V4\arrow_rightA.sco
-1392487826
-1392487826
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_rightA.sco
+1398646342
+1398646342
 -1
 Sceneryobjects\SMV Studios\SMRTG Displays V3.1\For ITHs\Admiralty Int\Display Screen.sco
 1397668492
@@ -126,27 +142,11 @@ Splines\Yufa\25cm_N_line.sli
 1115863074
 -
 -
+Splines\Yufa\bussteig004.sli
+1077390461
+-
+-
 Splines\Yufa\bussteig004noppl.sli
 1361799399
 -
 -
-Sceneryobjects\ABB\electric_module.sco
-1390836429
-1390836429
--1
-Sceneryobjects\ABB\pantograph_down_exp.sco
-1396489677
-1396489677
--1
-Sceneryobjects\ABB\pantograph_down_exp2.sco
-1396506818
-1396506818
--1
-Sceneryobjects\SMV Studios\Route Hints V5\arrow_leftA.sco
-1398646342
-1398646342
--1
-Sceneryobjects\SMV Studios\Route Hints V5\arrow_rightA.sco
-1398646342
-1398646342
--1
