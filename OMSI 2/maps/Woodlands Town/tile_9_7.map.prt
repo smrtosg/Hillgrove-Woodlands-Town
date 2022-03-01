@@ -1,7 +1,3 @@
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Bridge_Oneway.sli
-1049498684
--
--
 Sceneryobjects\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli
 1048806022
 -
@@ -23,10 +19,6 @@ Sceneryobjects\Generic\bus_stop.sco
 1395037235
 -1
 Sceneryobjects\Generic\people_standing_small.sco
-1395037235
-1395037235
--1
-Sceneryobjects\Generic\routearrows_busstop.sco
 1395037235
 1395037235
 -1
@@ -74,6 +66,22 @@ Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_w9,5_SideWide
 1115192399
 1115192399
 -1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_36_Entry_End.sco
+1049855312
+1049855312
+-1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_36_Entry_Start_Double.sco
+1049855470
+1049855470
+-1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_36_Exit_End_Double.sco
+1049855751
+1049855751
+-1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_36_Exit_Start.sco
+1049855382
+1049855382
+-1
 Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_9,5_to_10,5.sco
 1047956073
 1047956073
@@ -89,10 +97,6 @@ Sceneryobjects\SMV Studios\Route Hints V5\arrow_rightA.sco
 Sceneryobjects\SMV Studios\Route Hints V5\arrow_upA.sco
 1398646342
 1398646342
--1
-Sceneryobjects\Streetobjects_RUE\Busstop_Name_Timetable_2.sco
-1344352890
-1344352890
 -1
 Sceneryobjects\Streetobjects_RUE\neonlight_2L_bend_L.sco
 1344352907
@@ -138,32 +142,24 @@ Sceneryobjects\Trees_MC\tree_large_06.sco
 1361799459
 1361799459
 -1
-Splines\ADDON_SimpleStreets\RQ_36.sli
-1049852661
+Splines\Marcel\invis_street.sli
+999142606
 -
 -
-Splines\ADDON_SimpleStreets\RQ_36_Entry_End.sco
-1049855312
-1049855312
--1
-Splines\ADDON_SimpleStreets\RQ_36_Entry_Start_Double.sco
-1049855470
-1049855470
--1
-Splines\ADDON_SimpleStreets\RQ_36_Exit_End_Double.sco
-1049855751
-1049855751
--1
-Splines\ADDON_SimpleStreets\RQ_36_Exit_Start.sco
-1049855382
-1049855382
--1
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Bridge_Oneway.sli
+1049496635
+-
+-
 Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Sidewalk.sli
 1047334011
 -
 -
 Splines\SMV Studios\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli
 1048803973
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_36.sli
+1049852661
 -
 -
 Splines\SMV Studios\ADDON_SimpleStreets\RQ_9,5_2spur_6,5m_Sidewalk.sli

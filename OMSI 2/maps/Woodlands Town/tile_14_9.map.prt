@@ -1,28 +1,28 @@
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_1spur.sli
-1048387841
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Bridge_Oneway.sli
-1049498684
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Oneway.sli
-1049496909
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_SingleSplitter1to2.sco
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_10,5_SingleSplitter1to2.sco
 1052016987
 1052016987
 -1
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_SingleSplitter2to1.sco
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_10,5_SingleSplitter2to1.sco
 1052017012
 1052017012
 -1
-Sceneryobjects\Generic\routearrow_dn.sco
-1395037235
-1395037235
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_leftA.sco
+1398646342
+1398646342
 -1
 Sceneryobjects\woodlands_city_gg2\highway_bridge.sco
 1112307493
 1112307493
 -1
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_1spur.sli
+1048385792
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Bridge_Oneway.sli
+1049496635
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Oneway.sli
+1049494860
+-
+-

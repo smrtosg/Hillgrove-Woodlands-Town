@@ -1,7 +1,3 @@
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_1spur.sli
-1048387841
--
--
 Sceneryobjects\Fellowsfilm Objects\Signs\Railings\Ped Railings.sco
 1162255387
 1162255387
@@ -14,36 +10,28 @@ Sceneryobjects\Generic\people_standing_small.sco
 1395037235
 1395037235
 -1
-Sceneryobjects\RRTS_Studios\Bus_Stop\rrts_bs_01.sco
-1191548454
-1191548454
+Sceneryobjects\SMRTG Studios\Route Hints V3\arrow_busStop.sco
+1381000008
+1381000008
 -1
-Sceneryobjects\RRTS_Studios\Krexan_S5\barebones.sco
-1199667047
-1199667047
+Sceneryobjects\SMV Studios\Bus Stop Pole V5\BS Pole.sco
+1391175685
+1391175685
 -1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_ad.sco
-1199654293
-1199654293
+Sceneryobjects\SMV Studios\LTA Bus Stop V4\smrtg_sbsmrt.sco
+1412084418
+1412084418
 -1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_display.sco
-1199483750
-1199483750
--1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_dummy.sco
-1199666628
-1199666628
--1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_stopname.sco
-1199483035
-1199483035
--1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_svcnos.sco
-1199654272
-1199654272
+Sceneryobjects\Streetobjects_RUE\neonlight_M_whip_S.sco
+1167985958
+1167985958
 -1
 Splines\Marcel\invis_human.sli
 1085057041
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_1spur.sli
+1048385792
 -
 -
 Splines\Terrain Spline\Terrain Spline_Other textures\Terrain-Spline_Innenstadt\15mTerrain_Spline_Innenstadt.sli

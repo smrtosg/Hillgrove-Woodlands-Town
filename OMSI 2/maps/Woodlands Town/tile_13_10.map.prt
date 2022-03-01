@@ -1,38 +1,6 @@
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_1spur.sli
-1048387841
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Oneway.sli
-1049496909
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_Splitter1.sco
-1056835940
-1056835940
--1
-Sceneryobjects\ADDON_SimpleStreets\RQ_28.sli
-1048411084
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_28_Entry_End.sco
-1048950455
-1048950455
--1
-Sceneryobjects\ADDON_SimpleStreets\RQ_28_EntryExit_Straight_Lane.sco
-1048950576
-1048950576
--1
-Sceneryobjects\ADDON_SimpleStreets\RQ_28_Exit_End_Double.sco
-1049495889
-1049495889
--1
-Sceneryobjects\ADDON_SimpleStreets\RQ_28_Exit_Start.sco
-1048950816
-1048950816
--1
-Sceneryobjects\ADDON_SimpleStreets\RQ_36_EntryExit_Straight.sco
-1049855593
-1049855593
+Sceneryobjects\Addon_British-Style_Road_Markings\Road_Destination_Mark_3line.sco
+1397644558
+1397644558
 -1
 Sceneryobjects\Buildings_MC\bw_hoch_07B.sco
 1167985890
@@ -54,37 +22,57 @@ Sceneryobjects\Generic\people_standing_small.sco
 1395037235
 1395037235
 -1
-Sceneryobjects\Generic\routearrow_dn.sco
-1395037235
-1395037235
+Sceneryobjects\SMRTG Studios\Route Hints V3\arrow_busStop.sco
+1381000008
+1381000008
 -1
-Sceneryobjects\RRTS_Studios\Bus_Stop\rrts_bs_01.sco
-1191548454
-1191548454
+Sceneryobjects\SMV Studios\Bus Stop Pole V5\BS Pole.sco
+1391175685
+1391175685
 -1
-Sceneryobjects\RRTS_Studios\Krexan_S5\barebones.sco
-1199667047
-1199667047
+Sceneryobjects\SMV Studios\LTA Bus Stop V4\smrtg_sbsmrt.sco
+1412084418
+1412084418
 -1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_ad.sco
-1199654293
-1199654293
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_10,5_Splitter1.sco
+1056835940
+1056835940
 -1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_display.sco
-1199483750
-1199483750
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_28_Entry_End.sco
+1048950455
+1048950455
 -1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_dummy.sco
-1199666628
-1199666628
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_28_EntryExit_Straight_Lane.sco
+1048950576
+1048950576
 -1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_stopname.sco
-1199483035
-1199483035
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_28_Exit_End_Double.sco
+1049495889
+1049495889
 -1
-Sceneryobjects\RRTS_Studios\Krexan_S5\module_svcnos.sco
-1199654272
-1199654272
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_28_Exit_Start.sco
+1048950816
+1048950816
+-1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_36_Entry_End.sco
+1049855312
+1049855312
+-1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_36_Entry_Start_Double.sco
+1049855470
+1049855470
+-1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_36_EntryExit_Straight.sco
+1049855593
+1049855593
+-1
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_rightA.sco
+1398646342
+1398646342
+-1
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_upA.sco
+1398646342
+1398646342
 -1
 Sceneryobjects\Streetobjects_RUE\neonlight_M_whip_S.sco
 1167985958
@@ -94,32 +82,28 @@ Sceneryobjects\Streetobjects_RUE\sodiumlight_2L_break_L.sco
 1344352908
 1344352908
 -1
-Sceneryobjects\Streetobjects_RUE\sodiumlight_L_break_L.sco
-1344352908
-1344352908
--1
-Splines\ADDON_SimpleStreets\RQ_36_Entry_End.sco
-1049855312
-1049855312
--1
-Splines\ADDON_SimpleStreets\RQ_36_Entry_Start_Double.sco
-1049855470
-1049855470
--1
 Splines\Marcel\invis_human.sli
 1085057041
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_1spur.sli
+1048385792
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Oneway.sli
+1049494860
 -
 -
 Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Sidewalk.sli
 1047334011
 -
 -
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_28.sli
+1048409035
+-
+-
 Splines\Terrain Spline\Terrain Spline_Other textures\Terrain-Spline_Innenstadt\15mTerrain_Spline_Innenstadt.sli
 1361798816
--
--
-Splines\Yufa\BUS_text_s.sli
-1062153485
 -
 -
 Splines\Yufa\bussteig004.sli

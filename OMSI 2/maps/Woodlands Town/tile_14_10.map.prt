@@ -1,38 +1,14 @@
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_1spur.sli
-1048387841
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Bridge_Oneway.sli
-1049498684
--
--
+Sceneryobjects\Addon_British-Style_Road_Markings\Road_Destination_Mark_3line.sco
+1397644558
+1397644558
+-1
 Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Oneway.sli
 1049496909
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_Splitter1.sco
-1056835940
-1056835940
--1
-Sceneryobjects\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli
-1048806022
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_20n_w9,5_SideWide_CrossOne.sco
-1115192399
-1115192399
--1
-Sceneryobjects\ADDON_SimpleStreets\RQ_28.sli
-1048411084
 -
 -
 Sceneryobjects\Buildings_MC\bw_hoch_07B.sco
 1167985890
 1167985890
--1
-Sceneryobjects\Fellowsfilm Objects\British Traffic Light Pack\LED traffic lights\Ampel_Fg_Warn_1.sco
-1162255383
-1162255383
 -1
 Sceneryobjects\Fellowsfilm Objects\Signs\Railings\Ped Railings.sco
 1162255387
@@ -46,41 +22,45 @@ Sceneryobjects\Generic\people_standing_small.sco
 1395037235
 1395037235
 -1
-Sceneryobjects\Generic\routearrow_dn.sco
-1395037235
-1395037235
--1
-Sceneryobjects\Generic\routearrow_L.sco
-1395037235
-1395037235
--1
-Sceneryobjects\Generic\routearrow_R.sco
-1395037235
-1395037235
--1
-Sceneryobjects\Generic\routearrows_busstop.sco
-1395037235
-1395037235
--1
 Sceneryobjects\RRTS_Studios\busstopdisplay\BusstopDisplay.sco
 1193185927
 1193185927
+-1
+Sceneryobjects\SMRTG Studios\Route Hints V3\arrow_busStop.sco
+1381000008
+1381000008
+-1
+Sceneryobjects\SMV Studios\Bus Stop Pole V5\BS Pole.sco
+1391175685
+1391175685
+-1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_10,5_Splitter1.sco
+1056835940
+1056835940
 -1
 Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_Busstop004.sco
 1053014932
 1053014932
 -1
-Sceneryobjects\Streetobjects_RUE\Busstop_Name_Timetable_4.sco
-1344352890
-1344352890
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_w9,5_SideWide_CrossOne.sco
+1115192399
+1115192399
+-1
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_rightA.sco
+1398646342
+1398646342
+-1
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_upA.sco
+1398646342
+1398646342
 -1
 Sceneryobjects\Streetobjects_RUE\neonlight_L_bend_L.sco
 1344352907
 1344352907
 -1
-Sceneryobjects\Streetobjects_RUE\single_pole.sco
-1167985956
-1167985956
+Sceneryobjects\Streetobjects_RUE\neonlight_M_whip_S.sco
+1167985958
+1167985958
 -1
 Sceneryobjects\Streetobjects_RUE\sodiumlight_2L_break_L.sco
 1344352908
@@ -94,8 +74,24 @@ Sceneryobjects\woodlands_city_gg2\highway_bridge.sco
 1112307493
 1112307493
 -1
-Splines\Yufa\BUS_text_s.sli
-1062153485
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_1spur.sli
+1048385792
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Bridge_Oneway.sli
+1049496635
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Oneway.sli
+1049494860
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli
+1048803973
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_28.sli
+1048409035
 -
 -
 Splines\Yufa\bussteig004.sli
