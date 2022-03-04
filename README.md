@@ -22,9 +22,9 @@ services – 401, 858, 882, 883, 885, 889, 901, _902_, 903, _904_, 911/T, _965_,
 ### How to Download?
 ```
 Step 1:
-Simply click on the Code Button, and select Download ZIP.
+Simply click on the Releases Header, and select Source code (zip) / Source code (tar.gz).
 ```
-![rl-1](https://user-images.githubusercontent.com/77185714/155873153-e9ab0e95-18d4-437e-b10f-79488fd127b9.png)
+![rl-1](https://user-images.githubusercontent.com/77185714/156784437-aa81bb77-86de-4612-b3dc-b8a8159a524b.png)
 
 File Size: about 3.94GB
 
