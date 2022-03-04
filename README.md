@@ -17,6 +17,7 @@ services – 401, 858, 882, 883, 885, 889, 901, _902_, 903, _904_, 911/T, _965_,
 
 ## Things to note:
 - Woodlands Town is **currently in preview,** that means the map is unfinished, and some services are still not yet completed.
+- This repository contains both Hillgrove town and Woodlands Town, to facilitate easier updates, although the file size would be quite huge.
 
 ### How to Download?
 ```
