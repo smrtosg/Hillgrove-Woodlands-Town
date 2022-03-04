@@ -7,18 +7,18 @@ Date: 3/3/2022
 
 [trip]
 
-Admiralty Int 901
-901
+Woodlands Int 965
+965
 
 .........................
         Stations
 .........................
 
 [station_typ2]
-7637
+18036
 
 [station_typ2]
-7618
+14536
 
 [station_typ2]
 8824
@@ -30,31 +30,34 @@ Admiralty Int 901
 8804
 
 [station_typ2]
-9597
+8781
 
 [station_typ2]
-9544
+6669
 
 [station_typ2]
-9542
+3507
 
 [station_typ2]
-9576
+4787
 
 [station_typ2]
-9586
+7892
 
 [station_typ2]
-8798
+3502
 
 [station_typ2]
-8811
+7896
 
 [station_typ2]
-7616
+1268
 
 [station_typ2]
-7637
+21802
+
+[station_typ2]
+24665
 
 
 .........................
@@ -63,71 +66,50 @@ Admiralty Int 901
 
 [profile]
 standard
-20.500
+22.500
 
 [profile_man_arr_time]
 0
 0.000
-[profile_otherstopping]
-0
-4
 [profile_man_arr_time]
 1
-1.004
-[profile_otherstopping]
-1
-4
+1.544
 [profile_man_arr_time]
 2
-4.207
+3.607
 [profile_man_arr_time]
 3
-5.824
+4.122
 [profile_man_arr_time]
 4
-6.361
+5.136
 [profile_man_arr_time]
 5
-7.477
-[profile_otherstopping]
-5
-1
+6.170
 [profile_man_arr_time]
 6
-9.423
-[profile_otherstopping]
-6
-1
+7.805
 [profile_man_arr_time]
 7
-11.649
-[profile_otherstopping]
-7
-1
+12.637
 [profile_man_arr_time]
 8
-13.676
-[profile_otherstopping]
-8
-1
+13.365
 [profile_man_arr_time]
 9
-14.807
-[profile_otherstopping]
-9
-1
+14.399
 [profile_man_arr_time]
 10
-16.553
+17.425
 [profile_man_arr_time]
 11
-17.463
+18.764
 [profile_man_arr_time]
 12
-19.359
-[profile_otherstopping]
-12
-2
+19.822
 [profile_man_arr_time]
 13
-20.500
+21.937
+[profile_man_arr_time]
+14
+22.500
