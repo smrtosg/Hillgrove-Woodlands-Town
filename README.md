@@ -15,7 +15,7 @@ services – 401, 858, 882, 883, 885, 889, 901, 902, 903, 911/T, 965 and IKEA Sh
 - Vehicles (HOFs & A&S' A21)
 
 ## Things to note:
-- Woodlands Town is **currently in preview,** that means the map is unfinished, and some services are still not yet completed.
+- Woodlands Town is that means the map is unfinished, and some services are still not yet completed.
 - This repository contains both Hillgrove town and Woodlands Town, to facilitate easier updates, although the file size would be quite huge. Should there be updates, a Patch file will be provided
 
 ### How to Download?
