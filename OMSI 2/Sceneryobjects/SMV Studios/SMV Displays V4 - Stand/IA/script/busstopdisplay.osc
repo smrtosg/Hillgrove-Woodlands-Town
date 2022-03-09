@@ -1,0 +1,76 @@
+'#################################
+'Dynamic Bus Stop Display System
+'#################################
+
+'System displays the next both arriving busses at this bus stop
+
+'(c) 14.12.2011 Marcel Kuhnt
+
+'Script Version: 1.0
+'Omsi release: 1.0
+
+'Needs:
+'- none
+
+
+
+
+{init}
+
+{end}
+
+{frame}
+
+
+'Blinkgeber:
+	(L.S.GetTime) 2 % 1 < (S.L.Blink)
+
+'ZEILE 1 ==============================================
+
+
+'Zuerst prüfen, ob das Ziel valide ist:
+
+	0 (M.V.GetArrBusTerminus) (S.$.Terminus)
+	"" $=
+	{if}
+'Wenn nicht, dann nix anzeigen:
+		0
+	{else}
+'Abfahrtszeit schonmal zwischenspeichern unter s0:
+		0 (M.V.GetArrBusTimeDiff) 60 / s0
+
+'Wenn die Abfahrtszeit weniger als eine Minute ist, dann blinken: (wenns blinkt, ist s1/l1 wahr!)
+		l0 1.0 < s1
+		{if}
+			(L.L.Blink)
+		{else}
+'Sonst anzeigen:
+			1
+		{endif}
+	{endif}
+		
+'Vorherig ermitteltes Ergebnis nun verwenden als Bedingung, ob was angezeigt wird:
+	{if}
+		0 (M.V.GetArrBusLine) 3 $SetLengthL $+ " " $+
+		0 (L.$.Terminus) 13 $SetLengthL $+ " " $+
+'Wenn es blinkt, dann die Uhrzeit nicht mehr anzeigen:
+		l1
+		{if}
+			"Arriving" $+
+		{else}
+			0 l0 0 max " 2" $IntToStrEnh $+ " min" $+
+		{endif}
+	{endif}
+
+'ZEILENUMBRUCH ==============================================
+
+	$+
+
+
+
+'AUSGABE ==============================================
+
+	(S.$.Displaytext)
+
+	1 (S.L.Refresh_Strings)
+{end}
