@@ -6,7 +6,7 @@ services – 974/A/M, 975, 976, 979, 981, 982, 983, 984, 987, 988, 989, 990 and 
 
 Woodlands Town
 Woodlands Town is a map made in-house by RRTS Studios, but taken over from where they have left off, by SMRT Virtual Studios. This map includes 14 drivable
-services – 401, 858, 882, 883, 885, 889, 901, _902_, 903, _904_, 911/T, _965_, IKEA Shuttle (A&S). Those in italics are not available for now.
+services – 401, 858, 882, 883, 885, 889, 901, 902, 903, 911/T, 965 and IKEA Shuttle (A&S).
 
 ## What's Included
 - SMRT Uniform (Humans)
