@@ -1,28 +1,16 @@
-Sceneryobjects\ADDON_SimpleStreets\RQ_10,5_to_15,5_Start.sco
-1047956713
-1047956713
+Sceneryobjects\Buildings_MC\bw_school_4.sco
+1167985828
+1167985828
 -1
-Sceneryobjects\ADDON_SimpleStreets\RQ_15,5_2spur_11,5m_Sidewalk.sli
-1047630645
--
--
+Sceneryobjects\Buildings_RUE\School_5.sco
+1344352632
+1344352632
+-1
 Sceneryobjects\Generic\bus_stop.sco
 1395037235
 1395037235
 -1
 Sceneryobjects\Generic\people_standing_small.sco
-1395037235
-1395037235
--1
-Sceneryobjects\Generic\routearrow_dn.sco
-1395037235
-1395037235
--1
-Sceneryobjects\Generic\routearrow_L.sco
-1395037235
-1395037235
--1
-Sceneryobjects\Generic\routearrow_R.sco
 1395037235
 1395037235
 -1
@@ -42,49 +30,33 @@ Sceneryobjects\Helferlein_Objekte\SG_3f_Kfz.sco
 1395155076
 1395155076
 -1
-Sceneryobjects\Helferlein_Objekte\SG_3f_Kfz_li.sco
-1395155077
-1395155077
+Sceneryobjects\SMRTG Studios\Route Hints V3\arrow_busStop.sco
+1381000008
+1381000008
 -1
-Sceneryobjects\Pub arrêt de bus\Bus Hut Pub4\hst_wartehaus_alt01.sco
-1056677563
-1056677563
+Sceneryobjects\SMV Studios\Bus Stop Pole V5\BS Pole.sco
+1391175685
+1391175685
 -1
-Sceneryobjects\Pub arrêt de bus\Bus Hut Pub5\hst_wartehaus_alt01.sco
-1056677568
-1056677568
+Sceneryobjects\SMV Studios\LTA Bus Stop V4\smrtg_sbsmrt.sco
+1412084418
+1412084418
 -1
-Sceneryobjects\Pub arrêt de bus\Bus Hut Pub6\hst_wartehaus_alt01.sco
-1056677572
-1056677572
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_to_10,5.sco
+1049134507
+1049134507
 -1
-Sceneryobjects\Pub arrêt de bus\Bus Hut Pub7\hst_wartehaus_alt01.sco
-1056677575
-1056677575
--1
-Sceneryobjects\Pub arrêt de bus\Bus Hut Pub8\hst_wartehaus_alt01.sco
-1056677579
-1056677579
--1
-Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_15,5_3spur_11,5m_Sidewalk_junction_UnterOberTrave.sco
-1131517537
-1131517537
--1
-Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_15,5_TO_28.sco
-1049202850
-1049202850
--1
-Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_to_28.sco
-1049132494
-1049132494
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_w9,5_SideWide_Cross_A.sco
+1115583360
+1115583360
 -1
 Sceneryobjects\SMV Studios\Route Hints V5\arrow_leftA.sco
 1398646342
 1398646342
 -1
-Sceneryobjects\Streetobjects_RUE\Busstop_Name_Timetable_1.sco
-1344352890
-1344352890
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_upA.sco
+1398646342
+1398646342
 -1
 Sceneryobjects\Streetobjects_RUE\neonlight_M_whip_S.sco
 1167985958
@@ -93,14 +65,6 @@ Sceneryobjects\Streetobjects_RUE\neonlight_M_whip_S.sco
 Sceneryobjects\Streetobjects_RUE\single_pole.sco
 1167985956
 1167985956
--1
-Sceneryobjects\Streetobjects_RUE\sodiumlight_2L_break_L.sco
-1344352908
-1344352908
--1
-Sceneryobjects\Streetobjects_RUE\sodiumlight_L_break_L.sco
-1344352908
-1344352908
 -1
 Sceneryobjects\Streetobjects_RUE\whip_beam.sco
 1344352916
@@ -122,19 +86,11 @@ Sceneryobjects\Trees_MC\tree_medium_03.sco
 1361799459
 1361799459
 -1
-Splines\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Sidewalk.sli
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Sidewalk.sli
 1047334011
--
--
-Splines\SMV Studios\ADDON_SimpleStreets\RQ_15,5_2spur_11,5m_Sidewalk.sli
-1047626548
 -
 -
 Splines\SMV Studios\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli
 1048803973
--
--
-Splines\Yufa\bussteig004.sli
-1077390461
 -
 -

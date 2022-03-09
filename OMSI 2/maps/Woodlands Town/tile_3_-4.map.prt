@@ -1,30 +1,38 @@
-Sceneryobjects\ADDON_SimpleStreets\RQ_9,5_2spur_6,5m_Sidewalk.sli
-1047233290
--
--
-Sceneryobjects\ADDON_SimpleStreets\RQ_9,5_2spur_6,5m_Sidewalk_cross_forbus4.sco
+Sceneryobjects\Helferlein_Objekte\Buegel2f.sco
+1395155076
+1395155076
+-1
+Sceneryobjects\Helferlein_Objekte\Buegel3f.sco
+1395155076
+1395155076
+-1
+Sceneryobjects\Helferlein_Objekte\SG_2f_FG.sco
+1395155076
+1395155076
+-1
+Sceneryobjects\Helferlein_Objekte\SG_3f_Kfz.sco
+1395155076
+1395155076
+-1
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_9,5_2spur_6,5m_Sidewalk_cross_forbus4.sco
 1049140883
 1049140883
 -1
-Sceneryobjects\ADDON_SimpleStreets\RQ_9,5_to_10,5.sco
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_9,5_to_10,5.sco
 1047956073
 1047956073
 -1
-Sceneryobjects\Generic\routearrow_dn.sco
-1395037235
-1395037235
--1
-Sceneryobjects\Generic\routearrow_dn_dyn.sco
-1395037235
-1395037235
--1
-Sceneryobjects\Streetobjects_MC\rw_digging.sco
-1344352878
-1344352878
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_upA.sco
+1398646342
+1398646342
 -1
 Sceneryobjects\Streetobjects_RUE\neonlight_L_whip_L.sco
 1344352907
 1344352907
+-1
+Sceneryobjects\Streetobjects_RUE\neonlight_M_whip_S.sco
+1167985958
+1167985958
 -1
 Sceneryobjects\Streetobjects_RUE\single_pole.sco
 1167985956
@@ -38,15 +46,11 @@ Sceneryobjects\Trees_MC\tree_large_01.sco
 1361799459
 1361799459
 -1
-Sceneryobjects\Verkehrszeichen_MC\Ampel_Kfz_Oh_1.sco
-1344353002
-1344353002
--1
-Sceneryobjects\Verkehrszeichen_MC\Ampel_Mensch_1.sco
-1344353002
-1344353002
--1
-Splines\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Sidewalk.sli
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Sidewalk.sli
 1047334011
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_9,5_2spur_6,5m_Sidewalk.sli
+1047229193
 -
 -
