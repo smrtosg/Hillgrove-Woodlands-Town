@@ -1,0 +1,49 @@
+-----------------------
+Time Table Trip File
+-----------------------
+
+Created with Omsi Version 2.2.032
+Date: 17/3/2022
+
+[trip]
+
+Republic Poly 902
+902
+
+.........................
+        Stations
+.........................
+
+[station_typ2]
+24902
+
+[station_typ2]
+24840
+
+[station_typ2]
+24726
+
+[station_typ2]
+24902
+
+
+.........................
+        Profiles
+.........................
+
+[profile]
+standard
+8.500
+
+[profile_man_arr_time]
+0
+0.000
+[profile_man_arr_time]
+1
+1.162
+[profile_man_arr_time]
+2
+4.479
+[profile_man_arr_time]
+3
+8.500

@@ -1,132 +1,44 @@
-Sceneryobjects\Buildings_DF\Traffic_lights\whip_beam.sco
-1155991120
-1155991120
--1
-Sceneryobjects\Generic\bus_stop.sco
+Sceneryobjects\Generic\routearrow_L.sco
 1395037235
 1395037235
 -1
-Sceneryobjects\Generic\people_standing_small.sco
-1395037235
-1395037235
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_10,5_SlowEntryLeft.sco
+1052015521
+1052015521
 -1
-Sceneryobjects\Helferlein_Objekte\Buegel2f.sco
-1395155076
-1395155076
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_leftA.sco
+1398646342
+1398646342
 -1
-Sceneryobjects\Helferlein_Objekte\Buegel3f.sco
-1395155076
-1395155076
+Sceneryobjects\Streetobjects_RUE\neonlight_M_whip_S.sco
+1167985958
+1167985958
 -1
-Sceneryobjects\Helferlein_Objekte\SG_2f_FG.sco
-1395155076
-1395155076
+Sceneryobjects\Streetobjects_RUE\sodiumlight_L_break_L.sco
+1344352908
+1344352908
 -1
-Sceneryobjects\Helferlein_Objekte\SG_3f_Kfz.sco
-1395155076
-1395155076
--1
-Sceneryobjects\Ruede\trees_chestnut03.sco
-1210215982
-1210215982
--1
-Sceneryobjects\SMRTG Studios\Route Hints V3\arrow_busStop.sco
-1381000008
-1381000008
--1
-Sceneryobjects\SMRTG Studios\SMRTG Displays V3\Display ScreenText.sco
-1301808947
-1301808947
--1
-Sceneryobjects\SMRTG Studios\SMRTG Displays V3\For ITHs\Display Screen2.sco
-1315662784
-1315662784
--1
-Sceneryobjects\SMRTG Studios\West Terra ITH\Berth_P.sco
-1298108536
-1298108536
--1
-Sceneryobjects\SMRTG Studios\West Terra ITH\WTITH.sco
-1382789920
-1382789920
--1
-Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_w9,5_SideWide_Junct_A.sco
-1115583319
-1115583319
--1
-Sceneryobjects\SMV Studios\Route Hints V4\arrow_leftA.sco
-1392487836
-1392487836
--1
-Sceneryobjects\SMV Studios\Route Hints V4\arrow_upA.sco
-1392487831
-1392487831
--1
-Sceneryobjects\SMV Studios\SMRTG Displays V3.1\For ITHs\West Terra Int\Display Screen.sco
-1389658800
-1389658800
--1
-Sceneryobjects\SMV Studios\SMRTG Displays V3.1\For ITHs\West Terra Int\Display Screen2.sco
-1389658802
-1389658802
--1
-Sceneryobjects\Streetobjects_RUE\neonlight_S_whip_S.sco
-1167985954
-1167985954
--1
-Sceneryobjects\Streetobjects_RUE\single_pole.sco
-1167985956
-1167985956
--1
-Sceneryobjects\Trees_MC\tree_medium_06.sco
+Sceneryobjects\Trees_MC\tree_large_05.sco
 1361799459
 1361799459
 -1
-Sceneryobjects\Trees_MC\tree_medium_08.sco
+Sceneryobjects\Trees_MC\tree_medium_09.sco
 1361799459
 1361799459
 -1
-Splines\Addon_British-Style_Road_Markings\Bus_Stop_Solid_300.sli
-1144101625
--
--
-Splines\invis_street.sli
-1368090194
--
--
 Splines\Marcel\invis_human.sli
 1085057041
 -
 -
-Splines\Marcel\invis_street.sli
-999142606
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_1spur.sli
+1048385792
 -
 -
-Splines\Ruede\DDR_Zaun_01.sli
-1230788274
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m.sli
+1048149027
 -
 -
-Splines\SMV Studios\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli
-1048803973
--
--
-Splines\Terrain Spline\10mTerrain_SplineDARK.sli
-1394774802
--
--
-Splines\Terrain Spline\12mTerrain_SplineDARK.sli
-1394774799
--
--
-Splines\Terrain Spline\4mTerrain_Spline.sli
-1361799397
--
--
-Splines\Yufa\bussteig004.sli
-1077390461
--
--
-Splines\Yufa\bussteig004noppl.sli
-1361799399
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Sidewalk.sli
+1047334011
 -
 -

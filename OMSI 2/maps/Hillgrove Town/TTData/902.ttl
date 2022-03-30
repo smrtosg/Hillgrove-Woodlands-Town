@@ -1,0 +1,86 @@
+-----------------------
+Time Table Line File
+-----------------------
+
+Created with Omsi Version 2.2.032
+Date: 17/3/2022
+
+[userallowed]
+
+[priority]
+1
+------------------------------------
+
+[newtour]
+S101
+Buses Bendy 965
+1023
+
+------------------------------------
+
+  Dep.: 7:30:0
+[addtrip]
+902 WDL TO RP
+0
+450.000
+
+  Dep.: 7:45:0
+[addtrip]
+902 WDL TO RP
+0
+465.000
+
+  Dep.: 8:0:0
+[addtrip]
+902 WDL TO RP
+0
+480.000
+
+  Dep.: 8:15:0
+[addtrip]
+902 WDL TO RP
+0
+495.000
+
+  Dep.: 8:30:0
+[addtrip]
+902 WDL TO RP
+0
+510.000
+
+  Dep.: 8:45:0
+[addtrip]
+902 WDL TO RP
+0
+525.000
+
+  Dep.: 9:0:0
+[addtrip]
+902 WDL TO RP
+0
+540.000
+
+  Dep.: 9:15:0
+[addtrip]
+902 WDL TO RP
+0
+555.000
+
+  Dep.: 9:30:0
+[addtrip]
+902 WDL TO RP
+0
+570.000
+
+  Dep.: 9:45:0
+[addtrip]
+902 WDL TO RP
+0
+585.000
+
+  Dep.: 10:0:0
+[addtrip]
+902 WDL TO RP
+0
+600.000
+

@@ -1,69 +1,85 @@
-Sceneryobjects\Buildings_MC\bw_hoch_10B.sco
-1167985891
-1167985891
--1
-Sceneryobjects\Generic\bus_stop.sco
+Sceneryobjects\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli
+1048806022
+-
+-
+Sceneryobjects\Generic\routearrow_L.sco
 1395037235
 1395037235
 -1
-Sceneryobjects\gg\phousing_0001.sco
-1112307773
-1112307773
+Sceneryobjects\Helferlein_Objekte\Buegel2f.sco
+1395155076
+1395155076
 -1
-Sceneryobjects\gg\phousing_0401.sco
-1112644106
-1112644106
+Sceneryobjects\Helferlein_Objekte\Buegel3f.sco
+1395155076
+1395155076
 -1
-Sceneryobjects\gg\phousing_1201.sco
-1110813771
-1110813771
+Sceneryobjects\Helferlein_Objekte\SG_2f_FG.sco
+1395155076
+1395155076
 -1
-Sceneryobjects\Ruede\trees_chestnut03.sco
-1210215982
-1210215982
+Sceneryobjects\Helferlein_Objekte\SG_3f_Kfz.sco
+1395155076
+1395155076
 -1
-Sceneryobjects\SMRTG Studios\Airbitat Bus Stop V2\smrtg_airbitat.sco
-1358346459
-1358346459
+Sceneryobjects\SMRTG Studios\SMV Bus Stop\smv_busstop.sco
+1377940020
+1377940020
 -1
-Sceneryobjects\SMRTG Studios\Route Hints V3\arrow_busStop.sco
-1381000008
-1381000008
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_10,5_SlowExitLeft.sco
+1052016242
+1052016242
 -1
-Sceneryobjects\SMV Studios\Bus Stop Pole V5\BS Pole.sco
-1391175685
-1391175685
+Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_w9,5_SideWide_Cross_A.sco
+1115583360
+1115583360
 -1
-Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_Busstop001.sco
-1053014247
-1053014247
+Sceneryobjects\Streetobjects_RUE\neonlight_M_whip_S.sco
+1167985958
+1167985958
 -1
-Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_Busstop002.sco
-1053014107
-1053014107
+Sceneryobjects\Streetobjects_RUE\single_pole.sco
+1167985956
+1167985956
 -1
-Sceneryobjects\Streetobjects_RUE\neonlight_S_whip_S.sco
-1167985954
-1167985954
+Sceneryobjects\Streetobjects_RUE\sodiumlight_L_break_L.sco
+1344352908
+1344352908
 -1
-Sceneryobjects\Trees_MC\tree_medium_04.sco
+Sceneryobjects\Streetobjects_RUE\whip_beam.sco
+1344352916
+1344352916
+-1
+Sceneryobjects\Trees_MC\tree_avenue_04.sco
 1361799459
 1361799459
 -1
-Sceneryobjects\Trees_MC\tree_medium_06.sco
+Sceneryobjects\Trees_MC\tree_large_01.sco
 1361799459
 1361799459
 -1
-Sceneryobjects\Trees_MC\tree_medium_07.sco
+Sceneryobjects\Trees_MC\tree_large_05.sco
 1361799459
 1361799459
 -1
-Sceneryobjects\Trees_MC\tree_medium_08.sco
+Sceneryobjects\Trees_MC\tree_medium_09.sco
 1361799459
 1361799459
 -1
-Splines\Addon_British-Style_Road_Markings\Zebra_Stripe_White.sli
-1144101625
+Splines\Marcel\invis_human.sli
+1085057041
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_1spur.sli
+1048385792
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m.sli
+1048149027
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Sidewalk.sli
+1047334011
 -
 -
 Splines\SMV Studios\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli

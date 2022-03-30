@@ -1,0 +1,959 @@
+-----------------------
+Time Table Line File
+-----------------------
+
+Created with Omsi Version 2.2.032
+Date: 17/3/2022
+
+[userallowed]
+
+[priority]
+1
+------------------------------------
+
+[newtour]
+AP01
+Buses DD
+1023
+
+------------------------------------
+
+  Dep.: 5:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+315.000
+
+  Dep.: 5:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+350.000
+
+  Dep.: 6:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+375.000
+
+  Dep.: 6:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+410.000
+
+  Dep.: 7:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+435.000
+
+  Dep.: 7:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+470.000
+
+  Dep.: 8:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+495.000
+
+  Dep.: 8:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+530.000
+
+  Dep.: 9:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+555.000
+
+  Dep.: 9:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+590.000
+
+  Dep.: 10:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+615.000
+
+  Dep.: 10:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+650.000
+
+  Dep.: 11:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+675.000
+
+  Dep.: 11:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+710.000
+
+  Dep.: 12:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+735.000
+
+  Dep.: 12:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+770.000
+
+  Dep.: 13:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+795.000
+
+  Dep.: 13:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+830.000
+
+  Dep.: 14:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+855.000
+
+  Dep.: 14:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+890.000
+
+  Dep.: 15:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+915.000
+
+  Dep.: 15:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+950.000
+
+  Dep.: 16:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+975.000
+
+  Dep.: 16:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1010.000
+
+  Dep.: 17:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1035.000
+
+  Dep.: 17:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1070.000
+
+  Dep.: 18:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1095.000
+
+  Dep.: 18:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1130.000
+
+  Dep.: 19:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1155.000
+
+  Dep.: 19:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1190.000
+
+  Dep.: 20:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1215.000
+
+  Dep.: 20:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1250.000
+
+  Dep.: 21:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1275.000
+
+  Dep.: 21:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1310.000
+
+  Dep.: 22:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1335.000
+
+  Dep.: 22:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1370.000
+
+  Dep.: 23:15:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1395.000
+
+  Dep.: 23:50:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1430.000
+
+------------------------------------
+
+[newtour]
+AP02
+Buses DD
+1023
+
+------------------------------------
+
+  Dep.: 5:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+320.000
+
+  Dep.: 6:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+360.000
+
+  Dep.: 6:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+380.000
+
+  Dep.: 7:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+420.000
+
+  Dep.: 7:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+440.000
+
+  Dep.: 8:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+480.000
+
+  Dep.: 8:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+500.000
+
+  Dep.: 9:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+540.000
+
+  Dep.: 9:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+560.000
+
+  Dep.: 10:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+600.000
+
+  Dep.: 10:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+620.000
+
+  Dep.: 11:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+660.000
+
+  Dep.: 11:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+680.000
+
+  Dep.: 12:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+720.000
+
+  Dep.: 12:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+740.000
+
+  Dep.: 13:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+780.000
+
+  Dep.: 13:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+800.000
+
+  Dep.: 14:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+840.000
+
+  Dep.: 14:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+860.000
+
+  Dep.: 15:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+900.000
+
+  Dep.: 15:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+920.000
+
+  Dep.: 16:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+960.000
+
+  Dep.: 16:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+980.000
+
+  Dep.: 17:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1020.000
+
+  Dep.: 17:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1040.000
+
+  Dep.: 18:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1080.000
+
+  Dep.: 18:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1100.000
+
+  Dep.: 19:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1140.000
+
+  Dep.: 19:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1160.000
+
+  Dep.: 20:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1200.000
+
+  Dep.: 20:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1220.000
+
+  Dep.: 21:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1260.000
+
+  Dep.: 21:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1280.000
+
+  Dep.: 22:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1320.000
+
+  Dep.: 22:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1340.000
+
+  Dep.: 23:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1380.000
+
+  Dep.: 23:20:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1400.000
+
+  Dep.: 24:0:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1440.000
+
+------------------------------------
+
+[newtour]
+AP03
+Buses DD
+1023
+
+------------------------------------
+
+  Dep.: 5:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+330.000
+
+  Dep.: 6:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+370.000
+
+  Dep.: 6:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+390.000
+
+  Dep.: 7:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+430.000
+
+  Dep.: 7:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+450.000
+
+  Dep.: 8:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+490.000
+
+  Dep.: 8:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+510.000
+
+  Dep.: 9:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+550.000
+
+  Dep.: 9:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+570.000
+
+  Dep.: 10:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+610.000
+
+  Dep.: 10:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+630.000
+
+  Dep.: 11:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+670.000
+
+  Dep.: 11:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+690.000
+
+  Dep.: 12:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+730.000
+
+  Dep.: 12:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+750.000
+
+  Dep.: 13:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+790.000
+
+  Dep.: 13:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+810.000
+
+  Dep.: 14:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+850.000
+
+  Dep.: 14:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+870.000
+
+  Dep.: 15:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+910.000
+
+  Dep.: 15:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+930.000
+
+  Dep.: 16:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+970.000
+
+  Dep.: 16:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+990.000
+
+  Dep.: 17:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1030.000
+
+  Dep.: 17:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1050.000
+
+  Dep.: 18:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1090.000
+
+  Dep.: 18:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1110.000
+
+  Dep.: 19:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1150.000
+
+  Dep.: 19:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1170.000
+
+  Dep.: 20:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1210.000
+
+  Dep.: 20:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1230.000
+
+  Dep.: 21:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1270.000
+
+  Dep.: 21:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1290.000
+
+  Dep.: 22:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1330.000
+
+  Dep.: 22:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1350.000
+
+  Dep.: 23:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1390.000
+
+  Dep.: 23:30:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1410.000
+
+  Dep.: 24:10:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1450.000
+
+------------------------------------
+
+[newtour]
+AP04
+Buses DD
+1023
+
+------------------------------------
+
+  Dep.: 5:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+340.000
+
+  Dep.: 6:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+380.000
+
+  Dep.: 6:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+400.000
+
+  Dep.: 7:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+440.000
+
+  Dep.: 7:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+460.000
+
+  Dep.: 8:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+500.000
+
+  Dep.: 8:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+520.000
+
+  Dep.: 9:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+560.000
+
+  Dep.: 9:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+580.000
+
+  Dep.: 10:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+620.000
+
+  Dep.: 10:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+640.000
+
+  Dep.: 11:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+680.000
+
+  Dep.: 11:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+700.000
+
+  Dep.: 12:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+740.000
+
+  Dep.: 12:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+760.000
+
+  Dep.: 13:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+800.000
+
+  Dep.: 13:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+820.000
+
+  Dep.: 14:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+860.000
+
+  Dep.: 14:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+880.000
+
+  Dep.: 15:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+920.000
+
+  Dep.: 15:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+940.000
+
+  Dep.: 16:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+980.000
+
+  Dep.: 16:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1000.000
+
+  Dep.: 17:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1040.000
+
+  Dep.: 17:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1060.000
+
+  Dep.: 18:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1100.000
+
+  Dep.: 18:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1120.000
+
+  Dep.: 19:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1160.000
+
+  Dep.: 19:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1180.000
+
+  Dep.: 20:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1220.000
+
+  Dep.: 20:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1240.000
+
+  Dep.: 21:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1280.000
+
+  Dep.: 21:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1300.000
+
+  Dep.: 22:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1340.000
+
+  Dep.: 22:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1360.000
+
+  Dep.: 23:20:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1400.000
+
+  Dep.: 23:40:0
+[addtrip]
+885 BAL INT to EGV TER
+0
+1420.000
+
+  Dep.: 24:15:0
+[addtrip]
+885 EGV TER to BAL INT
+0
+1455.000
+

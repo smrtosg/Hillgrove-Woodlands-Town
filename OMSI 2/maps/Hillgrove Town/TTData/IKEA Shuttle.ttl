@@ -1,0 +1,152 @@
+-----------------------
+Time Table Line File
+-----------------------
+
+Created with Omsi Version 2.2.032
+Date: 17/3/2022
+
+[userallowed]
+
+[priority]
+1
+------------------------------------
+
+[newtour]
+AP01
+Buses Rigid A&S IKEA
+1023
+
+------------------------------------
+
+  Dep.: 9:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+540.000
+
+  Dep.: 12:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+720.000
+
+  Dep.: 12:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+720.000
+
+  Dep.: 15:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+900.000
+
+  Dep.: 15:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+900.000
+
+  Dep.: 18:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+1080.000
+
+  Dep.: 21:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+1260.000
+
+------------------------------------
+
+[newtour]
+AP02
+Buses Rigid A&S IKEA
+1023
+
+------------------------------------
+
+  Dep.: 10:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+600.000
+
+  Dep.: 13:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+780.000
+
+  Dep.: 13:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+780.000
+
+  Dep.: 16:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+960.000
+
+  Dep.: 16:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+960.000
+
+  Dep.: 19:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+1140.000
+
+------------------------------------
+
+[newtour]
+AP03
+Buses Rigid A&S IKEA
+1023
+
+------------------------------------
+
+  Dep.: 11:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+660.000
+
+  Dep.: 14:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+840.000
+
+  Dep.: 14:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+840.000
+
+  Dep.: 17:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+1020.000
+
+  Dep.: 17:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+1020.000
+
+  Dep.: 20:0:0
+[addtrip]
+IKEA SHUTTLE
+0
+1200.000
+

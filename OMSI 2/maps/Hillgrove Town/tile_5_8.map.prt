@@ -1,18 +1,66 @@
-Sceneryobjects\Buildings_DF\Traffic_lights\whip_beam.sco
-1155991120
-1155991120
+Sceneryobjects\Addon_British-Style_Road_Markings\Road_Destination_Mark_3line.sco
+1397644558
+1397644558
 -1
-Sceneryobjects\Buildings_MC\bw_70s_01B.sco
-1167985821
-1167985821
+Sceneryobjects\ADDON_SimpleStreets\RQ_9,5_2spur_6,5m_Sidewalk.sli
+1047233290
+-
+-
+Sceneryobjects\Buildings_MC\bw_old_10.sco
+1344352425
+1344352425
 -1
-Sceneryobjects\gg\phousing_0001.sco
-1112307773
-1112307773
+Sceneryobjects\Buildings_MC\Ubahn_Rsp_06.sco
+1344352621
+1344352621
 -1
-Sceneryobjects\gg\school1.sco
-1114077205
-1114077205
+Sceneryobjects\Fellowsfilm Objects\British Traffic Light Pack\LED traffic lights\Ampel_Bus_ALG.sco
+1162255383
+1162255383
+-1
+Sceneryobjects\Fellowsfilm Objects\British Traffic Light Pack\LED traffic lights\Ampel_Kfz_Oh_1.sco
+1162255383
+1162255383
+-1
+Sceneryobjects\Fellowsfilm Objects\British Traffic Light Pack\LED traffic lights\Ampel_Mensch_1.sco
+1162255383
+1162255383
+-1
+Sceneryobjects\Fellowsfilm Objects\Signs\Railings\Ped Railings.sco
+1162255387
+1162255387
+-1
+Sceneryobjects\Generic\bus_stop.sco
+1395037235
+1395037235
+-1
+Sceneryobjects\Generic\car_park.sco
+1395037235
+1395037235
+-1
+Sceneryobjects\Generic\entrypoint_bus.sco
+1395037235
+1395037235
+-1
+Sceneryobjects\Generic\people_standing_small.sco
+1395037235
+1395037235
+-1
+Sceneryobjects\Generic\routearrow_dn.sco
+1395037235
+1395037235
+-1
+Sceneryobjects\Generic\routearrow_L.sco
+1395037235
+1395037235
+-1
+Sceneryobjects\Generic\routearrow_R.sco
+1395037235
+1395037235
+-1
+Sceneryobjects\Generic\routearrows_busstop.sco
+1395037235
+1395037235
 -1
 Sceneryobjects\Helferlein_Objekte\Buegel2f.sco
 1395155076
@@ -30,25 +78,33 @@ Sceneryobjects\Helferlein_Objekte\SG_3f_Kfz.sco
 1395155076
 1395155076
 -1
-Sceneryobjects\Ruede\forest_backdrop01.sco
-1210215922
-1210215922
+Sceneryobjects\Helferlein_Objekte\SG_3f_Kfz_li.sco
+1395155077
+1395155077
 -1
-Sceneryobjects\Ruede\trees_chestnut03.sco
-1210215982
-1210215982
+Sceneryobjects\RRTS_Studios\Bus_Stop\rrts_bs_01.sco
+1191548454
+1191548454
 -1
-Sceneryobjects\SMRTG Studios\LTA Road Sign\LTARSSM.sco
-1330144295
-1330144295
+Sceneryobjects\RRTS_Studios\busstopdisplay\BusstopDisplay.sco
+1193185927
+1193185927
 -1
-Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_to_10,5.sco
-1049134507
-1049134507
+Sceneryobjects\RRTS_Studios\P7\Krexan_P7.sco
+1193625345
+1193625345
 -1
-Sceneryobjects\SMV Studios\Road Objects\ADDON_SimpleStreets\RQ_20n_w9,5_SideWide_Junct_A.sco
-1115583319
-1115583319
+Sceneryobjects\SMRTG Studios\Route Hints V3\arrow_busStop.sco
+1381000008
+1381000008
+-1
+Sceneryobjects\SMRTG Studios\SMV Bus Stop\smv_busstop.sco
+1377940020
+1377940020
+-1
+Sceneryobjects\SMV Studios\Bus Stop Pole V5\BS Pole.sco
+1391175685
+1391175685
 -1
 Sceneryobjects\SMV Studios\Route Hints V4\arrow_leftA.sco
 1392487836
@@ -58,31 +114,131 @@ Sceneryobjects\SMV Studios\Route Hints V4\arrow_rightA.sco
 1392487826
 1392487826
 -1
-Sceneryobjects\Streetobjects_RUE\neonlight_S_whip_S.sco
-1167985954
-1167985954
+Sceneryobjects\SMV Studios\Route Hints V4\arrow_upA.sco
+1392487831
+1392487831
+-1
+Sceneryobjects\SMV Studios\SMRTG Displays V3.1\For Strides\International Airport\Display Screen.sco
+1313453702
+1313453702
+-1
+Sceneryobjects\SMV Studios\SMRTG Displays V3.1\For Strides\International Airport\Display ScreenText.sco
+1301808947
+1301808947
+-1
+Sceneryobjects\Streetobjects_RUE\Busstop_Name_Timetable_1.sco
+1344352890
+1344352890
+-1
+Sceneryobjects\Streetobjects_RUE\neonlight_2L_bend_L.sco
+1344352907
+1344352907
+-1
+Sceneryobjects\Streetobjects_RUE\neonlight_L_bend_L.sco
+1344352907
+1344352907
+-1
+Sceneryobjects\Streetobjects_RUE\neonlight_L_whip_L.sco
+1344352907
+1344352907
+-1
+Sceneryobjects\Streetobjects_RUE\neonlight_M_whip_S.sco
+1167985958
+1167985958
 -1
 Sceneryobjects\Streetobjects_RUE\single_pole.sco
 1167985956
 1167985956
 -1
-Sceneryobjects\Trees_MC\tree_medium_01.sco
+Sceneryobjects\Streetobjects_RUE\sodiumlight_2L_break_L.sco
+1344352908
+1344352908
+-1
+Sceneryobjects\Streetobjects_RUE\whip_beam.sco
+1344352916
+1344352916
+-1
+Sceneryobjects\Trees_MC\tree_avenue_04.sco
 1361799459
 1361799459
 -1
-Sceneryobjects\Trees_MC\tree_medium_04.sco
+Sceneryobjects\Trees_MC\tree_large_01.sco
 1361799459
 1361799459
 -1
-Sceneryobjects\Trees_MC\tree_medium_07.sco
+Sceneryobjects\Trees_MC\tree_large_02.sco
 1361799459
 1361799459
 -1
-Sceneryobjects\woodlands_city_gg2\sport03.sco
-1110943758
-1110943758
+Sceneryobjects\Trees_MC\tree_large_04.sco
+1361799459
+1361799459
 -1
+Sceneryobjects\Trees_MC\tree_large_05.sco
+1361799459
+1361799459
+-1
+Sceneryobjects\Trees_MC\tree_large_06.sco
+1361799459
+1361799459
+-1
+Sceneryobjects\Trees_MC\Tree_Small_01.sco
+1361799459
+1361799459
+-1
+Splines\Marcel\invis_human.sli
+1085057041
+-
+-
+Splines\Marcel\invis_street.sli
+999142606
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Oneway.sli
+1049494860
+-
+-
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_10,5_2spur_7,5m_Sidewalk.sli
+1047334011
+-
+-
 Splines\SMV Studios\ADDON_SimpleStreets\RQ_20_4_spur_15m_narrow_Sidewalk.sli
 1048803973
 -
 -
+Splines\Terrain Spline\10mTerrain_Spline.sli
+1157909517
+-
+-
+Splines\Terrain Spline\20mTerrain_Spline.sli
+1157909557
+-
+-
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_leftA.sco
+1398646342
+1398646342
+-1
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_rightA.sco
+1398646342
+1398646342
+-1
+Sceneryobjects\SMV Studios\Route Hints V5\arrow_upA.sco
+1398646342
+1398646342
+-1
+Sceneryobjects\SMV Studios\LTA Bus Panel\Bus Panel.sco
+1395100483
+1395100483
+-1
+Splines\SMV Studios\ADDON_SimpleStreets\RQ_9,5_2spur_6,5m_Sidewalk.sli
+1047229193
+-
+-
+Sceneryobjects\SMV Studios\SMV Displays V4 - Stand\IA\Display Screen-IA.sco
+1415928947
+1415928947
+-1
+Sceneryobjects\SMV Studios\SMV Displays V4 - Stand\IA\Display ScreenText.sco
+1415928953
+1415928953
+-1
